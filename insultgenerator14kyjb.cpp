@@ -130,19 +130,6 @@ vector <string> insultgenerator_14kyjb::generateAndSave(string ofile, int y) {
 }
 
 
-
-
-
-
-insultgenerator_14kyjb::insultgenerator_14kyjb() {
-	// TODO Auto-generated constructor stub
-
-}
-
-insultgenerator_14kyjb::~insultgenerator_14kyjb() {
-	// TODO Auto-generated destructor stub
-}
-
 int main() {
 
 
