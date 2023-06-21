@@ -3,26 +3,43 @@
 # This program may be used to create the data set for our Shakespearian Insult Generator.
 
 import argparse
+import random
+import re
 import sys
 
 from pathlib import Path
 
 progname = 'generate'
 
+token_first = []
+token_second = []
+token_third = []
+
 
 def load_phrases(path):
-    phrases = []
+    phrase_data = []
 
     with open(path, 'r') as strm:
-        phrases = strm.read().splitlines()
+        phrase_data = strm.read().splitlines()
 
-    if len(phrases) == 0:
+    if len(phrase_data) == 0:
         print(f'{progname}: the phrase file is empty: {path}')
         sys.exit(1)
 
-    print(phrases)
+    for raw in phrase_data:
+        phrase = re.split(r'\t+', raw)
+
+        token_first.append(phrase[0])
+        token_second.append(phrase[1])
+        token_third.append(phrase[2])
 
     return 0
+
+
+def insult():
+    insult = f'Thou {token_first[random.randint(0, 50)]} {token_second[random.randint(0, 50)]} {token_third[random.randint(0, 50)]}!'
+
+    print(insult)
 
 
 def sanity_checks(path):
@@ -42,6 +59,8 @@ def main():
 
     sanity_checks(args.phrases)
     load_phrases(args.phrases)
+
+    insult()
 
     sys.exit(0)
 
