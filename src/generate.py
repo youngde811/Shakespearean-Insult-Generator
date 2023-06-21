@@ -3,6 +3,7 @@
 # This program may be used to create the data set for our Shakespearian Insult Generator.
 
 import argparse
+import os
 import random
 import re
 import sys
@@ -36,10 +37,22 @@ def load_phrases(path):
     return 0
 
 
-def insult():
-    insult = f'Thou {token_first[random.randint(0, 50)]} {token_second[random.randint(0, 50)]} {token_third[random.randint(0, 50)]}!'
+def rand(begin=0, end=50):
+    return random.randint(begin, end)
 
-    print(insult)
+
+def insult(strm=sys.stdout):
+    insult = f'Thou {token_first[rand()]} {token_second[rand()]} {token_third[rand()]}!'
+
+    print(insult, file=strm)
+
+
+def open_genfile(path):
+    if not os.access(os.path.dirname(path), os.W_OK):
+        print(f'{progname}: insult save file cannot be created here: {path}')
+        sys.exit(1)
+
+    return open(path, mode='w')
 
 
 def sanity_checks(path):
@@ -63,9 +76,10 @@ def main():
     load_phrases(args.phrases)
 
     icount = args.count if args.count > 0 else 1
+    ostrm = sys.stdout if args.genfile is None else open_genfile(args.genfile)
 
     for i in range(0, icount):
-        insult()
+        insult(strm=ostrm)
 
     sys.exit(0)
 
