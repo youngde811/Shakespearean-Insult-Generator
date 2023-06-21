@@ -4,7 +4,7 @@ This project is generates "Shakespearian" insults to either the terminal or an i
 incantation was around, written in C, and I took that code and wrote a screen saver for my X Window System environment
 on SunOS/Solaris. Originally written in _Xlib_, I had a blast.
 
-Having found this code in a newer version written in C++, I've written a generator program in Python that will create
+Having found this code in a newer version developed in C++, I've written a generator program in Python that will create
 any number of insults using an included model file, then either write these insults to the terminal or, even better, to
 an iOS app that is currently being written.
 
