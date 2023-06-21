@@ -1,6 +1,6 @@
 # Welcome to Willie The Shake #
 
-This project is generates "Shakespearian" insults to either the terminal or an iOS app. Many years ago, the original
+This project generates "Shakespearian" insults to either the terminal or an iOS app. Many years ago, the original
 incantation was around, written in C, and I took that code and wrote a screen saver for my X Window System environment
 on SunOS/Solaris. Originally written in _Xlib_, I had a blast.
 
