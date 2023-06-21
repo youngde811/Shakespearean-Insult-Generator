@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# This program may be used to create the data set for our Shakespearian Insult Generator.
+# This program may be used to create insults, and optionally save them to a file, using our
+# Shakespearian Insult Generator.
 
 import argparse
 import os
