@@ -31,6 +31,10 @@ def load_phrases(path):
     for raw in phrase_data:
         phrase = re.split(r'\t+', raw)
 
+        assert len(phrase) == 3, f'{progname}: the input data file is corrupt: {path}'
+
+        # list appends are fast in Python
+
         token_first.append(phrase[0])
         token_second.append(phrase[1])
         token_third.append(phrase[2])
