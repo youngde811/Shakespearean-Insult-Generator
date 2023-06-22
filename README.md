@@ -53,6 +53,10 @@ In progress is the development of an iOS app using _React Native_, _Expo_ and _T
 insults created by the generator program to offend both your friends and enemies in various ways. I'm soliciting input
 from family members to assist in identifying cool behaviors to include, so stay tuned.
 
+## License ##
+
+This software is made available under the _MIT License_. See _LICENSE.md_ for details.
+
 ## Author ##
 
 [David E. Young](mailto://youngde811@pobox.com)
