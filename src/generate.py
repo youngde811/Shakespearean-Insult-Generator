@@ -59,7 +59,7 @@ def load_phrases(path):
     return 0
 
 
-def rand(begin=0, end=50):
+def rand(begin=0, end=49):
     return random.randint(begin, end)
 
 

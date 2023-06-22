@@ -43,6 +43,8 @@ EOF
 sanity_checks() {
     [[ -e $generator ]] || { echo "$progname: failed to locate the generator. Are you in the project root?"; exit 1; }
 
+    which -s python3 || { echo "$progname: the python3 executable is missing, but this might not be an issue"; exit 1; }
+
     return 0
 }
 
