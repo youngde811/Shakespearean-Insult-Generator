@@ -30,8 +30,9 @@ The generator offers a few command-line arguments:
 - _-g PATH_: Write some number of insults to PATH, saving them for later use. Whatever that might be.
 - _-f PATH_: Use PATH as the insult generator's model file, rather than the default file provided.
 
-In the project's _bin_ directory, there is a _Bash_ script that serves as a simple wrapper around the generator to save
-a small amount of typing.
+As implied above, in the project's _bin_ directory there is a _Bash_ script that serves as a simple wrapper around the
+Python-based generator to save a small amount of typing. If you prefer, you may use your own Python interpreter
+directly: _python3 src/generator.py_.
 
 ## The Model File ##
 
