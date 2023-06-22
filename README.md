@@ -33,6 +33,9 @@ The generator offers a few command-line arguments:
 - _-g PATH_: Write some number of insults to PATH, saving them for later use. Whatever that might be.
 - _-f PATH_: Use PATH as the insult generator's model file, rather than the default file provided.
 
+In the project's _bin_ directory, there is a _Bash_ script that serves as a simple wrapper around the generator to save
+a small amount of typing.
+
 ## The Model File ##
 
 The generator uses a "model file" to drive insult assembly. Each insult is created by putting three words, or fragments,
@@ -40,14 +43,17 @@ in between the tokens "Thou " and "!". Each of the fragments may be thought of a
 random, one from each column of words that are supplied in the data file, using a separate random number for each. The
 algorithm is actually quite simple.
 
+Using the included model file, there are 50 lines of three tokens each, for a total permutation of 125,000.
+
 You may use your own model file if you wish. If you create your own, it **must** follow a strict format: _three tokens
 per line; each token separated by a single tab character_. The generator makes an attempt to validate a model file, and
 fail cleanly if it gets angry.
 
 ## Current Work ##
 
-At the moment, I'm writing an iOS app using React Native, Expo and TestApp.io. This app will use the insults created by
-the generator program to offend both your friends and enemies. Stay tuned.
+In progress is the development of an iOS app using _React Native_, _Expo_ and _TestApp.io_. This app will use the
+insults created by the generator program to offend both your friends and enemies in various ways. I'm soliciting input
+from family members to assist in identifying cool behaviors to include, so stay tuned.
 
 ## Author ##
 
