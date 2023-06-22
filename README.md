@@ -57,6 +57,10 @@ from family members to assist in identifying cool behaviors to include, so stay 
 
 This software is made available under the _MIT License_. See _LICENSE.md_ for details.
 
+## Attributions ##
+
+The insult generator itself is based on the work of Kurt Blair's [Shakespearean Insult Generator](https://github.com/Kurt-Blair/Shakespearean-Insult-Generator).
+
 ## Author ##
 
 [David E. Young](mailto://youngde811@pobox.com)
