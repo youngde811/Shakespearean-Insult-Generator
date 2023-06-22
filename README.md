@@ -3,7 +3,8 @@
 This project generates "Shakespearean" insults to either the terminal or (soon) an iOS app. Many years ago, I stumbled
 across the original implementation (I think); it was written in C. I took that code and wrote a screen saver for my X
 Window System environment on SunOS/Solaris, using _Xlib_. The documentation for the original work gave credit to a local
-performer called "Willie The Shake", whom the author had apparently seen a number of times.
+performer called "Willie The Shake", whom the author had apparently seen a number of times. Thus the name of this
+project.
 
 I found myself needing a distraction after a particularly challenging project at work. Having found a newer
 implementation of this code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
@@ -18,7 +19,8 @@ phrases. The generator may be used to insult you from a terminal, or save a conf
 file. The latter approach will be used to power the upcoming app.
 
 Displaying an insult is simple; just run _bin/generate_ from the project directory with no arguments. You'll receive a
-single offensive phrase; for example: _Thou ruttish fen-sucked apple-john!_.
+single offensive phrase; for example: _Thou ruttish fen-sucked apple-john!_. If you need some functional information
+from this script, run _bin/generate -h_.
 
 ## Usage ##
 
@@ -38,7 +40,7 @@ in between the tokens "Thou " and "!". Each of the fragments may be thought of a
 random, one from each column of words that are supplied in the data file, using a separate random number for each. The
 algorithm is actually quite simple.
 
-Using the included model file, there are 50 lines of three tokens each, for a total permutation of 125,000.
+Using the included model file, there are 50 lines of three tokens each, for a total permutation count of 125,000.
 
 You may use your own model file if you wish. If you create your own, it **must** follow a strict format: _three tokens
 per line; each token separated by a single tab character_. The generator makes an attempt to validate a model file, and
