@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# This is a simple wrapper script around our Python insult generator.
+
+set -o pipefail
+
+progname="$(basename $0)"
+
+generator='src/generate.py'
+
+usage() {
+    cat <<EOF
+Usage: $progname [OPTIONS]
+
+This script is a simple wrapper around our Python-based insult generator. Other
+than the '-h' flag, arguments are passed through to the generate.py script.
+
+Options:
+  -H    Show the generator's help message and exit.
+  -h    Show this message and exit.
+EOF
+
+    exit 1
+}
+
+sanity_checks() {
+    [[ -e $generator ]] || { echo "$progname: failed to locate the generator. Are you in the project root?"; exit 1; }
+
+    return 0
+}
+
+# --- main() ---
+
+# We actually do NOT use getopts() here, as most command-line flags are passed directly
+# through to the generator for validation.
+
+case "$1" in
+    -h) usage ;;
+    -H) python3 $generator --help && exit 1 ;;
+esac
+
+sanity_checks
+
+python3 $generator "$@"
+
+exit $?
+
