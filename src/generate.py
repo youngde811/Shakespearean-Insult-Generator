@@ -56,15 +56,17 @@ def load_phrases(path):
         token_second.append(phrase[1])
         token_third.append(phrase[2])
 
-    return 0
+    return len(phrase_data)
 
 
-def rand(begin=0, end=49):
-    return random.randint(begin, end)
+def rand(end=49):
+    return random.randint(0, end)
 
 
-def insult(strm=sys.stdout):
-    insult = f'Thou {token_first[rand()]} {token_second[rand()]} {token_third[rand()]}!'
+def insult(strm=sys.stdout, nphrases=50):
+    index = nphrases - 1
+
+    insult = f'Thou {token_first[rand(end=index)]} {token_second[rand(end=index)]} {token_third[rand(end=index)]}!'
 
     print(insult, file=strm)
 
@@ -95,13 +97,14 @@ def main():
     args = ap.parse_args()
 
     sanity_checks(args.phrases)
-    load_phrases(args.phrases)
+
+    nphrases = load_phrases(args.phrases)
 
     icount = args.count if args.count > 0 else 1
     ostrm = sys.stdout if args.genfile is None else open_genfile(args.genfile)
 
     for i in range(0, icount):
-        insult(strm=ostrm)
+        insult(strm=ostrm, nphrases=nphrases)
 
     sys.exit(0)
 
