@@ -1,0 +1,5 @@
+
+# Ignore files and directories not to be managed by git.
+
+*~
+apps/WillieShake/node_modules/
