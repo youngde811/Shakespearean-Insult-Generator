@@ -10,11 +10,6 @@ implementation of this code on _GitHub_ - Kurt Blair's "Shakespearean Insult Gen
 re-wrote the generator in Python; and decided to include an iOS app that will make use of generated insults in some fun
 manner. The app will be written in _React Native_ and _Expo_, and will be made available somehow.
 
-
-version developed in C++, I've written a generator program in Python that will create 
-any number of insults using an included model file, then either write these insults to the terminal or, even better, to
-an iOS app that is currently being written.
-
 ## Overview ##
 
 The insult generator is data-driven and written in Python 3.x. There's a small model file included in the _data_
