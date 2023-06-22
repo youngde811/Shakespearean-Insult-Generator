@@ -89,7 +89,7 @@ def main():
     ap = argparse.ArgumentParser(prog=progname, description='A Shakespearian insult generator')
 
     ap.add_argument('-c', '--count', metavar='COUNT', dest='count', default=0, type=int, help='Generate COUNT insults')
-    ap.add_argument('-f', '--file', metavar='PATH', dest='phrases', default='data/phrases', help=f'Use PATH for the data file. Default is {default_phrases}')
+    ap.add_argument('-f', '--file', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
     ap.add_argument('-g', '--generate', metavar='PATH', dest='genfile', default=None, help='Write a number of insults to PATH')
 
     args = ap.parse_args()
