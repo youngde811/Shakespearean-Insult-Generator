@@ -61,6 +61,11 @@ This software is made available under the _MIT License_. See _LICENSE.md_ for de
 
 The insult generator itself is based on the work of Kurt Blair's [Shakespearean Insult Generator](https://github.com/Kurt-Blair/Shakespearean-Insult-Generator).
 
+## References ##
+
+- [Lord Buckley's](http://www.lordbuckley.com/the-word-new/transcriptions/willie-the-shake.html) "Willie The Shake".
+- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/)
+
 ## Author ##
 
 [David E. Young](mailto://youngde811@pobox.com)
