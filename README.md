@@ -41,9 +41,7 @@ in between the tokens "Thou " and "!". Each of the fragments may be thought of a
 random, one from each column of words that are supplied in the data file, using a separate random number for each. The
 algorithm is actually quite simple.
 
-Using the included model file, there are 50 lines of three tokens each, allowing for 573,800 combinations:
-
-$$\frac{(n + r - 1)!}{r!(n - 1)!\
+Using the included model file, there are 50 lines of three tokens each, allowing for 573,800 combinations: $`\frac{(n + r - 1)!}{r!(n - 1)!`$
 
 You may use your own model file if you wish. If you create your own, it **must** follow a strict format: _three tokens
 per line; each token separated by a single tab character_. The generator makes an attempt to validate a model file, and
