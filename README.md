@@ -26,9 +26,9 @@ from this script, run `bin/generate -h`.
 
 The generator offers a few command-line arguments:
 
-- _-c COUNT_: Generate COUNT number of insults, writing them to either standard output or a file.
-- _-g PATH_ : Write some number of insults to PATH, saving them for later use. Whatever that might be.
-- _-f PATH_ : Use PATH as the insult generator's model file, rather than the default file provided.
+| _-c COUNT_ | Generate COUNT number of insults, writing them to either standard output or a file. |
+| _-g PATH_ | Write some number of insults to PATH, saving them for later use. Whatever that might be. |
+| _-f PATH_ | Use PATH as the insult generator's model file, rather than the default file provided. |
 
 As implied above, in the project's _bin_ directory there is a _Bash_ script that serves as a simple wrapper around the
 Python-based generator to save a small amount of typing. If you prefer, you may use your own Python interpreter
