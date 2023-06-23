@@ -21,15 +21,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 
-import styles from 'src/styles/styles.js'
+import styles from 'src/styles/styles.js';
 
-const DefaultBackground = require('./assets/images/StreetRod.jpg')
+const DefaultBackground = require('./assets/images/StreetRod.jpg');
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.imageContainer}>
+        <Image source={DefaultBackground} style={styles.image}/>
+      </View>
+      <StatusBar style="auto"/>
     </View>
   );
 }
