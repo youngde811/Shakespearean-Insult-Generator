@@ -2,12 +2,12 @@
 
 This project generates "Shakespearean" insults to either the terminal or (soon) an iOS app. Many years ago, I stumbled
 across the original implementation (I think); it was written in C. I took that code and wrote a screen saver for my X
-Window System environment on SunOS/Solaris, using _Xlib_. The documentation for the original work gave credit to a local
-performer called "Willie The Shake", whom the author had apparently seen a number of times. Thus the name of this
-project.
+Window System environment on SunOS/Solaris, using _Xlib_. The documentation for the original work gave credit to a
+performer named "Lord Buckley", who had an act he called "Willie The Shake", whom the code author had apparently seen a
+number of times. Thus the name of this project.
 
-I found myself needing a distraction after a particularly challenging project at work. Having found a newer
-implementation of this code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
+I found myself needing a distraction after a particularly challenging project at work. Having discovered a newer
+implementation of the code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
 re-wrote the generator in Python; and decided to include an iOS app that will make use of generated insults in some fun
 manner. The app will be written in _React Native_ and _Expo_, and will be made available somehow.
 
@@ -18,21 +18,21 @@ directory, containing 50 lines of three tokens each; this file may be used to cr
 phrases. The generator may be used to insult you from a terminal, or save a configurable number of insults to a
 file. The latter approach will be used to power the upcoming app.
 
-Displaying an insult is simple; just run _bin/generate_ from the project directory with no arguments. You'll receive a
-single offensive phrase; for example: _Thou ruttish fen-sucked apple-john!_. If you need some functional information
-from this script, run _bin/generate -h_.
+Displaying an insult is simple; just run `bin/generate` from the project directory with no arguments. You'll receive a
+single offensive phrase; for example: _Thou ruttish fen-sucked apple-john!_ If you need some functional information
+from this script, run `bin/generate -h`.
 
 ## Usage ##
 
 The generator offers a few command-line arguments:
 
 - _-c COUNT_: Generate COUNT number of insults, writing them to either standard output or a file.
-- _-g PATH_: Write some number of insults to PATH, saving them for later use. Whatever that might be.
-- _-f PATH_: Use PATH as the insult generator's model file, rather than the default file provided.
+- _-g PATH_ : Write some number of insults to PATH, saving them for later use. Whatever that might be.
+- _-f PATH_ : Use PATH as the insult generator's model file, rather than the default file provided.
 
 As implied above, in the project's _bin_ directory there is a _Bash_ script that serves as a simple wrapper around the
 Python-based generator to save a small amount of typing. If you prefer, you may use your own Python interpreter
-directly: _python3 src/generator.py_.
+directly: `python3 src/generator.py`. Note that Python 3 is required; the generator will **not** run on any 2.x version.
 
 ## The Model File ##
 
@@ -64,7 +64,7 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 ## References ##
 
 - [Lord Buckley's](http://www.lordbuckley.com/the-word-new/transcriptions/willie-the-shake.html) "Willie The Shake".
-- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/)
+- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/): A successful Git branchind model.
 
 ## Author ##
 
