@@ -1,5 +1,5 @@
 
-// This file contains the entry point for our WillieShake app.
+// This file contains stylesheet requirements for our WillieShake app.
 
 // MIT License
 
@@ -18,18 +18,23 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native'
 
-import styles from 'src/styles/styles.js'
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#25292e',
+        alignItems: 'center',
+    },
+    imageContainer: {
+        flex: 1,
+        paddingTop: 58,
+    },
+    image: {
+        width: 320,
+        height: 440,
+        borderRadius: 18,
+    },
+});
 
-const DefaultBackground = require('./assets/images/StreetRod.jpg')
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+export default styles;
