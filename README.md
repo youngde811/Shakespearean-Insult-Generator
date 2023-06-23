@@ -43,7 +43,7 @@ algorithm is actually quite simple.
 
 Using the included model file, there are 50 lines of three tokens each, allowing for 573,800 combinations:
 
-$$\frac{(n + r - 1)!}{r!(n - 1)!
+$$\frac{(n + r - 1)!}{r!(n - 1)!\
 
 You may use your own model file if you wish. If you create your own, it **must** follow a strict format: _three tokens
 per line; each token separated by a single tab character_. The generator makes an attempt to validate a model file, and
