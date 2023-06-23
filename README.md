@@ -66,7 +66,7 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 ## References ##
 
 - [Lord Buckley's](http://www.lordbuckley.com/the-word-new/transcriptions/willie-the-shake.html) "Willie The Shake".
-- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/): A successful Git branchind model.
+- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/): A successful Git branching model.
 
 ## Author ##
 
