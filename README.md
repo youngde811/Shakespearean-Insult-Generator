@@ -44,7 +44,7 @@ algorithm is actually quite simple.
 Using the included model file, there are 50 lines of three tokens each, allowing for 573,800 combinations:
 
 ```math
-\frac{(n + r - 1)!}{r!(n - 1)!
+$$\frac{(n + r - 1)!}{r!(n - 1)!
 ```
 
 You may use your own model file if you wish. If you create your own, it **must** follow a strict format: _three tokens
