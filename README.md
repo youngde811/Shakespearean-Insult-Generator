@@ -26,6 +26,8 @@ from this script, run `bin/generate -h`.
 
 The generator offers a few command-line arguments:
 
+| Argument | Description |
+| :-: |:-: |
 | _-c COUNT_ | Generate COUNT number of insults, writing them to either standard output or a file. |
 | _-g PATH_ | Write some number of insults to PATH, saving them for later use. Whatever that might be. |
 | _-f PATH_ | Use PATH as the insult generator's model file, rather than the default file provided. |
