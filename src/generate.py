@@ -35,6 +35,11 @@ token_second = []
 token_third = []
 
 
+def fail(msg):
+    print(f'{progname}: {msg}')
+    sys.exit(1)
+
+
 def load_phrases(path):
     phrase_data = []
 
@@ -42,8 +47,7 @@ def load_phrases(path):
         phrase_data = strm.read().splitlines()
 
     if len(phrase_data) == 0:
-        print(f'{progname}: the phrase file is empty: {path}')
-        sys.exit(1)
+        fail(f'the phrase file is empty: {path}')
 
     for raw in phrase_data:
         phrase = re.split(r'\t+', raw)
@@ -73,16 +77,14 @@ def insult(strm=sys.stdout, nphrases=50):
 
 def open_genfile(path):
     if not os.access(os.path.dirname(path), os.W_OK):
-        print(f'{progname}: insult save file cannot be created here: {path}')
-        sys.exit(1)
+        fail(f'insult save file cannot be created here: {path}')
 
     return open(path, mode='w')
 
 
 def sanity_checks(path):
     if not Path(path).exists():
-        print(f'{progname}: missing phrase file: {path}')
-        sys.exit(1)
+        fail(f'missing phrase file: {path}')
 
 
 def main():
