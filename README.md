@@ -3,7 +3,7 @@
 This project generates "Shakespearean" insults to either the terminal or (soon) an iOS app. Many years ago, I stumbled
 across the original implementation (I think); it was written in C. I took that code and wrote a screen saver for my X
 Window System environment on SunOS/Solaris, using _Xlib_. The documentation for the original work gave credit to a
-performer named "Lord Buckley", who had an act he called "Willie The Shake". The code author had apparently seen this
+performer named "Lord Buckley"[^1], who had an act he called "Willie The Shake". The code author had apparently seen this
 fellow a number of times; thus the name of this project.
 
 I found myself needing a distraction after a particularly challenging project at work. Having discovered a newer
@@ -71,3 +71,6 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 ## Author ##
 
 [David E. Young](mailto://youngde811@pobox.com)
+
+[^1]: [Lord Buckley](https://en.wikipedia.org/wiki/Lord_Buckley) was a weird dude, as were all of those fellows into the
+    Beat scene.
