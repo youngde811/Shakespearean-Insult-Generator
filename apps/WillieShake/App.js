@@ -20,6 +20,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import styles from './src/styles/styles.js';
 
@@ -27,11 +28,13 @@ const DefaultBackground = require('./assets/images/StreetRod.jpg');
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={DefaultBackground} style={styles.image}/>
-      </View>
-      <StatusBar style="auto"/>
-    </View>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.imageContainer}>
+            <Image source={DefaultBackground} style={styles.image}/>
+          </View>
+          <StatusBar style="auto"/>
+        </SafeAreaView>
+      </SafeAreaProvider>
   );
 }
