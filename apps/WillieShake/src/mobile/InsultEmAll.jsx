@@ -25,14 +25,14 @@ import * as RNFS from 'react-native-fs';
 
 import styles from '../styles/styles.js';
 
-const insultFile = "../../assets/data/insults.txt";
+const insultFile = "data/insults.txt";
 
 export default function InsultEmAll() {
     const [insultsLoaded, setInsultsLoaded] = useState(false);
     const [insults, setInsults] = useState([]);
 
     const loadInsults = () => {
-        RNFS.readFile(insultFile, "utf8")
+        RNFS.readFileAssets(insultFile, "utf8")
             .then((contents) => {
                 setInsults(contents);
             })
