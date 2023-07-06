@@ -26,15 +26,21 @@ import styles from './src/styles/styles.js';
 
 const DefaultBackground = require('./assets/images/StreetRod.jpg');
 
-export default function App() {
-  return (
-      <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
+function WillieShakeLanding() {
+    return (
+        <View style={styles.container}>
           <View style={styles.imageContainer}>
             <Image source={DefaultBackground} style={styles.image}/>
           </View>
           <StatusBar style="auto"/>
-        </SafeAreaView>
+        </View>
+    );
+}
+
+export default function App() {
+  return (
+      <SafeAreaProvider>
+        <WillieShakeLanding/>
       </SafeAreaProvider>
   );
 }
