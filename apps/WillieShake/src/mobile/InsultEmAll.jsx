@@ -18,11 +18,28 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import React, {useState} from 'react';
+
 import { FlatList, ScrollView, Text, View } from 'react-native';
+import * as RNFS from 'react-native-fs';
 
 import styles from '../styles/styles.js';
 
+const insultFile = "../../assets/data/insults.txt";
+
 export default function InsultEmAll() {
+    const [insultsLoaded, setInsultsLoaded] = useState(false);
+    const [insults, setInsults] = useState([]);
+
+    const loadInsults = () => {
+        RNFS.readFile(insultFile, "utf8")
+            .then((contents) => {
+                setInsults(contents);
+            })
+            .catch((err) => {
+                console.log(err.message, err.code);
+            });
+    };
 
     return (
         <ScrollView style={styles.insultTopView}>
