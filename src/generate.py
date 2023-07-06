@@ -30,9 +30,11 @@ from pathlib import Path
 
 progname = 'generate'
 
-token_first = []
-token_second = []
-token_third = []
+tokens = {
+    'first': [],
+    'second': [],
+    'third': []
+}
 
 
 def fail(msg):
@@ -56,9 +58,9 @@ def load_phrases(path):
 
         # list appends are fast in Python
 
-        token_first.append(phrase[0])
-        token_second.append(phrase[1])
-        token_third.append(phrase[2])
+        tokens['first'].append(phrase[0])
+        tokens['second'].append(phrase[1])
+        tokens['third'].append(phrase[2])
 
     return len(phrase_data)
 
@@ -70,7 +72,10 @@ def rand(end=49):
 def insult(strm=sys.stdout, nphrases=50):
     index = nphrases - 1
 
-    insult = f'Thou {token_first[rand(end=index)]} {token_second[rand(end=index)]} {token_third[rand(end=index)]}!'
+    def token(key):
+        return tokens[key][rand(end=index)]
+
+    insult = f"Thou {token('first')} {token('second')} {token('third')}!"
 
     print(insult, file=strm)
 
