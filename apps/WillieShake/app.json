@@ -8,8 +8,8 @@
         "userInterfaceStyle": "light",
         "splash": {
             "image": "./assets/images/willie.png",
-            "resizeMode": "cover",
-            "backgroundColor": "#ffffff"
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
         },
         "assetBundlePatterns": [
             "**/*"
