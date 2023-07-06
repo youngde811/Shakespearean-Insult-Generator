@@ -20,15 +20,17 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import styles from './src/styles/styles.js';
 
 const DefaultBackground = require('./assets/images/StreetRod.jpg');
 
 function WillieShakeLanding() {
+    const insets = useSafeAreaInsets();
+    
     return (
-        <View style={styles.container}>
+        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#25292e', paddingTop: insets.top }}>
           <View style={styles.imageContainer}>
             <Image source={DefaultBackground} style={styles.image}/>
           </View>
