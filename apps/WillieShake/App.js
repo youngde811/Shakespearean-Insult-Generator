@@ -19,9 +19,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
-import styles from 'src/styles/styles.js';
+import styles from './src/styles/styles.js';
 
 const DefaultBackground = require('./assets/images/StreetRod.jpg');
 
