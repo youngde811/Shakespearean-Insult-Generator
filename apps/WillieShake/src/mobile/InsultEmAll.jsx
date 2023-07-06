@@ -1,5 +1,5 @@
 
-// This file contains stylesheet requirements for our WillieShake app.
+// This file contains the code for our WillieShake main insult page.
 
 // MIT License
 
@@ -18,29 +18,15 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { StyleSheet } from 'react-native'
+import { FlatList, ScrollView, Text, View } from 'react-native';
 
-const styles = StyleSheet.create({
-    insultTopView: {
-        flex: 1,
-        backgroundColor: '#25292e',
-        marginHorizontal: 10,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#25292e',
-        alignItems: 'center',
-    },
-    imageContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: 58,
-    },
-    image: {
-        width: 320,
-        height: 440,
-        borderRadius: 18,
-    },
-});
+import styles from '../styles/styles.js';
 
-export default styles;
+export default function InsultEmAll() {
+
+    return (
+        <ScrollView style={styles.insultTopView}>
+          
+        </ScrollView>
+    );
+}
