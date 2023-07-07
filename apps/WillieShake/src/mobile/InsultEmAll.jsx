@@ -18,7 +18,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, ListItem, Text, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 
 import styles from '../styles/styles.js';
@@ -27,9 +27,11 @@ const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
     const renderInsult = ({insult}) => (
-        <Text style={styles.insultText}>
-          {insult}
-        </Text>
+        <View style={styles.insultText}>
+          <Text style={styles.insultText}>
+            {insult}
+          </Text>
+        </View>
     );
 
     const insultHeader = () => {

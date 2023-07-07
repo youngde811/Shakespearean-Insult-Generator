@@ -28,11 +28,12 @@ const styles = StyleSheet.create({
     },
     insultHeader: {
         fontSize: 25,
-    }
+    },
     insultText: {
         fontSize: 10,
         padding: 2,
         margin: 2,
+        color: 'black',
     },
     container: {
         flex: 1,
