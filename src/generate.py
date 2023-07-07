@@ -21,7 +21,7 @@
 # Shakespearian Insult Generator.
 
 import argparse
-import os
+import json
 import random
 import re
 import sys
@@ -69,22 +69,44 @@ def rand(end=49):
     return random.randint(0, end)
 
 
-def insult(strm=sys.stdout, nphrases=50):
+def insult(nphrases=50):
     index = nphrases - 1
 
     def token(key):
         return tokens[key][rand(end=index)]
 
-    insult = f"Thou {token('first')} {token('second')} {token('third')}!"
-
-    print(insult, file=strm)
+    return f"Thou {token('first')} {token('second')} {token('third')}!"
 
 
-def open_genfile(path):
-    if not os.access(os.path.dirname(path), os.W_OK):
-        fail(f'insult save file cannot be created here: {path}')
+def show_insults(insults):
+    for i in range(0, len(insults)):
+        print(insults[i])
 
-    return open(path, mode='w')
+
+def create_json_insults(path, insults):
+    data = {
+        "insults": insults
+    }
+
+    with open(path, 'w') as strm:
+        json.dump(data, strm, sort_keys=True, indent=4)
+
+
+def generate_insults(path, oformat, nphrases=50, count=1):
+    insults = []
+
+    for i in range(0, count):
+        insults.append(insult(nphrases=nphrases))
+
+    if oformat == 'json':
+        create_json_insults(path, insults)
+    else:
+        show_insults(insults)
+
+
+def insult_me(count=1, nphrases=50):
+    for i in range(0, count):
+        print(insult(nphrases=nphrases))
 
 
 def sanity_checks(path):
@@ -98,7 +120,7 @@ def main():
     ap = argparse.ArgumentParser(prog=progname, description='A Shakespearian insult generator')
 
     ap.add_argument('-c', '--count', metavar='COUNT', dest='count', default=0, type=int, help='Generate COUNT insults')
-    ap.add_argument('-f', '--file', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
+    ap.add_argument('-i', '--input', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
     ap.add_argument('-g', '--generate', metavar='PATH', dest='genfile', default=None, help='Write a number of insults to PATH')
     ap.add_argument('-o', '--output', metavar='FORMAT', dest='oformat', choices=['json', 'text'], default='json', help='Output insults using FORMAT. Default is "json"')
 
@@ -109,10 +131,11 @@ def main():
     nphrases = load_phrases(args.phrases)
 
     icount = args.count if args.count > 0 else 1
-    ostrm = sys.stdout if args.genfile is None else open_genfile(args.genfile)
 
-    for i in range(0, icount):
-        insult(strm=ostrm, nphrases=nphrases)
+    if args.genfile is not None:
+        generate_insults(args.genfile, args.oformat, count=icount)
+    else:
+        insult_me(count=icount, nphrases=nphrases)
 
     sys.exit(0)
 
