@@ -18,7 +18,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { FlatList, ListItem, Text, View } from 'react-native';
+import { Button, FlatList, ListItem, Text, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 
 import styles from '../styles/styles.js';
@@ -38,7 +38,7 @@ export default function InsultEmAll() {
 
     const insultHeader = () => {
         return (
-            <View>
+            <View style={styles.insultTopView}>
               <Text style={styles.insultHeader}>
                 Shakespeare Hates You
               </Text>
@@ -49,18 +49,32 @@ export default function InsultEmAll() {
 
     const insultSeparator = () => {
         return (
-            <Divider width={1} color={"white"}/>
+            <Divider width={1} color={"cornsilk"}/>
         );
     };
 
+    const sendInsult = () => {
+
+    };
+
+    const cancelInsult = () => {
+
+    };
+    
     return (
         <View style={styles.insultTopView}>
-          <FlatList
-            ListHeaderComponent={insultHeader}
-            ItemSeparatorComponent={insultSeparator}
-            data={insults.insults}
-            keyExtractor={(item) => item.id}
-            renderItem={renderInsult}/>
+          <View style={styles.insultList}>
+            <FlatList
+              ListHeaderComponent={insultHeader}
+              ItemSeparatorComponent={insultSeparator}
+              data={insults.insults}
+              keyExtractor={(item) => item.id}
+              renderItem={renderInsult}/>
+          </View>
+          <View style={styles.insultFooter}>
+            <Button style={styles.insultButton} title={'Insult'} onPress={sendInsult}/>
+            <Button style={styles.insultButtons} title={'Cancel'} onPress={cancelInsult}/>
+          </View>
         </View>
     );
 }

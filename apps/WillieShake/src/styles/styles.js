@@ -21,14 +21,25 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+    appTopView: {
+        flex: 1,
+        background: 'white',
+        marginHorizontal: 10,
+        alignItems: 'stretch',
+    },
     insultTopView: {
         flex: 1,
         backgroundColor: 'white',
         marginHorizontal: 10,
-        width: '90%',
+    },
+    insultList: {
+        flex: 1,
+        paddingBottom: 50,
     },
     insultHeader: {
+        fontFamily: 'Inter-Black',
         fontSize: 25,
+        paddingBottom: 10,
     },
     insultText: {
         fontSize: 15,
@@ -36,6 +47,19 @@ const styles = StyleSheet.create({
         margin: 2,
         color: 'black',
         backgroundColor: 'white',
+    },
+    insultButton: {
+        flex: 1,
+        backgroundColor: 'lightseagreen',
+        color: 'black',
+    },
+    insultFooter: {
+        //flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        bottom: 0,
+        position: 'absolute',
     },
     container: {
         flex: 1,

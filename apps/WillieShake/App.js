@@ -80,12 +80,12 @@ function WillieShakeInsults() {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'stretch', backgroundColor: 'white', paddingTop: insets.top }} onLayout={ onLayoutRootView }>
-          <View style={styles.imageContainer}>
+        <SafeAreaView style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+          <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
           <StatusBar style="auto"/>
-        </View>
+        </SafeAreaView>
     );
 }
 
