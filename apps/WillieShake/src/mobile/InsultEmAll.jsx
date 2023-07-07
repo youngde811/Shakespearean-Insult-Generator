@@ -19,7 +19,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React, { useState } from 'react';
-import { Button, FlatList, ListItem, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, Linking, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 
 import styles from '../styles/styles.js';
@@ -28,11 +28,13 @@ const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
-    
+
+    const sendInsult = (insult) => {
+
+    };
+
     const insultSelect = (item) => {
-        console.log("Selected insult: " + item.insult);
-        
-        if (item.id === selectedInsult) {
+        if (item.insult === selectedInsult) {
             setSelectedInsult(null);
         } else {
             setSelectedInsult(item.insult);
@@ -67,7 +69,9 @@ export default function InsultEmAll() {
     };
 
     const sendInsult = () => {
-        console.log('Send insult: ' + selectedInsult);
+        if (selectedInsult) {
+            console.log('Send insult: ' + selectedInsult);
+        }
     };
 
     const cancelInsult = () => {
@@ -85,8 +89,13 @@ export default function InsultEmAll() {
               renderItem={renderInsult}/>
           </View>
           <View style={styles.insultFooter}>
-            <Button style={styles.insultButton} title={'Insult'} onPress={sendInsult}/>
-            <Button style={styles.insultButtons} title={'Cancel'} onPress={cancelInsult}/>
+            <Pressable style={styles.insultButtons} title={'Insult'} onPress={sendInsult}>
+              <Text style={styles.insultButtonText}>Insult</Text>
+            </Pressable>
+            <View style={styles.spacer}/>
+            <Pressable style={styles.insultButtons} title={'Cancel'} onPress={cancelInsult}>
+              <Text style={styles.insultButtonText}>Cancel</Text>
+            </Pressable>
           </View>
         </View>
     );

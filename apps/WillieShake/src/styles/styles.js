@@ -46,14 +46,25 @@ const styles = StyleSheet.create({
         margin: 2,
         color: 'black',
     },
-    insultButton: {
+    insultButtons: {
         flex: 1,
-        backgroundColor: 'lightseagreen',
-        color: 'black',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        backgroundColor: 'cadetblue',
+        borderColor: '#fff',
+    },
+    insultButtonText: {
+        color: 'white',
+        fontSize: 20,
     },
     insultFooter: {
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
+        alignItems: 'center',
         width: '100%',
         bottom: 0,
         position: 'absolute',
@@ -61,20 +72,8 @@ const styles = StyleSheet.create({
     insultSelected: {
         backgroundColor: 'linen',
     },
-    container: {
-        flex: 1,
-        backgroundColor: '#25292e',
-        alignItems: 'center',
-    },
-    imageContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: 58,
-    },
-    image: {
-        width: 320,
-        height: 440,
-        borderRadius: 18,
+    spacer: {
+        width: 10,
     },
 });
 
