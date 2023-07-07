@@ -29,19 +29,19 @@ const insults = require('../../assets/data/insults.json');
 export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
     
-    const insultSelect = ({id}) => {
-        console.log("Selected insult: " + id);
+    const insultSelect = (item) => {
+        console.log("Selected insult: " + item.id);
         
-        if (id === selectedInsult) {
+        if (item.id === selectedInsult) {
             setSelectedInsult(null);
         } else {
-            setSelectedInsult(id);
+            setSelectedInsult(item.id);
         };
     };
 
     const renderInsult = ({item}) => {
         return (
-            <TouchableOpacity onPress={() => insultSelect(item.id)}>
+            <TouchableOpacity style={item.id === selectedInsult ? styles.insultSelected : null} onPress={() => insultSelect(item)}>
               <Text style={styles.insultText}>
                 {item.insult}
               </Text>

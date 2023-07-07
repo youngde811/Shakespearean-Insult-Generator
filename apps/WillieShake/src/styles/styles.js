@@ -52,12 +52,14 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     insultFooter: {
-        //flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
         bottom: 0,
         position: 'absolute',
+    },
+    insultSelected: {
+        backgroundColor: 'linen',
     },
     container: {
         flex: 1,
