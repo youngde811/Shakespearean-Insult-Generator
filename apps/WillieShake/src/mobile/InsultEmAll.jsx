@@ -26,13 +26,15 @@ import styles from '../styles/styles.js';
 const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
-    const renderInsult = ({insult}) => (
-        <View style={styles.insultText}>
-          <Text style={styles.insultText}>
-            {insult}
-          </Text>
-        </View>
-    );
+    const renderInsult = ({item}) => {
+        return (
+            <View>
+              <Text style={styles.insultText}>
+                {item.insult}
+              </Text>
+            </View>
+        );
+    };
 
     const insultHeader = () => {
         return (
@@ -50,13 +52,14 @@ export default function InsultEmAll() {
             <Divider width={1} color={"white"}/>
         );
     };
-        
+
     return (
         <View style={styles.insultTopView}>
           <FlatList
             ListHeaderComponent={insultHeader}
             ItemSeparatorComponent={insultSeparator}
             data={insults.insults}
+            keyExtractor={(item) => item.id}
             renderItem={renderInsult}/>
         </View>
     );

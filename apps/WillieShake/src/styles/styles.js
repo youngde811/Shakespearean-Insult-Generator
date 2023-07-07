@@ -23,17 +23,19 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
     insultTopView: {
         flex: 1,
-        backgroundColor: '#25292e',
+        backgroundColor: 'white',
         marginHorizontal: 10,
+        width: '90%',
     },
     insultHeader: {
         fontSize: 25,
     },
     insultText: {
-        fontSize: 10,
+        fontSize: 15,
         padding: 2,
         margin: 2,
         color: 'black',
+        backgroundColor: 'white',
     },
     container: {
         flex: 1,

@@ -96,7 +96,12 @@ def generate_insults(path, oformat, nphrases=50, count=1):
     insults = []
 
     for i in range(0, count):
-        insults.append(insult(nphrases=nphrases))
+        entry = {
+            "id": i,
+            "insult": insult(nphrases=nphrases)
+        }
+
+        insults.append(entry)
 
     if oformat == 'json':
         create_json_insults(path, insults)

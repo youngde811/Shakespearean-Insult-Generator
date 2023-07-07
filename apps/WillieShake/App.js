@@ -80,7 +80,7 @@ function WillieShakeInsults() {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#25292e', paddingTop: insets.top }} onLayout={ onLayoutRootView }>
+        <View style={{ flex: 1, alignItems: 'stretch', backgroundColor: 'white', paddingTop: insets.top }} onLayout={ onLayoutRootView }>
           <View style={styles.imageContainer}>
             <InsultEmAll/>
           </View>
