@@ -19,8 +19,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React, { useState } from 'react';
-import { Button, FlatList, Linking, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
+import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
 
@@ -28,10 +29,6 @@ const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
-
-    const sendInsult = (insult) => {
-
-    };
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
@@ -71,6 +68,7 @@ export default function InsultEmAll() {
     const sendInsult = () => {
         if (selectedInsult) {
             console.log('Send insult: ' + selectedInsult);
+            Linking.openURL('sms://&body=' + selectedInsult + '?');
         }
     };
 
