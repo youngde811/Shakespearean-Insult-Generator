@@ -26,7 +26,7 @@ import { useCallback } from 'react';
 
 import * as SplashScreen from 'expo-splash-screen';
 
-import {InsultEmAll} from './src/mobile/InsultEmAll';
+import InsultEmAll from './src/mobile/InsultEmAll';
 
 import styles from './src/styles/styles.js';
 

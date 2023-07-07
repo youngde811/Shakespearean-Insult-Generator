@@ -18,8 +18,6 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, {useState} from 'react';
-
 import { FlatList, ScrollView, Text, View } from 'react-native';
 
 import styles from '../styles/styles.js';
@@ -27,15 +25,13 @@ import styles from '../styles/styles.js';
 const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
-    console.log("Insults: " + insults);
+    console.log("Insults: " + JSON.stringify(insults, null, 4));
 
     return (
         <ScrollView style={styles.insultTopView}>
-        { insults &&
           <Text style={{ fontFamily: 'Inter-Black', fontSize: 25, paddingTop: 10 }}>
-            I guess the insults loaded
+            I guess the insults loaded!
           </Text>
-        }
         </ScrollView>
     );
 }
