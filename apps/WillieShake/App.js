@@ -82,10 +82,7 @@ function WillieShakeInsults() {
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#25292e', paddingTop: insets.top }} onLayout={ onLayoutRootView }>
           <View style={styles.imageContainer}>
-            <Image source={DefaultBackground} style={styles.image}/>
-            <Text style={{ fontFamily: 'Inter-Black', fontSize: 25, paddingTop: 10 }}>
-              Harley-Davidson Street Rod
-            </Text>
+            <InsultEmAll/>
           </View>
           <StatusBar style="auto"/>
         </View>
@@ -95,7 +92,7 @@ function WillieShakeInsults() {
 export default function App() {
   return (
       <SafeAreaProvider>
-        <WillieShakeLanding/>
+        <WillieShakeInsults/>
       </SafeAreaProvider>
   );
 }

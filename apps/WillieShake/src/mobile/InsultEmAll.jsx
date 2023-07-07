@@ -21,27 +21,13 @@
 import React, {useState} from 'react';
 
 import { FlatList, ScrollView, Text, View } from 'react-native';
-import * as RNFS from 'react-native-fs';
 
 import styles from '../styles/styles.js';
 
-const insultFile = "../../assets/data/insults.txt";
+const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
-    const [insults, setInsults] = useState(null);
-
-    console.log("MainBundlePath: " + RNFS.MainBundlePath);
-
-    const loadInsults = () => {
-        RNFS.readFile(insultFile, "utf8")
-            .then((contents) => {
-                setInsults(contents.toString().split("\n"));
-            })
-            .catch((err) => {
-                console.log(err.message, err.code);
-                setInsults([]);
-            });
-    };
+    console.log("Insults: " + insults);
 
     return (
         <ScrollView style={styles.insultTopView}>
