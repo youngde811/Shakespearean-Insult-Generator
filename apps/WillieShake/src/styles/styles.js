@@ -26,6 +26,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#25292e',
         marginHorizontal: 10,
     },
+    insultHeader: {
+        fontSize: 25,
+    }
+    insultText: {
+        fontSize: 10,
+        padding: 2,
+        margin: 2,
+    },
     container: {
         flex: 1,
         backgroundColor: '#25292e',

@@ -18,20 +18,44 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import { Divider } from "@rneui/themed";
 
 import styles from '../styles/styles.js';
 
 const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
-    console.log("Insults: " + JSON.stringify(insults, null, 4));
+    const renderInsult = ({insult}) => (
+        <Text style={styles.insultText}>
+          {insult}
+        </Text>
+    );
 
+    const insultHeader = () => {
+        return (
+            <View>
+              <Text style={styles.insultHeader}>
+                Shakespeare Hates You
+              </Text>
+              <Divider orientation="vertical" width={6}/>
+            </View>
+        );
+    };
+
+    const insultSeparator = () => {
+        return (
+            <Divider width={1} color={"white"}/>
+        );
+    };
+        
     return (
-        <ScrollView style={styles.insultTopView}>
-          <Text style={{ fontFamily: 'Inter-Black', fontSize: 25, paddingTop: 10 }}>
-            I guess the insults loaded!
-          </Text>
-        </ScrollView>
+        <View style={styles.insultTopView}>
+          <FlatList
+            ListHeaderComponent={insultHeader}
+            ItemSeparatorComponent={insultSeparator}
+            data={insults.insults}
+            renderItem={renderInsult}/>
+        </View>
     );
 }
