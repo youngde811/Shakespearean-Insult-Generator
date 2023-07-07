@@ -29,16 +29,6 @@ const insults = require('../../assets/data/insults.json');
 export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
     
-    // const renderInsult = ({item}) => {
-    //     return (
-    //         <View>
-    //           <Text style={styles.insultText}>
-    //             {item.insult}
-    //           </Text>
-    //         </View>
-    //     );
-    // };
-
     const insultSelect = ({id}) => {
         console.log("Selected insult: " + id);
         
