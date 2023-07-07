@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     insultTopView: {
         flex: 1,
-        backgroundColor: 'white',
         marginHorizontal: 10,
     },
     insultList: {
@@ -46,7 +45,6 @@ const styles = StyleSheet.create({
         padding: 2,
         margin: 2,
         color: 'black',
-        backgroundColor: 'white',
     },
     insultButton: {
         flex: 1,

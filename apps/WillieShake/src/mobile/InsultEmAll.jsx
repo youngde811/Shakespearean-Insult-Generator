@@ -18,7 +18,8 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { Button, FlatList, ListItem, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, FlatList, ListItem, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 
 import styles from '../styles/styles.js';
@@ -26,13 +27,35 @@ import styles from '../styles/styles.js';
 const insults = require('../../assets/data/insults.json');
 
 export default function InsultEmAll() {
+    const [selectedInsult, setSelectedInsult] = useState(null);
+    
+    // const renderInsult = ({item}) => {
+    //     return (
+    //         <View>
+    //           <Text style={styles.insultText}>
+    //             {item.insult}
+    //           </Text>
+    //         </View>
+    //     );
+    // };
+
+    const insultSelect = ({id}) => {
+        console.log("Selected insult: " + id);
+        
+        if (id === selectedInsult) {
+            setSelectedInsult(null);
+        } else {
+            setSelectedInsult(id);
+        };
+    };
+
     const renderInsult = ({item}) => {
         return (
-            <View>
+            <TouchableOpacity onPress={() => insultSelect(item.id)}>
               <Text style={styles.insultText}>
                 {item.insult}
               </Text>
-            </View>
+            </TouchableOpacity>
         );
     };
 
