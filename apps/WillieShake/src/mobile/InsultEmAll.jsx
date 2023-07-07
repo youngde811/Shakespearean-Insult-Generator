@@ -25,25 +25,31 @@ import * as RNFS from 'react-native-fs';
 
 import styles from '../styles/styles.js';
 
-const insultFile = "data/insults.txt";
+const insultFile = "../../assets/data/insults.txt";
 
 export default function InsultEmAll() {
-    const [insultsLoaded, setInsultsLoaded] = useState(false);
-    const [insults, setInsults] = useState([]);
+    const [insults, setInsults] = useState(null);
+
+    console.log("MainBundlePath: " + RNFS.MainBundlePath);
 
     const loadInsults = () => {
-        RNFS.readFileAssets(insultFile, "utf8")
+        RNFS.readFile(insultFile, "utf8")
             .then((contents) => {
-                setInsults(contents);
+                setInsults(contents.toString().split("\n"));
             })
             .catch((err) => {
                 console.log(err.message, err.code);
+                setInsults([]);
             });
     };
 
     return (
         <ScrollView style={styles.insultTopView}>
-          
+        { insults &&
+          <Text style={{ fontFamily: 'Inter-Black', fontSize: 25, paddingTop: 10 }}>
+            I guess the insults loaded
+          </Text>
+        }
         </ScrollView>
     );
 }

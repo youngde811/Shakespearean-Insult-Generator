@@ -100,6 +100,7 @@ def main():
     ap.add_argument('-c', '--count', metavar='COUNT', dest='count', default=0, type=int, help='Generate COUNT insults')
     ap.add_argument('-f', '--file', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
     ap.add_argument('-g', '--generate', metavar='PATH', dest='genfile', default=None, help='Write a number of insults to PATH')
+    ap.add_argument('-o', '--output', metavar='FORMAT', dest='oformat', choices=['json', 'text'], default='json', help='Output insults using FORMAT. Default is "json"')
 
     args = ap.parse_args()
 

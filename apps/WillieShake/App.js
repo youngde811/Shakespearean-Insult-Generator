@@ -26,6 +26,8 @@ import { useCallback } from 'react';
 
 import * as SplashScreen from 'expo-splash-screen';
 
+import {InsultEmAll} from './src/mobile/InsultEmAll';
+
 import styles from './src/styles/styles.js';
 
 const DefaultBackground = require('./assets/images/StreetRod.jpg');
@@ -33,6 +35,35 @@ const DefaultBackground = require('./assets/images/StreetRod.jpg');
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeLanding() {
+    const insets = useSafeAreaInsets();
+    const [fontsLoaded] = useFonts({
+        'Inter-Black': require('./assets/fonts/Inter-Black.otf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+    return (
+        <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#25292e', paddingTop: insets.top }} onLayout={ onLayoutRootView }>
+          <View style={styles.imageContainer}>
+            <Image source={DefaultBackground} style={styles.image}/>
+            <Text style={{ fontFamily: 'Inter-Black', fontSize: 25, paddingTop: 10 }}>
+              Harley-Davidson Street Rod
+            </Text>
+          </View>
+          <StatusBar style="auto"/>
+        </View>
+    );
+}
+
+function WillieShakeInsults() {
     const insets = useSafeAreaInsets();
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
