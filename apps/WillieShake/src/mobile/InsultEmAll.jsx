@@ -30,18 +30,18 @@ export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
     
     const insultSelect = (item) => {
-        console.log("Selected insult: " + item.id);
+        console.log("Selected insult: " + item.insult);
         
         if (item.id === selectedInsult) {
             setSelectedInsult(null);
         } else {
-            setSelectedInsult(item.id);
+            setSelectedInsult(item.insult);
         };
     };
 
     const renderInsult = ({item}) => {
         return (
-            <TouchableOpacity style={item.id === selectedInsult ? styles.insultSelected : null} onPress={() => insultSelect(item)}>
+            <TouchableOpacity style={item.insult === selectedInsult ? styles.insultSelected : null} onPress={() => insultSelect(item)}>
               <Text style={styles.insultText}>
                 {item.insult}
               </Text>
@@ -67,11 +67,11 @@ export default function InsultEmAll() {
     };
 
     const sendInsult = () => {
-
+        console.log('Send insult: ' + selectedInsult);
     };
 
     const cancelInsult = () => {
-
+        setSelectedInsult(null);
     };
     
     return (
