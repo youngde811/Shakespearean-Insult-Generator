@@ -23,12 +23,14 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
     appTopView: {
         flex: 1,
+        flexDirection: 'column',
         background: 'white',
         marginHorizontal: 10,
         alignItems: 'stretch',
     },
     insultTopView: {
         flex: 1,
+        flexDirection: 'column',
         marginHorizontal: 10,
     },
     insultList: {
@@ -71,6 +73,18 @@ const styles = StyleSheet.create({
     },
     insultSelected: {
         backgroundColor: 'linen',
+    },
+    insultSurface: {
+        flex: 1,
+        paddingBottom: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    hatesYou: {
+        fontFamily: 'Inter-Black',
+        fontSize: 25,
+        paddingBottom: 10,
     },
     spacer: {
         width: 10,

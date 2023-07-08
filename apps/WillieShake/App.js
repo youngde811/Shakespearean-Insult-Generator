@@ -23,6 +23,7 @@ import { Image, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
+import { PaperProvider } from 'react-native-paper';
 
 import * as SplashScreen from 'expo-splash-screen';
 

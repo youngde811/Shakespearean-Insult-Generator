@@ -21,6 +21,8 @@
 import React, { useState } from 'react';
 import { Button, FlatList, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
+import { Surface } from 'react-native-paper';
+
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
@@ -67,7 +69,6 @@ export default function InsultEmAll() {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            console.log('Send insult: ' + selectedInsult);
             Linking.openURL('sms://&body=' + selectedInsult + '?');
         }
     };
@@ -78,13 +79,19 @@ export default function InsultEmAll() {
     
     return (
         <View style={styles.insultTopView}>
-          <View style={styles.insultList}>
-            <FlatList
-              ListHeaderComponent={insultHeader}
-              ItemSeparatorComponent={insultSeparator}
-              data={insults.insults}
-              keyExtractor={(item) => item.id}
-              renderItem={renderInsult}/>
+          <View style={styles.hatesYou}>
+            <Text style={styles.hatesYou}>
+              Shakespeare Hates You
+            </Text>
+          </View>
+          <View style={styles.insultSurface}>
+            <Surface elevation={4}>
+              <FlatList
+                ItemSeparatorComponent={insultSeparator}
+                data={insults.insults}
+                keyExtractor={(item) => item.id}
+                renderItem={renderInsult}/>
+            </Surface>
           </View>
           <View style={styles.insultFooter}>
             <Pressable style={styles.insultButtons} title={'Insult'} onPress={sendInsult}>
