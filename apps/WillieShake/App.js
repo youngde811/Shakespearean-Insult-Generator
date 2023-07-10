@@ -26,7 +26,9 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { Appbar, Button, Menu, PaperProvider } from 'react-native-paper';
+import { PaperProvider } from 'react-native-paper';
+import { Icon } from 'native-base';
+import { Header } from '@rneui/themed';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -76,14 +78,7 @@ function WillieShakeInsults() {
     
     return (
         <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
-          <Appbar.Header style={styles.appBar}>
-            <Appbar.Content title="Willie the Shake"/>
-            <Appbar.Action icon="menu" onPress={topMenuPress}/>
-          </Appbar.Header>
-          <Menu visible={menuVisible} anchor={<TouchableOpacity/>} onDismiss={menuClose}>
-            <Menu.Item onPress={appAbout} title={'About'}/>
-            <Menu.Item onPress={appLicense} title={'License'}/>
-          </Menu>
+          <Header style={styles.appBar} leftComponent={<Icon name='menu' onPress={topMenuPress}/>}/>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>

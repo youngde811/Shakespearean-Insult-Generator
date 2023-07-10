@@ -1,4 +1,3 @@
-
 // This file contains the code for our WillieShake main insult page.
 
 // MIT License
