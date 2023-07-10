@@ -27,8 +27,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { PaperProvider } from 'react-native-paper';
-import { Icon } from 'native-base';
-import { Header } from '@rneui/themed';
+import { HStack, Icon, IconButton, MaterialIcons, NativeBaseConfigProvider } from 'native-base';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -78,7 +77,14 @@ function WillieShakeInsults() {
     
     return (
         <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
-          <Header style={styles.appBar} leftComponent={<Icon name='menu' onPress={topMenuPress}/>}/>
+          <HStack justifyContent='space-between' alignItems='center' w='100%'>
+            <HStack alignItems='center'>
+              <IconButton icon={<Icon size='sm' as={MaterialIcons} name='menu' color='black'/>}/>
+              <Text color='black' fontSize='30' fontWeight='bold'>
+                Willie the Shake
+              </Text>
+            </HStack>
+          </HStack>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
@@ -89,8 +95,8 @@ function WillieShakeInsults() {
 
 export default function App() {
   return (
-      <PaperProvider>
+      <NativeBaseConfigProvider>
         <WillieShakeInsults/>
-      </PaperProvider>
+      </NativeBaseConfigProvider>
   );
 }

@@ -24,16 +24,8 @@ const styles = StyleSheet.create({
     appTopView: {
         flex: 1,
         flexDirection: 'column',
-        background: 'white',
         marginHorizontal: 4,
         alignItems: 'stretch',
-    },
-    appBar: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        backgroundColor: 'white',
     },
     insultTopView: {
         flex: 1,
