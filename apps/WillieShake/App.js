@@ -73,11 +73,11 @@ function WillieShakeInsults() {
     };
 
     const appAbout = () => {
-
+        console.log("appAbout()");
     };
 
     const appLicense = () => {
-
+        console.log("appLicense()");
     };
     
     return (
