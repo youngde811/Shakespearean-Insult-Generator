@@ -76,7 +76,7 @@ export default function InsultEmAll() {
     const cancelInsult = () => {
         setSelectedInsult(null);
     };
-    
+
     return (
         <View style={styles.insultTopView}>
           <View style={styles.hatesYou}>

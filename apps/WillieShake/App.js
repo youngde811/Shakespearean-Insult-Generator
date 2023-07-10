@@ -23,7 +23,7 @@ import { Image, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { PaperProvider } from 'react-native-paper';
+import { Appbar, PaperProvider } from 'react-native-paper';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -49,20 +49,28 @@ function WillieShakeInsults() {
         return null;
     }
 
+    const topMenuPress = () => {
+        console.log("topMenuPress()");
+    };
+    
     return (
-        <SafeAreaView style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+        <View style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+          <Appbar.Header style={styles.appBar}>
+            <Appbar.Content title="Willie the Shake"/>
+            <Appbar.Action icon="menu" onPress={topMenuPress}/>
+          </Appbar.Header>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
           <StatusBar style="auto"/>
-        </SafeAreaView>
+        </View>
     );
 }
 
 export default function App() {
   return (
-      <SafeAreaProvider>
+      <PaperProvider>
         <WillieShakeInsults/>
-      </SafeAreaProvider>
+      </PaperProvider>
   );
 }
