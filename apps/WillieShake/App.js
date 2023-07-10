@@ -18,12 +18,14 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import React, { useState } from 'react';
+
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { Appbar, PaperProvider } from 'react-native-paper';
+import { Appbar, Button, Menu, PaperProvider } from 'react-native-paper';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -34,7 +36,10 @@ import styles from './src/styles/styles.js';
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeInsults() {
+    const [menuVisible, setMenuVisible] = useState(false);
+
     const insets = useSafeAreaInsets();
+
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
     });
@@ -52,13 +57,39 @@ function WillieShakeInsults() {
     const topMenuPress = () => {
         console.log("topMenuPress()");
     };
+
+    const menuOpen = () => {
+        setMenuVisible(true);
+    };
+
+    const menuClose = () => {
+        setMenuVisible(false);
+    };
+
+    const menuAnchor = () => {
+        return (
+            <Button onPress={menuOpen}>Show</Button>
+        );
+    };
+
+    const appAbout = () => {
+
+    };
+
+    const appLicense = () => {
+
+    };
     
     return (
-        <View style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+        <View style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={onLayoutRootView}>
           <Appbar.Header style={styles.appBar}>
             <Appbar.Content title="Willie the Shake"/>
             <Appbar.Action icon="menu" onPress={topMenuPress}/>
           </Appbar.Header>
+          <Menu visible={menuVisible} onDismiss={menuClose} anchor={menuAnchor}>
+            <Menu.Item onPress={appAbout} title={'About'}/>
+            <Menu.Item onPress={appLicense} title={'License'}/>
+          </Menu>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
