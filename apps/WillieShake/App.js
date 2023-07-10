@@ -22,7 +22,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
@@ -80,8 +80,7 @@ function WillieShakeInsults() {
             <Appbar.Content title="Willie the Shake"/>
             <Appbar.Action icon="menu" onPress={topMenuPress}/>
           </Appbar.Header>
-          {menuVisible && <Button title={'Frodo'}>Frodo</Button>}
-          <Menu visible={menuVisible} onDismiss={menuClose}>
+          <Menu visible={menuVisible} anchor={<TouchableOpacity/>} onDismiss={menuClose}>
             <Menu.Item onPress={appAbout} title={'About'}/>
             <Menu.Item onPress={appLicense} title={'License'}/>
           </Menu>
