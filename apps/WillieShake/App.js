@@ -23,7 +23,7 @@ import React, { useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { Appbar, Button, Menu, PaperProvider } from 'react-native-paper';
@@ -39,8 +39,6 @@ SplashScreen.preventAutoHideAsync();
 function WillieShakeInsults() {
     const [menuVisible, setMenuVisible] = useState(false);
 
-    const insets = useSafeAreaInsets();
-
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
     });
@@ -55,10 +53,6 @@ function WillieShakeInsults() {
         return null;
     }
 
-    const topMenuPress = () => {
-        console.log("topMenuPress()");
-    };
-
     const menuOpen = () => {
         setMenuVisible(true);
     };
@@ -67,27 +61,31 @@ function WillieShakeInsults() {
         setMenuVisible(false);
     };
 
-    const menuAnchor = () => {
-        return (
-            <Button onPress={menuOpen}>Show</Button>
-        );
+    const topMenuPress = () => {
+        if (menuVisible) {
+            menuClose();
+        } else {
+            menuOpen();
+        }
     };
 
     const appAbout = () => {
         console.log("appAbout()");
+        menuClose();
     };
 
     const appLicense = () => {
         console.log("appLicense()");
+        menuClose();
     };
     
     return (
-        <View style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={onLayoutRootView}>
+        <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
           <Appbar.Header style={styles.appBar}>
             <Appbar.Content title="Willie the Shake"/>
             <Appbar.Action icon="menu" onPress={topMenuPress}/>
           </Appbar.Header>
-          <Menu visible={menuVisible} onDismiss={menuClose} anchor={menuAnchor}>
+          <Menu visible={menuVisible} onDismiss={menuClose}>
             <Menu.Item onPress={appAbout} title={'About'}/>
             <Menu.Item onPress={appLicense} title={'License'}/>
           </Menu>
@@ -95,7 +93,7 @@ function WillieShakeInsults() {
             <InsultEmAll/>
           </View>
           <StatusBar style="auto"/>
-        </View>
+        </SafeAreaView>
     );
 }
 

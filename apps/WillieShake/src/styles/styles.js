@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     hatesYou: {
+        alignItems: 'center',
         fontFamily: 'Inter-Black',
         fontSize: 25,
         paddingBottom: 10,
