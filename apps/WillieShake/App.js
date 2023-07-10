@@ -27,7 +27,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { PaperProvider } from 'react-native-paper';
-import { HStack, Icon, IconButton, MaterialIcons, NativeBaseConfigProvider } from 'native-base';
+import { HStack, Icon, IconButton, MaterialIcons, NativeBaseProvider } from 'native-base';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -95,8 +95,8 @@ function WillieShakeInsults() {
 
 export default function App() {
   return (
-      <NativeBaseConfigProvider>
+      <NativeBaseProvider>
         <WillieShakeInsults/>
-      </NativeBaseConfigProvider>
+      </NativeBaseProvider>
   );
 }
