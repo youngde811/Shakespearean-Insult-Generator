@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
@@ -61,22 +61,17 @@ function WillieShakeInsults() {
         setMenuVisible(false);
     };
 
-    const topMenuPress = () => {
-        if (menuVisible) {
-            menuClose();
-        } else {
-            menuOpen();
-        }
-    };
-
     const appAbout = () => {
         console.log("appAbout()");
-        menuClose();
     };
 
     const appLicense = () => {
         console.log("appLicense()");
-        menuClose();
+    };
+
+    const topMenuPress = () => {
+        setMenuVisible(true);
+        console.log('topMenuPress()');
     };
     
     return (
@@ -85,10 +80,12 @@ function WillieShakeInsults() {
             <Appbar.Content title="Willie the Shake"/>
             <Appbar.Action icon="menu" onPress={topMenuPress}/>
           </Appbar.Header>
-          <Menu visible={menuVisible} onDismiss={menuClose}>
-            <Menu.Item onPress={appAbout} title={'About'}/>
-            <Menu.Item onPress={appLicense} title={'License'}/>
-          </Menu>
+          { menuVisible && (
+              <Menu visible={true} onDismiss={menuClose}>
+                <Menu.Item onPress={appAbout} title={'About'}/>
+                <Menu.Item onPress={appLicense} title={'License'}/>
+              </Menu>
+          )}
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
