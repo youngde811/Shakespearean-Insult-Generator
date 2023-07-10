@@ -1,4 +1,4 @@
-// -*- mode: rjsx-mode; eval: (auto-fill-mode 1); -*-
+// -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
 // This file contains the entry point for our WillieShake app.
 
