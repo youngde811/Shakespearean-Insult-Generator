@@ -80,12 +80,11 @@ function WillieShakeInsults() {
             <Appbar.Content title="Willie the Shake"/>
             <Appbar.Action icon="menu" onPress={topMenuPress}/>
           </Appbar.Header>
-          { menuVisible && (
-              <Menu visible={true} onDismiss={menuClose}>
-                <Menu.Item onPress={appAbout} title={'About'}/>
-                <Menu.Item onPress={appLicense} title={'License'}/>
-              </Menu>
-          )}
+          {menuVisible && <Button title={'Frodo'}>Frodo</Button>}
+          <Menu visible={menuVisible} onDismiss={menuClose}>
+            <Menu.Item onPress={appAbout} title={'About'}/>
+            <Menu.Item onPress={appLicense} title={'License'}/>
+          </Menu>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
