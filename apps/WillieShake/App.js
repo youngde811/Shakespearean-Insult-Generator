@@ -32,6 +32,7 @@ import { HStack, Icon, IconButton, MaterialIcons, NativeBaseProvider } from 'nat
 import * as SplashScreen from 'expo-splash-screen';
 
 import InsultEmAll from './src/mobile/InsultEmAll';
+import AppHeader from './src/mobile/AppHeader';
 
 import styles from './src/styles/styles.js';
 
@@ -77,14 +78,7 @@ function WillieShakeInsults() {
     
     return (
         <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
-          <HStack justifyContent='space-between' alignItems='center' w='100%'>
-            <HStack alignItems='center'>
-              <IconButton icon={<Icon size='sm' as={MaterialIcons} name='menu' color='black'/>}/>
-              <Text color='black' fontSize='30' fontWeight='bold'>
-                Willie the Shake
-              </Text>
-            </HStack>
-          </HStack>
+          <AppHeader/>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
