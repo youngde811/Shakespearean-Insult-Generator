@@ -19,13 +19,12 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useCallback, useEffect, useState, useLayoutEffect } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
-import { useCallback } from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons/MaterialIcons';
 import { HeaderButtons, HeaderButtonsProvider, HeaderButton, Item, HiddenItem, OverflowMenu, HeaderButtonProps } from 'react-navigation-header-buttons';
