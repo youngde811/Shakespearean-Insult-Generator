@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
@@ -27,6 +27,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { NativeBaseProvider } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons/MaterialIcons';
+import { HeaderButtons, HeaderButtonsProvider, HeaderButton, Item, HiddenItem, OverflowMenu, HeaderButtonProps } from 'react-navigation-header-buttons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -38,9 +40,11 @@ import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
 
-const Stack = createNativeStackNavigator();
+const MaterialHeaderButton = (props: HeaderButtonProps) => (
+    <HeaderButton IconComponent={ MaterialIcons } iconSize={ 23 } { ...props }/>
+);
 
-function WillieShakeInsults() {
+function WillieShakeInsults({ navigation }) {
     const [menuVisible, setMenuVisible] = useState(false);
 
     const [fontsLoaded] = useFonts({
@@ -57,24 +61,44 @@ function WillieShakeInsults() {
         return null;
     }
 
+    const aboutApp = () => {
+        console.log('aboutApp()');
+    };
+
+    const aboutLicense = () => {
+        console.log('aboutLicense()');
+    };
+    
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'Willie the Shake',
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={ MaterialHeaderButton }>
+                  <OverflowMenu OverflowIcon={({ color }) => (
+                      <MaterialIcons name='more-horiz' size={ 23 } color={ color }/>
+                  )}>
+                    <HiddenItem title='About' onPress={ aboutApp }/>
+                    <HiddenItem title='License' onPress={ aboutLicense }/>
+                  </OverflowMenu>
+                </HeaderButtons>
+            )
+        });
+    }, [navigation]);
+
     return (
-        <NativeBaseProvider>
-          <SafeAreaView style={ styles.appTopView } onLayout={ onLayoutRootView }>
-            <View style={ styles.insultTopView }>
-              <InsultEmAll/>
-            </View>
-            <StatusBar style="auto"/>
-          </SafeAreaView>
-        </NativeBaseProvider>
+        <SafeAreaView style={ styles.appTopView } onLayout={ onLayoutRootView }>
+          <View style={ styles.insultTopView }>
+            <InsultEmAll/>
+          </View>
+          <StatusBar style="auto"/>
+        </SafeAreaView>
     );
 }
 
 export default function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Willie the Shake" component={ WillieShakeInsults }/>
-        </Stack.Navigator>
+        <WillieShakeInsults/>
       </NavigationContainer>
   );
 }
