@@ -40,6 +40,8 @@ import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
 
+const Stack = createNativeStackNavigator();
+
 const MaterialHeaderButton = ({ props }) => (
     <HeaderButton IconComponent={ MaterialIcons } iconSize={ 23 } { ...props }/>
 );
@@ -98,7 +100,9 @@ function WillieShakeInsults({ navigation }) {
 export default function App() {
   return (
       <NavigationContainer>
-        <WillieShakeInsults/>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='Home' component={ WillieShakeInsults }/>
+        </Stack.Navigator>
       </NavigationContainer>
   );
 }
