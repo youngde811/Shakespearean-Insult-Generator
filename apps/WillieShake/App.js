@@ -22,44 +22,23 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { NativeBaseProvider } from 'native-base';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import * as SplashScreen from 'expo-splash-screen';
 
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-
 import InsultEmAll from './src/mobile/InsultEmAll';
-
 import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
 
-const AppNavigator = createStackNavigator(
-    {
-        Home: InsultEmAll,
-    },
-    {
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: 'teal',
-            },
-            headerTitleStyle: {
-                fontFamily: 'Inter-Black',
-            },
-            headerTintColor: '#fff',
-        },
-    },
-    {
-        initialRouteName: 'Home',
-    }
-);
-
-const Navigator = createAppContainer(AppNavigator);
+const Stack = createNativeStackNavigator();
 
 function WillieShakeInsults() {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -78,43 +57,24 @@ function WillieShakeInsults() {
         return null;
     }
 
-    const menuOpen = () => {
-        setMenuVisible(true);
-    };
-
-    const menuClose = () => {
-        setMenuVisible(false);
-    };
-
-    const appAbout = () => {
-        console.log("appAbout()");
-    };
-
-    const appLicense = () => {
-        console.log("appLicense()");
-    };
-
-    const topMenuPress = () => {
-        setMenuVisible(true);
-        console.log('topMenuPress()');
-    };
-    
     return (
-        <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
-          <View style={styles.insultTopView}>
-            <InsultEmAll/>
-          </View>
-          <StatusBar style="auto"/>
-        </SafeAreaView>
+        <NativeBaseProvider>
+          <SafeAreaView style={ styles.appTopView } onLayout={ onLayoutRootView }>
+            <View style={ styles.insultTopView }>
+              <InsultEmAll/>
+            </View>
+            <StatusBar style="auto"/>
+          </SafeAreaView>
+        </NativeBaseProvider>
     );
 }
 
 export default function App() {
   return (
-      <Navigator>
-        <NativeBaseProvider>
-          <WillieShakeInsults/>
-        </NativeBaseProvider>
-      </Navigator>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Willie the Shake" component={ WillieShakeInsults }/>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
