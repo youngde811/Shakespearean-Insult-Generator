@@ -26,17 +26,40 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { PaperProvider } from 'react-native-paper';
-import { HStack, Icon, IconButton, MaterialIcons, NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 
 import * as SplashScreen from 'expo-splash-screen';
 
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
 import InsultEmAll from './src/mobile/InsultEmAll';
-import AppHeader from './src/mobile/AppHeader';
 
 import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
+
+const AppNavigator = createStackNavigator(
+    {
+        Home: InsultEmAll,
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: 'teal',
+            },
+            headerTitleStyle: {
+                fontFamily: 'Inter-Black',
+            },
+            headerTintColor: '#fff',
+        },
+    },
+    {
+        initialRouteName: 'Home',
+    }
+);
+
+const Navigator = createAppContainer(AppNavigator);
 
 function WillieShakeInsults() {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -78,7 +101,6 @@ function WillieShakeInsults() {
     
     return (
         <SafeAreaView style={styles.appTopView} onLayout={onLayoutRootView}>
-          <AppHeader/>
           <View style={styles.insultTopView}>
             <InsultEmAll/>
           </View>
@@ -89,8 +111,10 @@ function WillieShakeInsults() {
 
 export default function App() {
   return (
-      <NativeBaseProvider>
-        <WillieShakeInsults/>
-      </NativeBaseProvider>
+      <Navigator>
+        <NativeBaseProvider>
+          <WillieShakeInsults/>
+        </NativeBaseProvider>
+      </Navigator>
   );
 }

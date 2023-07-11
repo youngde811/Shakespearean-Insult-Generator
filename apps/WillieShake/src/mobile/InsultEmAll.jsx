@@ -21,6 +21,8 @@ import React, { useState } from 'react';
 import { Button, FlatList, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons';
+import { Item, HeaderButton, HeaderButtons } from 'react-navigation-header-buttons';
 
 import * as Linking from 'expo-linking';
 
@@ -104,3 +106,22 @@ export default function InsultEmAll() {
         </View>
     );
 }
+
+const HeaderButtonComponent = (props) => (
+    <HeaderButton IconComponent={ Ionicons } iconSize={ 23 } color="#fff" {...props}/>
+);
+
+InsultEmAll.navigationOptions = (navData) => {
+    const navigateMenu = () => {
+        console.log("navigateMenu()");
+    };
+    
+    return {
+        headerTitle: "Willie the Shake",
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={ HeaderButtonComponent }>
+            <Item title="menu" iconName="menu" onPress={ navigateMenu }/>
+            </HeaderButtons>
+        ),
+    };
+};
