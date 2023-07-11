@@ -40,7 +40,7 @@ import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
 
-const MaterialHeaderButton = (props: HeaderButtonProps) => (
+const MaterialHeaderButton = ({ props }) => (
     <HeaderButton IconComponent={ MaterialIcons } iconSize={ 23 } { ...props }/>
 );
 
@@ -68,7 +68,7 @@ function WillieShakeInsults({ navigation }) {
     const aboutLicense = () => {
         console.log('aboutLicense()');
     };
-    
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Willie the Shake',
