@@ -30,7 +30,7 @@ import { MaterialIcons } from '@expo/vector-icons/MaterialIcons';
 import { HeaderButtons, HeaderButtonsProvider, HeaderButton, Item, HiddenItem, OverflowMenu, HeaderButtonProps } from 'react-navigation-header-buttons';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -39,10 +39,26 @@ import styles from './src/styles/styles.js';
 
 SplashScreen.preventAutoHideAsync();
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+const stackType = 'native';
 
 const MaterialHeaderButton = ({ props }) => (
     <HeaderButton IconComponent={ MaterialIcons } iconSize={ 23 } { ...props }/>
+);
+
+const RightHeader = () => (
+    <HeaderButtons HeaderButtonComponent={ MaterialHeaderButton }>
+      <OverflowMenu
+        OverflowIcon={<MaterialIcons name='more-horiz' size={ 23 } color="black"/>}
+        pressColor="black"
+        onPress={(params) => {
+            defaultOnOverflowMenuPress({ ...params, cancelButtonLabel: 'Cancel'});
+        }}
+      >
+        <HiddenItem title='About' onPress={ aboutApp }/>
+        <HiddenItem title='License' onPress={ aboutLicense }/>
+    </OverflowMenu>
+    </HeaderButtons>
 );
 
 function WillieShakeInsults({ navigation }) {
@@ -70,21 +86,14 @@ function WillieShakeInsults({ navigation }) {
         console.log('aboutLicense()');
     };
 
+    console.log("Navigation: " + JSON.stringify(navigation, null, 4));
+    
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Willie the Shake',
-            headerRight: () => (
-                <HeaderButtons HeaderButtonComponent={ MaterialHeaderButton }>
-                  <OverflowMenu OverflowIcon={({ color }) => (
-                      <MaterialIcons name='more-horiz' size={ 23 } color={ color }/>
-                  )}>
-                    <HiddenItem title='About' onPress={ aboutApp }/>
-                    <HiddenItem title='License' onPress={ aboutLicense }/>
-                  </OverflowMenu>
-                </HeaderButtons>
-            )
+            headerRight: RightHeader
         });
-    }, [navigation]);
+    });
 
     return (
         <SafeAreaView style={ styles.appTopView } onLayout={ onLayoutRootView }>
@@ -98,10 +107,12 @@ function WillieShakeInsults({ navigation }) {
 
 export default function App() {
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={ WillieShakeInsults }/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <HeaderButtonsProvider stackType={stackType}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name='Home' component={ WillieShakeInsults }/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </HeaderButtonsProvider>
   );
 }
