@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     appBar: {
         backgroundColor: 'cadetblue',
-        color: 'black',
         marginBottom: 20,
         borderRadius: 10,
     },

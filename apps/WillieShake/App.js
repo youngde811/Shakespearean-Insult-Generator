@@ -20,7 +20,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from "@react-native-material/core";
@@ -34,11 +34,11 @@ import InsultEmAll from './src/mobile/InsultEmAll';
 import styles from './src/styles/styles.js';
 
 const appTitle = "Willie the Shake";
+const appSubtitle = "Vos Sugere";
 
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeInsults() {
-    const insets = useSafeAreaInsets();
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
     });
@@ -62,9 +62,9 @@ function WillieShakeInsults() {
     };
     
     return (
-        <SafeAreaView style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+        <SafeAreaView style={[{paddingTop: 10}, styles.appTopView]} onLayout={ onLayoutRootView }>
           <StatusBar style="auto"/>
-          <AppBar title={ appTitle } style={ styles.appBar } trailing={ props => (
+          <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
               <HStack>
                 <IconButton
                   icon={ props => <Icon name="github" { ...props }/>} onPress={ showLicense }
