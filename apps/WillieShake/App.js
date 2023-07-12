@@ -1,4 +1,3 @@
-// -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
 // This file contains the entry point for our WillieShake app.
 
@@ -19,51 +18,27 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useCallback, useEffect, useState, useLayoutEffect } from 'react';
-
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
-import { NativeBaseProvider } from 'native-base';
-import { MaterialIcons } from '@expo/vector-icons/MaterialIcons';
-import { HeaderButtons, HeaderButtonsProvider, HeaderButton, Item, HiddenItem, OverflowMenu, HeaderButtonProps } from 'react-navigation-header-buttons';
+import { useCallback } from 'react';
+import { AppBar, HStack, IconButton, Button } from "@react-native-material/core";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from 'expo-splash-screen';
 
 import InsultEmAll from './src/mobile/InsultEmAll';
+
 import styles from './src/styles/styles.js';
+
+const appTitle = "Willie the Shake";
 
 SplashScreen.preventAutoHideAsync();
 
-const Stack = createStackNavigator();
-const stackType = 'native';
-
-const MaterialHeaderButton = ({ props }) => (
-    <HeaderButton IconComponent={ MaterialIcons } iconSize={ 23 } { ...props }/>
-);
-
-const RightHeader = () => (
-    <HeaderButtons HeaderButtonComponent={ MaterialHeaderButton }>
-      <OverflowMenu
-        OverflowIcon={<MaterialIcons name='more-horiz' size={ 23 } color="black"/>}
-        pressColor="black"
-        onPress={(params) => {
-            defaultOnOverflowMenuPress({ ...params, cancelButtonLabel: 'Cancel'});
-        }}
-      >
-        <HiddenItem title='About' onPress={ aboutApp }/>
-        <HiddenItem title='License' onPress={ aboutLicense }/>
-    </OverflowMenu>
-    </HeaderButtons>
-);
-
-function WillieShakeInsults({ navigation }) {
-    const [menuVisible, setMenuVisible] = useState(false);
-
+function WillieShakeInsults() {
+    const insets = useSafeAreaInsets();
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
     });
@@ -78,41 +53,38 @@ function WillieShakeInsults({ navigation }) {
         return null;
     }
 
-    const aboutApp = () => {
-        console.log('aboutApp()');
+    const showLicense = () => {
+        console.log('showLicense()');
     };
 
-    const aboutLicense = () => {
-        console.log('aboutLicense()');
+    const showAbout = () => {
+        console.log('showAbout');
     };
-
-    console.log("Navigation: " + JSON.stringify(navigation, null, 4));
     
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            title: 'Willie the Shake',
-            headerRight: RightHeader
-        });
-    });
-
     return (
-        <SafeAreaView style={ styles.appTopView } onLayout={ onLayoutRootView }>
+        <SafeAreaView style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
+          <StatusBar style="auto"/>
+          <AppBar title={ appTitle } trailing={ props => (
+              <HStack>
+              <IconButton
+                icon={ props => <Icon name="github" { ...props }/>} onPress={ showLicense }
+                { ...props }/>
+              <IconButton
+                icon={ props => <Icon name="info" { ...props }/>} onPress={ showAbout }
+                { ...props }/>
+              </HStack>
+          )}/>
           <View style={ styles.insultTopView }>
             <InsultEmAll/>
           </View>
-          <StatusBar style="auto"/>
         </SafeAreaView>
     );
 }
 
 export default function App() {
   return (
-      <HeaderButtonsProvider stackType={stackType}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName='Home'>
-            <Stack.Screen name='Home' component={ WillieShakeInsults }/>
-          </Stack.Navigator>
-        </NavigationContainer>
-      </HeaderButtonsProvider>
+      <SafeAreaProvider>
+        <WillieShakeInsults/>
+      </SafeAreaProvider>
   );
 }
