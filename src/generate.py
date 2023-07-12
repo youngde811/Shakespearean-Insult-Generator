@@ -21,7 +21,7 @@
 # Shakespearian Insult Generator.
 
 import argparse
-import os
+import json
 import random
 import re
 import sys
@@ -30,9 +30,16 @@ from pathlib import Path
 
 progname = 'generate'
 
-token_first = []
-token_second = []
-token_third = []
+tokens = {
+    'first': [],
+    'second': [],
+    'third': []
+}
+
+
+def fail(msg):
+    print(f'{progname}: {msg}')
+    sys.exit(1)
 
 
 def load_phrases(path):
@@ -42,8 +49,7 @@ def load_phrases(path):
         phrase_data = strm.read().splitlines()
 
     if len(phrase_data) == 0:
-        print(f'{progname}: the phrase file is empty: {path}')
-        sys.exit(1)
+        fail(f'the phrase file is empty: {path}')
 
     for raw in phrase_data:
         phrase = re.split(r'\t+', raw)
@@ -52,35 +58,65 @@ def load_phrases(path):
 
         # list appends are fast in Python
 
-        token_first.append(phrase[0])
-        token_second.append(phrase[1])
-        token_third.append(phrase[2])
+        tokens['first'].append(phrase[0])
+        tokens['second'].append(phrase[1])
+        tokens['third'].append(phrase[2])
 
-    return 0
-
-
-def rand(begin=0, end=50):
-    return random.randint(begin, end)
+    return len(phrase_data)
 
 
-def insult(strm=sys.stdout):
-    insult = f'Thou {token_first[rand()]} {token_second[rand()]} {token_third[rand()]}!'
-
-    print(insult, file=strm)
+def rand(end=49):
+    return random.randint(0, end)
 
 
-def open_genfile(path):
-    if not os.access(os.path.dirname(path), os.W_OK):
-        print(f'{progname}: insult save file cannot be created here: {path}')
-        sys.exit(1)
+def insult(nphrases=50):
+    index = nphrases - 1
 
-    return open(path, mode='w')
+    def token(key):
+        return tokens[key][rand(end=index)]
+
+    return f"Thou {token('first')} {token('second')} {token('third')}!"
+
+
+def show_insults(insults):
+    for i in range(0, len(insults)):
+        print(insults[i])
+
+
+def create_json_insults(path, insults):
+    data = {
+        "insults": insults
+    }
+
+    with open(path, 'w') as strm:
+        json.dump(data, strm, sort_keys=True, indent=4)
+
+
+def generate_insults(path, oformat, nphrases=50, count=1):
+    insults = []
+
+    for i in range(0, count):
+        entry = {
+            "id": i,
+            "insult": insult(nphrases=nphrases)
+        }
+
+        insults.append(entry)
+
+    if oformat == 'json':
+        create_json_insults(path, insults)
+    else:
+        show_insults(insults)
+
+
+def insult_me(count=1, nphrases=50):
+    for i in range(0, count):
+        print(insult(nphrases=nphrases))
 
 
 def sanity_checks(path):
     if not Path(path).exists():
-        print(f'{progname}: missing phrase file: {path}')
-        sys.exit(1)
+        fail(f'missing phrase file: {path}')
 
 
 def main():
@@ -89,19 +125,22 @@ def main():
     ap = argparse.ArgumentParser(prog=progname, description='A Shakespearian insult generator')
 
     ap.add_argument('-c', '--count', metavar='COUNT', dest='count', default=0, type=int, help='Generate COUNT insults')
-    ap.add_argument('-f', '--file', metavar='PATH', dest='phrases', default='data/phrases', help=f'Use PATH for the data file. Default is {default_phrases}')
+    ap.add_argument('-i', '--input', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
     ap.add_argument('-g', '--generate', metavar='PATH', dest='genfile', default=None, help='Write a number of insults to PATH')
+    ap.add_argument('-o', '--output', metavar='FORMAT', dest='oformat', choices=['json', 'text'], default='json', help='Output insults using FORMAT. Default is "json"')
 
     args = ap.parse_args()
 
     sanity_checks(args.phrases)
-    load_phrases(args.phrases)
+
+    nphrases = load_phrases(args.phrases)
 
     icount = args.count if args.count > 0 else 1
-    ostrm = sys.stdout if args.genfile is None else open_genfile(args.genfile)
 
-    for i in range(0, icount):
-        insult(strm=ostrm)
+    if args.genfile is not None:
+        generate_insults(args.genfile, args.oformat, count=icount)
+    else:
+        insult_me(count=icount, nphrases=nphrases)
 
     sys.exit(0)
 
