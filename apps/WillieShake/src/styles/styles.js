@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     insultSelected: {
-        backgroundColor: 'linen',
+        backgroundColor: 'cadetblue',
     },
     insultSurface: {
         flex: 1,
