@@ -28,6 +28,7 @@ import { AppBar, HStack, IconButton, Button } from "@react-native-material/core"
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from 'expo-splash-screen';
+import * as Linking from 'expo-linking';
 
 import InsultEmAll from './src/mobile/InsultEmAll';
 
@@ -35,6 +36,7 @@ import styles from './src/styles/styles.js';
 
 const appTitle = "Willie the Shake";
 const appSubtitle = "Vos Sugere";
+const projectURL = "https://github.com/youngde811/willie-the-shake";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -53,8 +55,8 @@ function WillieShakeInsults() {
         return null;
     }
 
-    const showLicense = () => {
-        console.log('showLicense()');
+    const showProject = () => {
+        Linking.openURL(projectURL);
     };
 
     const showAbout = () => {
@@ -67,7 +69,7 @@ function WillieShakeInsults() {
           <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
               <HStack>
                 <IconButton
-                  icon={ props => <Icon name="github" { ...props }/>} onPress={ showLicense }
+                  icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
                   { ...props }/>
                 <IconButton
                   icon={ props => <Icon name="file" { ...props }/>} onPress={ showAbout }
