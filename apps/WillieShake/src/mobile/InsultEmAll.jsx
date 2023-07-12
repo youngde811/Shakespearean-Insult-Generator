@@ -69,7 +69,7 @@ export default function InsultEmAll() {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL('sms://&body=' + selectedInsult + '?');
+            Linking.openURL('sms://&body=' + selectedInsult);
         }
     };
 
