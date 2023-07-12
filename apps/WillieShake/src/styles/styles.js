@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 4,
         alignItems: 'stretch',
     },
+    appBar: {
+        backgroundColor: 'cadetblue',
+        color: 'black',
+        marginBottom: 20,
+        borderRadius: 10,
+    },
     headerTop: {
         flex: 1,
         flexDirection: 'row',

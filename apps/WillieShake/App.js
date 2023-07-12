@@ -64,14 +64,14 @@ function WillieShakeInsults() {
     return (
         <SafeAreaView style={[{paddingTop: insets.top}, styles.appTopView]} onLayout={ onLayoutRootView }>
           <StatusBar style="auto"/>
-          <AppBar title={ appTitle } trailing={ props => (
+          <AppBar title={ appTitle } style={ styles.appBar } trailing={ props => (
               <HStack>
-              <IconButton
-                icon={ props => <Icon name="github" { ...props }/>} onPress={ showLicense }
-                { ...props }/>
-              <IconButton
-                icon={ props => <Icon name="info" { ...props }/>} onPress={ showAbout }
-                { ...props }/>
+                <IconButton
+                  icon={ props => <Icon name="github" { ...props }/>} onPress={ showLicense }
+                  { ...props }/>
+                <IconButton
+                  icon={ props => <Icon name="file" { ...props }/>} onPress={ showAbout }
+                  { ...props }/>
               </HStack>
           )}/>
           <View style={ styles.insultTopView }>
