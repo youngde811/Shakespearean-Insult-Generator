@@ -46,9 +46,22 @@ const backgroundImage = require("./assets/images/willie.png");
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeInsults() {
+    const [appIsReady, setAppIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
     });
+
+    useEffect(() => {
+        async function prepare() {
+            try {
+                console.log('Preparing the app...');
+            } catch (e) {
+                console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
+            }
+        }
+
+        prepare();
+    }, []);
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
