@@ -88,8 +88,8 @@ export default function InsultEmAll() {
               <Text style={ styles.insultButtonText }>Insult</Text>
             </Pressable>
             <View style={ styles.spacer }/>
-            <Pressable style={ styles.insultButtons } title={ 'Cancel' } onPress={ cancelInsult }>
-              <Text style={ styles.insultButtonText }>Cancel</Text>
+            <Pressable style={ styles.insultButtons } title={ 'Be Nice' } onPress={ cancelInsult }>
+              <Text style={ styles.insultButtonText }>Be Nice</Text>
             </Pressable>
           </View>
         </View>
