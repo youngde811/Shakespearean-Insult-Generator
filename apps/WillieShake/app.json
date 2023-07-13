@@ -1,36 +1,36 @@
 {
-  "expo": {
-    "name": "WillieShake",
-    "slug": "WillieShake",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/images/willie.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#000000"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.bosshog811.WillieShake"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "bb6e93aa-61cd-42a7-b78d-8296554c20fc"
-      }
+    "expo": {
+        "name": "WillieShake",
+        "slug": "WillieShake",
+        "version": "0.7.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/bootsplash_logo@4x.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.bosshog811.WillieShake"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#000000",
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "bb6e93aa-61cd-42a7-b78d-8296554c20fc"
+            }
+        }
     }
-  }
 }

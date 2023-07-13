@@ -28,6 +28,7 @@ import * as Linking from 'expo-linking';
 import styles from '../styles/styles.js';
 
 const insults = require('../../assets/data/insults.json');
+const insultTitle = 'Shakespeare Hates You';
 
 export default function InsultEmAll() {
     const [selectedInsult, setSelectedInsult] = useState(null);
@@ -42,22 +43,11 @@ export default function InsultEmAll() {
 
     const renderInsult = ({item}) => {
         return (
-            <TouchableOpacity style={item.insult === selectedInsult ? styles.insultSelected : null} onPress={() => insultSelect(item)}>
-              <Text style={styles.insultText}>
-                {item.insult}
+            <TouchableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={() => insultSelect(item)}>
+              <Text style={ styles.insultText }>
+                { item.insult }
               </Text>
             </TouchableOpacity>
-        );
-    };
-
-    const insultHeader = () => {
-        return (
-            <View style={styles.insultTopView}>
-              <Text style={styles.insultHeader}>
-                Shakespeare Hates You
-              </Text>
-              <Divider orientation="vertical" width={6}/>
-            </View>
         );
     };
 
@@ -78,28 +68,28 @@ export default function InsultEmAll() {
     };
 
     return (
-        <View style={styles.insultTopView}>
-          <View style={styles.hatesYou}>
-            <Text style={styles.hatesYou}>
-              Shakespeare Hates You
+        <View style={ styles.insultTopView }>
+          <View style={ styles.hatesYou }>
+            <Text style={ styles.hatesYou }>
+              { insultTitle }
             </Text>
           </View>
-          <View style={styles.insultSurface}>
-            <Surface elevation={4}>
+          <View style={ styles.insultSurfaceParent }>
+            <Surface elevation={ 4 } style={ styles.insultSurface }>
               <FlatList
-                ItemSeparatorComponent={insultSeparator}
-                data={insults.insults}
-                keyExtractor={(item) => item.id}
-                renderItem={renderInsult}/>
+                ItemSeparatorComponent={ insultSeparator }
+                data={ insults.insults }
+                keyExtractor={ (item) => item.id }
+                renderItem={ renderInsult }/>
             </Surface>
           </View>
-          <View style={styles.insultFooter}>
-            <Pressable style={styles.insultButtons} title={'Insult'} onPress={sendInsult}>
-              <Text style={styles.insultButtonText}>Insult</Text>
+          <View style={ styles.insultFooter }>
+            <Pressable style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
+              <Text style={ styles.insultButtonText }>Insult</Text>
             </Pressable>
-            <View style={styles.spacer}/>
-            <Pressable style={styles.insultButtons} title={'Cancel'} onPress={cancelInsult}>
-              <Text style={styles.insultButtonText}>Cancel</Text>
+            <View style={ styles.spacer }/>
+            <Pressable style={ styles.insultButtons } title={ 'Be Nice' } onPress={ cancelInsult }>
+              <Text style={ styles.insultButtonText }>Be Nice</Text>
             </Pressable>
           </View>
         </View>
