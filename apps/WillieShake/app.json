@@ -4,7 +4,7 @@
         "slug": "WillieShake",
         "version": "0.7.0",
         "orientation": "portrait",
-        "icon": "./assets/icon.png",
+        "icon": "./assets/bootsplash_logo.png",
         "userInterfaceStyle": "light",
         "splash": {
             "image": "./assets/bootsplash_logo@4x.png",
@@ -15,7 +15,7 @@
             "**/*"
         ],
         "ios": {
-            "supportsTablet": true,
+            "supportsTablet": false,
             "bundleIdentifier": "com.bosshog811.WillieShake"
         },
         "android": {
