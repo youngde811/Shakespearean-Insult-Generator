@@ -8,8 +8,9 @@ fellow a number of times; thus the name of this project.
 
 I found myself needing a distraction after a particularly challenging project at work. Having discovered a newer
 implementation of the code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
-re-wrote the generator in Python; and decided to include an iOS app that will make use of generated insults in some fun
-manner. The app is written in _React Native_ and _Expo_, and is currently available only via _TestApp.io_.
+re-wrote the generator in Python; and decided to include an iOS app that makes use of generated insults in an
+entertaining manner. The app is written in _React Native_ and _Expo_, and is currently available only via
+_TestApp.io_. However, I plan to release it on the AppStore if I can suffer through the Apple approval process.
 
 ## Overview ##
 
@@ -66,6 +67,20 @@ This software is made available under the _MIT License_. See _LICENSE.md_ for de
 ## Attributions ##
 
 The insult generator itself is based on the work of Kurt Blair's [Shakespearean Insult Generator](https://github.com/Kurt-Blair/Shakespearean-Insult-Generator).
+
+## Latest News ##
+
+- _07/13/2023_: Version 0.7.0 of the app has been released onto _TestApp.io_. This release offers several enhancements:
+  - Much nice splash screen.
+  - Very nice main page background image.
+  - Nicer color scheme overall.
+  - An AppBar button that opens your default browser and takes you directly to the GitHub project page.
+  - More efficient rendering.
+  - Better documentation.
+
+## Internal Testers ##
+
+The current app release may be found [here](https://portal.testapp.io/apps/install/eLDOGzZngbjgg).
 
 ## References ##
 
