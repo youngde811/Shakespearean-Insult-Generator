@@ -8,7 +8,7 @@
         "userInterfaceStyle": "light",
         "splash": {
             "image": "./assets/bootsplash_logo@4x.png",
-            "resizeMode": "cover",
+            "resizeMode": "contain",
             "backgroundColor": "#000000"
         },
         "assetBundlePatterns": [
@@ -21,7 +21,7 @@
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
+                "backgroundColor": "#FEF9B0",
             }
         },
         "web": {
