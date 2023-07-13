@@ -84,8 +84,8 @@ export default function InsultEmAll() {
               Shakespeare Hates You
             </Text>
           </View>
-          <View style={styles.insultSurface}>
-            <Surface elevation={4}>
+          <View style={ styles.insultSurfaceParent }>
+            <Surface elevation={ 4 } style={ styles.insultSurface }>
               <FlatList
                 ItemSeparatorComponent={insultSeparator}
                 data={insults.insults}

@@ -1,3 +1,4 @@
+// -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
 // This file contains the entry point for our WillieShake app.
 
@@ -19,7 +20,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { StatusBar } from 'expo-status-bar';
-import { Image, Text, View } from 'react-native';
+import { Image, ImageBackground, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
@@ -37,6 +38,8 @@ import styles from './src/styles/styles.js';
 const appTitle = "Willie the Shake";
 const appSubtitle = "Vos Sugere";
 const projectURL = "https://github.com/youngde811/willie-the-shake";
+
+const backgroundImage = require("./assets/images/willie.png");
 
 SplashScreen.preventAutoHideAsync();
 
@@ -64,22 +67,24 @@ function WillieShakeInsults() {
     };
     
     return (
-        <SafeAreaView style={[{paddingTop: 10}, styles.appTopView]} onLayout={ onLayoutRootView }>
-          <StatusBar style="auto"/>
-          <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
-              <HStack>
-                <IconButton
-                  icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
-                  { ...props }/>
-                <IconButton
-                  icon={ props => <Icon name="file" { ...props }/>} onPress={ showAbout }
-                  { ...props }/>
-              </HStack>
-          )}/>
-          <View style={ styles.insultTopView }>
-            <InsultEmAll/>
-          </View>
-        </SafeAreaView>
+        <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
+          <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
+            <StatusBar style="auto"/>
+            <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
+                <HStack>
+                  <IconButton
+                    icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
+                    { ...props }/>
+                  <IconButton
+                    icon={ props => <Icon name="file" { ...props }/>} onPress={ showAbout }
+                    { ...props }/>
+                </HStack>
+            )}/>
+            <View style={ styles.insultTopView }>
+              <InsultEmAll/>
+            </View>
+          </SafeAreaView>
+        </ImageBackground>
     );
 }
 

@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         alignItems: 'stretch',
     },
+    backgroundImage: {
+        flex: 1,
+    },
     insultList: {
         flex: 1,
         paddingBottom: 50,
@@ -94,9 +97,13 @@ const styles = StyleSheet.create({
     insultSelected: {
         backgroundColor: 'cadetblue',
     },
+    insultSurfaceParent: {
+        flex: 1,
+        paddingBottom: 40,
+    },
     insultSurface: {
         flex: 1,
-        paddingBottom: 50,
+        paddingBottom: 40,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
