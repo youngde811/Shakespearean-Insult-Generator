@@ -71,7 +71,7 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 ## Latest News ##
 
 - _07/13/2023_: Version 0.7.0 of the app has been released onto _TestApp.io_. This release offers several enhancements:
-  - Much nice splash screen.
+  - Much nicer splash screen.
   - Very nice main page background image.
   - Nicer color scheme overall.
   - An AppBar button that opens your default browser and takes you directly to the GitHub project page.
