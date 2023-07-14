@@ -1,6 +1,7 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the code for our WillieShake main insult page.
+// This file contains the code for a Pressable-derived component that offers animation for press
+// and release actions.
 
 // MIT License
 
