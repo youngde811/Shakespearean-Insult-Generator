@@ -21,7 +21,7 @@
 
 import React, { useState } from 'react';
 
-import { Button, FlatList, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 

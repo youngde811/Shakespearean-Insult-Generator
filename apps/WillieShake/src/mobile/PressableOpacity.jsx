@@ -20,15 +20,16 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { Animated, Pressable } from 'react-native';
 
 export default function PressableOpacity({ children, ...props }) {
-    const animated = new Animated.Value(1);
+    const animation = useRef(new Animated.Value(1)).current;
+    // const animated = new Animated.Value(1);
 
     const fadeIn = () => {
-        Animated.timing(animated, {
+        Animated.timing(animation, {
             toValue: 0.1,
             duration: 100,
             useNativeDriver: true
@@ -36,7 +37,7 @@ export default function PressableOpacity({ children, ...props }) {
     };
 
     const fadeOut = () => {
-        Animated.timing(animated, {
+        Animated.timing(animation, {
             toValue: 1,
             duration: 200,
             useNativeDriver: true
@@ -45,7 +46,7 @@ export default function PressableOpacity({ children, ...props }) {
 
     return (
         <Pressable onPressIn={ fadeIn } onPressOut={ fadeOut } { ...props }>
-          <Animated.View style={{ opacity: animated }}>
+          <Animated.View style={{ opacity: animation }}>
             { children }
           </Animated.View>
         </Pressable>
