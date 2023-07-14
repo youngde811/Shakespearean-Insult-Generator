@@ -36,7 +36,7 @@ export default function PressableOpacity({ children, ...props }) {
 
     const fadeOut = () => {
         Animated.timing(animated, {
-            toValue: 0.1,
+            toValue: 1,
             duration: 200,
             useNativeDriver: true
         }).start();
