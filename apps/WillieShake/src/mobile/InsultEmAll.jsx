@@ -1,3 +1,5 @@
+// -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
+
 // This file contains the code for our WillieShake main insult page.
 
 // MIT License
@@ -19,13 +21,15 @@
 
 import React, { useState } from 'react';
 
-import { Button, FlatList, ListItem, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
+
+import PressableOpacity from './PressableOpacity';
 
 const insults = require('../../assets/data/insults.json');
 const insultTitle = 'Shakespeare Hates You';
@@ -84,13 +88,13 @@ export default function InsultEmAll() {
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
-            <Pressable style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
+            <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
               <Text style={ styles.insultButtonText }>Insult</Text>
-            </Pressable>
+            </PressableOpacity>
             <View style={ styles.spacer }/>
-            <Pressable style={ styles.insultButtons } title={ 'Be Nice' } onPress={ cancelInsult }>
+            <PressableOpacity style={ styles.insultButtons } title={ 'Be Nice' } onPress={ cancelInsult }>
               <Text style={ styles.insultButtonText }>Be Nice</Text>
-            </Pressable>
+            </PressableOpacity>
           </View>
         </View>
     );
