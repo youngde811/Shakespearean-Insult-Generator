@@ -31,7 +31,6 @@ import styles from '../styles/styles.js';
 
 import PressableOpacity from './PressableOpacity';
 
-// const insults = require('../../assets/data/insults.json');
 const insultTitle = 'Shakespeare Hates You';
 
 export default function InsultEmAll({ insults }) {
@@ -82,7 +81,7 @@ export default function InsultEmAll({ insults }) {
             <Surface elevation={ 4 } style={ styles.insultSurface }>
               <FlatList
                 ItemSeparatorComponent={ insultSeparator }
-                data={ insults.insults }
+                data={ insults }
                 keyExtractor={ (item) => item.id }
                 renderItem={ renderInsult }/>
             </Surface>

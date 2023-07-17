@@ -37,10 +37,6 @@ import InsultEmAll from './src/mobile/InsultEmAll';
 
 import styles from './src/styles/styles.js';
 
-// const appTitle = "Willie the Shake";
-// const appSubtitle = "Vos Sugere";
-// const projectURL = "https://github.com/youngde811/willie-the-shake";
-
 const backgroundImage = require("./assets/images/willie.png");
 const appConfig = require("./assets/appconfig.json");
 const insults = require('./assets/data/insults.json');
@@ -48,6 +44,7 @@ const insults = require('./assets/data/insults.json');
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeInsults() {
+    const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
@@ -57,6 +54,7 @@ function WillieShakeInsults() {
         async function prepare() {
             try {
                 console.log('Preparing app...');
+                setInsultData(insults.insults.slice().sort((a, b) => a.insult.toLowerCase().localeCompare(b.insult.toLowerCase())));
             } catch (e) {
                 console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
             }
@@ -83,7 +81,7 @@ function WillieShakeInsults() {
     const showAbout = () => {
         console.log('showAbout');
     };
-    
+
     return (
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
@@ -100,7 +98,10 @@ function WillieShakeInsults() {
             )}/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
-              <InsultEmAll insults={ insults }/>
+              { insultData.length > 0 ? 
+                <InsultEmAll insults={ insultData }/>
+                :
+                null }
             </View>
           </SafeAreaView>
         </ImageBackground>
