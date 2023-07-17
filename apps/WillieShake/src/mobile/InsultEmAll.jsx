@@ -31,10 +31,10 @@ import styles from '../styles/styles.js';
 
 import PressableOpacity from './PressableOpacity';
 
-const insults = require('../../assets/data/insults.json');
+// const insults = require('../../assets/data/insults.json');
 const insultTitle = 'Shakespeare Hates You';
 
-export default function InsultEmAll() {
+export default function InsultEmAll({ insults }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
 
     const insultSelect = (item) => {

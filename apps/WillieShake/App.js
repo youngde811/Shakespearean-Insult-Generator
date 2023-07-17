@@ -37,11 +37,13 @@ import InsultEmAll from './src/mobile/InsultEmAll';
 
 import styles from './src/styles/styles.js';
 
-const appTitle = "Willie the Shake";
-const appSubtitle = "Vos Sugere";
-const projectURL = "https://github.com/youngde811/willie-the-shake";
+// const appTitle = "Willie the Shake";
+// const appSubtitle = "Vos Sugere";
+// const projectURL = "https://github.com/youngde811/willie-the-shake";
 
 const backgroundImage = require("./assets/images/willie.png");
+const appConfig = require("./assets/appconfig.json");
+const insults = require('./assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
 
@@ -75,7 +77,7 @@ function WillieShakeInsults() {
     }
 
     const showProject = () => {
-        Linking.openURL(projectURL);
+        Linking.openURL(appConfig.projectURL);
     };
 
     const showAbout = () => {
@@ -86,7 +88,7 @@ function WillieShakeInsults() {
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
-            <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
+            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
                 <HStack>
                   <IconButton
                     icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
@@ -98,7 +100,7 @@ function WillieShakeInsults() {
             )}/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
-              <InsultEmAll/>
+              <InsultEmAll insults={ insults }/>
             </View>
           </SafeAreaView>
         </ImageBackground>
