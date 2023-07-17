@@ -22,7 +22,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Image, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
@@ -54,7 +54,7 @@ function WillieShakeInsults() {
     useEffect(() => {
         async function prepare() {
             try {
-                console.log('Preparing the app...');
+                console.log('Preparing app...');
             } catch (e) {
                 console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
             }
@@ -66,6 +66,7 @@ function WillieShakeInsults() {
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
             await SplashScreen.hideAsync();
+            setAppIsReady(true);
         }
     }, [fontsLoaded]);
 
@@ -95,6 +96,7 @@ function WillieShakeInsults() {
                     { ...props }/>
                 </HStack>
             )}/>
+            <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
               <InsultEmAll/>
             </View>
