@@ -22,7 +22,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Image, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
@@ -37,15 +37,14 @@ import InsultEmAll from './src/mobile/InsultEmAll';
 
 import styles from './src/styles/styles.js';
 
-const appTitle = "Willie the Shake";
-const appSubtitle = "Vos Sugere";
-const projectURL = "https://github.com/youngde811/willie-the-shake";
-
 const backgroundImage = require("./assets/images/willie.png");
+const appConfig = require("./assets/appconfig.json");
+const insults = require('./assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
 
 function WillieShakeInsults() {
+    const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('./assets/fonts/Inter-Black.otf')
@@ -54,7 +53,8 @@ function WillieShakeInsults() {
     useEffect(() => {
         async function prepare() {
             try {
-                console.log('Preparing the app...');
+                console.log('Preparing app...');
+                setInsultData(insults.insults.slice().sort((a, b) => a.insult.toLowerCase().localeCompare(b.insult.toLowerCase())));
             } catch (e) {
                 console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
             }
@@ -66,6 +66,7 @@ function WillieShakeInsults() {
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
             await SplashScreen.hideAsync();
+            setAppIsReady(true);
         }
     }, [fontsLoaded]);
 
@@ -74,18 +75,18 @@ function WillieShakeInsults() {
     }
 
     const showProject = () => {
-        Linking.openURL(projectURL);
+        Linking.openURL(appConfig.projectURL);
     };
 
     const showAbout = () => {
         console.log('showAbout');
     };
-    
+
     return (
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
-            <AppBar title={ appTitle } subtitle={ appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
+            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
                 <HStack>
                   <IconButton
                     icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
@@ -95,8 +96,12 @@ function WillieShakeInsults() {
                     { ...props }/>
                 </HStack>
             )}/>
+            <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
-              <InsultEmAll/>
+              { insultData.length > 0 ? 
+                <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
+                :
+                null }
             </View>
           </SafeAreaView>
         </ImageBackground>
