@@ -31,9 +31,7 @@ import styles from '../styles/styles.js';
 
 import PressableOpacity from './PressableOpacity';
 
-const insultTitle = 'Shakespeare Hates You';
-
-export default function InsultEmAll({ insults }) {
+export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
 
     const insultSelect = (item) => {
@@ -74,7 +72,7 @@ export default function InsultEmAll({ insults }) {
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
             <Text style={ styles.hatesYou }>
-              { insultTitle }
+              { appConfig.insultTitle }
             </Text>
           </View>
           <View style={ styles.insultSurfaceParent }>

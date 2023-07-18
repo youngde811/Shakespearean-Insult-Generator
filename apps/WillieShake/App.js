@@ -99,7 +99,7 @@ function WillieShakeInsults() {
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
               { insultData.length > 0 ? 
-                <InsultEmAll insults={ insultData }/>
+                <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
                 :
                 null }
             </View>
