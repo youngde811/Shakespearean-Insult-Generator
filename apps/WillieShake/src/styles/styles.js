@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     spacer: {
         width: 10,
     },
+    webView: {
+        flex: 1,
+    },
 });
 
 export default styles;

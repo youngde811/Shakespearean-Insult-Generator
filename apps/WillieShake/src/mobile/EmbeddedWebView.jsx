@@ -1,6 +1,7 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the entry point for our WillieShake app.
+// This file contains the code for an embeddable web page viewer. We'll use this component to show a
+// screen linked to Lord Buckley's WikiPedia page.
 
 // MIT License
 
@@ -19,16 +20,26 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ActivityIndicator, WebView } from 'react-native-webview';
 
-import InsultPage from './src/mobile/InsultPage';
+import styles from '../styles/styles.js';
+const appConfig = require("../../assets/appconfig.json");
 
-export default function App() {
-  return (
-      <SafeAreaProvider>
-        <InsultPage/>
-      </SafeAreaProvider>
-  );
-}
+function LoadingIndicator() {
+    return (
+        <ActivityIndicator color='#009b88' size='large'/>
+    );
+};
+
+function EmbeddedWebView({ route, navigation }) {
+    return (
+        <WebView style={ styles.webView } originWhitelist={ ['*'] } source={ appConfig.buckleyURL }
+                 renderLoading={ LoadingIndicator } startInLoadingState={ true }>
+
+        </WebView>
+    );
+};
+
+export default EmbeddedWebView;
