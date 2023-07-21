@@ -24,6 +24,7 @@ import React, { useState } from 'react';
 
 import { Modal, Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import PressableOpacity from './PressableOpacity';
 
@@ -41,9 +42,9 @@ export default function EmbeddedWebView({ wikiPage, setDismiss }) {
     };
     
     return (
-        <Modal animationType="slide" transparent={ true }>
-          <View style={ styles.webModal }>
-            <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: wikiPage }}/>
+        <Modal animationType="fade" presentationStyle="formSheet">
+          <View style={ styles.webView }>
+            <WebView originWhitelist={ ['*'] } source={{ url: wikiPage }}/>
           </View>
           <View style={ styles.webFooter }>
             <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>

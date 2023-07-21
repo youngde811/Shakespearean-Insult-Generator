@@ -44,8 +44,6 @@ const insults = require('../../assets/data/insults.json');
 SplashScreen.preventAutoHideAsync();
 
 export default function WillieShakeInsults({ appConfig }) {
-    console.log("appConfig: " + JSON.stringify(appConfig, null, 4));
-    
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [webViewVisible, setWebViewVisible] = useState(false);

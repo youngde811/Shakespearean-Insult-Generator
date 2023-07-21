@@ -116,27 +116,28 @@ const styles = StyleSheet.create({
     spacer: {
         width: 10,
     },
-    webModal: {
+    webView: {
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'stretch',
     },
     webFooter: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        width: '100%',
+        marginBottom: 20,
         bottom: 0,
         position: 'absolute',
     },
     webButtons: {
         flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
         elevation: 3,
         padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
         backgroundColor: 'cadetblue',
         borderColor: '#fff',
     },
