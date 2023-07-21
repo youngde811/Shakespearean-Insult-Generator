@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     appBar: {
         backgroundColor: 'cadetblue',
-        marginBottom: 20,
         borderRadius: 10,
     },
     headerTop: {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     },
     insultSurface: {
         flex: 1,
-        paddingBottom: 40,
+        paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
