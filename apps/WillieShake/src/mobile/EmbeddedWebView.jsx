@@ -1,6 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the code for an embeddable web page viewer. We'll use this component to show a
+// This file contains the code for a modal embeddable web page viewer. We'll use this component to show a
 // screen linked to Lord Buckley's WikiPedia page.
 
 // MIT License
@@ -20,9 +20,12 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
+import { Modal, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
+
+import PressableOpacity from './PressableOpacity';
 
 import styles from '../styles/styles.js';
 const appConfig = require("../../assets/appconfig.json");
@@ -33,7 +36,9 @@ function LoadingIndicator() {
     );
 };
 
-function EmbeddedWebView({ route, navigation }) {
+export default function EmbeddedWebView({ route, navigation }) {
+    const [isVisible, setIsVisible] = useState(false);
+    
     return (
         <WebView style={ styles.webView } originWhitelist={ ['*'] } source={ appConfig.buckleyURL }
                  renderLoading={ LoadingIndicator } startInLoadingState={ true }>
@@ -41,5 +46,3 @@ function EmbeddedWebView({ route, navigation }) {
         </WebView>
     );
 };
-
-export default EmbeddedWebView;
