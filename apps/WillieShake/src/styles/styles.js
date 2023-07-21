@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
         width: 10,
     },
     webView: {
-        flex: 1,
+        flex: 0,
+        height: '90%',
     },
     webFooter: {
         flex: 1,
