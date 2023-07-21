@@ -39,9 +39,17 @@ export default function EmbeddedWebView({ appConfig }) {
     const [isVisible, setIsVisible] = useState(false);
     
     return (
-        <WebView style={ styles.webView } originWhitelist={ ['*'] } source={ appConfig.buckleyURL }
-                 renderLoading={ LoadingIndicator } startInLoadingState={ true }>
-
-        </WebView>
+        <Modal animationType="slide" transparent={ true } visible={ isVisible }>
+          <View style={ styles.webModal }>
+            <WebView style={ styles.webView } originWhitelist={ ['*'] } source={ appConfig.buckleyURL }
+                     renderLoading={ LoadingIndicator } startInLoadingState={ true }>
+            </WebView>
+          </View>
+          <View style={ styles.webViewFooter }>
+            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ removeModal }>
+              <Text style={ styles.webText }>Dismiss</Text>
+            </PressableOpacity>
+          </View>
+        </Modal>
     );
 };
