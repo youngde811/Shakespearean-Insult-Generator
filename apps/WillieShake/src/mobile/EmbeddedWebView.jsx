@@ -1,7 +1,7 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the code for a modal embeddable web page viewer. We'll use this component to show a
-// screen linked to Lord Buckley's WikiPedia page.
+// This component offers a modal embeddable web page viewer. We'll use it to show a screen
+// linked to Lord Buckley's WikiPedia page.
 
 // MIT License
 
@@ -28,7 +28,6 @@ import { ActivityIndicator, WebView } from 'react-native-webview';
 import PressableOpacity from './PressableOpacity';
 
 import styles from '../styles/styles.js';
-const appConfig = require("../../assets/appconfig.json");
 
 function LoadingIndicator() {
     return (
@@ -36,7 +35,7 @@ function LoadingIndicator() {
     );
 };
 
-export default function EmbeddedWebView({ route, navigation }) {
+export default function EmbeddedWebView({ appConfig }) {
     const [isVisible, setIsVisible] = useState(false);
     
     return (
