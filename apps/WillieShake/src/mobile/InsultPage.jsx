@@ -47,6 +47,8 @@ SplashScreen.preventAutoHideAsync();
 export default function WillieShakeInsults() {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
+    const [webViewVisible, setWebViewVisible] = useState(false);
+    
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
     });
@@ -80,7 +82,7 @@ export default function WillieShakeInsults() {
     };
 
     const showWiki = () => {
-        console.log('showWiki');
+        setWebViewVisible(true);
     };
 
     return (
@@ -104,6 +106,7 @@ export default function WillieShakeInsults() {
                 :
                 null }
             </View>
+            { webViewVisible ? <EmbeddedWebView url={ appConfig.buckleyURL } setDismiss={ () => setWebViewVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );
