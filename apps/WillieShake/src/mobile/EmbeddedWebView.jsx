@@ -37,7 +37,11 @@ function LoadingIndicator() {
 
 export default function EmbeddedWebView({ appConfig }) {
     const [isVisible, setIsVisible] = useState(false);
-    
+
+    const removeModal = () => {
+        setIsVisible(false);
+    };
+
     return (
         <Modal animationType="slide" transparent={ true } visible={ isVisible }>
           <View style={ styles.webModal }>

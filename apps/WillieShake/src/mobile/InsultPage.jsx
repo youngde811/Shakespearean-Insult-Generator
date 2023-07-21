@@ -33,6 +33,7 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import * as SplashScreen from 'expo-splash-screen';
 import * as Linking from 'expo-linking';
 
+import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
 
 import styles from '../styles/styles.js';
@@ -78,8 +79,8 @@ export default function WillieShakeInsults() {
         Linking.openURL(appConfig.projectURL);
     };
 
-    const showAbout = () => {
-        console.log('showAbout');
+    const showWiki = () => {
+        console.log('showWiki');
     };
 
     return (
@@ -92,7 +93,7 @@ export default function WillieShakeInsults() {
                     icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
                     { ...props }/>
                   <IconButton
-                    icon={ props => <Icon name="file" { ...props }/>} onPress={ showAbout }
+                    icon={ props => <Icon name="file" { ...props }/>} onPress={ showWiki }
                     { ...props }/>
                 </HStack>
             )}/>
