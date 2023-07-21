@@ -25,10 +25,12 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import InsultPage from './src/mobile/InsultPage';
 
+const appConfig = require("./assets/appconfig.json");
+
 export default function App() {
   return (
       <SafeAreaProvider>
-        <InsultPage/>
+        <InsultPage appConfig={ appConfig }/>
       </SafeAreaProvider>
   );
 }

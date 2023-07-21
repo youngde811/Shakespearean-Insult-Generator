@@ -22,7 +22,7 @@
 
 import React, { useState } from 'react';
 
-import { Modal, View } from 'react-native';
+import { Modal, Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
 
 import PressableOpacity from './PressableOpacity';
@@ -35,16 +35,23 @@ function LoadingIndicator() {
     );
 };
 
-export default function EmbeddedWebView({ url, setDismiss }) {
+export default function EmbeddedWebView({ wikiPage, setDismiss }) {
+    const [visible, setVisible] = useState(false);
+
+    const onPress = () => {
+        setDismiss();
+        setVisible(false);
+    };
+    
     return (
-        <Modal animationType="slide" transparent={ true } visible={ true }>
+        <Modal animationType="slide" transparent={ true } visible={ visible }>
           <View style={ styles.webModal }>
-            <WebView style={ styles.webView } originWhitelist={ ['*'] } source={ url }
+            <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: wikiPage }}
                      renderLoading={ LoadingIndicator } startInLoadingState={ true }>
             </WebView>
           </View>
-          <View style={ styles.webViewFooter }>
-            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+          <View style={ styles.webFooter }>
+            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>
               <Text style={ styles.webText }>Dismiss</Text>
             </PressableOpacity>
           </View>

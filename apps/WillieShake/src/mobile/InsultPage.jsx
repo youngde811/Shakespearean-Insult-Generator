@@ -39,12 +39,13 @@ import InsultEmAll from './InsultEmAll';
 import styles from '../styles/styles.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
-const appConfig = require("../../assets/appconfig.json");
 const insults = require('../../assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
 
-export default function WillieShakeInsults() {
+export default function WillieShakeInsults({ appConfig }) {
+    console.log("appConfig: " + JSON.stringify(appConfig, null, 4));
+    
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [webViewVisible, setWebViewVisible] = useState(false);
@@ -106,7 +107,7 @@ export default function WillieShakeInsults() {
                 :
                 null }
             </View>
-            { webViewVisible ? <EmbeddedWebView url={ appConfig.buckleyURL } setDismiss={ () => setWebViewVisible(false) }/> : null }
+            { webViewVisible ? <EmbeddedWebView wikiPage={ appConfig.wikiPage } setDismiss={ () => setWebViewVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );
