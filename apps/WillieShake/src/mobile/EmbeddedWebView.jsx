@@ -43,7 +43,8 @@ export default function EmbeddedWebView({ wikiPage, setDismiss }) {
     
     return (
         <Modal animationType="fade" presentationStyle="formSheet">
-          <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: wikiPage }}/>
+          <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: wikiPage }}
+                   startInLoadingState={ true } startInLoading={ LoadingIndicator }/>
           <View style={ styles.webFooter }>
             <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>
               <Text style={ styles.webText }>Dismiss</Text>

@@ -47,6 +47,7 @@ export default function WillieShakeInsults({ appConfig }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [webViewVisible, setWebViewVisible] = useState(false);
+    const [gitHubVisible, setGitHubVisible] = useState(false);
     
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
@@ -77,7 +78,7 @@ export default function WillieShakeInsults({ appConfig }) {
     }
 
     const showProject = () => {
-        Linking.openURL(appConfig.projectURL);
+        setGitHubVisible(true);
     };
 
     const showWiki = () => {
@@ -106,6 +107,7 @@ export default function WillieShakeInsults({ appConfig }) {
                 null }
             </View>
             { webViewVisible ? <EmbeddedWebView wikiPage={ appConfig.wikiPage } setDismiss={ () => setWebViewVisible(false) }/> : null }
+            { gitHubVisible ? <EmbeddedWebView wikiPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );
