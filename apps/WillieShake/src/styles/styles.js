@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     appBar: {
         backgroundColor: 'cadetblue',
-        marginBottom: 20,
         borderRadius: 10,
     },
     headerTop: {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     },
     insultSurface: {
         flex: 1,
-        paddingBottom: 40,
+        paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
@@ -116,6 +115,36 @@ const styles = StyleSheet.create({
     },
     spacer: {
         width: 10,
+    },
+    webView: {
+        flex: 0,
+        height: '90%',
+    },
+    webFooter: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginBottom: 20,
+        bottom: 0,
+        position: 'absolute',
+    },
+    webButtons: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'cadetblue',
+        borderColor: '#fff',
+    },
+    webText: {
+        color: 'white',
+        fontSize: 20,
     },
 });
 
