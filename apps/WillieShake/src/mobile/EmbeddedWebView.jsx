@@ -36,14 +36,14 @@ function LoadingIndicator() {
     );
 };
 
-export default function EmbeddedWebView({ wikiPage, setDismiss }) {
+export default function EmbeddedWebView({ webPage, setDismiss }) {
     const onPress = () => {
         setDismiss();
     };
     
     return (
         <Modal animationType="fade" presentationStyle="formSheet">
-          <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: wikiPage }}
+          <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: webPage }}
                    startInLoadingState={ true } startInLoading={ LoadingIndicator }/>
           <View style={ styles.webFooter }>
             <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>

@@ -31,7 +31,6 @@ import { AppBar, HStack, IconButton, Button } from "@react-native-material/core"
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 import * as SplashScreen from 'expo-splash-screen';
-import * as Linking from 'expo-linking';
 
 import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
@@ -46,7 +45,7 @@ SplashScreen.preventAutoHideAsync();
 export default function WillieShakeInsults({ appConfig }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
-    const [webViewVisible, setWebViewVisible] = useState(false);
+    const [wikiVisible, setWikiVisible] = useState(false);
     const [gitHubVisible, setGitHubVisible] = useState(false);
     
     const [fontsLoaded] = useFonts({
@@ -56,7 +55,6 @@ export default function WillieShakeInsults({ appConfig }) {
     useEffect(() => {
         async function prepare() {
             try {
-                console.log('Preparing app...');
                 setInsultData(insults.insults.slice().sort((a, b) => a.insult.toLowerCase().localeCompare(b.insult.toLowerCase())));
             } catch (e) {
                 console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
@@ -82,7 +80,7 @@ export default function WillieShakeInsults({ appConfig }) {
     };
 
     const showWiki = () => {
-        setWebViewVisible(true);
+        setWikiVisible(true);
     };
 
     return (
@@ -106,8 +104,8 @@ export default function WillieShakeInsults({ appConfig }) {
                 :
                 null }
             </View>
-            { webViewVisible ? <EmbeddedWebView wikiPage={ appConfig.wikiPage } setDismiss={ () => setWebViewVisible(false) }/> : null }
-            { gitHubVisible ? <EmbeddedWebView wikiPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
+            { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
+            { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );
