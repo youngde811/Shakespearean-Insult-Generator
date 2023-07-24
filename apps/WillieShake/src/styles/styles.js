@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        top: 0,
-        position: 'absolute',
     },
     headerText: {
         color: 'black',
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: '8%',
         bottom: 0,
         position: 'absolute',
     },
