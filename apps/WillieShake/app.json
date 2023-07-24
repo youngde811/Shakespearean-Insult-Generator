@@ -6,6 +6,7 @@
         "orientation": "portrait",
         "icon": "./assets/bootsplash_logo.png",
         "userInterfaceStyle": "light",
+        "orientation": "portrait",
         "splash": {
             "image": "./assets/bootsplash_logo@4x.png",
             "resizeMode": "contain",
@@ -16,7 +17,9 @@
         ],
         "ios": {
             "supportsTablet": false,
-            "bundleIdentifier": "com.bosshog811.WillieShake"
+            "bundleIdentifier": "com.bosshog811.WillieShake",
+            "buildNumber": "1.1.1",
+            "requireFullScreen": true,
         },
         "android": {
             "adaptiveIcon": {
