@@ -17,11 +17,10 @@
         "production": {
             "ios": {
                 "appleId": "youngde811@pobox.com",
-                "ascAppId": "",
+                "ascAppId": "6452840161",
                 "appleTeamId": "V78UYPHFGA",
                 "sku": "WillieTheShake",
                 "appName": "WillieShake",
-                
             },
         },
     },
