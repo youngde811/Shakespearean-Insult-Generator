@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'cadetblue',
         borderRadius: 10,
     },
+    appBarSubtitle: {
+        fontStyle: 'italic',
+    },
     headerTop: {
         flex: 1,
         flexDirection: 'row',

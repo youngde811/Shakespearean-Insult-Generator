@@ -87,7 +87,8 @@ export default function WillieShakeInsults({ appConfig }) {
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
-            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar } transparent={ true } trailing={ props => (
+            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar }
+                    subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
                 <HStack>
                   <IconButton
                     icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }

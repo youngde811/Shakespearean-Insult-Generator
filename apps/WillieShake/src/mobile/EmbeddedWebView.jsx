@@ -43,8 +43,9 @@ export default function EmbeddedWebView({ webPage, setDismiss }) {
     
     return (
         <Modal animationType="fade" presentationStyle="formSheet">
-          <WebView style={ styles.webView } originWhitelist={ ['*'] } source={{ url: webPage }}
-                   startInLoadingState={ true } startInLoading={ LoadingIndicator } allowsBackForwardNavigationGestures={ true }/>
+          <WebView style={ styles.webView } originWhitelist={ ['https://*'] } source={{ url: webPage }}
+                   startInLoadingState={ true } startInLoading={ LoadingIndicator }
+                   allowsBackForwardNavigationGestures={ true } decelerationRate={ 'normal' }/>
           <View style={ styles.webFooter }>
             <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>
               <Text style={ styles.webText }>Dismiss</Text>
