@@ -4526,7 +4526,7 @@ expo-modules-core@1.5.7:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-screen-orientation@~6.0.4:
+expo-screen-orientation@^6.0.4:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-6.0.4.tgz#fbb5e304442ce9157dc36b67cda75678cb03c878"
   integrity sha512-WqfxKQVifCBbuohgjNpX9y0/gUlvqvwfhsQjgPx6X2Y5cWfEHciBI9g/imgTiBVODskQtJSom518D3Bg8bk7JQ==
