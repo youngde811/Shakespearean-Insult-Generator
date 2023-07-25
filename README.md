@@ -79,7 +79,9 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
-- _07/24/2023_: Version 1.1.0 of the _WillieShake_ app is available:
+
+- _07/24/2023_: Version 1.1.3 of the _WillieShake_ app is available:
+  - First official submission to the AppStore review process!
   - Gesture handling was added to the WebView component.
   - Documentation improvements.
   
