@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
     },
     hatesYou: {
         alignItems: 'center',
-        fontFamily: 'Inter-Black',
+        fontWeight: 'bold',
+        color: 'teal',
         fontSize: 25,
         paddingBottom: 10,
     },
