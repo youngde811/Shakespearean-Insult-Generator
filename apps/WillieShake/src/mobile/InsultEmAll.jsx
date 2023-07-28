@@ -32,6 +32,8 @@ import PressableOpacity from './PressableOpacity';
 
 import * as FileSystem from 'expo-file-system';
 
+const contents = [];
+
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
 
@@ -73,6 +75,9 @@ export default function InsultEmAll({ insults, appConfig }) {
     const createFavorites = async (path, contents) => {
         const createNewFavorites = async () => {
             await FileSystem.writeAsStringAsync(path, JSON.stringify(contents, null, 4))
+                .then (res => {
+                    console.log('createNewFavorites(): result: ' + res);
+                })
                 .catch(error => {
                     console.log('createNewFavorites(): ' + JSON.stringify(error, null, 4));
                 });
@@ -83,14 +88,14 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const addFavorite = (item) => {
         const path = FileSystem.documentDirectory + appConfig.names.favorites;
-        const contents = [];
 
         const readFavorites = async () => {
             await FileSystem.readAsStringAsync(path)
-                .then(jstr => {
+                .then (jstr => {
+                    console.log('readAsString(Async(): jstr: ' + jstr);
                     contents.push(JSON.parse(jstr.data));
                 })
-                .catch(error => {
+                .catch (error => {
                     console.log('readFavorites(): error: ' + JSON.stringify(error, null, 4));
                     console.log('readFavorites(): path: ' + path);
                     console.log('readFavorites(): item: ' + JSON.stringify(item, null, 4));
