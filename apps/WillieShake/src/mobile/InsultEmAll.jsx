@@ -44,11 +44,12 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const renderInsult = ({item}) => {
         return (
-            <TouchableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={() => insultSelect(item)}>
+            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
+                              onLongPress={ () => addFavorite(item) } delayLongPress={ 1000 }>
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
-            </TouchableOpacity>
+            </PressableOpacity>
         );
     };
 
@@ -68,6 +69,10 @@ export default function InsultEmAll({ insults, appConfig }) {
         setSelectedInsult(null);
     };
 
+    const addFavorite = (item) => {
+        console.log('addFavorite()' + JSON.stringify(item, null, 4));
+    };
+    
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>

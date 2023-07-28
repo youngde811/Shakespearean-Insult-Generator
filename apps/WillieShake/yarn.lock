@@ -6999,6 +6999,13 @@ react-devtools-core@^4.27.2:
     shell-quote "^1.6.1"
     ws "^7"
 
+react-flexible-sliding-menu@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/react-flexible-sliding-menu/-/react-flexible-sliding-menu-0.1.9.tgz#fd87b4beb17f4841a10eff0b321e67f0db8fb825"
+  integrity sha512-PSSFZS65NlcTNT480oszyN/pCNrBN05YTPWNY8MIRDVQ96i8ni188gIdOfkWUJ/wbe8OjY1qZGvYtVbfy3wqSQ==
+  dependencies:
+    prop-types "^15.7.2"
+
 "react-is@^16.12.0 || ^17.0.0 || ^18.0.0", react-is@^18.0.0, react-is@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
