@@ -30,9 +30,7 @@ import * as Linking from 'expo-linking';
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 
-import * as FileSystem from 'expo-file-system';
-
-const contents = [];
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
@@ -48,7 +46,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     const renderInsult = ({item}) => {
         return (
             <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
-                              onLongPress={ () => addFavorite(item) } delayLongPress={ 1000 }>
+                              onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
@@ -72,41 +70,13 @@ export default function InsultEmAll({ insults, appConfig }) {
         setSelectedInsult(null);
     };
 
-    const createFavorites = async (path, contents) => {
-        const createNewFavorites = async () => {
-            await FileSystem.writeAsStringAsync(path, JSON.stringify(contents, null, 4))
-                .then (res => {
-                    console.log('createNewFavorites(): result: ' + res);
-                })
-                .catch(error => {
-                    console.log('createNewFavorites(): ' + JSON.stringify(error, null, 4));
-                });
-        };
-
-        createNewFavorites();
-    };
-
-    const addFavorite = (item) => {
-        const path = FileSystem.documentDirectory + appConfig.names.favorites;
-
-        const readFavorites = async () => {
-            await FileSystem.readAsStringAsync(path)
-                .then (jstr => {
-                    console.log('readAsString(Async(): jstr: ' + jstr);
-                    contents.push(JSON.parse(jstr.data));
-                })
-                .catch (error => {
-                    console.log('readFavorites(): error: ' + JSON.stringify(error, null, 4));
-                    console.log('readFavorites(): path: ' + path);
-                    console.log('readFavorites(): item: ' + JSON.stringify(item, null, 4));
-                    
-                    contents.push(item);
-                    createFavorites(path, contents);
-                    console.log('readFavorites(): contents: ' + JSON.stringify(contents. null, 4));
-                });
-        };
-
-        readFavorites();
+    const storeFavorite = async (item) => {
+        try {
+            await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
+            console.log('Stored favorite: ' + JSON.stringify(item, null, 4));
+        } catch (e) {
+            console.log('addFavorite(): exception: ' + e);
+        }
     };
     
     return (
