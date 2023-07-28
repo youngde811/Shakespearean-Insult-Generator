@@ -74,7 +74,7 @@ export default function InsultEmAll({ insults, appConfig }) {
         const createNewFavorites = async () => {
             await FileSystem.writeAsStringAsync(path, JSON.stringify(contents, null, 4))
                 .catch(error => {
-                    console.log(JSON.stringify(error, null, 4));
+                    console.log('createNewFavorites(): ' + JSON.stringify(error, null, 4));
                 });
         };
 
@@ -83,24 +83,24 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const addFavorite = (item) => {
         const path = FileSystem.documentDirectory + appConfig.names.favorites;
-        let contents = [];
+        const contents = [];
 
         const readFavorites = async () => {
             await FileSystem.readAsStringAsync(path)
                 .then(jstr => {
-                    contents = JSON.parse(jstr.data);
+                    contents.push(JSON.parse(jstr.data));
                 })
                 .catch(error => {
                     console.log('readFavorites(): error: ' + JSON.stringify(error, null, 4));
                     console.log('readFavorites(): path: ' + path);
                     console.log('readFavorites(): item: ' + JSON.stringify(item, null, 4));
+                    
                     contents.push(item);
                     createFavorites(path, contents);
+                    console.log('readFavorites(): contents: ' + JSON.stringify(contents. null, 4));
                 });
         };
 
-        console.log("addFavorite(): contents: " + JSON.stringify(contents, null, 4));
-        
         readFavorites();
     };
     
