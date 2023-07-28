@@ -28,11 +28,16 @@ import { Surface } from 'react-native-paper';
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
-
 import PressableOpacity from './PressableOpacity';
+
+import { getDocumentDirectory } from '../utils/file-system';
 
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
+
+    const docs = getDocumentDirectory();
+
+    console.log('InsultEmAll(): document directory: ' + docs);
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {

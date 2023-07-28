@@ -21,10 +21,10 @@
 
 import React, { useState } from 'react';
 
-var RNFS = require('react-native-fs');
+import * as FileSystem from 'expo-file-system';
 
-export function getDocumentDiretory() {
-    var path = RNFS.getDocumentDirectoryPath();
+export function getDocumentDirectory() {
+    var path = FileSystem.documentDirectory;
 
     return path;
 };
