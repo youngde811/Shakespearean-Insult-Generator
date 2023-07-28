@@ -30,14 +30,10 @@ import * as Linking from 'expo-linking';
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 
-import { getDocumentDirectory } from '../utils/file-system';
+import * as FileSystem from 'expo-file-system';
 
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
-
-    const docs = getDocumentDirectory();
-
-    console.log('InsultEmAll(): document directory: ' + docs);
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
@@ -74,8 +70,38 @@ export default function InsultEmAll({ insults, appConfig }) {
         setSelectedInsult(null);
     };
 
+    const createFavorites = async (path, contents) => {
+        const createNewFavorites = async () => {
+            await FileSystem.writeAsStringAsync(path, JSON.stringify(contents, null, 4))
+                .catch(error => {
+                    console.log(JSON.stringify(error, null, 4));
+                });
+        };
+
+        createNewFavorites();
+    };
+
     const addFavorite = (item) => {
-        console.log('addFavorite()' + JSON.stringify(item, null, 4));
+        const path = FileSystem.documentDirectory + appConfig.names.favorites;
+        let contents = [];
+
+        const readFavorites = async () => {
+            await FileSystem.readAsStringAsync(path)
+                .then(jstr => {
+                    contents = JSON.parse(jstr.data);
+                })
+                .catch(error => {
+                    console.log('readFavorites(): error: ' + JSON.stringify(error, null, 4));
+                    console.log('readFavorites(): path: ' + path);
+                    console.log('readFavorites(): item: ' + JSON.stringify(item, null, 4));
+                    contents.push(item);
+                    createFavorites(path, contents);
+                });
+        };
+
+        console.log("addFavorite(): contents: " + JSON.stringify(contents, null, 4));
+        
+        readFavorites();
     };
     
     return (

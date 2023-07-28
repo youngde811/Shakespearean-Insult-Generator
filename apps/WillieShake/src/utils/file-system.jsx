@@ -28,3 +28,7 @@ export function getDocumentDirectory() {
 
     return path;
 };
+
+export async function loadFavorites(path) {
+    return FileSystem.readAsStringAsync();
+};
