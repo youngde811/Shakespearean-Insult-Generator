@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     appBarSubtitle: {
+        fontSize: 12,
         fontStyle: 'italic',
     },
     headerTop: {
