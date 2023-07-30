@@ -38,26 +38,32 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
+    const retrieveFavoritesUsingKeys = async(keys) => {
+        let favorites = [];
+        let len = keys.length;
+
+        try {
+            for (var i = 0; i < len; i++) {
+                let insult = await AsyncStorage.getItem(keys[i]);
+
+                favorites.append(JSON.parse(insult));
+            }
+        } catch (e) {
+            console.log('retrieveFavoritesUsingKeys(): exception: ' + e);
+        }
+
+        return favorites;
+    };
+
     const fetchFavorites = async () => {
         let keys = [];
         let favorites = [];
         
         try {
             keys = await AsyncStorage.getAllKeys();
-            
-            let len = keys.length;
+            favorites = await retrieveFavoritesUsingKeys(keys);
 
-            for (var i = 0; i < len; i++) {
-                try {
-                    let insult = await AsyncStorage.getItem(keys[i]);
-
-                    favorites.append(JSON.parse(insult));
-                } catch (e) {
-                    console.log('fetchEachFavorite(): exception: ' + e);
-                }
-            }
-
-            setAllFavorites(favorites.length > 0 ? favorites : null);
+            setAllFavorites(favorites.length > 0 ? favorites : []);
         } catch (e) {
             console.log('fetchFavorites(): exception: ' + e);
         };
@@ -127,8 +133,11 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                 </View>
             ) :
               (<View style={ styles.noFavoritesView }>
-                 <Text style={ styles.noFavorites }>
-                   You have no favorites!
+                 <Text style={ styles.noFavoritesText }>
+                   You have added no favorites
+                 </Text>
+                 <Text style={ styles.noFavoritesText }>
+                   Find the secret to adding them!
                  </Text>
                </View>
               )

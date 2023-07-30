@@ -151,12 +151,15 @@ const styles = StyleSheet.create({
     },
     noFavoritesView: {
         flex: 1,
+        alignmentDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         height: '50%',
     },
-    noFavorites: {
+    noFavoritesText: {
         alignItems: 'center',
         fontWeight: 'bold',
-        color: 'teal',
+        color: 'maroon',
         fontSize: 25,
         paddingBottom: 10,
     },
