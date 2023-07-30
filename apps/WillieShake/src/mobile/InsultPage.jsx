@@ -28,9 +28,8 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from "@react-native-material/core";
 
-// import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { EvilIcons } from '@expo/vector-icons/EvilIcons';
-import { MaterialIcons } from '@expo/vector-icons/MaterialIcons';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -91,12 +90,12 @@ export default function WillieShakeInsults({ appConfig }) {
         let keys = [];
         
         try {
-            await AsyncStorage.getAllKeys();
+            keys = await AsyncStorage.getAllKeys();
         } catch (e) {
             console.log('showFavorites(): exception: ' + JSON.stringify(e, null, 4));
         }
 
-        console.log('showFavorites(): keys: ' + keys);
+        console.log(keys);
     };
 
     return (
