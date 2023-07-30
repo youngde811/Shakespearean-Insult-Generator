@@ -1,6 +1,8 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This component is used to render the "favorite insults" page.
+// This component is used to render the "favorite insults" page. There's some code replication here
+// from the InsultEmAll component, and I might refactor later. For now, this component retrieves favorite
+// insults using AsyncStorage.
 
 // MIT License
 
@@ -32,7 +34,7 @@ import PressableOpacity from './PressableOpacity';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
+export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -87,7 +89,7 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL('sms://&body=' + selectedInsult);
+            Linking.openURL(appConfig.smsLink + selectedInsult);
         }
     };
 
@@ -96,15 +98,6 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
             await AsyncStorage.removeItem(String(item.id));
         } catch (e) {
             console.log('forgetFavorite(): exception: ' + e);
-        }
-    };
-
-    const storeFavorite = async (item) => {
-        try {
-            await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
-            console.log('Stored favorite: ' + JSON.stringify(item, null, 4));
-        } catch (e) {
-            console.log('addFavorite(): exception: ' + e);
         }
     };
 
@@ -119,15 +112,18 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
               { appConfig.names.insultTitle }
             </Text>
           </View>
-          <View style={ styles.insultSurfaceParent }>
-            <Surface elevation={ 4 } style={ styles.insultSurface }>
-              <FlatList
-                ItemSeparatorComponent={ insultSeparator }
-                data={ allFavorites }
-                keyExtractor={ (item) => item.id }
-                renderItem={ renderInsult }/>
-            </Surface>
-          </View>
+          { allFavorites.length > 0 ? (
+              <View style={ styles.insultSurfaceParent }>
+                <Surface elevation={ 4 } style={ styles.insultSurface }>
+                  <FlatList
+                    ItemSeparatorComponent={ insultSeparator }
+                    data={ allFavorites }
+                    keyExtractor={ (item) => item.id }
+                    renderItem={ renderInsult }/>
+                </Surface>
+              </View>
+          ) : null
+          }
           <View style={ styles.insultFooter }>
             <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
               <Text style={ styles.insultButtonText }>Insult</Text>
