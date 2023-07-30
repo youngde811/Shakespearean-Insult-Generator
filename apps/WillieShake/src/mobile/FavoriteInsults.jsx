@@ -44,6 +44,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
         
         try {
             keys = await AsyncStorage.getAllKeys();
+            
             let len = keys.length;
 
             for (var i = 0; i < len; i++) {
@@ -55,11 +56,11 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                     console.log('fetchEachFavorite(): exception: ' + e);
                 }
             }
+
+            setAllFavorites(favorites);
         } catch (e) {
             console.log('fetchFavorites(): exception: ' + e);
         };
-
-        setAllFavorites(favorites);
     };
 
     const insultSelect = (item) => {
