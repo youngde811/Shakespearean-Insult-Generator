@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
@@ -34,6 +34,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
+    const [allFavorites, setAllFavorites] = useState(null);
+
+    const fetchFavorites = async () => {
+        let keys = [];
+        let favorites = [];
+        
+        try {
+            keys = await AsyncStorage.getAllKeys();
+            let len = keys.length;
+
+            for (var i = 0; i < len; i++) {
+                try {
+                    let insult = await AsyncStorage.getItem(keys[i]);
+
+                    favorites.append(JSON.parse(insult));
+                } catch (e) {
+                    console.log('fetchEachFavorite(): exception: ' + e);
+                }
+            }
+        } catch (e) {
+            console.log('fetchFavorites(): exception: ' + e);
+        };
+
+        setAllFavorites(favorites);
+    };
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
@@ -46,7 +71,7 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
     const renderInsult = ({item}) => {
         return (
             <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
-                              onLongPress={ () => forgetFavorite(item) } delayLongPress={ 500 }>
+                              onLongPress={ () => forgetFavorite(item) } delayLongPress={ 1000 }>
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
@@ -82,6 +107,10 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
             console.log('addFavorite(): exception: ' + e);
         }
     };
+
+    useEffect (() => {
+        fetchFavorites();
+    }, []);
     
     return (
         <View style={ styles.insultTopView }>
@@ -94,7 +123,7 @@ export default function FavoriteInsults({ insults, appConfig, setDismiss }) {
             <Surface elevation={ 4 } style={ styles.insultSurface }>
               <FlatList
                 ItemSeparatorComponent={ insultSeparator }
-                data={ insults }
+                data={ allFavorites }
                 keyExtractor={ (item) => item.id }
                 renderItem={ renderInsult }/>
             </Surface>
