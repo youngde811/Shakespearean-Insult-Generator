@@ -149,6 +149,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
     },
+    noFavoritesView: {
+        flex: 1,
+        height: '50%',
+    },
+    noFavorites: {
+        alignItems: 'center',
+        fontWeight: 'bold',
+        color: 'teal',
+        fontSize: 25,
+        paddingBottom: 10,
+    },
 });
 
 export default styles;

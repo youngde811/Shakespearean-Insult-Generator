@@ -36,7 +36,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
-    const [allFavorites, setAllFavorites] = useState([]);
+    const [allFavorites, setAllFavorites] = useState(null);
 
     const fetchFavorites = async () => {
         let keys = [];
@@ -57,7 +57,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                 }
             }
 
-            setAllFavorites(favorites);
+            setAllFavorites(favorites.length > 0 ? favorites : null);
         } catch (e) {
             console.log('fetchFavorites(): exception: ' + e);
         };
@@ -108,37 +108,45 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     }, []);
     
     return (
-        <View style={ styles.insultTopView }>
-          <View style={ styles.hatesYou }>
-            <Text style={ styles.hatesYou }>
-              { appConfig.names.insultTitle }
-            </Text>
+        <Modal animationType='fade' presentationStyle='formSheet'>
+          <View style={ styles.insultTopView }>
+            <View style={ styles.hatesYou }>
+              <Text style={ styles.hatesYou }>
+                Favorite Insults
+              </Text>
+            </View>
+            { allFavorites?.length > 0 ? (
+                <View style={ styles.insultSurfaceParent }>
+                  <Surface elevation={ 4 } style={ styles.insultSurface }>
+                    <FlatList
+                      ItemSeparatorComponent={ insultSeparator }
+                      data={ allFavorites }
+                      keyExtractor={ (item) => item.id }
+                      renderItem={ renderInsult }/>
+                  </Surface>
+                </View>
+            ) :
+              (<View style={ styles.noFavoritesView }>
+                 <Text style={ styles.noFavorites }>
+                   You have no favorites!
+                 </Text>
+               </View>
+              )
+            }
+            <View style={ styles.insultFooter }>
+              <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
+                <Text style={ styles.insultButtonText }>Insult</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.insultButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+                <Text style={ styles.insultButtonText }>Forget</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+                <Text style={ styles.insultButtonText }>Dismiss</Text>
+              </PressableOpacity>
+            </View>
           </View>
-          { allFavorites.length > 0 ? (
-              <View style={ styles.insultSurfaceParent }>
-                <Surface elevation={ 4 } style={ styles.insultSurface }>
-                  <FlatList
-                    ItemSeparatorComponent={ insultSeparator }
-                    data={ allFavorites }
-                    keyExtractor={ (item) => item.id }
-                    renderItem={ renderInsult }/>
-                </Surface>
-              </View>
-          ) : null
-          }
-          <View style={ styles.insultFooter }>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
-              <Text style={ styles.insultButtonText }>Insult</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
-              <Text style={ styles.insultButtonText }>Forget</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-              <Text style={ styles.insultButtonText }>Dismiss</Text>
-            </PressableOpacity>
-          </View>
-        </View>
+        </Modal>
     );
 }
