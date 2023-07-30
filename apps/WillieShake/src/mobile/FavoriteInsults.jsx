@@ -36,7 +36,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
-    const [allFavorites, setAllFavorites] = useState(null);
+    const [allFavorites, setAllFavorites] = useState([]);
 
     const fetchFavorites = async () => {
         let keys = [];
@@ -72,8 +72,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
 
     const renderInsult = ({item}) => {
         return (
-            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
-                              onLongPress={ () => forgetFavorite(item) } delayLongPress={ 1000 }>
+            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }>
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
@@ -94,10 +93,12 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     };
 
     const forgetFavorite = async (item) => {
-        try {
-            await AsyncStorage.removeItem(String(item.id));
-        } catch (e) {
-            console.log('forgetFavorite(): exception: ' + e);
+        if (selectedInsult) {
+            try {
+                await AsyncStorage.removeItem(String(item.id));
+            } catch (e) {
+                console.log('forgetFavorite(): exception: ' + e);
+            }
         }
     };
 
@@ -127,6 +128,10 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
           <View style={ styles.insultFooter }>
             <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
               <Text style={ styles.insultButtonText }>Insult</Text>
+            </PressableOpacity>
+            <View style={ styles.spacer }/>
+            <PressableOpacity style={ styles.insultButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+              <Text style={ styles.insultButtonText }>Forget</Text>
             </PressableOpacity>
             <View style={ styles.spacer }/>
             <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
