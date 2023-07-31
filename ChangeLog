@@ -1,5 +1,6 @@
 2023-07-31  David E. Young  <youngde811@pobox.com>
 
 	* Start: This is the initial ChangeLog entry for our project.
-	* Favorites: Adding a new secret feature that supports "favorite insults".
+	* Favorites: Secret "add favorites" feature added.
+	* AppStore: Release 1.2.0.
 
