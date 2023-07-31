@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     insultButtonText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 16,
     },
     insultFooter: {
         flex: 1,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     },
     webText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 16,
     },
     favoritesTopView: {
         flex: 1,
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'teal',
         fontSize: 25,
+        marginTop: 20,
     },
     favoritesSurface: {
         flex: 0,
@@ -201,7 +202,7 @@ const styles = StyleSheet.create({
     },
     favoritesButtonText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 16,
     },
     noFavoritesView: {
         flex: 1,

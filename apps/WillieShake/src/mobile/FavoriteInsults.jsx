@@ -118,7 +118,25 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     useEffect (() => {
         fetchFavorites();
     }, []);
-    
+
+    const renderFavorites = () => {
+        if (allFavorites == null) {
+            return null;
+        }
+
+        if (allFavorites.length == 0) {
+            return (<NoFavorites/>);
+        }
+
+        return (
+            <FlatList
+              ItemSeparatorComponent={ favoritesSeparator }
+              data={ allFavorites }
+              keyExtractor={ (item) => item.id }
+              renderItem={ renderInsult }/>
+        );
+    };
+
     return (
         <Modal animationType='fade' presentationStyle='formSheet'>
           <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
@@ -130,15 +148,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
               </View>
               <Surface elevation={ 4 } style={ styles.favoritesSurface }>
                 <View style={ styles.favoritesSurfaceParent }>
-                  { allFavorites?.length > 0 ? (
-                      <FlatList
-                        ItemSeparatorComponent={ favoritesSeparator }
-                        data={ allFavorites }
-                        keyExtractor={ (item) => item.id }
-                        renderItem={ renderInsult }/>
-                  ) :
-                    <NoFavorites/>
-                  }
+                  { renderFavorites() }
                 </View>
               </Surface>
             </View>
