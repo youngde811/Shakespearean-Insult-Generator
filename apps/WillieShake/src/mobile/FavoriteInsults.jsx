@@ -47,7 +47,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
             for (var i = 0; i < len; i++) {
                 let insult = await AsyncStorage.getItem(keys[i]);
 
-                favorites.append(JSON.parse(insult));
+                favorites.push(JSON.parse(insult));
             }
         } catch (e) {
             console.log('retrieveFavoritesUsingKeys(): exception: ' + e);
@@ -90,7 +90,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
         );
     };
 
-    const insultSeparator = () => {
+    const favoritesSeparator = () => {
         return (
             <Divider width={1} color={"cornsilk"}/>
         );
@@ -118,17 +118,17 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     
     return (
         <Modal animationType='fade' presentationStyle='formSheet'>
-          <View style={ styles.insultTopView }>
-            <View style={ styles.hatesYou }>
-              <Text style={ styles.hatesYou }>
-                { appConfig.names.favoriteInsults }
+          <View style={ styles.favoritesTopView }>
+            <View style={ styles.favoritesHeadingView }>
+              <Text style={ styles.favoritesHeading }>
+                { appConfig.names.favoritesTitle }
               </Text>
             </View>
-            <Surface elevation={ 4 } style={ styles.insultSurface }>
-                <View style={ styles.insultSurfaceParent }>
+            <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+                <View style={ styles.favoritesSurfaceParent }>
                     { allFavorites?.length > 0 ? (
                         <FlatList
-                            ItemSeparatorComponent={ insultSeparator }
+                            ItemSeparatorComponent={ favoritesSeparator }
                             data={ allFavorites }
                             keyExtractor={ (item) => item.id }
                             renderItem={ renderInsult }/>
@@ -138,13 +138,13 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                 </View>
             </Surface>
           </View>
-          <View style={ styles.insultFooter }>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
-              <Text style={ styles.insultButtonText }>Insult</Text>
+          <View style={ styles.favoritesFooter }>
+            <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
+              <Text style={ styles.favoritesButtonText }>Insult</Text>
             </PressableOpacity>
             <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-              <Text style={ styles.insultButtonText }>Dismiss</Text>
+            <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+              <Text style={ styles.favoritesButtonText }>Dismiss</Text>
             </PressableOpacity>
           </View>
         </Modal>

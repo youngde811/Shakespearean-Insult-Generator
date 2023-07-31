@@ -27,7 +27,7 @@ export default function NoFavorites() {
     return (
         <View style={ styles.noFavoritesView }>
           <Text style={ styles.noFavoritesText }>
-            You have added no favorites
+            You have added no favorites.
           </Text>
           <Text style={ styles.noFavoritesText }>
             Find the secret to adding them!
