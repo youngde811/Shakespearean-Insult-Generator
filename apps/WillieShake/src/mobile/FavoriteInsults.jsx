@@ -80,7 +80,9 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
 
     const renderInsult = ({item}) => {
         return (
-            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }>
+            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
+                              onLongPress={ () => forgetFavorite(item) } delayLogPress={ 1000 }>
+
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
@@ -119,35 +121,31 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
           <View style={ styles.insultTopView }>
             <View style={ styles.hatesYou }>
               <Text style={ styles.hatesYou }>
-                Favorite Insults
+                { appConfig.names.favoriteInsults }
               </Text>
             </View>
-            { allFavorites?.length > 0 ? (
+            <Surface elevation={ 4 } style={ styles.insultSurface }>
                 <View style={ styles.insultSurfaceParent }>
-                  <Surface elevation={ 4 } style={ styles.insultSurface }>
-                    <FlatList
-                      ItemSeparatorComponent={ insultSeparator }
-                      data={ allFavorites }
-                      keyExtractor={ (item) => item.id }
-                      renderItem={ renderInsult }/>
-                  </Surface>
+                    { allFavorites?.length > 0 ? (
+                        <FlatList
+                            ItemSeparatorComponent={ insultSeparator }
+                            data={ allFavorites }
+                            keyExtractor={ (item) => item.id }
+                            renderItem={ renderInsult }/>
+                    ) :
+                      <NoFavorites/>
+                    }
                 </View>
-            ) :
-              <NoFavorites/>
-            }
-            <View style={ styles.insultFooter }>
-              <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
-                <Text style={ styles.insultButtonText }>Insult</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.insultButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
-                <Text style={ styles.insultButtonText }>Forget</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-                <Text style={ styles.insultButtonText }>Dismiss</Text>
-              </PressableOpacity>
-            </View>
+            </Surface>
+          </View>
+          <View style={ styles.insultFooter }>
+            <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
+              <Text style={ styles.insultButtonText }>Insult</Text>
+            </PressableOpacity>
+            <View style={ styles.spacer }/>
+            <PressableOpacity style={ styles.insultButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+              <Text style={ styles.insultButtonText }>Dismiss</Text>
+            </PressableOpacity>
           </View>
         </Modal>
     );

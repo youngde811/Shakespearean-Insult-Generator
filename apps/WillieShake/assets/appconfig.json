@@ -3,7 +3,7 @@
         "appTitle": "Willie the Shake",
         "appSubtitle": "Willie nos odit",
         "insultTitle": "Shakespeare Hates You",
-        "favorites": "InsultFavorites.json",
+        "favoritesTitle": "Favorite Insults",
     },
     "projectURL": "https://github.com/youngde811/willie-the-shake",
     "wikiPage": "https://en.wikipedia.org/wiki/Lord_Buckley",
