@@ -31,6 +31,7 @@ import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
+import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -132,15 +133,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                   </Surface>
                 </View>
             ) :
-              (<View style={ styles.noFavoritesView }>
-                 <Text style={ styles.noFavoritesText }>
-                   You have added no favorites
-                 </Text>
-                 <Text style={ styles.noFavoritesText }>
-                   Find the secret to adding them!
-                 </Text>
-               </View>
-              )
+              <NoFavorites/>
             }
             <View style={ styles.insultFooter }>
               <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult }>
