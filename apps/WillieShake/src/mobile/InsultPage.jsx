@@ -40,6 +40,7 @@ import FavoriteInsults from './FavoriteInsults';
 import styles from '../styles/styles.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
+const favoritesImage = require("../../assets/images/willpower.jpg");
 const insults = require('../../assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
@@ -117,7 +118,7 @@ export default function WillieShakeInsults({ appConfig }) {
             </View>
             { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
             { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
-            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } setDismiss={ () => setFavoritesVisible(false) }/> : null }
+            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } background={ favoritesImage } setDismiss={ () => setFavoritesVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );

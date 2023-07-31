@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         marginHorizontal: 10,
-        background: 'white',
         marginHorizontal: 10,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
@@ -169,15 +168,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     favoritesSurface: {
-        flex: 0,
-        height: '80%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'stretch',
         borderRadius: 10,
+        marginTop: '5%',
     },
-    favoritesSurfaceParent: {
-        flex: 1,
-        paddingBottom: 40,
+    favoritesListView: {
+
     },
     favoritesFooter: {
         flex: 1,

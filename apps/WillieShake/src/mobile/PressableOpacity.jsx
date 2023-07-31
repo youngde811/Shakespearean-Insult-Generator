@@ -26,7 +26,6 @@ import { Animated, Pressable } from 'react-native';
 
 export default function PressableOpacity({ children, ...props }) {
     const animation = useRef(new Animated.Value(1)).current;
-    // const animated = new Animated.Value(1);
 
     const fadeIn = () => {
         Animated.timing(animation, {

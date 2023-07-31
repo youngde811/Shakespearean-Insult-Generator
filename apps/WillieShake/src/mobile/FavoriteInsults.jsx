@@ -35,9 +35,7 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const backgroundImage = require("../../assets/images/willie.png");
-
-export default function FavoriteInsults({ appConfig, setDismiss }) {
+export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -139,7 +137,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
 
     return (
         <Modal animationType='fade' presentationStyle='formSheet'>
-          <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
+          <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
             <View style={ styles.favoritesTopView }>
               <View style={ styles.favoritesHeadingView }>
                 <Text style={ styles.favoritesHeading }>
@@ -147,7 +145,7 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
                 </Text>
               </View>
               <Surface elevation={ 4 } style={ styles.favoritesSurface }>
-                <View style={ styles.favoritesSurfaceParent }>
+                <View style={ styles.favoritesListView }>
                   { renderFavorites() }
                 </View>
               </Surface>
