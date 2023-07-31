@@ -4533,15 +4533,15 @@ expo-modules-core@1.5.7:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-screen-orientation@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-6.0.4.tgz#fbb5e304442ce9157dc36b67cda75678cb03c878"
-  integrity sha512-WqfxKQVifCBbuohgjNpX9y0/gUlvqvwfhsQjgPx6X2Y5cWfEHciBI9g/imgTiBVODskQtJSom518D3Bg8bk7JQ==
+expo-screen-orientation@~6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-6.0.5.tgz#4fcac69c641522c7e658d4fb20b22de82d732aee"
+  integrity sha512-aOOuuQkxNHNxSzfEO037jnD0zYiwBVTvuXeFy/0KntFmuqWmZGaFmFks1uTA2+0wKlbA049kVjkBnA1peybmHQ==
 
-expo-splash-screen@~0.20.4:
-  version "0.20.4"
-  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.20.4.tgz#abe77d7a9612627f7048d885cfc5a696e3d3ee3d"
-  integrity sha512-JMfVqkb3Fbt9mdrWfSkTxaIkjd2RMJmQ19/JN+4Gk2MVEP4L1yzTQLomneH5+z/N5x48Tk3ZN+bFhtUXIlfjzg==
+expo-splash-screen@~0.20.5:
+  version "0.20.5"
+  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.20.5.tgz#ebeba3e3977606830f74f506ab2cc25042bb7efd"
+  integrity sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==
   dependencies:
     "@expo/prebuild-config" "6.2.6"
 
