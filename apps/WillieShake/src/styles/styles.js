@@ -160,9 +160,6 @@ const styles = StyleSheet.create({
     },
     favoritesHeadingView: {
         alignItems: 'center',
-        // fontWeight: 'bold',
-        // color: 'teal',
-        // fontSize: 25,
         paddingBottom: 10,
     },
     favoritesHeading: {
