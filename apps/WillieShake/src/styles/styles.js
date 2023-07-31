@@ -155,13 +155,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         background: 'white',
         marginHorizontal: 10,
+        justifyContent: 'flex-start',
         alignItems: 'stretch',
     },
     favoritesHeadingView: {
         alignItems: 'center',
-        fontWeight: 'bold',
-        color: 'teal',
-        fontSize: 25,
+        // fontWeight: 'bold',
+        // color: 'teal',
+        // fontSize: 25,
         paddingBottom: 10,
     },
     favoritesHeading: {
@@ -169,23 +170,9 @@ const styles = StyleSheet.create({
         color: 'teal',
         fontSize: 25,
     },
-    noFavoritesView: {
-        flex: 1,
-        alignmentDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '50%',
-    },
-    noFavoritesText: {
-        alignItems: 'center',
-        fontWeight: 'bold',
-        color: 'maroon',
-        fontSize: 25,
-        paddingBottom: 10,
-    },
     favoritesSurface: {
-        flex: 1,
-        paddingBottom: '5%',
+        flex: 0,
+        height: '80%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
@@ -218,6 +205,20 @@ const styles = StyleSheet.create({
     favoritesButtonText: {
         color: 'white',
         fontSize: 20,
+    },
+    noFavoritesView: {
+        flex: 1,
+        alignmentDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '50%',
+    },
+    noFavoritesText: {
+        alignItems: 'center',
+        fontWeight: 'bold',
+        color: 'maroon',
+        fontSize: 25,
+        paddingBottom: 10,
     },
 });
 

@@ -38,6 +38,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
+    const [removedFavorite, setRemovedFavorite] = useState(null);
 
     const retrieveFavoritesUsingKeys = async(keys) => {
         let favorites = [];
@@ -106,6 +107,8 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
         if (selectedInsult) {
             try {
                 await AsyncStorage.removeItem(String(item.id));
+
+                setRemovedFavorite(item);
             } catch (e) {
                 console.log('forgetFavorite(): exception: ' + e);
             }
