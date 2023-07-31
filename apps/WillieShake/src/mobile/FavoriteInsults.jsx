@@ -23,7 +23,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, ImageBackground, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 
@@ -35,10 +35,11 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const backgroundImage = require("../../assets/images/willie.png");
+
 export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
-    const [removedFavorite, setRemovedFavorite] = useState(null);
 
     const retrieveFavoritesUsingKeys = async(keys) => {
         let favorites = [];
@@ -72,17 +73,16 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     };
 
     const insultSelect = (item) => {
-        if (item.insult === selectedInsult) {
+        if (item.insult === selectedInsult?.insult) {
             setSelectedInsult(null);
         } else {
-            setSelectedInsult(item.insult);
+            setSelectedInsult(item);
         };
     };
 
     const renderInsult = ({item}) => {
         return (
-            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
-                              onLongPress={ () => forgetFavorite(item) } delayLogPress={ 1000 }>
+            <PressableOpacity style={ item.insult === selectedInsult?.insult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }>
 
               <Text style={ styles.insultText }>
                 { item.insult }
@@ -99,16 +99,16 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL(appConfig.smsLink + selectedInsult);
+            Linking.openURL(appConfig.smsLink + selectedInsult.insult);
         }
     };
 
-    const forgetFavorite = async (item) => {
+    const forgetFavorite = async () => {
         if (selectedInsult) {
             try {
-                await AsyncStorage.removeItem(String(item.id));
+                await AsyncStorage.removeItem(String(selectedInsult.id));
 
-                setRemovedFavorite(item);
+                fetchFavorites();
             } catch (e) {
                 console.log('forgetFavorite(): exception: ' + e);
             }
@@ -121,35 +121,41 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     
     return (
         <Modal animationType='fade' presentationStyle='formSheet'>
-          <View style={ styles.favoritesTopView }>
-            <View style={ styles.favoritesHeadingView }>
-              <Text style={ styles.favoritesHeading }>
-                { appConfig.names.favoritesTitle }
-              </Text>
-            </View>
-            <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+          <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
+            <View style={ styles.favoritesTopView }>
+              <View style={ styles.favoritesHeadingView }>
+                <Text style={ styles.favoritesHeading }>
+                  { appConfig.names.favoritesTitle }
+                </Text>
+              </View>
+              <Surface elevation={ 4 } style={ styles.favoritesSurface }>
                 <View style={ styles.favoritesSurfaceParent }>
-                    { allFavorites?.length > 0 ? (
-                        <FlatList
-                            ItemSeparatorComponent={ favoritesSeparator }
-                            data={ allFavorites }
-                            keyExtractor={ (item) => item.id }
-                            renderItem={ renderInsult }/>
-                    ) :
-                      <NoFavorites/>
-                    }
+                  { allFavorites?.length > 0 ? (
+                      <FlatList
+                        ItemSeparatorComponent={ favoritesSeparator }
+                        data={ allFavorites }
+                        keyExtractor={ (item) => item.id }
+                        renderItem={ renderInsult }/>
+                  ) :
+                    <NoFavorites/>
+                  }
                 </View>
-            </Surface>
-          </View>
-          <View style={ styles.favoritesFooter }>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
-              <Text style={ styles.favoritesButtonText }>Insult</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-              <Text style={ styles.favoritesButtonText }>Dismiss</Text>
-            </PressableOpacity>
-          </View>
+              </Surface>
+            </View>
+            <View style={ styles.favoritesFooter }>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
+                <Text style={ styles.favoritesButtonText }>Insult</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+                <Text style={ styles.favoritesButtonText }>Forget</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+                <Text style={ styles.favoritesButtonText }>Dismiss</Text>
+              </PressableOpacity>
+            </View>
+          </ImageBackground>
         </Modal>
     );
 }
