@@ -23,7 +23,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
+import { setJSExceptionHandler } from 'react-native-exception-handler';
 import RNRestart from 'react-native-restart';
 
 import InsultPage from './src/mobile/InsultPage';
@@ -48,7 +48,7 @@ export default function App() {
     };
 
     setJSExceptionHandler(masterErrorHandler);
-    
+
     return (
         <SafeAreaProvider>
           <InsultPage appConfig={ appConfig }/>
