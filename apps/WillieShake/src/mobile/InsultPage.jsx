@@ -117,7 +117,7 @@ export default function WillieShakeInsults({ appConfig }) {
             </View>
             { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
             { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
-            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } setDismiss={ () => setFavoritesVisible(false) }/> : null }
+            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => setFavoritesVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );
