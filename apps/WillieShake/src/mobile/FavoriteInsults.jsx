@@ -23,9 +23,11 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, ImageBackground, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 import * as Linking from 'expo-linking';
 
@@ -35,7 +37,7 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function FavoriteInsults({ appConfig, setDismiss }) {
+export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -43,14 +45,10 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
         let favorites = [];
         let len = keys.length;
 
-        try {
-            for (var i = 0; i < len; i++) {
-                let insult = await AsyncStorage.getItem(keys[i]);
+        for (var i = 0; i < len; i++) {
+            let insult = await AsyncStorage.getItem(keys[i]);
 
-                favorites.push(JSON.parse(insult));
-            }
-        } catch (e) {
-            console.log('retrieveFavoritesUsingKeys(): exception: ' + e);
+            favorites.push(JSON.parse(insult));
         }
 
         return favorites;
@@ -60,14 +58,10 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
         let keys = [];
         let favorites = [];
         
-        try {
-            keys = await AsyncStorage.getAllKeys();
-            favorites = await retrieveFavoritesUsingKeys(keys);
+        keys = await AsyncStorage.getAllKeys();
+        favorites = await retrieveFavoritesUsingKeys(keys);
 
-            setAllFavorites(favorites.length > 0 ? favorites : []);
-        } catch (e) {
-            console.log('fetchFavorites(): exception: ' + e);
-        };
+        setAllFavorites(favorites.length > 0 ? favorites : []);
     };
 
     const insultSelect = (item) => {
@@ -103,13 +97,9 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
 
     const forgetFavorite = async () => {
         if (selectedInsult) {
-            try {
-                await AsyncStorage.removeItem(String(selectedInsult.id));
+            await AsyncStorage.removeItem(String(selectedInsult.id));
 
-                fetchFavorites();
-            } catch (e) {
-                console.log('forgetFavorite(): exception: ' + e);
-            }
+            fetchFavorites();
         }
     };
 
@@ -132,33 +122,35 @@ export default function FavoriteInsults({ appConfig, setDismiss }) {
     };
 
     return (
-        <Modal animationType='fade' presentationStyle='formSheet'>
-          <View style={ styles.favoritesTopView }>
-            <View style={ styles.favoritesHeadingView }>
-              <Text style={ styles.favoritesHeading }>
-                { appConfig.names.favoritesTitle }
-              </Text>
-            </View>
-            { allFavorites?.length == 0 && ( <NoFavorites/> )}
-            <Surface elevation={ 4 } style={ styles.favoritesSurface }>
-              <View style={ styles.favoritesListView }>
-                { renderFavorites() }
+        <SafeAreaView style={ styles.favoritesTopView }>
+          <Modal animationType='fade' presentationStyle='formSheet'>
+            <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
+              <View style={ styles.favoritesHeadingView }>
+                <Text style={ styles.favoritesHeading }>
+                  { appConfig.names.favoritesTitle }
+                </Text>
               </View>
-            </Surface>
-          </View>
-          <View style={ styles.favoritesFooter }>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
-              <Text style={ styles.favoritesButtonText }>Insult</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
-              <Text style={ styles.favoritesButtonText }>Forget</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-              <Text style={ styles.favoritesButtonText }>Dismiss</Text>
-            </PressableOpacity>
-          </View>
-        </Modal>
+              { allFavorites?.length == 0 && ( <NoFavorites/> )}
+              <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+                <View style={ styles.favoritesListView }>
+                  { renderFavorites() }
+                </View>
+              </Surface>
+            </ImageBackground>
+            <View style={ styles.favoritesFooter }>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
+                <Text style={ styles.favoritesButtonText }>Insult</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+                <Text style={ styles.favoritesButtonText }>Forget</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+                <Text style={ styles.favoritesButtonText }>Dismiss</Text>
+              </PressableOpacity>
+            </View>
+          </Modal>
+        </SafeAreaView>
     );
 }

@@ -21,16 +21,37 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { setJSExceptionHandler } from 'react-native-exception-handler';
+import RNRestart from 'react-native-restart';
 
 import InsultPage from './src/mobile/InsultPage';
 
 const appConfig = require("./assets/appconfig.json");
 
 export default function App() {
-  return (
-      <SafeAreaProvider>
-        <InsultPage appConfig={ appConfig }/>
-      </SafeAreaProvider>
-  );
+    const masterErrorHandler = (e, isFatal) => {
+        if (isFatal) {
+            Alert.alert(
+                'Unexpected exception occurred',
+                `
+                Error: ${ (isFatal) ? 'Fatal: ' : '' } ${ e.name } ${ e.message }
+
+                Please restart your WillieShake app!
+                `,
+                [{ text: 'Restart', onPress: () => { RNRestart.Restart(); } }]
+            );
+        } else {
+            console.log('WillieShake: exception: ' + e);
+        }
+    };
+
+    setJSExceptionHandler(masterErrorHandler);
+
+    return (
+        <SafeAreaProvider>
+          <InsultPage appConfig={ appConfig }/>
+        </SafeAreaProvider>
+    );
 }
