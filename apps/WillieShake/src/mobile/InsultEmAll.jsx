@@ -74,13 +74,9 @@ export default function InsultEmAll({ insults, appConfig }) {
     };
 
     const storeFavorite = async (item) => {
-        try {
-            await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
+        await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
 
-            setFavoriteAdded(true);
-        } catch (e) {
-            console.log('addFavorite(): exception: ' + e);
-        }
+        setFavoriteAdded(true);
     };
 
     const animateFavoriteAdded = () => {

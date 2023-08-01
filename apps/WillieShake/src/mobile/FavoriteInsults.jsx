@@ -45,14 +45,10 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         let favorites = [];
         let len = keys.length;
 
-        try {
-            for (var i = 0; i < len; i++) {
-                let insult = await AsyncStorage.getItem(keys[i]);
+        for (var i = 0; i < len; i++) {
+            let insult = await AsyncStorage.getItem(keys[i]);
 
-                favorites.push(JSON.parse(insult));
-            }
-        } catch (e) {
-            console.log('retrieveFavoritesUsingKeys(): exception: ' + e);
+            favorites.push(JSON.parse(insult));
         }
 
         return favorites;
@@ -62,14 +58,10 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         let keys = [];
         let favorites = [];
         
-        try {
-            keys = await AsyncStorage.getAllKeys();
-            favorites = await retrieveFavoritesUsingKeys(keys);
+        keys = await AsyncStorage.getAllKeys();
+        favorites = await retrieveFavoritesUsingKeys(keys);
 
-            setAllFavorites(favorites.length > 0 ? favorites : []);
-        } catch (e) {
-            console.log('fetchFavorites(): exception: ' + e);
-        };
+        setAllFavorites(favorites.length > 0 ? favorites : []);
     };
 
     const insultSelect = (item) => {
@@ -105,13 +97,9 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     const forgetFavorite = async () => {
         if (selectedInsult) {
-            try {
-                await AsyncStorage.removeItem(String(selectedInsult.id));
+            await AsyncStorage.removeItem(String(selectedInsult.id));
 
-                fetchFavorites();
-            } catch (e) {
-                console.log('forgetFavorite(): exception: ' + e);
-            }
+            fetchFavorites();
         }
     };
 

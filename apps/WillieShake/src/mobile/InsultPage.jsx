@@ -57,11 +57,7 @@ export default function WillieShakeInsults({ appConfig }) {
 
     useEffect(() => {
         async function prepare() {
-            try {
-                setInsultData(insults.insults);
-            } catch (e) {
-                console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
-            }
+            setInsultData(insults.insults);
         }
 
         prepare();

@@ -48,9 +48,6 @@ export default function App() {
     };
 
     setJSExceptionHandler(masterErrorHandler);
-    setNativeExceptionHandler((errstr) => {
-        console.log('WillieShake: native exception: ' + errstr);
-    });
     
     return (
         <SafeAreaProvider>
