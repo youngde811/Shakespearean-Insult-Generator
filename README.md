@@ -79,6 +79,11 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
+- _08/01/2023_: Version 1.2.1 is being released to the AppStore:
+  - Added nice-looking image background to Favorites modal.
+  - Added master exception handler for app-level fatal errors. The handler provides users with an explanation at least;
+    allowing them to restart the app.
+
 - _07/31/2023_: Version 1.2.0 has been released. There is a secret level here that must be found!
 
 - _07/25/2023_: Version 1.1.4 of the app has been approved for release on the AppStore!
