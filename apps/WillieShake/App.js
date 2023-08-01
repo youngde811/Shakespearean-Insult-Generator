@@ -38,7 +38,7 @@ export default function App() {
                 `
                 Error: ${ (isFatal) ? 'Fatal: ' : '' } ${ e.name } ${ e.message }
 
-                Please restart your App
+                Please restart your WillieShake app!
                 `,
                 [{ text: 'Restart', onPress: () => { RNRestart.Restart(); } }]
             );
