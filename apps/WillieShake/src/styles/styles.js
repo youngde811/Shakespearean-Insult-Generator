@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         marginTop: '5%',
     },
     favoritesListView: {
-
+        // height: '40%',
     },
     favoritesFooter: {
         flex: 1,
@@ -205,13 +205,13 @@ const styles = StyleSheet.create({
         alignmentDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '50%',
+        //height: '50%',
     },
     noFavoritesText: {
         alignItems: 'center',
         fontWeight: 'bold',
         color: 'maroon',
-        fontSize: 25,
+        fontSize: 20,
         paddingBottom: 10,
     },
 });

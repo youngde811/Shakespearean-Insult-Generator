@@ -23,7 +23,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, FlatList, ImageBackground, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 
@@ -35,7 +35,7 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function FavoriteInsults({ appConfig, background, setDismiss }) {
+export default function FavoriteInsults({ appConfig, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -122,10 +122,6 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
             return null;
         }
 
-        if (allFavorites.length == 0) {
-            return (<NoFavorites/>);
-        }
-
         return (
             <FlatList
               ItemSeparatorComponent={ favoritesSeparator }
@@ -137,33 +133,32 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     return (
         <Modal animationType='fade' presentationStyle='formSheet'>
-          <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-            <View style={ styles.favoritesTopView }>
-              <View style={ styles.favoritesHeadingView }>
-                <Text style={ styles.favoritesHeading }>
-                  { appConfig.names.favoritesTitle }
-                </Text>
+          <View style={ styles.favoritesTopView }>
+            <View style={ styles.favoritesHeadingView }>
+              <Text style={ styles.favoritesHeading }>
+                { appConfig.names.favoritesTitle }
+              </Text>
+            </View>
+            { allFavorites?.length == 0 && ( <NoFavorites/> )}
+            <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+              <View style={ styles.favoritesListView }>
+                { renderFavorites() }
               </View>
-              <Surface elevation={ 4 } style={ styles.favoritesSurface }>
-                <View style={ styles.favoritesListView }>
-                  { renderFavorites() }
-                </View>
-              </Surface>
-            </View>
-            <View style={ styles.favoritesFooter }>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
-                <Text style={ styles.favoritesButtonText }>Insult</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
-                <Text style={ styles.favoritesButtonText }>Forget</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-                <Text style={ styles.favoritesButtonText }>Dismiss</Text>
-              </PressableOpacity>
-            </View>
-          </ImageBackground>
+            </Surface>
+          </View>
+          <View style={ styles.favoritesFooter }>
+            <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
+              <Text style={ styles.favoritesButtonText }>Insult</Text>
+            </PressableOpacity>
+            <View style={ styles.spacer }/>
+            <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+              <Text style={ styles.favoritesButtonText }>Forget</Text>
+            </PressableOpacity>
+            <View style={ styles.spacer }/>
+            <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+              <Text style={ styles.favoritesButtonText }>Dismiss</Text>
+            </PressableOpacity>
+          </View>
         </Modal>
     );
 }
