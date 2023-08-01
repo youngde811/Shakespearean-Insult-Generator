@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     appBarSubtitle: {
+        fontSize: 12,
         fontStyle: 'italic',
     },
     headerTop: {
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     },
     insultButtonText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 16,
     },
     insultFooter: {
         flex: 1,
@@ -146,7 +147,72 @@ const styles = StyleSheet.create({
     },
     webText: {
         color: 'white',
+        fontSize: 16,
+    },
+    favoritesTopView: {
+        flex: 1,
+        flexDirection: 'column',
+        marginHorizontal: 10,
+        marginHorizontal: 10,
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+    },
+    favoritesHeadingView: {
+        alignItems: 'center',
+        paddingBottom: 10,
+    },
+    favoritesHeading: {
+        fontWeight: 'bold',
+        color: 'teal',
+        fontSize: 25,
+        marginTop: 20,
+    },
+    favoritesSurface: {
+        alignItems: 'stretch',
+        borderRadius: 10,
+        marginTop: '5%',
+    },
+    favoritesListView: {
+        // height: '40%',
+    },
+    favoritesFooter: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginBottom: '8%',
+        bottom: 0,
+        position: 'absolute',
+    },
+    favoritesButtons: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'cadetblue',
+        borderColor: '#fff',
+    },
+    favoritesButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    noFavoritesView: {
+        flex: 1,
+        alignmentDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        //height: '50%',
+    },
+    noFavoritesText: {
+        alignItems: 'center',
+        fontWeight: 'bold',
+        color: 'maroon',
         fontSize: 20,
+        paddingBottom: 10,
     },
 });
 

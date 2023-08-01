@@ -1,7 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the code for a Pressable-derived component that offers animation for press
-// and release actions.
+// This component is used to render a View and Text whenever there are no favorites saved.
 
 // MIT License
 
@@ -20,34 +19,19 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import { Text, View } from 'react-native';
 
-import { Animated, Pressable } from 'react-native';
+import styles from '../styles/styles.js';
 
-export default function PressableOpacity({ children, ...props }) {
-    const animation = useRef(new Animated.Value(1)).current;
-
-    const fadeIn = () => {
-        Animated.timing(animation, {
-            toValue: 0.1,
-            duration: 100,
-            useNativeDriver: true
-        }).start();
-    };
-
-    const fadeOut = () => {
-        Animated.timing(animation, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true
-        }).start();
-    };
-
+export default function NoFavorites() {
     return (
-        <Pressable onPressIn={ fadeIn } onPressOut={ fadeOut } { ...props }>
-          <Animated.View style={{ opacity: animation }}>
-            { children }
-          </Animated.View>
-        </Pressable>
+        <View style={ styles.noFavoritesView }>
+          <Text style={ styles.noFavoritesText }>
+            You have added no favorites.
+          </Text>
+          <Text style={ styles.noFavoritesText }>
+            Find the secret to adding them!
+          </Text>
+        </View>
     );
 };

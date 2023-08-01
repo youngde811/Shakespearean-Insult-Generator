@@ -19,20 +19,24 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-import { Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
-
 import PressableOpacity from './PressableOpacity';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
+    const [favoriteAdded, setFavoriteAdded] = useState(false);
+    
+    const animation = useRef(new Animated.Value(0)).current;
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
@@ -44,11 +48,12 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const renderInsult = ({item}) => {
         return (
-            <TouchableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={() => insultSelect(item)}>
+            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
+                              onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
               <Text style={ styles.insultText }>
                 { item.insult }
               </Text>
-            </TouchableOpacity>
+            </PressableOpacity>
         );
     };
 
@@ -68,6 +73,34 @@ export default function InsultEmAll({ insults, appConfig }) {
         setSelectedInsult(null);
     };
 
+    const storeFavorite = async (item) => {
+        try {
+            await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
+
+            setFavoriteAdded(true);
+        } catch (e) {
+            console.log('addFavorite(): exception: ' + e);
+        }
+    };
+
+    const animateFavoriteAdded = () => {
+        Animated.timing(animation, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true
+        }).start((state) => { setFavoriteAdded(false); });
+    };
+
+    const notifyFavoriteAdded = () => {
+        animateFavoriteAdded();
+
+        return (
+            <Animated.Text style={{ opacity: animation, fontSize: 12, color: 'maroon' }}>
+              Favorite added!
+            </Animated.Text>
+        );
+    };
+
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
@@ -77,6 +110,7 @@ export default function InsultEmAll({ insults, appConfig }) {
           </View>
           <View style={ styles.insultSurfaceParent }>
             <Surface elevation={ 4 } style={ styles.insultSurface }>
+              { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
                 ItemSeparatorComponent={ insultSeparator }
                 data={ insults }

@@ -28,12 +28,14 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from "@react-native-material/core";
 
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import * as SplashScreen from 'expo-splash-screen';
 
 import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
+import FavoriteInsults from './FavoriteInsults';
 
 import styles from '../styles/styles.js';
 
@@ -47,7 +49,8 @@ export default function WillieShakeInsults({ appConfig }) {
     const [appIsReady, setAppIsReady] = useState(false);
     const [wikiVisible, setWikiVisible] = useState(false);
     const [gitHubVisible, setGitHubVisible] = useState(false);
-    
+    const [favoritesVisible, setFavoritesVisible] = useState(false);
+
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
     });
@@ -55,7 +58,7 @@ export default function WillieShakeInsults({ appConfig }) {
     useEffect(() => {
         async function prepare() {
             try {
-                setInsultData(insults.insults.slice().sort((a, b) => a.insult.toLowerCase().localeCompare(b.insult.toLowerCase())));
+                setInsultData(insults.insults);
             } catch (e) {
                 console.log("Failure awaiting app load: " + JSON.stringify(e, null, 4));
             }
@@ -83,6 +86,10 @@ export default function WillieShakeInsults({ appConfig }) {
         setWikiVisible(true);
     };
 
+    const showFavorites = () => {
+        setFavoritesVisible(true);
+    };
+    
     return (
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
@@ -91,10 +98,13 @@ export default function WillieShakeInsults({ appConfig }) {
                     subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
                 <HStack>
                   <IconButton
-                    icon={ props => <Icon name="github" { ...props }/>} onPress={ showProject }
+                    icon={ props => <MaterialIcons name="favorite" { ...props }/>} onPress={ showFavorites }
                     { ...props }/>
                   <IconButton
-                    icon={ props => <Icon name="file" { ...props }/>} onPress={ showWiki }
+                    icon={ props => <EvilIcons name="sc-github" { ...props }/>} onPress={ showProject }
+                    { ...props }/>
+                  <IconButton
+                    icon={ props => <EvilIcons name="external-link" { ...props }/>} onPress={ showWiki }
                     { ...props }/>
                 </HStack>
             )}/>
@@ -107,6 +117,7 @@ export default function WillieShakeInsults({ appConfig }) {
             </View>
             { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
             { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
+            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } setDismiss={ () => setFavoritesVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );

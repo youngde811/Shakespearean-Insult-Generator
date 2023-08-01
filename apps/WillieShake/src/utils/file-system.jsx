@@ -1,7 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains the code for a Pressable-derived component that offers animation for press
-// and release actions.
+// This file contains utility code for interacting with device file systems.
 
 // MIT License
 
@@ -20,34 +19,16 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
-import { Animated, Pressable } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 
-export default function PressableOpacity({ children, ...props }) {
-    const animation = useRef(new Animated.Value(1)).current;
+export function getDocumentDirectory() {
+    var path = FileSystem.documentDirectory;
 
-    const fadeIn = () => {
-        Animated.timing(animation, {
-            toValue: 0.1,
-            duration: 100,
-            useNativeDriver: true
-        }).start();
-    };
+    return path;
+};
 
-    const fadeOut = () => {
-        Animated.timing(animation, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true
-        }).start();
-    };
-
-    return (
-        <Pressable onPressIn={ fadeIn } onPressOut={ fadeOut } { ...props }>
-          <Animated.View style={{ opacity: animation }}>
-            { children }
-          </Animated.View>
-        </Pressable>
-    );
+export async function loadFavorites(path) {
+    return FileSystem.readAsStringAsync();
 };
