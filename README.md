@@ -79,6 +79,7 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
+- _07/31/2023_: Version 1.2.0 has been released. There is a secret level here that must be found!
 
 - _07/25/2023_: Version 1.1.4 of the app has been approved for release on the AppStore!
 
