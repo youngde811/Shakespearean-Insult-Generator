@@ -21,11 +21,11 @@
 
 import React, { useState } from 'react';
 
-import { Clipboard } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 
 export function writeClipboard(text) {
     const copyText = async () => {
-        await Clipboard.setString(text);
+        await Clipboard.setStringAsync(text);
     };
 
     copyText();
