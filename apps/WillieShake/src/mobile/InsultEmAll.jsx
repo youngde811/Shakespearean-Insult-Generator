@@ -21,16 +21,18 @@
 
 import React, { useRef, useState } from 'react';
 
-import { Animated, Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Utilities from '../utils/utilities';
 
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
@@ -43,6 +45,7 @@ export default function InsultEmAll({ insults, appConfig }) {
             setSelectedInsult(null);
         } else {
             setSelectedInsult(item.insult);
+            Utilities.writeClipboard(item.insult);
         };
     };
 
