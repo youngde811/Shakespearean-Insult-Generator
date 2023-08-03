@@ -171,9 +171,11 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         borderRadius: 10,
         marginTop: '5%',
+        marginLeft: 4,
+        marginRight: 4,
     },
     favoritesListView: {
-        // height: '40%',
+
     },
     favoritesFooter: {
         flex: 1,
@@ -204,8 +206,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignmentDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        //height: '50%',
+        justifyContent: 'flex-start',
     },
     noFavoritesText: {
         alignItems: 'center',

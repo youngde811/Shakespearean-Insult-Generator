@@ -1,6 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains utility code for interacting with device file systems.
+// This file contains various utility functions.
 
 // MIT License
 
@@ -21,14 +21,13 @@
 
 import React, { useState } from 'react';
 
-import * as FileSystem from 'expo-file-system';
+import * as Clipboard from 'expo-clipboard';
 
-export function getDocumentDirectory() {
-    var path = FileSystem.documentDirectory;
+export function writeClipboard(text) {
+    const copyText = async () => {
+        await Clipboard.setStringAsync(text);
+    };
 
-    return path;
+    copyText();
 };
 
-export async function loadFavorites(path) {
-    return FileSystem.readAsStringAsync();
-};
