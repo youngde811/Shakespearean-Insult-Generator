@@ -130,6 +130,7 @@ The current app release may be found [here](https://portal.testapp.io/apps/insta
 - [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/): A successful Git branching model.
 - [React Native](https://reactnative.dev/): A fabulous iOS and Android portable development language.
 - [TestApp.io](https://testapp.io/): A generous and reliable place to host and share apps for testing.
+- [Expo.dev](https://expo.dev/): Another generous developer site that hosts app builds for both iOS and Android.
 
 ## Author ##
 
