@@ -10,7 +10,6 @@ I found myself needing a distraction after a particularly challenging project at
 implementation of the code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
 re-wrote the generator in Python; and decided to include an iOS app that makes use of generated insults in an
 entertaining manner. The app is written in _React Native_ and _Expo_, and has been released to the AppStore.
-the AppStore.
 
 ## Overview ##
 
