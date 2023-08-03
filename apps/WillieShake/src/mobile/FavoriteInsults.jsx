@@ -28,7 +28,6 @@ import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
@@ -36,6 +35,8 @@ import PressableOpacity from './PressableOpacity';
 import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import * as Utilities from '../utils/utilities';
 
 export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
@@ -69,6 +70,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
             setSelectedInsult(null);
         } else {
             setSelectedInsult(item);
+            Utilities.writeClipboard(item.insult);
         };
     };
 
