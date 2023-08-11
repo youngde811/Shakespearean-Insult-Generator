@@ -1,9 +1,14 @@
-2023-08-03  David E. Young  <david.young@fuel.sh>
+2023-08-11  David E. Young  <youngde811@pobox.com>
+
+	* Functionality: Added floating "return-to-top" button to primary insult list.
+	* AppStore: Release 1.2.3.
+
+2023-08-03  David E. Young  <youngde811@pobox.com>
 
 	* Clipboard: Support on all insult lists.
 	* AppStore: Release 1.2.2.
 
-2023-08-01  David E. Young  <bosshog@passivelogic.com>
+2023-08-01  David E. Young  <youngde811@pobox.com>
 
 	* Exceptions: Handle all app-level fatal exceptions with a master
 	handler, and present user with a decent reason.
