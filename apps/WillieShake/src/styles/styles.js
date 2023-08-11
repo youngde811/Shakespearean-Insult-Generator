@@ -215,6 +215,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingBottom: 10,
     },
+    floatingPressable: {
+        backgroundColor: 'teal',
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+    },
 });
 
 export default styles;
