@@ -28,7 +28,7 @@ import styles from '../styles/styles.js';
 
 export default function FloatingPressable({ onPress }) {
     return (
-        <Icon name="north" type="material" raised={ true } reversed={ true } containerStyle={ styles.floatingPressable }
+        <Icon name="north" type="material" raised={ true } reverse={ false } size={ 14 } containerStyle={ styles.floatingPressable }
               onPress={ () => onPress() }/>
     );
 };
