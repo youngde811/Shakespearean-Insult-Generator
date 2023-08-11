@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     floatingPressable: {
+        backgroundColor: 'teal',
         position: 'absolute',
         bottom: 0,
         right: 0

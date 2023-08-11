@@ -108,7 +108,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     const scrollToTop = () => {
         listRef.current.scrollToOffset({ offset: 0, animated: true });
     };
-    
+
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
@@ -122,7 +122,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               <FlatList
                 ref = { listRef }
                 ItemSeparatorComponent={ insultSeparator }
-                onScroll = { (event) => setListVerticalOffset(event.nativeEvent.contentOffset.y) }
+                onScroll = { (event) =>  setListVerticalOffset(event.nativeEvent.contentOffset.y) }
                 data={ insults }
                 keyExtractor={ (item) => item.id }
                 renderItem={ renderInsult }/>
