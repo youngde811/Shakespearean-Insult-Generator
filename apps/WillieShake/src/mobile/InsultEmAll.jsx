@@ -31,6 +31,7 @@ import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
+import FloatingPressable from './FloatingPressable';
 
 import * as Utilities from '../utils/utilities';
 
@@ -100,6 +101,12 @@ export default function InsultEmAll({ insults, appConfig }) {
         );
     };
 
+    const listRef = useRef(null);
+
+    const scrollToTop = () => {
+        listRef.current.scrollToOffset({ offset: 0, animated: true });
+    };
+    
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
@@ -111,10 +118,12 @@ export default function InsultEmAll({ insults, appConfig }) {
             <Surface elevation={ 4 } style={ styles.insultSurface }>
               { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
+                ref = { listRef }
                 ItemSeparatorComponent={ insultSeparator }
                 data={ insults }
                 keyExtractor={ (item) => item.id }
                 renderItem={ renderInsult }/>
+              <FloatingPressable onPress={ scrollToTop }/>
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
