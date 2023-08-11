@@ -38,7 +38,9 @@ import * as Utilities from '../utils/utilities';
 export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [favoriteAdded, setFavoriteAdded] = useState(false);
-    
+    const [listVerticalOffset, setListVerticalOffset] = useState(0);
+
+    const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
 
     const insultSelect = (item) => {
@@ -120,10 +122,13 @@ export default function InsultEmAll({ insults, appConfig }) {
               <FlatList
                 ref = { listRef }
                 ItemSeparatorComponent={ insultSeparator }
+                onScroll = { (event) => setListVerticalOffset(event.nativeEvent.contentOffset.y) }
                 data={ insults }
                 keyExtractor={ (item) => item.id }
                 renderItem={ renderInsult }/>
-              <FloatingPressable onPress={ scrollToTop }/>
+              { listVerticalOffset > listThreshold && (
+                  <FloatingPressable onPress={ scrollToTop }/>
+              )}
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
