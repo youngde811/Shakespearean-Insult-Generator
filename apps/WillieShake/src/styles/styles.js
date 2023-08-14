@@ -66,6 +66,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         paddingBottom: 10,
     },
+    insultItemContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
     insultText: {
         fontSize: 15,
         padding: 2,
@@ -221,9 +227,6 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0
     },
-    touchableIconView: {
-        flex: 1,
-        alignItems: 'center',
 });
 
 export default styles;

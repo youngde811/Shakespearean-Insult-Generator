@@ -24,16 +24,21 @@ import React, { useRef, useState } from 'react';
 
 import { View } from 'react-native';
 import { IconButton } from '@react-native-material/core';
+import { Spacer } from '@react-native-material/core';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import styles from '../styles/styles.js';
 
-export default function TouchableIcon({ props, onPress }) {
-    return (
-        <IconButton
-          icon={ props => <EvilIcons name="unlock" size={ 10 } { ...props }/>} onPress={ () => onPress() }
-          { ...props }/>
-    );
+export default function TouchableIcon({ props, visible, onPress }) {
+    if (visible) {
+        return (
+            <IconButton
+              icon={ props => <EvilIcons name="unlock" size={ 10 } { ...props }/>} onPress={ () => onPress() }
+              { ...props }/>
+        );
+    } else {
+        return (<Spacer/>);
+    }
 };

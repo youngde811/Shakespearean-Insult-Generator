@@ -32,6 +32,7 @@ import * as Linking from 'expo-linking';
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
+import TouchableIcon from './TouchableIcon';
 
 import * as Utilities from '../utils/utilities';
 
@@ -52,14 +53,21 @@ export default function InsultEmAll({ insults, appConfig }) {
         };
     };
 
+    const showEasterEgg = (item) => {
+        console.log("showEasterEgg(): " + item.url);
+    };
+    
     const renderInsult = ({item}) => {
         return (
-            <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
-                              onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-              <Text style={ styles.insultText }>
-                { item.insult }
-              </Text>
-            </PressableOpacity>
+            <View style={ styles.insultItemContainer }>
+              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
+              <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
+                                onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
+                <Text style={ styles.insultText }>
+                  { item.insult }
+                </Text>
+              </PressableOpacity>
+            </View>
         );
     };
 
