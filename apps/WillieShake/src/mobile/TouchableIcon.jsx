@@ -32,10 +32,8 @@ import styles from '../styles/styles.js';
 
 export default function TouchableIcon({ props, onPress }) {
     return (
-        <View style={ styles.touchableIconView }>
-          <IconButton
-            icon={ props => <EvilIcons name="unlock" size={ 10 }{ ...props }/>} onPress={ () => onPress() }
-            { ...props }/>
-        </View>
+        <IconButton
+          icon={ props => <EvilIcons name="unlock" size={ 10 } { ...props }/>} onPress={ () => onPress() }
+          { ...props }/>
     );
 };
