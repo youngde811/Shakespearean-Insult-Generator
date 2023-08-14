@@ -32,13 +32,10 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import styles from '../styles/styles.js';
 
 export default function TouchableIcon({ props, visible, onPress }) {
-    if (visible) {
-        return (
+    return (visible ?
             <IconButton
               icon={ props => <EvilIcons name="unlock" size={ 10 } { ...props }/>} onPress={ () => onPress() }
               { ...props }/>
-        );
-    } else {
-        return (<Spacer/>);
-    }
+            :
+            <Spacer/>);
 };
