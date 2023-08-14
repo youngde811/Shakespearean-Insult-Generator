@@ -231,6 +231,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
     },
+    touchableIconSpacerView: {
+        position: 'absolute',
+        right: 0,
+    },
 });
 
 export default styles;

@@ -1,7 +1,8 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
 // This file provides a custom component that renders a touchable icon which responds to
-// presses.
+// presses. Currently, TouchableIcon is rather specific to the rendering of the main insult
+// list, so it could use some generalization.
 
 // MIT License
 
@@ -38,6 +39,6 @@ export default function TouchableIcon({ visible, onPress, ...props }) {
                 icon={ props => <EvilIcons name="unlock" size="small" { ...props }/>} onPress={ () => onPress() }/>
             </View>
             :
-            <View style={ styles.touchableIconView }/>
+            <View style={ styles.touchableSpacerView }/>
            );
 };

@@ -33,6 +33,7 @@ import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
+import EmbeddedWebView from './EmbeddedWebView';
 
 import * as Utilities from '../utils/utilities';
 
@@ -40,6 +41,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [listVerticalOffset, setListVerticalOffset] = useState(0);
+    const [easterEgg, setEasterEgg] = useState(null);
 
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
@@ -55,6 +57,7 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const showEasterEgg = (item) => {
         console.log("showEasterEgg(): " + item.url);
+        setEasterEgg(item.url);
     };
     
     const renderInsult = ({item}) => {
@@ -148,6 +151,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               <Text style={ styles.insultButtonText }>Be Nice</Text>
             </PressableOpacity>
           </View>
+          { easterEgg != null ? <EmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }
         </View>
     );
 }
