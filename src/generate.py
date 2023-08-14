@@ -122,10 +122,9 @@ def generate_insults(path, oformat, nphrases=50, count=1):
 
         insults.append(entry)
 
-    # just for testing right now
+    # just for testing right now. After, we'll assign URLs to insults randomly.
 
     insults[0]['url'] = urls['urls'][0]
-    insults[1]['url'] = urls['urls'][1]
 
     if oformat == 'json':
         create_json_insults(path, insults)
