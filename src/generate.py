@@ -36,31 +36,47 @@ tokens = {
     'third': []
 }
 
+urls = {}
+
 
 def fail(msg):
     print(f'{progname}: {msg}')
     sys.exit(1)
 
 
-def load_phrases(path):
-    phrase_data = []
+def load_urls(path):
+    urls = None
 
     with open(path, 'r') as strm:
+        urls = json.load(strm)
+
+    return urls
+
+
+def load_phrases(phrases_path, urls_path):
+    global tokens
+    global urls
+
+    phrase_data = []
+
+    with open(phrases_path, 'r') as strm:
         phrase_data = strm.read().splitlines()
 
     if len(phrase_data) == 0:
-        fail(f'the phrase file is empty: {path}')
+        fail(f'the phrase file is empty: {phrases_path}')
 
     for raw in phrase_data:
         phrase = re.split(r'\t+', raw)
 
-        assert len(phrase) == 3, f'{progname}: the input data file is corrupt: {path}'
+        assert len(phrase) == 3, f'{progname}: the input data file is corrupt: {phrases_path}'
 
         # list appends are fast in Python
 
         tokens['first'].append(phrase[0])
         tokens['second'].append(phrase[1])
         tokens['third'].append(phrase[2])
+
+    urls = load_urls(urls_path)
 
     return len(phrase_data)
 
@@ -122,6 +138,7 @@ def sanity_checks(path):
 
 def main():
     default_phrases = 'data/phrases'
+    default_urls = 'data/urls.json'
 
     ap = argparse.ArgumentParser(prog=progname, description='A Shakespearian insult generator')
 
@@ -129,12 +146,13 @@ def main():
     ap.add_argument('-i', '--input', metavar='PATH', dest='phrases', default=default_phrases, help=f'Use PATH for the data file. Default is {default_phrases}')
     ap.add_argument('-g', '--generate', metavar='PATH', dest='genfile', default=None, help='Write a number of insults to PATH')
     ap.add_argument('-o', '--output', metavar='FORMAT', dest='oformat', choices=['json', 'text'], default='json', help='Output insults using FORMAT. Default is "json"')
+    ap.add_argument('-u', '--urls', metavar='PATH', dest='urls', default=default_urls, help=f'Use PATH for the URLs data file. Default is {default_urls}')
 
     args = ap.parse_args()
 
     sanity_checks(args.phrases)
 
-    nphrases = load_phrases(args.phrases)
+    nphrases = load_phrases(args.phrases, args.urls)
 
     icount = args.count if args.count > 0 else 1
 
