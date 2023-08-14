@@ -60,13 +60,13 @@ export default function InsultEmAll({ insults, appConfig }) {
     const renderInsult = ({item}) => {
         return (
             <View style={ styles.insultItemContainer }>
-              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
               <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
                 <Text style={ styles.insultText }>
                   { item.insult }
                 </Text>
               </PressableOpacity>
+              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
             </View>
         );
     };
