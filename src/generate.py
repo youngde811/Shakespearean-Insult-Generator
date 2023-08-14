@@ -50,7 +50,7 @@ def load_urls(path):
     with open(path, 'r') as strm:
         urls = json.load(strm)
 
-    assert urls.len > 0, f'The URLs file is empty: {path}'
+    assert len(urls['urls']) > 0, f'The URLs file is empty: {path}'
 
     return urls
 
@@ -124,8 +124,8 @@ def generate_insults(path, oformat, nphrases=50, count=1):
 
     # just for testing right now
 
-    insults[0].url = urls.urls[0]
-    insults[1].url = urls.url[1]
+    insults[0]['url'] = urls['urls'][0]
+    insults[1]['url'] = urls['urls'][1]
 
     if oformat == 'json':
         create_json_insults(path, insults)
