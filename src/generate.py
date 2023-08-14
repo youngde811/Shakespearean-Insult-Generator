@@ -112,11 +112,10 @@ def create_json_insults(path, insults):
 
 
 def assign_urls(insults, urls):
-    urlset = dict(urls)
     nitems = len(insults) - 1
 
-    for i in range(len(urlset['urls'])):
-        insults[rand(end=nitems)]['url'] = urlset['urls'][i]
+    for i in range(len(urls['urls'])):
+        insults[rand(end=nitems)]['url'] = urls['urls'][i]
 
 
 def generate_insults(path, oformat, nphrases=50, count=1):
