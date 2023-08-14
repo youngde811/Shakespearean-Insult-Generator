@@ -98,7 +98,8 @@ def generate_insults(path, oformat, nphrases=50, count=1):
     for i in range(0, count):
         entry = {
             "id": i,
-            "insult": insult(nphrases=nphrases)
+            "insult": insult(nphrases=nphrases),
+            "url": ""
         }
 
         insults.append(entry)
