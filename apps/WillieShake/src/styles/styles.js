@@ -221,6 +221,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0
     },
+    touchableIconView: {
+        flex: 1,
+        alignItems: 'center',
 });
 
 export default styles;

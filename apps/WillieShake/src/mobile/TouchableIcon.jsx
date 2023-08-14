@@ -22,6 +22,20 @@
 
 import React, { useRef, useState } from 'react';
 
-export default function TouchableIcon({ onPress }) {
+import { View } from 'react-native';
+import { IconButton } from '@react-native-material/core';
 
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
+import styles from '../styles/styles.js';
+
+export default function TouchableIcon({ props, onPress }) {
+    return (
+        <View style={ styles.touchableIconView }>
+          <IconButton
+            icon={ props => <EvilIcons name="unlock" size={ 10 }{ ...props }/>} onPress={ () => onPress() }
+            { ...props }/>
+        </View>
+    );
 };
