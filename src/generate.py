@@ -21,6 +21,7 @@
 # Shakespearian Insult Generator.
 
 import argparse
+import itertools
 import json
 import random
 import re
@@ -110,6 +111,14 @@ def create_json_insults(path, insults):
         json.dump(data, strm, sort_keys=True, indent=4)
 
 
+def assign_urls(insults, urls):
+    urlset = dict(urls)
+    nitems = len(insults) - 1
+
+    for i in range(len(urlset['urls'])):
+        insults[rand(end=nitems)]['url'] = urlset['urls'][i]
+
+
 def generate_insults(path, oformat, nphrases=50, count=1):
     insults = []
 
@@ -122,9 +131,7 @@ def generate_insults(path, oformat, nphrases=50, count=1):
 
         insults.append(entry)
 
-    # just for testing right now. After, we'll assign URLs to insults randomly.
-
-    insults[0]['url'] = urls['urls'][0]
+    assign_urls(insults, urls)
 
     if oformat == 'json':
         create_json_insults(path, insults)
