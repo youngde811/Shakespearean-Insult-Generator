@@ -76,9 +76,6 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     };
 
     const renderInsult = ({item}) => {
-        console.log("selectedInsult: " + JSON.stringify(selectedInsult, null, 4));
-        console.log("item: " + JSON.stringify(item, null, 4));
-        
         return (
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>

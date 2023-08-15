@@ -28,6 +28,7 @@ import { IconButton } from '@react-native-material/core';
 import { Spacer } from '@react-native-material/core';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
+import Foundation from '@expo/vector-icons/Foundation';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import styles from '../styles/styles.js';
@@ -36,7 +37,7 @@ export default function TouchableIcon({ visible, onPress, ...props }) {
     return (visible ?
             <View style={ styles.touchableIconView }>
               <IconButton
-                icon={ props => <EvilIcons name="unlock" size="small" { ...props }/>} onPress={ () => onPress() }/>
+                icon={ props => <Foundation name="lightbulb" { ...props }/>} color="orchid" onPress={ () => onPress() }/>
             </View>
             :
             <View style={ styles.touchableSpacerView }/>
