@@ -27,10 +27,6 @@ import { View } from 'react-native';
 import { IconButton } from '@react-native-material/core';
 import { Spacer } from '@react-native-material/core';
 
-import EvilIcons from '@expo/vector-icons/EvilIcons';
-import Foundation from '@expo/vector-icons/Foundation';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 
