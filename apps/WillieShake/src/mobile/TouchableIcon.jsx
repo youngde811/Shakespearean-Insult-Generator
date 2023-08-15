@@ -31,13 +31,16 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+
 import styles from '../styles/styles.js';
 
 export default function TouchableIcon({ visible, onPress, ...props }) {
     return (visible ?
             <View style={ styles.touchableIconView }>
               <IconButton
-                icon={ props => <Foundation name="lightbulb" { ...props }/>} color="orchid" onPress={ () => onPress() }/>
+                icon={ props => <FontAwesomeIcon icon={ faMugSaucer } { ...props }/>} size={ 14 } color="orchid" opacity={ 0.4 } onPress={ () => onPress() }/>
             </View>
             :
             <View style={ styles.touchableSpacerView }/>
