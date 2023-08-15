@@ -49,9 +49,8 @@ const styles = StyleSheet.create({
     insultTopView: {
         flex: 1,
         flexDirection: 'column',
-        marginHorizontal: 10,
+        marginHorizontal: 2,
         background: 'white',
-        marginHorizontal: 10,
         alignItems: 'stretch',
     },
     backgroundImage: {
@@ -69,14 +68,21 @@ const styles = StyleSheet.create({
     insultItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     insultText: {
         fontSize: 15,
         padding: 2,
-        margin: 2,
+        margin: 4,
         color: 'black',
+    },
+    insultSelectedText: {
+        fontSize: 15,
+        padding: 2,
+        margin: 4,
+        color: 'maroon',
+        fontWeight: 'bold',
     },
     insultButtons: {
         flex: 1,
@@ -107,8 +113,16 @@ const styles = StyleSheet.create({
     insultSurfaceParent: {
         flex: 1,
         paddingBottom: 40,
+        width: '100%',
     },
     insultSurface: {
+        flex: 1,
+        paddingBottom: '5%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    favoriteInsultsSurface: {
         flex: 1,
         paddingBottom: '5%',
         alignItems: 'center',
@@ -230,10 +244,12 @@ const styles = StyleSheet.create({
     touchableIconView: {
         position: 'absolute',
         right: 0,
+        marginLeft: 2,
     },
     touchableIconSpacerView: {
         position: 'absolute',
         right: 0,
+        marginLeft: 2,
     },
 });
 

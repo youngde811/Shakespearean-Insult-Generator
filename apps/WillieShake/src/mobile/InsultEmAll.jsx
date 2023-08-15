@@ -56,16 +56,15 @@ export default function InsultEmAll({ insults, appConfig }) {
     };
 
     const showEasterEgg = (item) => {
-        console.log("showEasterEgg(): " + item.url);
         setEasterEgg(item.url);
     };
     
     const renderInsult = ({item}) => {
         return (
             <View style={ styles.insultItemContainer }>
-              <PressableOpacity style={ item.insult === selectedInsult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }
+              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-                <Text style={ styles.insultText }>
+                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
                   { item.insult }
                 </Text>
               </PressableOpacity>
@@ -91,7 +90,9 @@ export default function InsultEmAll({ insults, appConfig }) {
     };
 
     const storeFavorite = async (item) => {
-        await AsyncStorage.setItem(String(item.id), JSON.stringify(item));
+        let key = "@willie:" + item.id;
+        
+        await AsyncStorage.setItem(key, JSON.stringify(item));
 
         setFavoriteAdded(true);
     };

@@ -47,7 +47,8 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         let len = keys.length;
 
         for (var i = 0; i < len; i++) {
-            let insult = await AsyncStorage.getItem(keys[i]);
+            let key = keys[i];
+            let insult = await AsyncStorage.getItem(key);
 
             favorites.push(JSON.parse(insult));
         }
@@ -75,13 +76,17 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     };
 
     const renderInsult = ({item}) => {
+        console.log("selectedInsult: " + JSON.stringify(selectedInsult, null, 4));
+        console.log("item: " + JSON.stringify(item, null, 4));
+        
         return (
-            <PressableOpacity style={ item.insult === selectedInsult?.insult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }>
-
-              <Text style={ styles.insultText }>
-                { item.insult }
-              </Text>
-            </PressableOpacity>
+            <View style={ styles.insultItemContainer }>
+              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>
+                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                  { item.insult }
+                </Text>
+              </PressableOpacity>
+            </View>
         );
     };
 
@@ -99,7 +104,8 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     const forgetFavorite = async () => {
         if (selectedInsult) {
-            await AsyncStorage.removeItem(String(selectedInsult.id));
+            let key = "@willie:" + selectedInsult.id;
+            await AsyncStorage.removeItem(key);
 
             fetchFavorites();
         }
