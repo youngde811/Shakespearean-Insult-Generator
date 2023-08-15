@@ -36,6 +36,8 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import './Globals';
+
 import * as Utilities from '../utils/utilities';
 
 export default function FavoriteInsults({ appConfig, background, setDismiss }) {
@@ -95,13 +97,14 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL(appConfig.smsLink + selectedInsult.insult);
+            Linking.openURL(global.smstag + selectedInsult.insult);
         }
     };
 
     const forgetFavorite = async () => {
         if (selectedInsult) {
-            let key = "@willie:" + selectedInsult.id;
+            let key = global.keyPrefix + selectedInsult.id;
+
             await AsyncStorage.removeItem(key);
 
             fetchFavorites();

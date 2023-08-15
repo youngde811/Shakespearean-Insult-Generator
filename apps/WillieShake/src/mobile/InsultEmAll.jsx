@@ -35,6 +35,8 @@ import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
 import EmbeddedWebView from './EmbeddedWebView';
 
+import './Globals';
+
 import * as Utilities from '../utils/utilities';
 
 export default function InsultEmAll({ insults, appConfig }) {
@@ -81,7 +83,7 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL('sms://&body=' + selectedInsult);
+            Linking.openURL(global.smstag  + selectedInsult);
         }
     };
 
@@ -90,7 +92,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     };
 
     const storeFavorite = async (item) => {
-        let key = "@willie:" + item.id;
+        let key = global.keyPrefix + item.id;
         
         await AsyncStorage.setItem(key, JSON.stringify(item));
 

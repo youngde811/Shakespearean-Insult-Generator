@@ -1,8 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file provides a custom component that renders a touchable icon which responds to
-// presses. Currently, TouchableIcon is rather specific to the rendering of the main insult
-// list, so it could use some generalization.
+// This file contains global configuration for the entire app.
 
 // MIT License
 
@@ -21,24 +19,5 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
-
-import { View } from 'react-native';
-import { IconButton } from '@react-native-material/core';
-import { Spacer } from '@react-native-material/core';
-
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
-
-import styles from '../styles/styles.js';
-
-export default function TouchableIcon({ visible, onPress, ...props }) {
-    return (visible ?
-            <View style={ styles.touchableIconView }>
-              <IconButton
-                icon={ props => <FontAwesomeIcon icon={ faMugSaucer } { ...props }/> } color="orchid" opacity={ 0.4 } onPress={ () => onPress() }/>
-            </View>
-            :
-            <View style={ styles.touchableSpacerView }/>
-           );
-};
+global.keyPrefix = "@willie:";
+global.smstag = "sms://&body=";
