@@ -146,11 +146,13 @@ export default function InsultEmAll({ insults, appConfig }) {
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
+            <PressableOpacity style={ selectedInsult != null ? styles.insultButtons : styles.disabledInsultButtons }
+                              title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
               <Text style={ styles.insultButtonText }>Insult</Text>
             </PressableOpacity>
             <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.insultButtons } title={ 'Be Nice' } onPress={ cancelInsult } disabled={ selectedInsult == null }>
+            <PressableOpacity style={ selectedInsult != null ? styles.insultButtons : styles.disabledInsultButtons }
+                              title={ 'Be Nice' } onPress={ cancelInsult } disabled={ selectedInsult == null }>
               <Text style={ styles.insultButtonText }>Be Nice</Text>
             </PressableOpacity>
           </View>

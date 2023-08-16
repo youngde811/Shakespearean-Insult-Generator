@@ -98,6 +98,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
+    disabledInsultButtons: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        backgroundColor: 'lightgrey',
+        borderColor: '#fff',
+    },
     insultFooter: {
         flex: 1,
         flexDirection: 'row',
@@ -221,6 +231,18 @@ const styles = StyleSheet.create({
     favoritesButtonText: {
         color: 'white',
         fontSize: 16,
+    },
+    disabledFavoritesButtons: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'lightgrey',
+        borderColor: '#fff',
     },
     noFavoritesView: {
         flex: 1,
