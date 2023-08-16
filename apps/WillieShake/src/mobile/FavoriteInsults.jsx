@@ -107,6 +107,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
             await AsyncStorage.removeItem(key);
 
+            setSelectedInsult(null);
             fetchFavorites();
         }
     };
