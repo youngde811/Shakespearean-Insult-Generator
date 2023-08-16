@@ -28,7 +28,7 @@ import { IconButton } from '@react-native-material/core';
 import { Spacer } from '@react-native-material/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons/faUserSecret';
 
 import styles from '../styles/styles.js';
 
@@ -36,7 +36,7 @@ export default function TouchableIcon({ visible, onPress, ...props }) {
     return (visible ?
             <View style={ styles.touchableIconView }>
               <IconButton
-                icon={ props => <FontAwesomeIcon icon={ faMugSaucer } { ...props }/> } color="orchid" opacity={ 0.4 } onPress={ () => onPress() }/>
+                icon={ props => <FontAwesomeIcon icon={ faUserSecret } { ...props }/> } color="orchid" opacity={ 0.1 } onPress={ () => onPress() }/>
             </View>
             :
             <View style={ styles.touchableSpacerView }/>
