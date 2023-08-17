@@ -78,7 +78,7 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
-- _08/17/2023_: Version 1.4.0 is out. A major release to the AppStore:
+- _08/17/2023_: Version 1.4.1 is out. A major release to the AppStore:
   - Context-sensitive buttons.
   - Hidden "Easter eggs".
   - Animation improvements.
