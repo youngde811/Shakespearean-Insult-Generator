@@ -87,10 +87,6 @@ export default function InsultEmAll({ insults, appConfig }) {
         }
     };
 
-    const cancelInsult = () => {
-        setSelectedInsult(null);
-    };
-
     const storeFavorite = async (item) => {
         let key = global.keyPrefix + item.id;
         
@@ -149,11 +145,6 @@ export default function InsultEmAll({ insults, appConfig }) {
             <PressableOpacity style={ selectedInsult != null ? styles.insultButtons : styles.disabledInsultButtons }
                               title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
               <Text style={ styles.insultButtonText }>Insult</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ selectedInsult != null ? styles.insultButtons : styles.disabledInsultButtons }
-                              title={ 'Be Nice' } onPress={ cancelInsult } disabled={ selectedInsult == null }>
-              <Text style={ styles.insultButtonText }>Be Nice</Text>
             </PressableOpacity>
           </View>
           { easterEgg != null ? <EmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }

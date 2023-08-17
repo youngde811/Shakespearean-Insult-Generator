@@ -85,9 +85,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     insultButtons: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 10,
         elevation: 3,
         padding: 4,
@@ -99,9 +97,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     disabledInsultButtons: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 10,
         elevation: 3,
         padding: 4,
@@ -109,12 +105,9 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
     },
     insultFooter: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        width: '100%',
         bottom: 0,
+        left: 0,
+        right: 0,
         position: 'absolute',
     },
     insultSelected: {
