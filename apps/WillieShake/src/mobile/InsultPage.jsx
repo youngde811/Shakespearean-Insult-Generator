@@ -26,7 +26,7 @@ import { ActivityIndicator, Image, ImageBackground, Text, View } from 'react-nat
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { AppBar, HStack, IconButton, Button } from "@react-native-material/core";
+import { AppBar, HStack, IconButton, Button } from '@react-native-material/core';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';

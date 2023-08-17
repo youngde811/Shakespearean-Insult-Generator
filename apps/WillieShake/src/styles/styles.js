@@ -49,9 +49,8 @@ const styles = StyleSheet.create({
     insultTopView: {
         flex: 1,
         flexDirection: 'column',
-        marginHorizontal: 10,
+        marginHorizontal: 2,
         background: 'white',
-        marginHorizontal: 10,
         alignItems: 'stretch',
     },
     backgroundImage: {
@@ -66,16 +65,27 @@ const styles = StyleSheet.create({
         fontSize: 25,
         paddingBottom: 10,
     },
+    insultItemContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
     insultText: {
         fontSize: 15,
         padding: 2,
-        margin: 2,
+        margin: 4,
         color: 'black',
     },
+    insultSelectedText: {
+        fontSize: 15,
+        padding: 2,
+        margin: 4,
+        color: 'maroon',
+        fontWeight: 'bold',
+    },
     insultButtons: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 10,
         elevation: 3,
         padding: 4,
@@ -86,13 +96,18 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
-    insultFooter: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
+    disabledInsultButtons: {
         alignItems: 'center',
-        width: '100%',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        backgroundColor: 'lightgrey',
+        borderColor: '#fff',
+    },
+    insultFooter: {
         bottom: 0,
+        left: 0,
+        right: 0,
         position: 'absolute',
     },
     insultSelected: {
@@ -101,8 +116,16 @@ const styles = StyleSheet.create({
     insultSurfaceParent: {
         flex: 1,
         paddingBottom: 40,
+        width: '100%',
     },
     insultSurface: {
+        flex: 1,
+        paddingBottom: '5%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    favoriteInsultsSurface: {
         flex: 1,
         paddingBottom: '5%',
         alignItems: 'center',
@@ -202,6 +225,18 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
+    disabledFavoritesButtons: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'lightgrey',
+        borderColor: '#fff',
+    },
     noFavoritesView: {
         flex: 1,
         alignmentDirection: 'column',
@@ -220,6 +255,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         right: 0
+    },
+    touchableIconView: {
+        position: 'absolute',
+        right: 0,
+        marginLeft: 2,
+    },
+    touchableIconSpacerView: {
+        position: 'absolute',
+        right: 0,
+        marginLeft: 2,
     },
 });
 

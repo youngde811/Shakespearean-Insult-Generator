@@ -36,6 +36,8 @@ import NoFavorites from './NoFavorites';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import './Globals';
+
 import * as Utilities from '../utils/utilities';
 
 export default function FavoriteInsults({ appConfig, background, setDismiss }) {
@@ -47,7 +49,8 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         let len = keys.length;
 
         for (var i = 0; i < len; i++) {
-            let insult = await AsyncStorage.getItem(keys[i]);
+            let key = keys[i];
+            let insult = await AsyncStorage.getItem(key);
 
             favorites.push(JSON.parse(insult));
         }
@@ -76,12 +79,13 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     const renderInsult = ({item}) => {
         return (
-            <PressableOpacity style={ item.insult === selectedInsult?.insult ? styles.insultSelected : null } onPress={ () => insultSelect(item) }>
-
-              <Text style={ styles.insultText }>
-                { item.insult }
-              </Text>
-            </PressableOpacity>
+            <View style={ styles.insultItemContainer }>
+              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>
+                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                  { item.insult }
+                </Text>
+              </PressableOpacity>
+            </View>
         );
     };
 
@@ -93,14 +97,17 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
 
     const sendInsult = () => {
         if (selectedInsult) {
-            Linking.openURL(appConfig.smsLink + selectedInsult.insult);
+            Linking.openURL(global.smstag + selectedInsult.insult);
         }
     };
 
     const forgetFavorite = async () => {
         if (selectedInsult) {
-            await AsyncStorage.removeItem(String(selectedInsult.id));
+            let key = global.keyPrefix + selectedInsult.id;
 
+            await AsyncStorage.removeItem(key);
+
+            setSelectedInsult(null);
             fetchFavorites();
         }
     };
@@ -140,11 +147,13 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
               </Surface>
             </ImageBackground>
             <View style={ styles.favoritesFooter }>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Insult' } onPress={ sendInsult }>
+              <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
+                                title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
                 <Text style={ styles.favoritesButtonText }>Insult</Text>
               </PressableOpacity>
               <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Forget' } onPress={ () => forgetFavorite() }>
+              <PressableOpacity style={ selectedInsult ? styles.favoritesButtons : styles.disabledFavoritesButtons }
+                                title={ 'Forget' } onPress={ () => forgetFavorite() } disabled={ selectedInsult == null }>
                 <Text style={ styles.favoritesButtonText }>Forget</Text>
               </PressableOpacity>
               <View style={ styles.spacer }/>
