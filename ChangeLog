@@ -3,7 +3,8 @@
 	* Functionality: Embedded "Easter eggs".
 	* Icons: Better "secret" icon.
 	* Buttons: Context-sensitive buttons have been implemented.
-	* AppStore: Release 1.3.0
+	* MainPage: Removed needless "Be Nice" button; it was redundant.
+	* AppStore: Release 1.3.3
 
 2023-08-11  David E. Young  <youngde811@pobox.com>
 
