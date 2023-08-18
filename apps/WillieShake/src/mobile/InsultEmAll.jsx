@@ -119,6 +119,14 @@ export default function InsultEmAll({ insults, appConfig }) {
         listRef.current.scrollToOffset({ offset: 0, animated: true });
     };
 
+    const extractKeys = (item) => {
+        return item.id;
+    };
+
+    const setVerticalOffset = (event) => {
+        setListVerticalOffset(event.nativeEvent.contentOffset.y);
+    };
+
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
@@ -132,9 +140,9 @@ export default function InsultEmAll({ insults, appConfig }) {
               <FlatList
                 ref = { listRef }
                 ItemSeparatorComponent={ insultSeparator }
-                onScroll = { (event) =>  setListVerticalOffset(event.nativeEvent.contentOffset.y) }
+                onScroll = { setVerticalOffset }
                 data={ insults }
-                keyExtractor={ (item) => item.id }
+                keyExtractor={ extractKeys }
                 showsVerticalScrollIndicator={ false }
                 renderItem={ renderInsult }/>
               { listVerticalOffset > listThreshold && (
