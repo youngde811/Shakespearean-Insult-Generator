@@ -61,8 +61,9 @@ export default function InsultEmAll({ insults, appConfig }) {
         setEasterEgg(item.url);
     };
 
-    const renderInsult = useCallback(({ item }) => (
-        <View style={ styles.insultItemContainer }>
+    const renderInsult = ({ item }) => {
+        return (
+            <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
                 <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
@@ -71,7 +72,8 @@ export default function InsultEmAll({ insults, appConfig }) {
               </PressableOpacity>
               <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
             </View>
-    ), []);
+        );
+    };
 
     const insultSeparator = () => {
         return (
