@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 
 import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
@@ -127,6 +127,10 @@ export default function InsultEmAll({ insults, appConfig }) {
         setListVerticalOffset(event.nativeEvent.contentOffset.y);
     };
 
+    const itemLayout = (data, index) => {
+
+    };
+    
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
