@@ -30,6 +30,9 @@ import TouchableIcon from './TouchableIcon';
 
 import styles from '../styles/styles.js';
 
+// NB: This component is under active development. As written, unnecessary rendering is not avoided due to the
+// passing of state properties from the parent component. I'm working on that.
+
 const InsultItem = (props) => {
     return (
         <View style={ styles.insultItemContainer }>

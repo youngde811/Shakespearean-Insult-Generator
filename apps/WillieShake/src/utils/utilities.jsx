@@ -31,9 +31,9 @@ export function writeClipboard(text) {
     copyText();
 };
 
-export function findLongestItem(items) {
-    var item = items.reduce((a, b) => {
-        return a.insult.length > b.insult.length ? a : b, '';
+export function findLongestInsult(insults) {
+    var item = insults.reduce((a, b) => {
+        return a.insult.length > b.insult.length ? a : b;
     });
 
     return item.insult.length;

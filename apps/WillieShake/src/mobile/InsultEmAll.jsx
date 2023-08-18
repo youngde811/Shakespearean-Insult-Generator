@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { memo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
@@ -62,6 +62,14 @@ export default function InsultEmAll({ insults, appConfig }) {
         setEasterEgg(item.url);
     };
 
+    const storeFavorite = async (item) => {
+        let key = global.keyPrefix + item.id;
+        
+        await AsyncStorage.setItem(key, JSON.stringify(item));
+
+        setFavoriteAdded(true);
+    };
+
     const renderInsult = ({ item }) => {
         return (
             <InsultItem item={ item } insultSelect={ insultSelect } storeFavorite={ storeFavorite } selectedInsult={ selectedInsult }
@@ -79,14 +87,6 @@ export default function InsultEmAll({ insults, appConfig }) {
         if (selectedInsult) {
             Linking.openURL(global.smstag  + selectedInsult);
         }
-    };
-
-    const storeFavorite = async (item) => {
-        let key = global.keyPrefix + item.id;
-        
-        await AsyncStorage.setItem(key, JSON.stringify(item));
-
-        setFavoriteAdded(true);
     };
 
     const animateFavoriteAdded = () => {
