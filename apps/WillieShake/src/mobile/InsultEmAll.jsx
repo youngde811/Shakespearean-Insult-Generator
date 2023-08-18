@@ -138,12 +138,12 @@ export default function InsultEmAll({ insults, appConfig }) {
               { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
                 ref={ listRef }
-                contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
                 ItemSeparatorComponent={ insultSeparator }
                 onScroll = { setVerticalOffset }
                 data={ insults }
                 keyExtractor={ extractKeys }
                 showsVerticalScrollIndicator={ false }
+                estimatedItemSize={ 150 }
                 renderItem={ renderInsult }/>
               { listVerticalOffset > listThreshold && (
                   <FloatingPressable onPress={ scrollToTop }/>

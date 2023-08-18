@@ -123,10 +123,12 @@ const styles = StyleSheet.create({
         paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%',
         borderRadius: 10,
     },
     insultList: {
         flexDirection: 'column',
+        height: '100%',
         justifyContent: 'flex-start',
     },
     favoriteInsultsSurface: {
