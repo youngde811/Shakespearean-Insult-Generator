@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     insultItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     insultText: {
@@ -124,6 +124,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
+    },
+    insultList: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
     },
     favoriteInsultsSurface: {
         flex: 1,

@@ -136,7 +136,8 @@ export default function InsultEmAll({ insults, appConfig }) {
             <Surface elevation={ 4 } style={ styles.insultSurface }>
               { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
-                ref = { listRef }
+                ref={ listRef }
+                contentContainerStyle={ styles.insultList }
                 ItemSeparatorComponent={ insultSeparator }
                 onScroll = { setVerticalOffset }
                 data={ insults }
