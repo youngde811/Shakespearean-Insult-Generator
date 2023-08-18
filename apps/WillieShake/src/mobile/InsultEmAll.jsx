@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
@@ -60,10 +60,9 @@ export default function InsultEmAll({ insults, appConfig }) {
     const showEasterEgg = (item) => {
         setEasterEgg(item.url);
     };
-    
-    const renderInsult = ({item}) => {
-        return (
-            <View style={ styles.insultItemContainer }>
+
+    const renderInsult = useCallback(({ item }) => (
+        <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
                 <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
@@ -72,8 +71,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               </PressableOpacity>
               <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
             </View>
-        );
-    };
+    ), []);
 
     const insultSeparator = () => {
         return (
