@@ -137,7 +137,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
                 ref={ listRef }
-                contentContainerStyle={ styles.insultList }
+                contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
                 ItemSeparatorComponent={ insultSeparator }
                 onScroll = { setVerticalOffset }
                 data={ insults }
