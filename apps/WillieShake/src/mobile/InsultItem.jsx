@@ -30,16 +30,16 @@ import TouchableIcon from './TouchableIcon';
 
 import styles from '../styles/styles.js';
 
-function InsultItem({ item, insultSelect, storeFavorite, selectedInsult, showEasterEgg }) {
+const InsultItem = (props) => {
     return (
         <View style={ styles.insultItemContainer }>
-          <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
-                            onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-            <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
-              { item.insult }
+          <PressableOpacity style={ null } onPress={ () => props.insultSelect(props.item) }
+                            onLongPress={ () => props.storeFavorite(props.item) } delayLongPress={ 500 }>
+            <Text style={ props.item.insult == props.selectedInsult ? styles.insultSelectedText : styles.insultText }>
+              { props.item.insult }
             </Text>
           </PressableOpacity>
-          <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
+          <TouchableIcon visible={ props.item.url.length > 0 } onPress={ () => props.showEasterEgg(props.item) }/>
         </View>
     );
 };

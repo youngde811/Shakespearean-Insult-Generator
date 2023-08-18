@@ -34,6 +34,7 @@ import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
 import EmbeddedWebView from './EmbeddedWebView';
+import InsultItem from './InsultItem';
 
 import './Globals';
 
@@ -63,15 +64,8 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const renderInsult = ({ item }) => {
         return (
-            <View style={ styles.insultItemContainer }>
-              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
-                                onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
-                  { item.insult }
-                </Text>
-              </PressableOpacity>
-              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
-            </View>
+            <InsultItem item={ item } insultSelect={ insultSelect } storeFavorite={ storeFavorite } selectedInsult={ selectedInsult }
+                        showEasterEgg={ showEasterEgg }/>
         );
     };
 
