@@ -135,7 +135,6 @@ export default function InsultEmAll({ insults, appConfig }) {
                 onScroll = { (event) =>  setListVerticalOffset(event.nativeEvent.contentOffset.y) }
                 data={ insults }
                 keyExtractor={ (item) => item.id }
-                windowSize={ 10 }
                 showsVerticalScrollIndicator={ false }
                 renderItem={ renderInsult }/>
               { listVerticalOffset > listThreshold && (
