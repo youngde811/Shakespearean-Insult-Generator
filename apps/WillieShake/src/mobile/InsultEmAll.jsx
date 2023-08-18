@@ -77,7 +77,7 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const insultSeparator = () => {
         return (
-            <Divider width={1} color={"cornsilk"}/>
+            <Divider width={ 1 } color={ "cornsilk" }/>
         );
     };
 
