@@ -48,20 +48,6 @@ export default function InsultEmAll({ insults, appConfig }) {
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
 
-    const InsultItem = ({ item }) => {
-        return (
-            <View style={ styles.insultItemContainer }>
-              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
-                                onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
-                  { item.insult }
-                </Text>
-              </PressableOpacity>
-              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
-            </View>
-        );
-    };
-
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
             setSelectedInsult(null);
@@ -85,7 +71,15 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const renderInsult = ({ item }) => {
         return (
-            <InsultItem item={ item }/>
+            <View style={ styles.insultItemContainer }>
+              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
+                                onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
+                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                  { item.insult }
+                </Text>
+              </PressableOpacity>
+              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
+            </View>
         );
     };
 
@@ -141,19 +135,21 @@ export default function InsultEmAll({ insults, appConfig }) {
             </Text>
           </View>
           <View style={ styles.insultSurfaceParent }>
+            { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
-              { favoriteAdded && notifyFavoriteAdded() }
-              <FlatList
-                ref={ listRef }
-                ItemSeparatorComponent={ insultSeparator }
-                onScroll = { setVerticalOffset }
-                data={ insults }
-                keyExtractor={ extractKeys }
-                showsVerticalScrollIndicator={ false }
-                renderItem={ renderInsult }/>
-              { listVerticalOffset > listThreshold && (
-                  <FloatingPressable onPress={ scrollToTop }/>
-              )}
+              <View style={ styles.flashList }>
+                <FlatList
+                  ref={ listRef }
+                  ItemSeparatorComponent={ insultSeparator }
+                  onScroll = { setVerticalOffset }
+                  data={ insults }
+                  keyExtractor={ extractKeys }
+                  showsVerticalScrollIndicator={ false }
+                  renderItem={ renderInsult }/>
+                { listVerticalOffset > listThreshold && (
+                    <FloatingPressable onPress={ scrollToTop }/>
+                )}
+              </View>
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
