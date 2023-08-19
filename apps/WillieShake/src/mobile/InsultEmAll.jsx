@@ -143,19 +143,17 @@ export default function InsultEmAll({ insults, appConfig }) {
           <View style={ styles.insultSurfaceParent }>
             { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
-              <View style={ styles.flashList }>
-                <FlatList
-                  ref={ listRef }
-                  ItemSeparatorComponent={ insultSeparator }
-                  onScroll = { setVerticalOffset }
-                  data={ insults }
-                  keyExtractor={ extractKeys }
-                  showsVerticalScrollIndicator={ false }
-                  renderItem={ renderInsult }/>
-                { listVerticalOffset > listThreshold && (
-                    <FloatingPressable onPress={ scrollToTop }/>
-                )}
-              </View>
+              <FlatList
+                ref={ listRef }
+                ItemSeparatorComponent={ insultSeparator }
+                onScroll = { setVerticalOffset }
+                data={ insults }
+                keyExtractor={ extractKeys }
+                showsVerticalScrollIndicator={ false }
+                renderItem={ renderInsult }/>
+              { listVerticalOffset > listThreshold && (
+                  <FloatingPressable onPress={ scrollToTop }/>
+              )}
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
