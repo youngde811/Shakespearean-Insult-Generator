@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     },
     insultSurfaceParent: {
         flex: 1,
+        justifyContent: 'center',
         paddingBottom: 40,
         width: '100%',
     },
@@ -124,7 +125,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
+        marginTop: 4,
         borderRadius: 10,
+    },
+    flashList: {
+        flexGrow: 1,
+        flexDirection: 'row',
     },
     insultList: {
         flexDirection: 'column',

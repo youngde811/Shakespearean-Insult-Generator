@@ -24,7 +24,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
-import { FlashList } from "@shopify/flash-list";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -35,7 +34,6 @@ import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
 import EmbeddedWebView from './EmbeddedWebView';
-import InsultItem from './InsultItem';
 
 import './Globals';
 
@@ -49,6 +47,20 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
+
+    const InsultItem = ({ item }) => {
+        return (
+            <View style={ styles.insultItemContainer }>
+              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
+                                onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
+                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                  { item.insult }
+                </Text>
+              </PressableOpacity>
+              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
+            </View>
+        );
+    };
 
     const insultSelect = (item) => {
         if (item.insult === selectedInsult) {
@@ -73,8 +85,7 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const renderInsult = ({ item }) => {
         return (
-            <InsultItem item={ item } insultSelect={ insultSelect } storeFavorite={ storeFavorite } selectedInsult={ selectedInsult }
-                        showEasterEgg={ showEasterEgg }/>
+            <InsultItem item={ item }/>
         );
     };
 
@@ -102,7 +113,7 @@ export default function InsultEmAll({ insults, appConfig }) {
         animateFavoriteAdded();
 
         return (
-            <Animated.Text style={{ opacity: animation, fontSize: 12, color: 'maroon' }}>
+            <Animated.Text style={{ opacity: animation, fontSize: 12, color: 'maroon', marginTop: 4 }}>
               Favorite added!
             </Animated.Text>
         );
@@ -121,10 +132,6 @@ export default function InsultEmAll({ insults, appConfig }) {
     const setVerticalOffset = (event) => {
         setListVerticalOffset(event.nativeEvent.contentOffset.y);
     };
-
-    const itemLayout = (data, index) => {
-
-    };
     
     return (
         <View style={ styles.insultTopView }>
@@ -134,20 +141,21 @@ export default function InsultEmAll({ insults, appConfig }) {
             </Text>
           </View>
           <View style={ styles.insultSurfaceParent }>
+            { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
-              { favoriteAdded && notifyFavoriteAdded() }
-              <FlatList
-                ref={ listRef }
-                ItemSeparatorComponent={ insultSeparator }
-                onScroll = { setVerticalOffset }
-                data={ insults }
-                keyExtractor={ extractKeys }
-                showsVerticalScrollIndicator={ false }
-                estimatedItemSize={ 150 }
-                renderItem={ renderInsult }/>
-              { listVerticalOffset > listThreshold && (
-                  <FloatingPressable onPress={ scrollToTop }/>
-              )}
+              <View style={ styles.flashList }>
+                <FlatList
+                  ref={ listRef }
+                  ItemSeparatorComponent={ insultSeparator }
+                  onScroll = { setVerticalOffset }
+                  data={ insults }
+                  keyExtractor={ extractKeys }
+                  showsVerticalScrollIndicator={ false }
+                  renderItem={ renderInsult }/>
+                { listVerticalOffset > listThreshold && (
+                    <FloatingPressable onPress={ scrollToTop }/>
+                )}
+              </View>
             </Surface>
           </View>
           <View style={ styles.insultFooter }>
