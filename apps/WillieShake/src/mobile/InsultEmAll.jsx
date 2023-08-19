@@ -141,8 +141,8 @@ export default function InsultEmAll({ insults, appConfig }) {
             </Text>
           </View>
           <View style={ styles.insultSurfaceParent }>
-            { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
+              { favoriteAdded && notifyFavoriteAdded() }
               <FlatList
                 ref={ listRef }
                 ItemSeparatorComponent={ insultSeparator }
