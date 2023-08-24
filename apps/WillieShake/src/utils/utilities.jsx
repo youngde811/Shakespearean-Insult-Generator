@@ -31,3 +31,10 @@ export function writeClipboard(text) {
     copyText();
 };
 
+export function findLongestInsult(insults) {
+    var item = insults.reduce((a, b) => {
+        return a.insult.length > b.insult.length ? a : b;
+    });
+
+    return item.insult.length;
+};

@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
@@ -60,8 +60,16 @@ export default function InsultEmAll({ insults, appConfig }) {
     const showEasterEgg = (item) => {
         setEasterEgg(item.url);
     };
-    
-    const renderInsult = ({item}) => {
+
+    const storeFavorite = async (item) => {
+        let key = global.keyPrefix + item.id;
+        
+        await AsyncStorage.setItem(key, JSON.stringify(item));
+
+        setFavoriteAdded(true);
+    };
+
+    const renderInsult = ({ item }) => {
         return (
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
@@ -77,7 +85,7 @@ export default function InsultEmAll({ insults, appConfig }) {
 
     const insultSeparator = () => {
         return (
-            <Divider width={1} color={"cornsilk"}/>
+            <Divider width={ 1 } color={ "cornsilk" }/>
         );
     };
 
@@ -85,14 +93,6 @@ export default function InsultEmAll({ insults, appConfig }) {
         if (selectedInsult) {
             Linking.openURL(global.smstag  + selectedInsult);
         }
-    };
-
-    const storeFavorite = async (item) => {
-        let key = global.keyPrefix + item.id;
-        
-        await AsyncStorage.setItem(key, JSON.stringify(item));
-
-        setFavoriteAdded(true);
     };
 
     const animateFavoriteAdded = () => {
@@ -107,7 +107,7 @@ export default function InsultEmAll({ insults, appConfig }) {
         animateFavoriteAdded();
 
         return (
-            <Animated.Text style={{ opacity: animation, fontSize: 12, color: 'maroon' }}>
+            <Animated.Text style={{ opacity: animation, fontSize: 12, color: 'maroon', marginTop: 4 }}>
               Favorite added!
             </Animated.Text>
         );
@@ -119,6 +119,14 @@ export default function InsultEmAll({ insults, appConfig }) {
         listRef.current.scrollToOffset({ offset: 0, animated: true });
     };
 
+    const extractKeys = (item) => {
+        return item.id;
+    };
+
+    const setVerticalOffset = (event) => {
+        setListVerticalOffset(event.nativeEvent.contentOffset.y);
+    };
+    
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
@@ -127,18 +135,21 @@ export default function InsultEmAll({ insults, appConfig }) {
             </Text>
           </View>
           <View style={ styles.insultSurfaceParent }>
+            { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
-              { favoriteAdded && notifyFavoriteAdded() }
-              <FlatList
-                ref = { listRef }
-                ItemSeparatorComponent={ insultSeparator }
-                onScroll = { (event) =>  setListVerticalOffset(event.nativeEvent.contentOffset.y) }
-                data={ insults }
-                keyExtractor={ (item) => item.id }
-                renderItem={ renderInsult }/>
-              { listVerticalOffset > listThreshold && (
-                  <FloatingPressable onPress={ scrollToTop }/>
-              )}
+              <View style={ styles.flashList }>
+                <FlatList
+                  ref={ listRef }
+                  ItemSeparatorComponent={ insultSeparator }
+                  onScroll = { setVerticalOffset }
+                  data={ insults }
+                  keyExtractor={ extractKeys }
+                  showsVerticalScrollIndicator={ false }
+                  renderItem={ renderInsult }/>
+                { listVerticalOffset > listThreshold && (
+                    <FloatingPressable onPress={ scrollToTop }/>
+                )}
+              </View>
             </Surface>
           </View>
           <View style={ styles.insultFooter }>

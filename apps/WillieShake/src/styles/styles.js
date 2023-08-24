@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     insultItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     insultText: {
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     },
     insultSurfaceParent: {
         flex: 1,
+        justifyContent: 'center',
         paddingBottom: 40,
         width: '100%',
     },
@@ -123,7 +124,18 @@ const styles = StyleSheet.create({
         paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%',
+        marginTop: 4,
         borderRadius: 10,
+    },
+    flashList: {
+        flexGrow: 1,
+        flexDirection: 'row',
+    },
+    insultList: {
+        flexDirection: 'column',
+        height: '100%',
+        justifyContent: 'flex-start',
     },
     favoriteInsultsSurface: {
         flex: 1,

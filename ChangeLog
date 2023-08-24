@@ -1,3 +1,9 @@
+2023-08-18  David E. Young  <youngde811@pobox.com>
+
+	* AppStore: Release 1.4.5.
+	* ListPerformance: Much better list performance.
+	* Cleanup: Just some internal code cleanup.
+
 2023-08-17  David E. Young  <david.young@fuel.sh>
 
 	* AppStore: Release 1.4.1.
