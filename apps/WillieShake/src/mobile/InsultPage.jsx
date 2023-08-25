@@ -33,14 +33,17 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import * as SplashScreen from 'expo-splash-screen';
 
 import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
 import FavoriteInsults from './FavoriteInsults';
+import SideMenu from './SideMenu';
 
 import styles from '../styles/styles.js';
+import MenuItems from './SideMenuItems.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
 const insults = require('../../assets/data/insults.json');
@@ -93,6 +96,27 @@ export default function WillieShakeInsults({ appConfig }) {
     
     return (
         <NavigationContainer>
+          <Drawer.Navigator
+            drawerType="front"
+            initialRouteName="SideMenu"
+            drawerContentOptions={{ activeTintColor: '#e91e63', itemStyle: { marginVertical: 10 } }}
+          >
+            {
+                MenuItems.map(drawer=><Drawer.Screen
+                                        key={ drawer.name }
+                                        name={ drawer.name }
+                                        options={{
+                                            drawerIcon: ({ focused })=><MaterialCommunityIcons
+                                                                         name={ drawer.iconName }
+                                                                         size={ 24 }
+                                                                         color={ focused ? "#e91e63" : "black" }
+                                                                       />
+                                        }}
+                                        component={ SideMenu }
+                                      />
+                             )
+            }
+          </Drawer.Navigator>
           <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
             <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
               <StatusBar style="auto"/>
