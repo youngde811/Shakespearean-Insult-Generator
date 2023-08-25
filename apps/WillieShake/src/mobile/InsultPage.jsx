@@ -28,30 +28,21 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from '@react-native-material/core';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import * as SplashScreen from 'expo-splash-screen';
 
 import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
 import FavoriteInsults from './FavoriteInsults';
-import About from './About';
 
 import styles from '../styles/styles.js';
-
-import MenuItems from './SideMenuItems.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
 const insults = require('../../assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
-
-const Drawer = createDrawerNavigator();
 
 export default function WillieShakeInsults({ appConfig }) {
     const [insultData, setInsultData] = useState([]);
@@ -96,57 +87,34 @@ export default function WillieShakeInsults({ appConfig }) {
     };
     
     return (
-        <NavigationContainer>
-          <Drawer.Navigator
-            drawerType="front"
-            initialRouteName="SideMenu"
-            drawerContentOptions={{ activeTintColor: '#e91e63', itemStyle: { marginVertical: 10 } }}
-          >
-            {
-                MenuItems.map(drawer=><Drawer.Screen
-                                        key={ drawer.name }
-                                        name={ drawer.name }
-                                        options={{
-                                            drawerIcon: ({ focused })=><MaterialCommunityIcons
-                                                                         name={ drawer.iconName }
-                                                                         size={ 24 }
-                                                                         color={ focused ? "#e91e63" : "black" }
-                                                                       />
-                                        }}
-                                        component={ About }
-                                      />
-                             )
-            }
-          </Drawer.Navigator>
-          <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
-            <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
-              <StatusBar style="auto"/>
-              <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar }
-                      subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
-                          <HStack>
-                            <IconButton
-                              icon={ props => <MaterialIcons name="favorite" { ...props }/>} onPress={ showFavorites }
-                              { ...props }/>
-                            <IconButton
-                              icon={ props => <EvilIcons name="sc-github" { ...props }/>} onPress={ showProject }
-                              { ...props }/>
-                            <IconButton
-                              icon={ props => <EvilIcons name="external-link" { ...props }/>} onPress={ showWiki }
-                              { ...props }/>
-                          </HStack>
-                      )}/>
-              <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
-              <View style={ styles.insultTopView }>
-                { insultData.length > 0 ? 
-                  <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
-                  :
-                  null }
-              </View>
-              { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
-              { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
-              { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => setFavoritesVisible(false) }/> : null }
-            </SafeAreaView>
-          </ImageBackground>
-        </NavigationContainer>
+        <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
+          <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
+            <StatusBar style="auto"/>
+            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar }
+                    subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
+                        <HStack>
+                          <IconButton
+                            icon={ props => <MaterialIcons name="favorite" { ...props }/>} onPress={ showFavorites }
+                            { ...props }/>
+                          <IconButton
+                            icon={ props => <EvilIcons name="sc-github" { ...props }/>} onPress={ showProject }
+                            { ...props }/>
+                          <IconButton
+                            icon={ props => <EvilIcons name="external-link" { ...props }/>} onPress={ showWiki }
+                            { ...props }/>
+                        </HStack>
+                    )}/>
+            <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
+            <View style={ styles.insultTopView }>
+              { insultData.length > 0 ? 
+                <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
+                :
+                null }
+            </View>
+            { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
+            { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
+            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => setFavoritesVisible(false) }/> : null }
+          </SafeAreaView>
+        </ImageBackground>
     );
 }

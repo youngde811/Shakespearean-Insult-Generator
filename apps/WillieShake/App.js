@@ -25,12 +25,36 @@ import React, { useEffect, useState } from 'react';
 
 import { Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { Feather } from '@expo/vector-icons';
+
 import { setJSExceptionHandler } from 'react-native-exception-handler';
 import RNRestart from 'react-native-restart';
 
 import InsultPage from './src/mobile/InsultPage';
+import About from './src/mobile/About';
+
+import styles from 'src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
+
+const Drawer = createDrawerNavigator();
+
+function InsultPageScreen() {
+    return (
+        <InsultPage appConfig={ appConfig }/>
+    );
+}
+
+function AboutPageScreen() {
+    return (
+        <About appConfig={ appConfig }/>
+    );
+}
 
 export default function App() {
     const masterErrorHandler = (e, isFatal) => {
@@ -52,8 +76,37 @@ export default function App() {
     setJSExceptionHandler(masterErrorHandler);
 
     return (
-        <SafeAreaProvider>
-          <InsultPage appConfig={ appConfig }/>
-        </SafeAreaProvider>
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <Drawer.Navigator
+                drawerType="front"
+                initialRouteName="InsultPage"
+                drawerContentOptions={ styles.drawerContent }
+                >
+                <Drawer.Screen
+                  key="InsultPage"
+                  name="InsultPage"
+                  options={{ drawerIcon: ({ focused })=><MaterialCommunityIcons
+                                                          name="face-profile"
+                                                          size={ 24 }
+                                                          color={ focused ? "#e91e63" : "black" }
+                                                        />
+                           }}
+                  component={ InsultPageScreen }
+                />
+                <Drawer.Screen
+                  key="AboutPage"
+                  name="AboutPage"
+                  options={{ drawerIcon: ({ focused })=><Feather
+                                                          name="settings"
+                                                          size={ 24 }
+                                                          color={ focused ? "#e91e63" : "black" }
+                                                        />
+                           }}
+                  component={ AboutPageScreen }
+                />
+              </Drawer.Navigator>
+            </NavigationContainer>
+          </SafeAreaProvider>
     );
 }

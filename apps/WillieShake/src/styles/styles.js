@@ -21,6 +21,10 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+    drawerContent: {
+        activeTintColor: '#e91e63',
+        itemStyle: { marginVertical: 10 },
+    },
     appTopView: {
         flex: 1,
         flexDirection: 'column',
