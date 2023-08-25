@@ -282,6 +282,15 @@ const styles = StyleSheet.create({
         right: 0,
         marginLeft: 2,
     },
+    aboutPage: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    aboutPageText: {
+        fontSize: 16,
+        fontWeight: '700'
+    },
 });
 
 export default styles;

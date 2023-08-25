@@ -23,11 +23,15 @@ import React, { useEffect, useState } from 'react';
 
 import { Modal, Text, View } from 'react-native';
 
+import styles from '../styles/styles';
+
 export default function About({ appConfig }) {
     return (
         <Modal animationType="fade" presentationStyle="formSheet">
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{fontSize:16,fontWeight:'700'}}>Profile Screen</Text>
+          <View style={ styles.aboutPage }>
+            <Text style={ styles.aboutPageText }>
+              About
+            </Text>
           </View>          
         </Modal>
     );
