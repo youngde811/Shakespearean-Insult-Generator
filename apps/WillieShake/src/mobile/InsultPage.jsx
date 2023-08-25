@@ -40,9 +40,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import EmbeddedWebView from './EmbeddedWebView';
 import InsultEmAll from './InsultEmAll';
 import FavoriteInsults from './FavoriteInsults';
-import SideMenu from './SideMenu';
+import About from './About';
 
 import styles from '../styles/styles.js';
+
 import MenuItems from './SideMenuItems.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
@@ -112,7 +113,7 @@ export default function WillieShakeInsults({ appConfig }) {
                                                                          color={ focused ? "#e91e63" : "black" }
                                                                        />
                                         }}
-                                        component={ SideMenu }
+                                        component={ About }
                                       />
                              )
             }
