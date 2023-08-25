@@ -28,6 +28,8 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from '@react-native-material/core';
 
+import { useNavigation } from '@react-navigation/native';
+
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
@@ -51,6 +53,8 @@ export default function WillieShakeInsults({ appConfig }) {
     const [gitHubVisible, setGitHubVisible] = useState(false);
     const [favoritesVisible, setFavoritesVisible] = useState(false);
 
+    const navigation = useNavigation();
+    
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
     });
@@ -75,7 +79,9 @@ export default function WillieShakeInsults({ appConfig }) {
     }
 
     const showProject = () => {
-        setGitHubVisible(true);
+        navigation.toggleDrawer();
+        
+        // setGitHubVisible(true);
     };
 
     const showWiki = () => {
