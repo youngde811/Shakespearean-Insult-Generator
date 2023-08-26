@@ -25,6 +25,20 @@ const styles = StyleSheet.create({
         activeTintColor: '#e91e63',
         itemStyle: { marginVertical: 10 },
     },
+    navigationHeader:{
+       position:'absolute',
+       top: 30,
+       left: 0,
+       width: '100%',
+       backgroundColor: '#fa7da7',
+       elevation: 5,
+       height: 50,
+       display: 'flex',
+       flexDirection: 'row',
+       paddingHorizontal: 20,
+       alignItems: 'center',
+       justifyContent: 'space-between'
+    },
     appTopView: {
         flex: 1,
         flexDirection: 'column',

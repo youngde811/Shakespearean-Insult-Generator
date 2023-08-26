@@ -23,14 +23,14 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { Alert } from 'react-native';
+import { Alert, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { Feather } from '@expo/vector-icons';
+import { Entypo, Feather } from '@expo/vector-icons';
 
 import { setJSExceptionHandler } from 'react-native-exception-handler';
 import RNRestart from 'react-native-restart';
@@ -38,7 +38,7 @@ import RNRestart from 'react-native-restart';
 import InsultPage from './src/mobile/InsultPage';
 import About from './src/mobile/About';
 
-import styles from 'src/styles/styles.js';
+import styles from './src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
 
@@ -53,6 +53,21 @@ function InsultPageScreen() {
 function AboutPageScreen() {
     return (
         <About appConfig={ appConfig }/>
+    );
+}
+
+function Header({ screen }) {
+    const navigation = useNavigation();
+
+    return (
+        <View style={ styles.navigationHeader }>
+          <TouchableOpacity onPress={ () => navigation.toggleDrawer() }>
+            <Entypo name="menu" size={ 24 } color="black"/>
+          </TouchableOpacity>
+          <View>
+            <Text>{ screen }</Text>
+          </View>
+        </View>
     );
 }
 
@@ -73,6 +88,11 @@ export default function App() {
         }
     };
 
+    const screensMap = [
+        { "name": "InsultPage", "icon": "face-profile" },
+        { "name": "AboutPage", "icon": "settings" }
+    ];
+
     setJSExceptionHandler(masterErrorHandler);
 
     return (
@@ -81,30 +101,37 @@ export default function App() {
               <Drawer.Navigator
                 drawerType="front"
                 initialRouteName="InsultPage"
-                drawerContentOptions={ styles.drawerContent }
+                screenOptions={ styles.drawerContent }
                 >
-                <Drawer.Screen
-                  key="InsultPage"
-                  name="InsultPage"
-                  options={{ drawerIcon: ({ focused })=><MaterialCommunityIcons
-                                                          name="face-profile"
-                                                          size={ 24 }
-                                                          color={ focused ? "#e91e63" : "black" }
-                                                        />
-                           }}
-                  component={ InsultPageScreen }
-                />
-                <Drawer.Screen
-                  key="AboutPage"
-                  name="AboutPage"
-                  options={{ drawerIcon: ({ focused })=><Feather
-                                                          name="settings"
-                                                          size={ 24 }
-                                                          color={ focused ? "#e91e63" : "black" }
-                                                        />
-                           }}
-                  component={ AboutPageScreen }
-                />
+                {
+                    screensMap.map(item => <Drawer.Screen
+                                             key={ item.name }
+                                             name={ item.name }
+                                             options={{ drawerIcon: ({ focused }) =>
+                                                 <Feather name={ item.icon } size={ 24 } color={focused ? "#e91e63" : "black" }
+                                                 />
+                                                 ,
+                                                 headerShown: true,
+                                                 header: ({ scene }) => {
+                                                     const { options } = scene.descriptor;
+                                                     const title =
+                                                           options.headerTitle !== undefined
+                                                           ? options.headerTitle
+                                                           : options.title !== undefined
+                                                           ? options.title
+                                                           : scene.route.name;
+
+                                                     return (
+                                                         <Header screen={ title }/>
+                                                     );
+                                                 }
+                                             }}
+                                             component={
+                                                 item.name === 'InsultPage' ? InsultPageScreen : AboutPageScreen
+                                             }
+                                           />
+                                  )
+                }
               </Drawer.Navigator>
             </NavigationContainer>
           </SafeAreaProvider>
