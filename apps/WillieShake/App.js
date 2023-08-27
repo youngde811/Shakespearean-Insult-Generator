@@ -23,11 +23,12 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { Alert, TouchableOpacity, View} from 'react-native';
+import { Alert, Text, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Entypo, Feather } from '@expo/vector-icons';
@@ -44,18 +45,6 @@ const appConfig = require("./assets/appconfig.json");
 
 const Drawer = createDrawerNavigator();
 
-function InsultPageScreen() {
-    return (
-        <InsultPage appConfig={ appConfig }/>
-    );
-}
-
-function AboutPageScreen() {
-    return (
-        <About appConfig={ appConfig }/>
-    );
-}
-
 function Header({ screen }) {
     const navigation = useNavigation();
 
@@ -65,9 +54,21 @@ function Header({ screen }) {
             <Entypo name="menu" size={ 24 } color="black"/>
           </TouchableOpacity>
           <View>
-            <Text>{ screen }</Text>
+            <Text style={ styles.navigationHeaderText }/>
           </View>
         </View>
+    );
+}
+
+function InsultsMainPage() {
+    return (
+        <InsultPage appConfig={ appConfig }/>
+    );
+}
+
+function AboutPage() {
+    return (
+        <About appConfig={ appConfig }/>
     );
 }
 
@@ -88,52 +89,52 @@ export default function App() {
         }
     };
 
-    const screensMap = [
-        { "name": "InsultPage", "icon": "face-profile" },
-        { "name": "AboutPage", "icon": "settings" }
-    ];
-
     setJSExceptionHandler(masterErrorHandler);
 
     return (
           <SafeAreaProvider>
-            <NavigationContainer>
-              <Drawer.Navigator
-                drawerType="front"
-                initialRouteName="InsultPage"
-                screenOptions={ styles.drawerContent }
+            <SafeAreaView style={ [{ paddingTop: 10 }, styles.appTopView] }>
+              <NavigationContainer>
+                <Drawer.Navigator
+                  drawerType="front"
+                  initialRouteName="InsultPage"
+                  screenOptions={ styles.drawerContent }
                 >
-                {
-                    screensMap.map(item => <Drawer.Screen
-                                             key={ item.name }
-                                             name={ item.name }
-                                             options={{ drawerIcon: ({ focused }) =>
-                                                 <Feather name={ item.icon } size={ 24 } color={focused ? "#e91e63" : "black" }
-                                                 />
-                                                 ,
-                                                 headerShown: true,
-                                                 header: ({ scene }) => {
-                                                     const { options } = scene.descriptor;
-                                                     const title =
-                                                           options.headerTitle !== undefined
-                                                           ? options.headerTitle
-                                                           : options.title !== undefined
-                                                           ? options.title
-                                                           : scene.route.name;
-
-                                                     return (
-                                                         <Header screen={ title }/>
-                                                     );
-                                                 }
-                                             }}
-                                             component={
-                                                 item.name === 'InsultPage' ? InsultPageScreen : AboutPageScreen
-                                             }
-                                           />
-                                  )
-                }
-              </Drawer.Navigator>
-            </NavigationContainer>
+                  <Drawer.Screen
+                    key="InsultPage"
+                    name="Insults"
+                    options={{ drawerIcon: ({ focused }) =>
+                        <Feather name={ "list" } size={ 24 } color={ focused ? "#e91e63" : "black" }
+                        />
+                        ,
+                        headerShown: true,
+                        header: ({ scene }) => {
+                            return (
+                                <Header screen={ "Insults" }/>
+                            );
+                        }
+                    }}
+                    component={ InsultsMainPage }
+                  />
+                  <Drawer.Screen
+                    key="AboutPage"
+                    name="About this App"
+                    options={{ drawerIcon: ({ focused }) =>
+                        <Feather name={ "info" } size={ 24 } color={ focused ? "#e91e63" : "black" }
+                        />
+                        ,
+                        headerShown: true,
+                        header: ({ scene }) => {
+                            return (
+                                <Header screen={ "About this App" }/>
+                            );
+                        }
+                    }}
+                    component={ AboutPage }
+                  />
+                </Drawer.Navigator>
+              </NavigationContainer>
+            </SafeAreaView>
           </SafeAreaProvider>
     );
 }
