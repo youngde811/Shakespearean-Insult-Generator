@@ -28,15 +28,14 @@ const styles = StyleSheet.create({
     navigationHeader: {
         flex: 1,
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         width: '100%',
         backgroundColor: 'cadet-blue',
         elevation: 5,
         height: 50,
         display: 'flex',
-        flexDirection: 'row',
         paddingHorizontal: 20,
-        alignItems: 'center',
-        justifyContent: 'space-between',
     },
     navigationHeaderText: {
         color: 'black',

@@ -39,6 +39,7 @@ import RNRestart from 'react-native-restart';
 import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
+import NavigationHeader from './src/mobile/NavigationHeader';
 
 import styles from './src/styles/styles.js';
 
@@ -104,42 +105,66 @@ export default function App() {
                 <Drawer.Screen
                   key="InsultsMainPage"
                   name="Shakespearean Insults"
-                  options={{
-                      drawerIcon: ({ focused }) =>
-                      <Entypo name="list" size={ 24 } color={ focused ? "#e91e63" : "black" }
-                      />
-                  }}
                   component={ InsultsMainPage }
+                  options={{
+                      title: "Shakespearean Insults",
+                      drawerIcon: ({ focused, color, size }) => (
+                          <Entypo name="list" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                      ),
+                      headerShown: true,
+                      header: ({ scene }) => (
+                          return (
+                              <NavigationHeader screen="Shakespearean Insults"/>
+                          );
+                    );
+                  }}
                 />
                 <Drawer.Screen
                   key="FavoritesMainPage"
                   name="Favorite Insults"
-                  options={{
-                      drawerIcon: ({ focused }) =>
-                      <Entypo name="heart-outlined" size={ 24 } color={ focused ? "#e91e63" : "black" }
-                      />
-                  }}
                   component={ FavoritesMainPage }
+                  options={{
+                      drawerIcon: ({ focused }) => (
+                          <Entypo name="heart-outlined" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                      ),
+                      headerShown: true,
+                      header: ({ scene }) => (
+                          return (
+                              <NavigationHeader screen="Favorite Insults"/>
+                          );
+                    );
+                  }}
                 />
                 <Drawer.Screen
                   key="BuckleyMainPage"
-                  name="Favorite Insults"
-                  options={{
-                      drawerIcon: ({ focused }) =>
-                      <Entypo name="man" size={ 24 } color={ focused ? "#e91e63" : "black" }
-                      />
-                  }}
+                  name="Lord Buckley"
                   component={ BuckleyMainPage }
+                  options={{
+                      drawerIcon: ({ focused }) => (
+                          <Entypo name="man" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                      ),
+                      headerShown: true,
+                      header: ({ scene }) => (
+                          return (
+                              <NavigationHeader screen="Lord Buckley"/>
+                          );
+                    );
+                  }}
                 />
                 <Drawer.Screen
                   key="AboutMainPage"
-                  name="Favorite Insults"
-                  options={{
-                      drawerIcon: ({ focused }) =>
-                      <Entypo name="info" size={ 24 } color={ focused ? "#e91e63" : "black" }
-                      />
-                  }}
+                  name="About the App"
                   component={ AboutMainPage }
+                  options={{
+                      drawerIcon: ({ focused }) => (
+                          <Entypo name="info" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                      ),
+                      headerShown: true,
+                      header: ({ scene }) => (
+                          return (
+                              <NavigationHeader screen="About the App"/>
+                          );
+                    );
                 />
               </Drawer.Navigator>
             </NavigationContainer>

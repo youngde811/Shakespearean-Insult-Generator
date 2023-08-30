@@ -31,7 +31,7 @@ export default function NavigationHeader({ screen, appConfig }) {
     const navigation = useNavigation();
 
     return (
-        <View style={ styles.navigationHeaderTop }>
+        <View style={ styles.navigationHeader }>
           <TouchableOpacity onPress={ () => navigation.toggleDrawer }>
             <Entypo name="menu" size={ 24 } color="black"/>
           </TouchableOpacity>
