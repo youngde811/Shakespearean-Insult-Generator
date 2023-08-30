@@ -31,6 +31,7 @@ import { AppBar, HStack, IconButton, Button } from '@react-native-material/core'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -58,7 +59,6 @@ export default function WillieShakeInsults({ appConfig, backgroundImage }) {
     const [favoritesVisible, setFavoritesVisible] = useState(false);
 
     const navigation = useNavigation();
-    
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
     });
@@ -98,7 +98,7 @@ export default function WillieShakeInsults({ appConfig, backgroundImage }) {
     
     return (
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
+          <SafeAreaView style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>

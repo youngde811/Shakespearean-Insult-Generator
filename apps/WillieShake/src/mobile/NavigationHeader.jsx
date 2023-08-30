@@ -21,20 +21,20 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { View, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import styles from '../styles/styles.js';
 
 export default function NavigationHeader({ appConfig }) {
     const navigation = useNavigation();
 
+    console.log("NavigationHeader() is rendering:");
+
     return (
-        <View style={ styles.navigationHeader }>
-          <TouchableOpacity onPress={ () => navigation.toggleDrawer }>
-            <Entypo name="menu" size={ 24 } color="white"/>
-          </TouchableOpacity>
-        </View>
+        <SafeAreaProvider>
+        </SafeAreaProvider>
     );
 }

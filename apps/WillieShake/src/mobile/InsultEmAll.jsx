@@ -130,7 +130,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     return (
         <View style={ styles.insultTopView }>
           <View style={ styles.hatesYou }>
-            <Text style={ styles.hatesYou }>
+            <Text style= { styles.hatesYouText }>
               { appConfig.names.insultTitle }
             </Text>
           </View>

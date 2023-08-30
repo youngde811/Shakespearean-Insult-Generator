@@ -26,15 +26,12 @@ const styles = StyleSheet.create({
         itemStyle: { marginVertical: 10 },
     },
     navigationHeader: {
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        backgroundColor: 'cadet-blue',
+        backgroundColor: 'linen',
         elevation: 5,
-        height: 50,
-        display: 'flex',
         paddingHorizontal: 20,
     },
     navigationHeaderText: {
@@ -56,23 +53,12 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontStyle: 'italic',
     },
-    headerTop: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    headerText: {
-        color: 'black',
-        fontFamily: 'Inter-Black',
-        fontSize: 15,
-    },
     insultTopView: {
         flex: 1,
         flexDirection: 'column',
         marginHorizontal: 2,
-        background: 'white',
-        alignItems: 'stretch',
+        backgroundColor: 'yellow',
+        // alignItems: 'stretch',
     },
     backgroundImage: {
         flex: 1,
@@ -142,11 +128,11 @@ const styles = StyleSheet.create({
     },
     insultSurface: {
         flex: 1,
-        paddingBottom: '5%',
+        //paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        marginTop: 4,
+        //marginTop: 4,
         borderRadius: 10,
     },
     flashList: {
@@ -167,10 +153,12 @@ const styles = StyleSheet.create({
     },
     hatesYou: {
         alignItems: 'center',
-        fontWeight: 'bold',
+        paddingBottom: 10,
+    },
+    hatesYouText: {
         color: 'teal',
         fontSize: 25,
-        paddingBottom: 10,
+        fontWeight: 'bold',
     },
     spacer: {
         width: 10,

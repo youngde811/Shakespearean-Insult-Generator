@@ -75,7 +75,7 @@ const Drawer = createDrawerNavigator();
 const screens = [
     {
         key: "InsultsMainPage",
-        title: "ShakespeareanInsults",
+        title: "Shakespearean Insults",
         iconName: "list",
         component: InsultsMainPage,
     },
@@ -124,14 +124,14 @@ export default function App() {
               <Drawer.Navigator
                 drawerType="front"
                 initialRouteName="InsultsMainPage"
-                drawerContentOptions={{
+                screenOptions={{
                     activeTintColor: '#e91e63',
                     itemStyle: { marginVertical: 10 },
                 }}
                 screenOptions={{
                     headerShown: true,
                     headerTitleAlign: 'center',
-                    header: () => (
+                    headerRight: () => (
                         <NavigationHeader appConfig={ appConfig }/>
                     )
                 }}
@@ -143,8 +143,11 @@ export default function App() {
                       component={ drawer.component }
                       options={{
                           drawerIcon: ({ focused, color, size }) => (
-                              <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                              <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
                           ),
+                          headerStyle: {
+                              backgroundColor: 'linen',
+                          },
                       }}
                     />
                 )}
