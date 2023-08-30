@@ -72,6 +72,33 @@ function AboutMainPage() {
 
 const Drawer = createDrawerNavigator();
 
+const screens = [
+    {
+        key: "InsultsMainPage",
+        title: "ShakespeareanInsults",
+        iconName: "list",
+        component: InsultsMainPage,
+    },
+    {
+        key: "FavoritesMainPage",
+        title: "Favorite Insults",
+        iconName: "heart-outlined",
+        component: FavoritesMainPage
+    },
+    {
+        key: "BuckleyMainPage",
+        title: "Lord Buckley",
+        iconName: "man",
+        component: BuckleyMainPage
+    },
+    {
+        key: "AboutMainPage",
+        title: "About the App",
+        iconName: "info",
+        component: AboutMainPage
+    },
+];
+
 export default function App() {
     const masterErrorHandler = (e, isFatal) => {
         if (isFatal) {
@@ -109,47 +136,18 @@ export default function App() {
                     )
                 }}
               >
-                <Drawer.Screen
-                  key="InsultsMainPage"
-                  name="Shakespearean Insults"
-                  component={ InsultsMainPage }
-                  options={{
-                      title: "Shakespearean Insults",
-                      drawerIcon: ({ focused, color, size }) => (
-                          <Entypo name="list" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
-                      ),
-                  }}
-                />
-                <Drawer.Screen
-                  key="FavoritesMainPage"
-                  name="Favorite Insults"
-                  component={ FavoritesMainPage }
-                  options={{
-                      drawerIcon: ({ focused }) => (
-                          <Entypo name="heart-outlined" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
-                      ),
-                  }}
-                />
-                <Drawer.Screen
-                  key="BuckleyMainPage"
-                  name="Lord Buckley"
-                  component={ BuckleyMainPage }
-                  options={{
-                      drawerIcon: ({ focused }) => (
-                          <Entypo name="man" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
-                      ),
-                  }}
-                />
-                <Drawer.Screen
-                  key="AboutMainPage"
-                  name="About the App"
-                  component={ AboutMainPage }
-                  options={{
-                      drawerIcon: ({ focused }) => (
-                          <Entypo name="info" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
-                      ),
-                  }}
-                />
+                { screens.map(drawer => 
+                    <Drawer.Screen
+                      key={ drawer.key }
+                      name={ drawer.title }
+                      component={ drawer.component }
+                      options={{
+                          drawerIcon: ({ focused, color, size }) => (
+                              <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? "#e91e63" : "black" }/>
+                          ),
+                      }}
+                    />
+                )}
               </Drawer.Navigator>
             </NavigationContainer>
           </SafeAreaProvider>
