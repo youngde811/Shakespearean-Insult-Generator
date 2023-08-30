@@ -23,12 +23,12 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
+import { StatusBar } from 'expo-status-bar';
 import { Alert, Text, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationContainer } from '@react-navigation/native';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Entypo, Feather } from '@expo/vector-icons';
@@ -37,28 +37,13 @@ import { setJSExceptionHandler } from 'react-native-exception-handler';
 import RNRestart from 'react-native-restart';
 
 import InsultPage from './src/mobile/InsultPage';
-import About from './src/mobile/About';
+import FavoriteInsults from './src/mobile/FavoriteInsults';
+import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 
 import styles from './src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
-
-const Drawer = createDrawerNavigator();
-
-function Header({ screen }) {
-    const navigation = useNavigation();
-
-    return (
-        <View style={ styles.navigationHeader }>
-          <TouchableOpacity onPress={ () => navigation.toggleDrawer() }>
-            <Entypo name="menu" size={ 24 } color="black"/>
-          </TouchableOpacity>
-          <View>
-            <Text style={ styles.navigationHeaderText }/>
-          </View>
-        </View>
-    );
-}
+const backgroundImage = require("./assets/images/willie.png");
 
 function InsultsMainPage() {
     return (
@@ -66,11 +51,25 @@ function InsultsMainPage() {
     );
 }
 
-function AboutPage() {
+function FavoritesMainPage() {
     return (
-        <About appConfig={ appConfig }/>
+        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => console.log("Dismiss FavoriteInsults") }/>
     );
 }
+
+function BuckleyMainPage() {
+    return (
+        <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => console.log("Dismiss wiki page") }/>
+    );
+}
+
+function AboutMainPage() {
+    return (
+        <EmbeddedWebView webPage={ appConfig.changeLog } setDismiss={ () => console.log("Dismiss about page") }/>
+    );
+}
+
+const DrawerNavigation = createDrawerNavigator();
 
 export default function App() {
     const masterErrorHandler = (e, isFatal) => {
@@ -93,48 +92,6 @@ export default function App() {
 
     return (
           <SafeAreaProvider>
-            <SafeAreaView style={ [{ paddingTop: 10 }, styles.appTopView] }>
-              <NavigationContainer>
-                <Drawer.Navigator
-                  drawerType="front"
-                  initialRouteName="InsultPage"
-                  screenOptions={ styles.drawerContent }
-                >
-                  <Drawer.Screen
-                    key="InsultPage"
-                    name="Insults"
-                    options={{ drawerIcon: ({ focused }) =>
-                        <Feather name={ "list" } size={ 24 } color={ focused ? "#e91e63" : "black" }
-                        />
-                        ,
-                        headerShown: true,
-                        header: ({ scene }) => {
-                            return (
-                                <Header screen={ "Insults" }/>
-                            );
-                        }
-                    }}
-                    component={ InsultsMainPage }
-                  />
-                  <Drawer.Screen
-                    key="AboutPage"
-                    name="About this App"
-                    options={{ drawerIcon: ({ focused }) =>
-                        <Feather name={ "info" } size={ 24 } color={ focused ? "#e91e63" : "black" }
-                        />
-                        ,
-                        headerShown: true,
-                        header: ({ scene }) => {
-                            return (
-                                <Header screen={ "About this App" }/>
-                            );
-                        }
-                    }}
-                    component={ AboutPage }
-                  />
-                </Drawer.Navigator>
-              </NavigationContainer>
-            </SafeAreaView>
           </SafeAreaProvider>
     );
 }

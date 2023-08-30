@@ -22,16 +22,19 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Image, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import { AppBar, HStack, IconButton, Button } from '@react-native-material/core';
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Entypo, Feather } from '@expo/vector-icons';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -43,6 +46,8 @@ import styles from '../styles/styles.js';
 
 const backgroundImage = require("../../assets/images/willie.png");
 const insults = require('../../assets/data/insults.json');
+
+const Drawer = createDrawerNavigator();
 
 SplashScreen.preventAutoHideAsync();
 
@@ -99,6 +104,9 @@ export default function WillieShakeInsults({ appConfig }) {
             <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar }
                     subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
                         <HStack>
+                          <TouchableOpacity onPress={ () => navigation.toggleDrawer() }>
+                            <Entypo name="menu" size={ 24 } color="white"/>
+                          </TouchableOpacity>
                           <IconButton
                             icon={ props => <MaterialIcons name="favorite" { ...props }/>} onPress={ showFavorites }
                             { ...props }/>
