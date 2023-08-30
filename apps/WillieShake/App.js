@@ -101,7 +101,14 @@ export default function App() {
                     activeTintColor: '#e91e63',
                     itemStyle: { marginVertical: 10 },
                 }}
-                >
+                screenOptions={{
+                    headerShown: true,
+                    headerTitleAlign: 'center',
+                    header: () => (
+                        <NavigationHeader appConfig={ appConfig }/>
+                    )
+                }}
+              >
                 <Drawer.Screen
                   key="InsultsMainPage"
                   name="Shakespearean Insults"
@@ -111,12 +118,6 @@ export default function App() {
                       drawerIcon: ({ focused, color, size }) => (
                           <Entypo name="list" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
                       ),
-                      headerShown: true,
-                      header: ({ scene }) => (
-                          return (
-                              <NavigationHeader screen="Shakespearean Insults"/>
-                          );
-                    );
                   }}
                 />
                 <Drawer.Screen
@@ -127,12 +128,6 @@ export default function App() {
                       drawerIcon: ({ focused }) => (
                           <Entypo name="heart-outlined" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
                       ),
-                      headerShown: true,
-                      header: ({ scene }) => (
-                          return (
-                              <NavigationHeader screen="Favorite Insults"/>
-                          );
-                    );
                   }}
                 />
                 <Drawer.Screen
@@ -143,12 +138,6 @@ export default function App() {
                       drawerIcon: ({ focused }) => (
                           <Entypo name="man" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
                       ),
-                      headerShown: true,
-                      header: ({ scene }) => (
-                          return (
-                              <NavigationHeader screen="Lord Buckley"/>
-                          );
-                    );
                   }}
                 />
                 <Drawer.Screen
@@ -159,12 +148,7 @@ export default function App() {
                       drawerIcon: ({ focused }) => (
                           <Entypo name="info" size={ 24 } color={ focused ? "#e91e63" : "black" }/>
                       ),
-                      headerShown: true,
-                      header: ({ scene }) => (
-                          return (
-                              <NavigationHeader screen="About the App"/>
-                          );
-                    );
+                  }}
                 />
               </Drawer.Navigator>
             </NavigationContainer>

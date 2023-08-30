@@ -27,7 +27,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/styles.js';
 
-export default function NavigationHeader({ screen, appConfig }) {
+export default function NavigationHeader({ appConfig }) {
     const navigation = useNavigation();
 
     return (
