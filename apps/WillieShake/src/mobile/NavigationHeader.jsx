@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import { View, Text } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
@@ -30,8 +30,6 @@ import styles from '../styles/styles.js';
 
 export default function NavigationHeader({ appConfig }) {
     const navigation = useNavigation();
-
-    console.log("NavigationHeader() is rendering:");
 
     return (
         <SafeAreaProvider>

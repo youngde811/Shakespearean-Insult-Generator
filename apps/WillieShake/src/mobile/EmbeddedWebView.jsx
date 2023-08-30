@@ -25,6 +25,7 @@ import React, { useState } from 'react';
 import { Modal, Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 import PressableOpacity from './PressableOpacity';
 
@@ -37,8 +38,10 @@ function LoadingIndicator() {
 };
 
 export default function EmbeddedWebView({ webPage, setDismiss }) {
+    const navigation = useNavigation();
+    
     const onPress = () => {
-        setDismiss();
+        navigation.jumpTo("Shakespearean Insults");
     };
     
     return (

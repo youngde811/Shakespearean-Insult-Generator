@@ -74,7 +74,7 @@ const Drawer = createDrawerNavigator();
 
 const screens = [
     {
-        key: "InsultsMainPage",
+        key: "Shakespearean Insults",
         title: "Shakespearean Insults",
         iconName: "list",
         component: InsultsMainPage,
@@ -124,6 +124,7 @@ export default function App() {
               <Drawer.Navigator
                 drawerType="front"
                 initialRouteName="InsultsMainPage"
+                backBehavior = "history"
                 screenOptions={{
                     activeTintColor: '#e91e63',
                     itemStyle: { marginVertical: 10 },
