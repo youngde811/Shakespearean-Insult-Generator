@@ -100,23 +100,6 @@ export default function WillieShakeInsults({ appConfig, backgroundImage }) {
         <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 10 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
-            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle } style={ styles.appBar }
-                    subtitleStyle={ styles.appBarSubtitle } transparent={ true } trailing={ props => (
-                        <HStack>
-                          <TouchableOpacity onPress={ () => navigation.toggleDrawer() }>
-                            <Entypo name="menu" size={ 24 } color="white"/>
-                          </TouchableOpacity>
-                          <IconButton
-                            icon={ props => <MaterialIcons name="favorite" { ...props }/>} onPress={ showFavorites }
-                            { ...props }/>
-                          <IconButton
-                            icon={ props => <EvilIcons name="sc-github" { ...props }/>} onPress={ showProject }
-                            { ...props }/>
-                          <IconButton
-                            icon={ props => <EvilIcons name="external-link" { ...props }/>} onPress={ showWiki }
-                            { ...props }/>
-                        </HStack>
-                    )}/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
               { insultData.length > 0 ? 
@@ -124,9 +107,6 @@ export default function WillieShakeInsults({ appConfig, backgroundImage }) {
                 :
                 null }
             </View>
-            { wikiVisible ? <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => setWikiVisible(false) }/> : null }
-            { gitHubVisible ? <EmbeddedWebView webPage={ appConfig.projectURL } setDismiss={ () => setGitHubVisible(false) }/> : null }
-            { favoritesVisible ? <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => setFavoritesVisible(false) }/> : null }
           </SafeAreaView>
         </ImageBackground>
     );

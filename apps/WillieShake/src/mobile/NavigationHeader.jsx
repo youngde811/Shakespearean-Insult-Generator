@@ -21,7 +21,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -33,7 +33,7 @@ export default function NavigationHeader({ appConfig }) {
     return (
         <View style={ styles.navigationHeader }>
           <TouchableOpacity onPress={ () => navigation.toggleDrawer }>
-            <Entypo name="menu" size={ 24 } color="black"/>
+            <Entypo name="menu" size={ 24 } color="white"/>
           </TouchableOpacity>
         </View>
     );
