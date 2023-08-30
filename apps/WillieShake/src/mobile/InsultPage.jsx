@@ -44,14 +44,13 @@ import FavoriteInsults from './FavoriteInsults';
 
 import styles from '../styles/styles.js';
 
-const backgroundImage = require("../../assets/images/willie.png");
 const insults = require('../../assets/data/insults.json');
 
 const Drawer = createDrawerNavigator();
 
 SplashScreen.preventAutoHideAsync();
 
-export default function WillieShakeInsults({ appConfig }) {
+export default function WillieShakeInsults({ appConfig, backgroundImage }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [wikiVisible, setWikiVisible] = useState(false);

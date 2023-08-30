@@ -47,13 +47,13 @@ const backgroundImage = require("./assets/images/willie.png");
 
 function InsultsMainPage() {
     return (
-        <InsultPage appConfig={ appConfig }/>
+        <InsultPage appConfig={ appConfig } backgroundImage={ backgroundImage }/>
     );
 }
 
 function FavoritesMainPage() {
     return (
-        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => console.log("Dismiss FavoriteInsults") }/>
+        <FavoriteInsults appConfig={ appConfig } backgroundImage={ backgroundImage } setDismiss={ () => console.log("Dismiss FavoriteInsults") }/>
     );
 }
 
@@ -69,7 +69,7 @@ function AboutMainPage() {
     );
 }
 
-const DrawerNavigation = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
     const masterErrorHandler = (e, isFatal) => {
@@ -92,6 +92,57 @@ export default function App() {
 
     return (
           <SafeAreaProvider>
+            <NavigationContainer>
+              <Drawer.Navigator
+                drawerType="front"
+                initialRouteName="InsultsMainPage"
+                drawerContentOptions={{
+                    activeTintColor: '#e91e63',
+                    itemStyle: { marginVertical: 10 },
+                }}
+                >
+                <Drawer.Screen
+                  key="InsultsMainPage"
+                  name="Shakespearean Insults"
+                  options={{
+                      drawerIcon: ({ focused }) =>
+                      <Entypo name="list" size={ 24 } color={ focused ? "#e91e63" : "black" }
+                      />
+                  }}
+                  component={ InsultsMainPage }
+                />
+                <Drawer.Screen
+                  key="FavoritesMainPage"
+                  name="Favorite Insults"
+                  options={{
+                      drawerIcon: ({ focused }) =>
+                      <Entypo name="heart-outlined" size={ 24 } color={ focused ? "#e91e63" : "black" }
+                      />
+                  }}
+                  component={ FavoritesMainPage }
+                />
+                <Drawer.Screen
+                  key="BuckleyMainPage"
+                  name="Favorite Insults"
+                  options={{
+                      drawerIcon: ({ focused }) =>
+                      <Entypo name="man" size={ 24 } color={ focused ? "#e91e63" : "black" }
+                      />
+                  }}
+                  component={ BuckleyMainPage }
+                />
+                <Drawer.Screen
+                  key="AboutMainPage"
+                  name="Favorite Insults"
+                  options={{
+                      drawerIcon: ({ focused }) =>
+                      <Entypo name="info" size={ 24 } color={ focused ? "#e91e63" : "black" }
+                      />
+                  }}
+                  component={ AboutMainPage }
+                />
+              </Drawer.Navigator>
+            </NavigationContainer>
           </SafeAreaProvider>
     );
 }
