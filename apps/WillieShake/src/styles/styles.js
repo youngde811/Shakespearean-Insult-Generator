@@ -127,11 +127,9 @@ const styles = StyleSheet.create({
     },
     insultSurface: {
         flex: 1,
-        //paddingBottom: '5%',
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        //marginTop: 4,
         borderRadius: 10,
     },
     flashList: {
