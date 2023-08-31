@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     insultPageView: {
-        //position: 'absolute',
-        //top: 0,
         flex: 1,
         flexDirection: 'column',
         marginTop: 8,
@@ -86,7 +84,6 @@ const styles = StyleSheet.create({
     insultItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     insultText: {
@@ -126,6 +123,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
+        marginBottom: '10%',
+        alignItems: 'stretch',
         position: 'absolute',
     },
     insultSelected: {
@@ -133,22 +132,19 @@ const styles = StyleSheet.create({
     },
     insultSurfaceParent: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 40,
+        justifyContent: 'stretch',
+        paddingBottom: '20%',
         width: '100%',
     },
     insultSurface: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
+        justifyContent: 'stretch',
         borderRadius: 10,
     },
-    flashList: {
+    flatList: {
         flexGrow: 1,
         flexDirection: 'column',
-        alignItems: 'center',
     },
     insultList: {
         flexDirection: 'column',

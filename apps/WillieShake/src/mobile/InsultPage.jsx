@@ -98,7 +98,7 @@ export default function WillieShakeInsults({ appConfig, background }) {
     
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
+          <View style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultPageView }>
@@ -107,7 +107,7 @@ export default function WillieShakeInsults({ appConfig, background }) {
                 :
                 null }
             </View>
-          </SafeAreaView>
+          </View>
         </ImageBackground>
     );
 }
