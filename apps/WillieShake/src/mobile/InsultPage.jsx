@@ -22,43 +22,24 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ActivityIndicator, Image, ImageBackground, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
-import { AppBar, HStack, IconButton, Button } from '@react-native-material/core';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import EvilIcons from '@expo/vector-icons/EvilIcons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Entypo, Feather } from '@expo/vector-icons';
+import { InsultEmAll } from './InsultEmAll';
 
 import * as SplashScreen from 'expo-splash-screen';
-
-import EmbeddedWebView from './EmbeddedWebView';
-import InsultEmAll from './InsultEmAll';
-import FavoriteInsults from './FavoriteInsults';
 
 import styles from '../styles/styles.js';
 
 const insults = require('../../assets/data/insults.json');
-
-const Drawer = createDrawerNavigator();
 
 SplashScreen.preventAutoHideAsync();
 
 export default function WillieShakeInsults({ appConfig, background }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
-    const [wikiVisible, setWikiVisible] = useState(false);
-    const [gitHubVisible, setGitHubVisible] = useState(false);
-    const [favoritesVisible, setFavoritesVisible] = useState(false);
 
-    const navigation = useNavigation();
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
     });
@@ -82,20 +63,6 @@ export default function WillieShakeInsults({ appConfig, background }) {
         return null;
     }
 
-    const showProject = () => {
-        navigation.toggleDrawer();
-        
-        // setGitHubVisible(true);
-    };
-
-    const showWiki = () => {
-        setWikiVisible(true);
-    };
-
-    const showFavorites = () => {
-        setFavoritesVisible(true);
-    };
-    
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <View style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
