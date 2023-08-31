@@ -26,7 +26,7 @@ import { ActivityIndicator, Image, ImageBackground, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 
-import { InsultEmAll } from './InsultEmAll';
+import InsultEmAll from './InsultEmAll';
 
 import * as SplashScreen from 'expo-splash-screen';
 
