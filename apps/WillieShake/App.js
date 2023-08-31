@@ -38,7 +38,6 @@ import RNRestart from 'react-native-restart';
 import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
-import NavigationHeader from './src/mobile/NavigationHeader';
 
 import styles from './src/styles/styles.js';
 
