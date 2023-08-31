@@ -45,7 +45,7 @@ import styles from './src/styles/styles.js';
 const appConfig = require("./assets/appconfig.json");
 const backgroundImage = require("./assets/images/willie.png");
 
-const initialRoute = "Shakespearean Insults";
+const initialRoute = "Available Insults";
 
 function InsultsMainPage() {
     return (
@@ -81,7 +81,7 @@ const Drawer = createDrawerNavigator();
 
 const screens = [
     {
-        key: "Shakespearean Insults",
+        key: "AvailableInsults",
         title: initialRoute,
         iconName: "list",
         component: InsultsMainPage,

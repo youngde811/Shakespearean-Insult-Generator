@@ -100,8 +100,6 @@ export default function WillieShakeInsults({ appConfig, background }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
-            <AppBar title={ appConfig.names.appTitle } subtitle={ appConfig.names.appSubtitle }
-                    style={ styles.appBar } subtitleStyle={ styles.appBarSubtitle } transparent={ true }/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
             <View style={ styles.insultTopView }>
               { insultData.length > 0 ? 

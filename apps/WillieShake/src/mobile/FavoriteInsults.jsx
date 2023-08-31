@@ -135,11 +135,6 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.favoritesTopView }>
             <StatusBar style="auto"/>
-            <View style={ styles.favoritesHeadingView }>
-              <Text style={ styles.favoritesHeading }>
-                { appConfig.names.favoritesTitle }
-              </Text>
-            </View>
             { allFavorites?.length == 0 && ( <NoFavorites/> )}
             <Surface elevation={ 4 } style={ styles.favoritesSurface }>
               <View style={ styles.favoritesListView }>
