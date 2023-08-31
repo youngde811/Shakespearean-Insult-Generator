@@ -101,7 +101,7 @@ export default function WillieShakeInsults({ appConfig, background }) {
           <SafeAreaView style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
-            <View style={ styles.insultTopView }>
+            <View style={ styles.insultPageView }>
               { insultData.length > 0 ? 
                 <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
                 :

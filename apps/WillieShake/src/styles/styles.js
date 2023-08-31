@@ -53,10 +53,22 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontStyle: 'italic',
     },
-    insultTopView: {
+    insultPageView: {
+        //position: 'absolute',
+        //top: 0,
         flex: 1,
         flexDirection: 'column',
-        marginHorizontal: 2,
+        marginTop: 8,
+        height: '100%',
+        width: '100%',
+        justifyContent: 'flex-start',
+    },
+    insultTopView: {
+        position: 'absolute',
+        top: 0,
+        marginTop: 8,
+        height: '100%',
+        width: '100%',
         alignItems: 'stretch',
     },
     backgroundImage: {
@@ -122,6 +134,7 @@ const styles = StyleSheet.create({
     insultSurfaceParent: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
         paddingBottom: 40,
         width: '100%',
     },
@@ -134,7 +147,8 @@ const styles = StyleSheet.create({
     },
     flashList: {
         flexGrow: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     insultList: {
         flexDirection: 'column',
