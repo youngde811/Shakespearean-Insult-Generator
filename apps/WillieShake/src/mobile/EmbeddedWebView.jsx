@@ -22,10 +22,9 @@
 
 import React, { useState } from 'react';
 
-import { Modal, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 
 import PressableOpacity from './PressableOpacity';
 
@@ -38,22 +37,16 @@ function LoadingIndicator() {
 };
 
 export default function EmbeddedWebView({ webPage, setDismiss }) {
-    const navigation = useNavigation();
-    
-    const onPress = () => {
-        navigation.jumpTo("Shakespearean Insults");
-    };
-    
     return (
-        <Modal animationType="fade" presentationStyle="formSheet">
+        <View style={ styles.webViewTop }>
           <WebView style={ styles.webView } originWhitelist={ ['https://*'] } source={{ url: webPage }}
                    startInLoadingState={ true } startInLoading={ LoadingIndicator }
                    allowsBackForwardNavigationGestures={ true } decelerationRate={ 'normal' }/>
           <View style={ styles.webFooter }>
-            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>
+            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ setDismiss }>
               <Text style={ styles.webText }>Dismiss</Text>
             </PressableOpacity>
           </View>
-        </Modal>
+        </View>
     );
 };

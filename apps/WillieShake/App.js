@@ -23,7 +23,6 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { StatusBar } from 'expo-status-bar';
 import { Alert, Text, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -46,27 +45,35 @@ import styles from './src/styles/styles.js';
 const appConfig = require("./assets/appconfig.json");
 const backgroundImage = require("./assets/images/willie.png");
 
+const initialRoute = "Shakespearean Insults";
+
 function InsultsMainPage() {
     return (
-        <InsultPage appConfig={ appConfig } backgroundImage={ backgroundImage }/>
+        <InsultPage appConfig={ appConfig } background={ backgroundImage }/>
     );
 }
 
 function FavoritesMainPage() {
+    const navigation = useNavigation();
+    
     return (
-        <FavoriteInsults appConfig={ appConfig } backgroundImage={ backgroundImage } setDismiss={ () => console.log("Dismiss FavoriteInsults") }/>
+        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 
 function BuckleyMainPage() {
+    const navigation = useNavigation();
+    
     return (
-        <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => console.log("Dismiss wiki page") }/>
+        <EmbeddedWebView webPage={ appConfig.wikiPage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 
 function AboutMainPage() {
+    const navigation = useNavigation();
+
     return (
-        <EmbeddedWebView webPage={ appConfig.changeLog } setDismiss={ () => console.log("Dismiss about page") }/>
+        <EmbeddedWebView webPage={ appConfig.changeLog } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 
@@ -75,7 +82,7 @@ const Drawer = createDrawerNavigator();
 const screens = [
     {
         key: "Shakespearean Insults",
-        title: "Shakespearean Insults",
+        title: initialRoute,
         iconName: "list",
         component: InsultsMainPage,
     },

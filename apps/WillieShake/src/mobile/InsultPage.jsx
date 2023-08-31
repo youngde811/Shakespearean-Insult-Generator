@@ -51,7 +51,7 @@ const Drawer = createDrawerNavigator();
 
 SplashScreen.preventAutoHideAsync();
 
-export default function WillieShakeInsults({ appConfig, backgroundImage }) {
+export default function WillieShakeInsults({ appConfig, background }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
     const [wikiVisible, setWikiVisible] = useState(false);
@@ -97,7 +97,7 @@ export default function WillieShakeInsults({ appConfig, backgroundImage }) {
     };
     
     return (
-        <ImageBackground source={ backgroundImage } resizeMode='cover' style={ styles.backgroundImage }>
+        <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>

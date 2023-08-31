@@ -57,8 +57,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         marginHorizontal: 2,
-        backgroundColor: 'yellow',
-        // alignItems: 'stretch',
+        alignItems: 'stretch',
     },
     backgroundImage: {
         flex: 1,
@@ -162,6 +161,10 @@ const styles = StyleSheet.create({
     },
     spacer: {
         width: 10,
+    },
+    webViewTop: {
+        flex: 1,
+        height: '90%',
     },
     webView: {
         flex: 0,
