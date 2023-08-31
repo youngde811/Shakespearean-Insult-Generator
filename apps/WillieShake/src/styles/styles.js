@@ -25,19 +25,26 @@ const styles = StyleSheet.create({
         activeTintColor: '#e91e63',
         itemStyle: { marginVertical: 10 },
     },
-    navigationHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        backgroundColor: 'aliceblue',
-        elevation: 5,
-        paddingHorizontal: 20,
-    },
     navigationHeaderText: {
         color: 'black',
         fontFamily: 'Inter-Black',
         fontSize: 15,
+    },
+    headerTextView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignSelf: 'center',
+    },
+    headerTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    headerSubtitle: {
+        fontSize: 12,
+        fontStyle: 'italic',
+        color: 'cadetblue',
     },
     appTopView: {
         flex: 1,

@@ -22,19 +22,27 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import { View, Text } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { getHeaderTitle } from '@react-navigation/elements';
 
 import styles from '../styles/styles.js';
 
-export default function NavigationHeader({ appConfig }) {
-    const navigation = useNavigation();
+export default function NavigationHeader({ appConfig, navigation, route, options }) {
+    const title = getHeaderTitle(options, "Unknown");
 
-    // this makes no sense right now; I'll research what should be rendered.
-    
+    console.log("Route: " + route);
+    console.log("Options: " + JSON.stringify(options, null, 4));
+
     return (
         <SafeAreaProvider>
+          <View style={ styles.headerTextView }>
+            <Text style={ styles.headerTitle }>
+              { title }
+            </Text>
+            <Text style={ styles.headerSubtitle }>
+              { appConfig.names.appSubtitle }
+            </Text>
+          </View>
         </SafeAreaProvider>
     );
 }

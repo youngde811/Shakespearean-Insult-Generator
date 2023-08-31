@@ -39,6 +39,7 @@ import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 import NavigationHeader from './src/mobile/NavigationHeader';
+import HeaderTitle from './src/mobile/HeaderTitle';
 
 import styles from './src/styles/styles.js';
 
@@ -129,20 +130,14 @@ export default function App() {
           <SafeAreaProvider>
             <NavigationContainer>
               <Drawer.Navigator
-                drawerType="front"
+                drawerType="slide"
                 initialRouteName="InsultsMainPage"
                 backBehavior = "history"
                 screenOptions={{
+                    headerShown: true,
+                    unmountOnBlur: true,
                     activeTintColor: '#e91e63',
                     itemStyle: { marginVertical: 10 },
-                }}
-                screenOptions={{
-                    headerShown: true,
-                    headerTitleAlign: 'center',
-                    unmountOnBlur: true,
-                    headerRight: () => (
-                        <NavigationHeader appConfig={ appConfig }/>
-                    )
                 }}
               >
                 { screens.map(drawer => 
