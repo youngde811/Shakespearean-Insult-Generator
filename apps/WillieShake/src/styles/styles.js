@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        backgroundColor: 'linen',
+        backgroundColor: 'aliceblue',
         elevation: 5,
         paddingHorizontal: 20,
     },

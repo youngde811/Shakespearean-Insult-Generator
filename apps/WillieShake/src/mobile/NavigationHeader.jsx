@@ -31,6 +31,8 @@ import styles from '../styles/styles.js';
 export default function NavigationHeader({ appConfig }) {
     const navigation = useNavigation();
 
+    // this makes no sense right now; I'll research what should be rendered.
+    
     return (
         <SafeAreaProvider>
         </SafeAreaProvider>

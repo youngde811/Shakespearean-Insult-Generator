@@ -139,6 +139,7 @@ export default function App() {
                 screenOptions={{
                     headerShown: true,
                     headerTitleAlign: 'center',
+                    unmountOnBlur: true,
                     headerRight: () => (
                         <NavigationHeader appConfig={ appConfig }/>
                     )
@@ -154,7 +155,7 @@ export default function App() {
                               <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
                           ),
                           headerStyle: {
-                              backgroundColor: 'linen',
+                              backgroundColor: 'aliceblue',
                           },
                       }}
                     />
