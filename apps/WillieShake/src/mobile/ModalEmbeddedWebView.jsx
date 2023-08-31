@@ -1,7 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This component offers a modal embeddable web page viewer. We'll use it to show a screen
-// linked to Lord Buckley's WikiPedia page.
+// This component offers a modal embeddable web page viewer.
 
 // MIT License
 
@@ -22,10 +21,8 @@
 
 import React, { useState } from 'react';
 
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Modal, Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import PressableOpacity from './PressableOpacity';
 
@@ -39,8 +36,7 @@ function LoadingIndicator() {
 
 export default function ModalEmbeddedWebView({ webPage, setDismiss }) {
     return (
-        <SafeAreaView style={[{ paddingTop: 0 }, styles.webViewTop ]}>
-          <StatusBar style="auto"/>
+        <Modal animationType="fade" presentationStyle="formSheet">
           <WebView style={ styles.webView } originWhitelist={ ['https://*'] } source={{ url: webPage }}
                    startInLoadingState={ true } startInLoading={ LoadingIndicator }
                    allowsBackForwardNavigationGestures={ true } decelerationRate={ 'normal' }/>
@@ -49,6 +45,6 @@ export default function ModalEmbeddedWebView({ webPage, setDismiss }) {
               <Text style={ styles.webText }>Dismiss</Text>
             </PressableOpacity>
           </View>
-        </SafeAreaView>
+        </Modal>
     );
 };

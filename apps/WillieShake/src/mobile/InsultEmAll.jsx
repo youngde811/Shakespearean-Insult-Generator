@@ -34,7 +34,7 @@ import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
-import EmbeddedWebView from './EmbeddedWebView';
+import ModalEmbeddedWebView from './ModalEmbeddedWebView';
 
 import './Globals';
 
@@ -154,7 +154,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               <Text style={ styles.insultButtonText }>Insult</Text>
             </PressableOpacity>
           </View>
-          { easterEgg != null ? <EmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }
+          { easterEgg != null ? <ModalEmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }
         </View>
     );
 }
