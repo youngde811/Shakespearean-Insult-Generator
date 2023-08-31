@@ -23,7 +23,8 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, FlatList, ImageBackground, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Button, FlatList, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -65,8 +66,6 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         keys = await AsyncStorage.getAllKeys();
         favorites = await retrieveFavoritesUsingKeys(keys);
 
-        console.log("fetchFavorites(): favorites: " + JSON.stringify(favorites, null, 4));
-        
         setAllFavorites(favorites.length > 0 ? favorites : []);
     };
 
@@ -133,8 +132,9 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     };
 
     return (
-        <SafeAreaView style={ styles.favoritesTopView }>
-          <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
+        <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
+          <SafeAreaView style={ styles.favoritesTopView }>
+            <StatusBar style="auto"/>
             <View style={ styles.favoritesHeadingView }>
               <Text style={ styles.favoritesHeading }>
                 { appConfig.names.favoritesTitle }
@@ -146,7 +146,6 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
                 { renderFavorites() }
               </View>
             </Surface>
-          </ImageBackground>
           <View style={ styles.favoritesFooter }>
             <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
                               title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
@@ -162,6 +161,8 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
               <Text style={ styles.favoritesButtonText }>Dismiss</Text>
             </PressableOpacity>
           </View>
-        </SafeAreaView>
+          </SafeAreaView>
+        </ImageBackground>
+
     );
 }
