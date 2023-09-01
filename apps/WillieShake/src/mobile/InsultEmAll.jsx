@@ -21,7 +21,7 @@
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Clipboard, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
