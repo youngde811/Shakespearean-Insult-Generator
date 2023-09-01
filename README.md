@@ -84,6 +84,10 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
+- _09/01/2023_: Version 1.5.1 is on TestFlight now.
+  - Switched to _FlashList_ component for better list rendering and performance.
+  - Nicer color scheme for drawer menu.
+
 - _08/31/2023_: Version 1.5.0 is on TestFlight for exercising.
   - New Navigation Drawer offering the menu options that used to be in the AppBar.
   - Stylistic improvements.
