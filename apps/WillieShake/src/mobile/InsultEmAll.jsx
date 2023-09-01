@@ -25,6 +25,7 @@ import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } f
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlashList } from "@shopify/flash-list";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -134,14 +135,15 @@ export default function InsultEmAll({ insults, appConfig }) {
             { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
               <View style={ styles.flatList }>
-                <FlatList
+                <FlashList
                   ref={ listRef }
                   ItemSeparatorComponent={ insultSeparator }
                   onScroll = { setVerticalOffset }
                   data={ insults }
                   keyExtractor={ extractKeys }
                   showsVerticalScrollIndicator={ false }
-                  maxToRenderPerBatch={ 20 }
+                  estimatedItemSize={ 100 }
+                  extraData={ selectedInsult }
                   renderItem={ renderInsult }/>
                 { listVerticalOffset > listThreshold && (
                     <FloatingPressable onPress={ scrollToTop }/>
