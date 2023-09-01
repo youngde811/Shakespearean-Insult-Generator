@@ -59,7 +59,10 @@ export function _thisSeason() {
 // Just nice and simple for now.
 
 export function thisSeason() {
+    const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+    const southernSeasons = ['Summer', 'Autumn', 'Winter', 'Spring'];
+
     var today = Date.now();
 
-    return Math.floor((today.getMonth() / 12 * 4)) % 4;
+    return northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4];
 }
