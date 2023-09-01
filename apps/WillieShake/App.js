@@ -128,14 +128,16 @@ export default function App() {
           <SafeAreaProvider>
             <NavigationContainer>
               <Drawer.Navigator
-                drawerType="slide"
-                initialRouteName="InsultsMainPage"
-                backBehavior = "history"
+                initialRouteName={ initialRoute }
+                backBehavior="history"
                 screenOptions={{
                     headerShown: true,
                     unmountOnBlur: true,
-                    activeTintColor: '#e91e63',
+                    drawerType: "back",
                     itemStyle: { marginVertical: 10 },
+                    drawerStyle: {
+                        backgroundColor: "aliceblue"
+                    }
                 }}
               >
                 { screens.map(drawer => 

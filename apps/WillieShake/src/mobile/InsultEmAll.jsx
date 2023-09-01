@@ -141,6 +141,7 @@ export default function InsultEmAll({ insults, appConfig }) {
                   data={ insults }
                   keyExtractor={ extractKeys }
                   showsVerticalScrollIndicator={ false }
+                  maxToRenderPerBatch={ 50 }
                   renderItem={ renderInsult }/>
                 { listVerticalOffset > listThreshold && (
                     <FloatingPressable onPress={ scrollToTop }/>
