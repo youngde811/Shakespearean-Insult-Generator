@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
         marginBottom: 6,
         marginTop: 6,
         backgroundColor: 'ghostwhite',
+        opacity: 0.5,
     },
     listHeaderSeason: {
         color: 'teal',
