@@ -161,8 +161,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'ghostwhite',
     },
     listHeaderSeason: {
-        color: 'Inter-Black',
-        fontSize: 16,
+        color: 'teal',
+        fontFamily: 'Inter-Black',
+        fontSize: 14,
         padding: 8,
     },
     listHeaderTyrannis: {
@@ -172,12 +173,6 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     flatList: {
-        flexGrow: 1,
-        height: '100%',
-        width: '100%',
-        flexDirection: 'column',
-    },
-    favoritesList: {
         flexGrow: 1,
         height: '100%',
         width: '100%',
@@ -261,13 +256,13 @@ const styles = StyleSheet.create({
     },
     favoritesSurface: {
         alignItems: 'stretch',
+        height: '95%',
         borderRadius: 10,
-        marginTop: '5%',
         marginLeft: 4,
         marginRight: 4,
     },
     favoritesListView: {
-
+        height: '90%',
     },
     favoritesFooter: {
         flex: 1,

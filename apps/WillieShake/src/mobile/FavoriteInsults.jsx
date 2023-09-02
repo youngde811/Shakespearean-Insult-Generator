@@ -129,7 +129,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
               data={ allFavorites }
               keyExtractor={ (item) => item.id }
               extraData = { selectedInsult }
-              estimatedItemSize = { 50 }
+              estimatedItemSize = { 100 }
               renderItem={ renderInsult }/>
         );
     };
@@ -138,29 +138,31 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.favoritesTopView }>
             <StatusBar style="auto"/>
-            { allFavorites?.length == 0 && ( <NoFavorites/> )}
-            <Surface elevation={ 4 } style={ styles.favoritesSurface }>
-              <View style={ styles.favoritesListView }>
-                { renderFavorites() }
-              </View>
-            </Surface>
-          <View style={ styles.favoritesFooter }>
-            <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
-                              title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
-              <Text style={ styles.favoritesButtonText }>Insult</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ selectedInsult ? styles.favoritesButtons : styles.disabledFavoritesButtons }
-                              title={ 'Forget' } onPress={ () => forgetFavorite() } disabled={ selectedInsult == null }>
-              <Text style={ styles.favoritesButtonText }>Forget</Text>
-            </PressableOpacity>
-            <View style={ styles.spacer }/>
-            <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-              <Text style={ styles.favoritesButtonText }>Dismiss</Text>
-            </PressableOpacity>
-          </View>
+            { allFavorites?.length == 0 ?
+              <NoFavorites/>
+              :
+              <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+                <View style={ styles.favoritesListView }>
+                  { renderFavorites() }
+                </View>
+              </Surface>
+            }
+            <View style={ styles.favoritesFooter }>
+              <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
+                                title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
+                <Text style={ styles.favoritesButtonText }>Insult</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ selectedInsult ? styles.favoritesButtons : styles.disabledFavoritesButtons }
+                                title={ 'Forget' } onPress={ () => forgetFavorite() } disabled={ selectedInsult == null }>
+                <Text style={ styles.favoritesButtonText }>Forget</Text>
+              </PressableOpacity>
+              <View style={ styles.spacer }/>
+              <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
+                <Text style={ styles.favoritesButtonText }>Dismiss</Text>
+              </PressableOpacity>
+            </View>
           </SafeAreaView>
         </ImageBackground>
-
     );
 }
