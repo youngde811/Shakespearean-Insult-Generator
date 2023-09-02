@@ -35,6 +35,7 @@ import * as Linking from 'expo-linking';
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import NoFavorites from './NoFavorites';
+import InsultsHeader from './InsultsHeader';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -138,6 +139,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.favoritesTopView }>
             <StatusBar style="auto"/>
+            <InsultsHeader appConfig={ appConfig }/>
             { allFavorites?.length == 0 ?
               <NoFavorites/>
               :

@@ -191,15 +191,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
     },
-    hatesYou: {
-        alignItems: 'center',
-        paddingBottom: 10,
-    },
-    hatesYouText: {
-        color: 'teal',
-        fontSize: 25,
-        fontWeight: 'bold',
-    },
     spacer: {
         width: 10,
     },
