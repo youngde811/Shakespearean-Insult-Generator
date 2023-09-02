@@ -84,6 +84,11 @@ The insult generator itself is based on the work of Kurt Blair's [Shakespearean 
 
 ## Latest News ##
 
+- _09/02/2023_: Version 1.5.3 is available on the AppStore.
+  - Very nice header on the main and favorites insult pages.
+  - New drawer navigation.
+  - Much faster list performance.
+
 - _09/01/2023_: Version 1.5.1 is on TestFlight now.
   - Switched to _FlashList_ component for better list rendering and performance.
   - Nicer color scheme for drawer menu.

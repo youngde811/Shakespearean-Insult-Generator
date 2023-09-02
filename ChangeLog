@@ -1,3 +1,9 @@
+2023-09-02  David E. Young  <youngde811@pobox.com>
+
+	* AppStore: Release 1.5.3.
+	* Navigation: New drawer navigation menu.
+	* ListHeader: New header box for main and favorites lists.
+
 2023-09-01  David E. Young  <youngde811@pobox.com>
 
 	* TestFlight: Release 1.5.1 now in testing.
