@@ -64,5 +64,5 @@ export function thisSeason() {
 
     var today = Date.now();
 
-    return northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4];
+    return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getYear()];
 }

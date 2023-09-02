@@ -149,6 +149,22 @@ const styles = StyleSheet.create({
         justifyContent: 'stretch',
         borderRadius: 10,
     },
+    listHeaderView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: 'cadetblue',
+    },
+    listHeaderSeason: {
+        color: 'black',
+        fontSize: 14,
+    },
+    listHeaderTyrannis: {
+        color: 'black',
+        fontSize: 12,
+        fontStyle: 'italic',
+    },
     flatList: {
         flexGrow: 1,
         height: '100%',
