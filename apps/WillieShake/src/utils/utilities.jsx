@@ -39,24 +39,8 @@ export function findLongestInsult(insults) {
     return item.insult.length;
 };
 
-// Not quite sure about this algorithm I found. I'll need to research it; lots of new Date creation...
-
-export function _thisSeason() {
-    var today = Date.now();
-    var year = today.getFullYear();
-    
-    var seasons = [
-        { name: 'Spring', date: new Date(year, 2, (year % 4 === 0) ? 19 : 20).getTime() },
-        { name: 'Summer', date: new Date(year, 5, (year % 4 === 0) ? 20 : 21).getTime() },
-        { name: 'Autumn', date: new Date(year, 8, (year % 4 === 0) ? 22 : 23).getTime() },
-        { name: 'Winter', date: new Date(year, 11, (year % 4 === 0) ? 20 : 21).getTime() }
-    ];
-
-    return seasons.filter(({ date }) => date <= today).slice(-1)[0] || {name: "Winter"};
-}
-
-// I don't really care about soltices, equinoxes, hemispheres (no one outside the U.S. is using this app), etc.
-// Just nice and simple for now.
+// I don't really care about solstices, equinoxes, hemispheres (no one outside the U.S. is using this app), etc.
+// Just nice and simple for now; I'll do the southern hemisphere later.
 
 export function thisSeason() {
     const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
