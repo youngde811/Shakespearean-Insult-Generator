@@ -27,6 +27,7 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 
 import InsultEmAll from './InsultEmAll';
+import InsultsHeader from './InsultsHeader';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -68,6 +69,7 @@ export default function WillieShakeInsults({ appConfig, background }) {
           <View style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
+            <InsultsHeader appConfig={ appConfig }/>
             <View style={ styles.insultPageView }>
               { insultData.length > 0 ? 
                 <InsultEmAll insults={ insultData } appConfig={ appConfig }/>

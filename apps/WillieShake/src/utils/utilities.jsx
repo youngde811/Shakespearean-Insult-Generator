@@ -62,7 +62,7 @@ export function thisSeason() {
     const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
     const southernSeasons = ['Summer', 'Autumn', 'Winter', 'Spring'];
 
-    var today = Date.now();
+    var today = new Date();
 
-    return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getYear()];
+    return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getFullYear()];
 }

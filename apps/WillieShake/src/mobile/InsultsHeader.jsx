@@ -24,7 +24,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import styles from '../styles/styles.js';
-import './Globals';
 
 import * as Utilities from '../utils/utilities';
 

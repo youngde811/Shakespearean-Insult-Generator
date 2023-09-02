@@ -28,6 +28,7 @@ import { Button, FlatList, ImageBackground, Text, TouchableOpacity, View } from 
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlashList } from "@shopify/flash-list";
 
 import * as Linking from 'expo-linking';
 
@@ -123,10 +124,12 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         }
 
         return (
-            <FlatList
+            <FlashList
               ItemSeparatorComponent={ favoritesSeparator }
               data={ allFavorites }
               keyExtractor={ (item) => item.id }
+              extraData = { selectedInsult }
+              estimatedItemSize = { 50 }
               renderItem={ renderInsult }/>
         );
     };
