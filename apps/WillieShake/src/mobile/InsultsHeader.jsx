@@ -21,23 +21,31 @@
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import styles from '../styles/styles.js';
 
 import * as Utilities from '../utils/utilities';
 
 export default function InsultsHeader({ appConfig }) {
+    const [tyrannis, setTyrannis] = useState(appConfig.names.tyrannis);
+    
     const [season, year] = Utilities.thisSeason();
 
+    const tyrannisDefinition = () => {
+        setTyrannis(tyrannis === appConfig.names.tyrannis ? appConfig.names.tyrannisDef : appConfig.names.tyrannis);
+    };
+    
     return (
         <View style={ styles.listHeaderView }>
           <Text style={ styles.listHeaderSeason }>
             { season + ", " + year }
           </Text>
-          <Text style={ styles.listHeaderTyrannis }>
-            { appConfig.names.tyrannis }
-          </Text>
+          <TouchableOpacity style={ styles.listHeaderTyrannis } onPress={ tyrannisDefinition }>
+            <Text style={ styles.listHeaderTyrannis }>
+              { tyrannis }
+            </Text>
+          </TouchableOpacity>
         </View>
     );
 }
