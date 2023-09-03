@@ -90,7 +90,7 @@ Thank you to the following individuals for contributing excellent ideas for this
 
 ## Latest News ##
 
-- _09/04/2023_: Version 1.6.0 is available on the AppStore.
+- _09/04/2023_: Version 1.6.1 is available on the AppStore.
   - New seasonal "easter egg" icons!
   
 - _09/02/2023_: Version 1.5.3 is available on the AppStore.

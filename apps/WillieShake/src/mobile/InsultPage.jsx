@@ -38,11 +38,9 @@ const insults = require('../../assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
 
-export default function WillieShakeInsults({ appConfig, background }) {
+export default function WillieShakeInsults({ appConfig, background, season, year }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
-
-    const [season, year] = Utilities.thisSeason();
 
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
