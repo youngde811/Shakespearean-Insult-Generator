@@ -38,3 +38,15 @@ export function findLongestInsult(insults) {
 
     return item.insult.length;
 };
+
+// I don't really care about solstices, equinoxes, hemispheres (no one outside the U.S. is using this app), etc.
+// Just nice and simple for now; I'll do the southern hemisphere later.
+
+export function thisSeason() {
+    const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+    const southernSeasons = ['Summer', 'Autumn', 'Winter', 'Spring'];
+
+    var today = new Date();
+
+    return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getFullYear()];
+}

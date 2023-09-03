@@ -21,6 +21,31 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+    drawerContent: {
+        activeTintColor: '#e91e63',
+        itemStyle: { marginVertical: 10 },
+    },
+    navigationHeaderText: {
+        color: 'black',
+        fontFamily: 'Inter-Black',
+        fontSize: 15,
+    },
+    headerTextView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignSelf: 'center',
+    },
+    headerTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    headerSubtitle: {
+        fontSize: 12,
+        fontStyle: 'italic',
+        color: 'cadetblue',
+    },
     appTopView: {
         flex: 1,
         flexDirection: 'column',
@@ -35,23 +60,20 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontStyle: 'italic',
     },
-    headerTop: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    headerText: {
-        color: 'black',
-        fontFamily: 'Inter-Black',
-        fontSize: 15,
-    },
-    insultTopView: {
+    insultPageView: {
         flex: 1,
         flexDirection: 'column',
-        marginHorizontal: 2,
-        background: 'white',
-        alignItems: 'stretch',
+        marginTop: 8,
+        height: '100%',
+        width: '100%',
+        justifyContent: 'flex-start',
+    },
+    insultTopView: {
+        position: 'absolute',
+        top: 0,
+        marginTop: 8,
+        height: '100%',
+        width: '100%',
     },
     backgroundImage: {
         flex: 1,
@@ -68,7 +90,6 @@ const styles = StyleSheet.create({
     insultItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     insultText: {
@@ -108,6 +129,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
+        marginBottom: '10%',
+        alignItems: 'stretch',
         position: 'absolute',
     },
     insultSelected: {
@@ -115,22 +138,46 @@ const styles = StyleSheet.create({
     },
     insultSurfaceParent: {
         flex: 1,
-        justifyContent: 'center',
-        paddingBottom: 40,
+        justifyContent: 'stretch',
+        paddingBottom: '20%',
         width: '100%',
     },
     insultSurface: {
         flex: 1,
-        paddingBottom: '5%',
         alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        marginTop: 4,
+        justifyContent: 'stretch',
         borderRadius: 10,
     },
-    flashList: {
-        flexGrow: 1,
+    listHeaderView: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        position: 'absolute',
+        top: 2,
+        borderRadius: 5,
+        width: '100%',
+        marginBottom: 6,
+        marginTop: 6,
+        backgroundColor: 'ghostwhite',
+        opacity: 0.5,
+    },
+    listHeaderSeason: {
+        color: 'teal',
+        fontFamily: 'Inter-Black',
+        fontSize: 14,
+        padding: 8,
+    },
+    listHeaderTyrannis: {
+        color: 'black',
+        fontSize: 12,
+        padding: 8,
+        fontStyle: 'italic',
+    },
+    flatList: {
+        flexGrow: 1,
+        height: '100%',
+        width: '100%',
+        flexDirection: 'column',
     },
     insultList: {
         flexDirection: 'column',
@@ -144,15 +191,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
     },
-    hatesYou: {
-        alignItems: 'center',
-        fontWeight: 'bold',
-        color: 'teal',
-        fontSize: 25,
-        paddingBottom: 10,
-    },
     spacer: {
         width: 10,
+    },
+    webViewTop: {
+        flex: 1,
+        height: '90%',
     },
     webView: {
         flex: 0,
@@ -204,13 +248,13 @@ const styles = StyleSheet.create({
     },
     favoritesSurface: {
         alignItems: 'stretch',
+        height: '95%',
         borderRadius: 10,
-        marginTop: '5%',
         marginLeft: 4,
         marginRight: 4,
     },
     favoritesListView: {
-
+        height: '90%',
     },
     favoritesFooter: {
         flex: 1,
@@ -277,6 +321,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
         marginLeft: 2,
+    },
+    aboutPage: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    aboutPageText: {
+        fontSize: 16,
+        fontWeight: '700'
     },
 });
 

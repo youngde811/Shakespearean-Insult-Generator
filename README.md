@@ -68,6 +68,12 @@ project, the hook _useRoute()_ would always work, and yet the hook _useNavigatio
 applying the basic examples. I'm not the only engineer in the community with complaints regarding navigation, so I've
 decided to stay far away from it.
 
+#### Navigation Update ####
+
+I changed my mind, and decided to give the Navigation Drawer components a try. It works now, but a lot of effort and
+reading when into the implementation. This stuff remains poorly documented, requiring much trial and error. But in the
+end, it looks nice.
+
 ## License ##
 
 This software is made available under the _MIT License_. See _LICENSE.md_ for details.
@@ -77,6 +83,19 @@ This software is made available under the _MIT License_. See _LICENSE.md_ for de
 The insult generator itself is based on the work of Kurt Blair's [Shakespearean Insult Generator](https://github.com/Kurt-Blair/Shakespearean-Insult-Generator).
 
 ## Latest News ##
+
+- _09/02/2023_: Version 1.5.3 is available on the AppStore.
+  - Very nice header on the main and favorites insult pages.
+  - New drawer navigation.
+  - Much faster list performance.
+
+- _09/01/2023_: Version 1.5.1 is on TestFlight now.
+  - Switched to _FlashList_ component for better list rendering and performance.
+  - Nicer color scheme for drawer menu.
+
+- _08/31/2023_: Version 1.5.0 is on TestFlight for exercising.
+  - New Navigation Drawer offering the menu options that used to be in the AppBar.
+  - Stylistic improvements.
 
 - _08/17/2023_: Version 1.4.1 is out. A major release to the AppStore:
   - Context-sensitive buttons.

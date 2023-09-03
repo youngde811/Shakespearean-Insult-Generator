@@ -21,9 +21,11 @@
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Animated, Button, Clipboard, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, Clipboard, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlashList } from "@shopify/flash-list";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -33,7 +35,7 @@ import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
-import EmbeddedWebView from './EmbeddedWebView';
+import ModalEmbeddedWebView from './ModalEmbeddedWebView';
 
 import './Globals';
 
@@ -129,22 +131,19 @@ export default function InsultEmAll({ insults, appConfig }) {
     
     return (
         <View style={ styles.insultTopView }>
-          <View style={ styles.hatesYou }>
-            <Text style={ styles.hatesYou }>
-              { appConfig.names.insultTitle }
-            </Text>
-          </View>
           <View style={ styles.insultSurfaceParent }>
             { favoriteAdded && notifyFavoriteAdded() }
             <Surface elevation={ 4 } style={ styles.insultSurface }>
-              <View style={ styles.flashList }>
-                <FlatList
+              <View style={ styles.flatList }>
+                <FlashList
                   ref={ listRef }
                   ItemSeparatorComponent={ insultSeparator }
                   onScroll = { setVerticalOffset }
                   data={ insults }
                   keyExtractor={ extractKeys }
                   showsVerticalScrollIndicator={ false }
+                  estimatedItemSize={ 100 }
+                  extraData={ selectedInsult }
                   renderItem={ renderInsult }/>
                 { listVerticalOffset > listThreshold && (
                     <FloatingPressable onPress={ scrollToTop }/>
@@ -158,7 +157,7 @@ export default function InsultEmAll({ insults, appConfig }) {
               <Text style={ styles.insultButtonText }>Insult</Text>
             </PressableOpacity>
           </View>
-          { easterEgg != null ? <EmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }
+          { easterEgg != null ? <ModalEmbeddedWebView webPage={ easterEgg } setDismiss={ () => setEasterEgg(null) }/> : null }
         </View>
     );
 }

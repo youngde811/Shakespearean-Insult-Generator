@@ -23,16 +23,19 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, FlatList, ImageBackground, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Button, FlatList, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlashList } from "@shopify/flash-list";
 
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
 import NoFavorites from './NoFavorites';
+import InsultsHeader from './InsultsHeader';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -122,30 +125,30 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         }
 
         return (
-            <FlatList
+            <FlashList
               ItemSeparatorComponent={ favoritesSeparator }
               data={ allFavorites }
               keyExtractor={ (item) => item.id }
+              extraData = { selectedInsult }
+              estimatedItemSize = { 100 }
               renderItem={ renderInsult }/>
         );
     };
 
     return (
-        <SafeAreaView style={ styles.favoritesTopView }>
-          <Modal animationType='fade' presentationStyle='formSheet'>
-            <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-              <View style={ styles.favoritesHeadingView }>
-                <Text style={ styles.favoritesHeading }>
-                  { appConfig.names.favoritesTitle }
-                </Text>
-              </View>
-              { allFavorites?.length == 0 && ( <NoFavorites/> )}
+        <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
+          <SafeAreaView style={ styles.favoritesTopView }>
+            <StatusBar style="auto"/>
+            <InsultsHeader appConfig={ appConfig }/>
+            { allFavorites?.length == 0 ?
+              <NoFavorites/>
+              :
               <Surface elevation={ 4 } style={ styles.favoritesSurface }>
                 <View style={ styles.favoritesListView }>
                   { renderFavorites() }
                 </View>
               </Surface>
-            </ImageBackground>
+            }
             <View style={ styles.favoritesFooter }>
               <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
                                 title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
@@ -161,7 +164,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
                 <Text style={ styles.favoritesButtonText }>Dismiss</Text>
               </PressableOpacity>
             </View>
-          </Modal>
-        </SafeAreaView>
+          </SafeAreaView>
+        </ImageBackground>
     );
 }

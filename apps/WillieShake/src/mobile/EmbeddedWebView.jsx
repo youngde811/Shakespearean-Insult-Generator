@@ -22,7 +22,8 @@
 
 import React, { useState } from 'react';
 
-import { Modal, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Text, View } from 'react-native';
 import { ActivityIndicator, WebView } from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -37,20 +38,17 @@ function LoadingIndicator() {
 };
 
 export default function EmbeddedWebView({ webPage, setDismiss }) {
-    const onPress = () => {
-        setDismiss();
-    };
-    
     return (
-        <Modal animationType="fade" presentationStyle="formSheet">
+        <SafeAreaView style={[{ paddingTop: 0 }, styles.webViewTop ]}>
+          <StatusBar style="auto"/>
           <WebView style={ styles.webView } originWhitelist={ ['https://*'] } source={{ url: webPage }}
                    startInLoadingState={ true } startInLoading={ LoadingIndicator }
                    allowsBackForwardNavigationGestures={ true } decelerationRate={ 'normal' }/>
           <View style={ styles.webFooter }>
-            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ onPress }>
+            <PressableOpacity style={ styles.webButtons } title={ 'Dismiss' } onPress={ setDismiss }>
               <Text style={ styles.webText }>Dismiss</Text>
             </PressableOpacity>
           </View>
-        </Modal>
+        </SafeAreaView>
     );
 };
