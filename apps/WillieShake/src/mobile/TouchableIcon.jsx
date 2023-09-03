@@ -27,16 +27,18 @@ import { View } from 'react-native';
 import { IconButton } from '@react-native-material/core';
 import { Spacer } from '@react-native-material/core';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons/faUserSecret';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faUserSecret } from '@fortawesome/free-solid-svg-icons/faUserSecret';
 
 import styles from '../styles/styles.js';
 
-export default function TouchableIcon({ visible, onPress, ...props }) {
+export default function TouchableIcon({ visible, iconName, onPress, ...props }) {
     return (visible ?
             <View style={ styles.touchableIconView }>
               <IconButton
-                icon={ props => <FontAwesomeIcon icon={ faUserSecret } { ...props }/> } color="orchid" opacity={ 0.1 } onPress={ () => onPress() }/>
+                icon={ props => <MaterialCommunityIcons icon={ iconName } { ...props }/> } color="orchid" opacity={ 0.8 } onPress={ () => onPress() }/>
             </View>
             :
             <View style={ styles.touchableSpacerView }/>

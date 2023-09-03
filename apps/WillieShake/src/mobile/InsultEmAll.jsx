@@ -47,6 +47,8 @@ export default function InsultEmAll({ insults, appConfig }) {
     const [listVerticalOffset, setListVerticalOffset] = useState(0);
     const [easterEgg, setEasterEgg] = useState(null);
 
+    const seasonalIcon = Utilities.getSeasonalIcon(Utilities.thisSeason());
+    
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
 
@@ -80,7 +82,7 @@ export default function InsultEmAll({ insults, appConfig }) {
                   { item.insult }
                 </Text>
               </PressableOpacity>
-              <TouchableIcon visible={ item.url.length > 0 } onPress={ () => showEasterEgg(item) }/>
+              <TouchableIcon visible={ item.url.length > 0 } iconName={ seasonalIcon } onPress={ () => showEasterEgg(item) }/>
             </View>
         );
     };
