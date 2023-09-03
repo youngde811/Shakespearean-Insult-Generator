@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
         padding: 4,
         backgroundColor: 'cadetblue',
         borderColor: '#fff',
+        opacity: 0.8,
     },
     insultButtonText: {
         color: 'white',
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
         padding: 4,
         backgroundColor: 'lightgrey',
         borderColor: '#fff',
+        opacity: 0.8,
     },
     insultFooter: {
         bottom: 0,
@@ -156,7 +158,6 @@ const styles = StyleSheet.create({
         top: 2,
         borderRadius: 5,
         width: '100%',
-        marginBottom: 6,
         marginTop: 6,
         backgroundColor: 'ghostwhite',
         opacity: 0.5,
@@ -165,12 +166,12 @@ const styles = StyleSheet.create({
         color: 'teal',
         fontFamily: 'Inter-Black',
         fontSize: 14,
-        padding: 8,
+        padding: 4,
     },
     listHeaderTyrannis: {
         color: 'black',
         fontSize: 12,
-        padding: 8,
+        padding: 4,
         fontStyle: 'italic',
     },
     flatList: {
@@ -223,6 +224,7 @@ const styles = StyleSheet.create({
         marginRight: '4%',
         backgroundColor: 'cadetblue',
         borderColor: '#fff',
+        opacity: 0.8,
     },
     webText: {
         color: 'white',
@@ -276,6 +278,7 @@ const styles = StyleSheet.create({
         marginRight: '4%',
         backgroundColor: 'cadetblue',
         borderColor: '#fff',
+        opacity: 0.8,
     },
     favoritesButtonText: {
         color: 'white',
@@ -292,6 +295,7 @@ const styles = StyleSheet.create({
         marginRight: '4%',
         backgroundColor: 'lightgrey',
         borderColor: '#fff',
+        opacity: 0.8,
     },
     noFavoritesView: {
         flex: 1,
