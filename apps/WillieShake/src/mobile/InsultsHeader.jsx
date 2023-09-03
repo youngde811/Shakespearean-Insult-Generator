@@ -27,11 +27,9 @@ import styles from '../styles/styles.js';
 
 import * as Utilities from '../utils/utilities';
 
-export default function InsultsHeader({ appConfig }) {
+export default function InsultsHeader({ appConfig, season, year }) {
     const [tyrannis, setTyrannis] = useState(appConfig.names.tyrannis);
     
-    const [season, year] = Utilities.thisSeason();
-
     const tyrannisDefinition = () => {
         setTyrannis(tyrannis === appConfig.names.tyrannis ? appConfig.names.tyrannisDef : appConfig.names.tyrannis);
     };

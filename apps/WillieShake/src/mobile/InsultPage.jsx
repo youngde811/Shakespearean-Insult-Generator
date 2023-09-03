@@ -31,6 +31,7 @@ import InsultsHeader from './InsultsHeader';
 
 import * as SplashScreen from 'expo-splash-screen';
 
+import * as Utilities from '../utils/utilities';
 import styles from '../styles/styles.js';
 
 const insults = require('../../assets/data/insults.json');
@@ -40,6 +41,8 @@ SplashScreen.preventAutoHideAsync();
 export default function WillieShakeInsults({ appConfig, background }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
+
+    const [season, year] = Utilities.thisSeason();
 
     const [fontsLoaded] = useFonts({
         'Inter-Black': require('../../assets/fonts/Inter-Black.otf')
@@ -69,10 +72,10 @@ export default function WillieShakeInsults({ appConfig, background }) {
           <View style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
-            <InsultsHeader appConfig={ appConfig }/>
+            <InsultsHeader appConfig={ appConfig } season={ season } year={ year }/>
             <View style={ styles.insultPageView }>
               { insultData.length > 0 ? 
-                <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
+                <InsultEmAll insults={ insultData } appConfig={ appConfig } season={ season }/>
                 :
                 null }
             </View>

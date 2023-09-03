@@ -41,13 +41,13 @@ import './Globals';
 
 import * as Utilities from '../utils/utilities';
 
-export default function InsultEmAll({ insults, appConfig }) {
+export default function InsultEmAll({ insults, appConfig, season }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [listVerticalOffset, setListVerticalOffset] = useState(0);
     const [easterEgg, setEasterEgg] = useState(null);
 
-    const seasonalIcon = Utilities.getSeasonalIcon(Utilities.thisSeason());
+    const seasonalIcon = Utilities.getSeasonalIcon(season);
     
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
@@ -143,7 +143,7 @@ export default function InsultEmAll({ insults, appConfig }) {
                   onScroll = { setVerticalOffset }
                   data={ insults }
                   keyExtractor={ extractKeys }
-                  showsVerticalScrollIndicator={ false }
+                  showsVerticalScrollIndicator={ true }
                   estimatedItemSize={ 100 }
                   extraData={ selectedInsult }
                   renderItem={ renderInsult }/>

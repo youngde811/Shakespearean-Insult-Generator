@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     },
     listHeaderSeason: {
         color: 'teal',
-        fontFamily: 'Inter-Black',
-        fontSize: 14,
+        fontWeight: 'bold',
+        fontSize: 16,
         padding: 4,
     },
     listHeaderTyrannis: {
