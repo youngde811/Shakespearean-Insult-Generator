@@ -35,7 +35,7 @@ export default function TouchableIcon({ visible, iconName, onPress, ...props }) 
     return (visible ?
             <View style={ styles.touchableIconView }>
               <IconButton
-                icon={ props => <Icon name={ "beach" } { ...props }/> } color="orchid" opacity={ 0.4 } onPress={ () => onPress() }/>
+                icon={ props => <Icon name={ iconName } { ...props }/> } color="orchid" opacity={ 0.4 } onPress={ () => onPress() }/>
             </View>
             :
             <View style={ styles.touchableSpacerView }/>
