@@ -39,6 +39,7 @@ import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 
+import * as Utilities from './src/utils/utilities';
 import styles from './src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
@@ -46,9 +47,11 @@ const backgroundImage = require("./assets/images/willie.png");
 
 const initialRoute = "Available Insults";
 
+const [season, year] = Utilities.thisSeason();
+
 function InsultsMainPage() {
     return (
-        <InsultPage appConfig={ appConfig } background={ backgroundImage }/>
+        <InsultPage appConfig={ appConfig } background={ backgroundImage } season={ season } year={ year }/>
     );
 }
 
@@ -56,7 +59,7 @@ function FavoritesMainPage() {
     const navigation = useNavigation();
     
     return (
-        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
+        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } season={ season } year={ year } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 

@@ -50,3 +50,11 @@ export function thisSeason() {
 
     return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getFullYear()];
 }
+
+// All of the icon names here map directly to the Material Community Icons set.
+
+export function getSeasonalIcon(season) {
+    const iconMap = { "Spring": "cross", "Summer": "beach", "Fall": "halloween", "Winter": "forest-outline" };
+
+    return iconMap[season];
+}

@@ -43,7 +43,7 @@ import './Globals';
 
 import * as Utilities from '../utils/utilities';
 
-export default function FavoriteInsults({ appConfig, background, setDismiss }) {
+export default function FavoriteInsults({ appConfig, background, season, year, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -139,7 +139,7 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.favoritesTopView }>
             <StatusBar style="auto"/>
-            <InsultsHeader appConfig={ appConfig }/>
+            <InsultsHeader appConfig={ appConfig } season={ season } year={ year }/>
             { allFavorites?.length == 0 ?
               <NoFavorites/>
               :
