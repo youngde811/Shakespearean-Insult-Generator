@@ -39,11 +39,9 @@ import InsultsHeader from './InsultsHeader';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import './Globals';
-
 import * as Utilities from '../utils/utilities';
 
-export default function FavoriteInsults({ appConfig, background, season, year, setDismiss }) {
+export default function FavoriteInsults({ appConfig, background, setDismiss }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [allFavorites, setAllFavorites] = useState(null);
 
@@ -139,7 +137,7 @@ export default function FavoriteInsults({ appConfig, background, season, year, s
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.favoritesTopView }>
             <StatusBar style="auto"/>
-            <InsultsHeader appConfig={ appConfig } season={ season } year={ year }/>
+            <InsultsHeader appConfig={ appConfig }/>
             { allFavorites?.length == 0 ?
               <NoFavorites/>
               :

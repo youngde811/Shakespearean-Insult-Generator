@@ -25,9 +25,10 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import styles from '../styles/styles.js';
 
+import './Globals.js';
 import * as Utilities from '../utils/utilities';
 
-export default function InsultsHeader({ appConfig, season, year }) {
+export default function InsultsHeader({ appConfig }) {
     const [tyrannis, setTyrannis] = useState(appConfig.names.tyrannis);
     
     const tyrannisDefinition = () => {
@@ -37,7 +38,7 @@ export default function InsultsHeader({ appConfig, season, year }) {
     return (
         <View style={ styles.listHeaderView }>
           <Text style={ styles.listHeaderSeason }>
-            { season + ", " + year }
+            { global.season + ", " + global.year }
           </Text>
           <TouchableOpacity style={ styles.listHeaderTyrannis } onPress={ tyrannisDefinition }>
             <Text style={ styles.listHeaderTyrannis }>

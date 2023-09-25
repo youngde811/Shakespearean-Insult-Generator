@@ -40,6 +40,7 @@ import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 
 import * as Utilities from './src/utils/utilities';
+import Globals from './src/mobile/Globals.js';
 import styles from './src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
@@ -47,11 +48,9 @@ const backgroundImage = require("./assets/images/willie.png");
 
 const initialRoute = "Available Insults";
 
-const [season, year] = Utilities.thisSeason();
-
 function InsultsMainPage() {
     return (
-        <InsultPage appConfig={ appConfig } background={ backgroundImage } season={ season } year={ year }/>
+        <InsultPage appConfig={ appConfig } background={ backgroundImage }/>
     );
 }
 
@@ -109,6 +108,11 @@ const screens = [
 ];
 
 export default function App() {
+    const [season, year] = Utilities.thisSeason();
+
+    global.season = season;
+    global.year = year;
+
     const masterErrorHandler = (e, isFatal) => {
         if (isFatal) {
             Alert.alert(
