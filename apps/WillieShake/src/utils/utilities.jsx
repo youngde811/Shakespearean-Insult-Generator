@@ -39,33 +39,48 @@ export function findLongestInsult(insults) {
     return item.insult.length;
 };
 
-// I don't really care about solstices, equinoxes, hemispheres (no one outside the U.S. is using this app), etc.
-// Just nice and simple for now; I'll do the southern hemisphere later, along with the precise days.
+// thisSeason() considers transition days within each month, but only works for the Northern
+// Hemisphere. At some point I'll do the Southern as well.
 
 export function thisSeason() {
-    var season = "";
-    var today = new Date();
-    var dom = today.getMonth() * 100 + today.getDay();
-
-    console.log('dom: ' + dom);
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                  "November", "December"];
     
-    if (dom <= 315) {
-        season = "Winter";
-    } else if (dom <= 615) {
-        season = "Spring";
-    } else if (dom <= 915) {
-        season = "Summer";
-    } else {
-        season = "Autumn";
-    }
+    var seasons = {
+        "January": ["Winter"],
+        "February": ["Winter"],
+        "March": ["Winter", "Spring"],
+        "April": ["Spring"],
+        "May": ["Spring"],
+        "June": ("Spring", "Summer"),
+        "July": ["Summer"],
+        "August": ["Summer"],
+        "September": ["Summer", "Autumn"],
+        "October": ["Autumn"],
+        "November": ["Autumn"],
+        "December": ["Autumn", "Winter"]
+    };
 
-    return season;
+    var transitions = new Map();
+
+    transitions.set(["Winter", "Spring"], 21);
+    transitions.set(["Spring", "Summer"], 21);
+    transitions.set(["Summer", "Autumn"], 23);
+    transitions.set(["Autumn", "Winter"], 21);
+
+    var today = new Date();
+    var month = months[today.getMonth()];
+    var stuple = seasons[month];
+
+    var transition = stuple in transitions ? transitions[stuple] : 99;
+    
+    return [stuple[today.getDay() <= transition ? 1 : 0], today.getFullYear()];
 }
 
 // All of the icon names here map directly to the Material Community Icons set.
 
 export function getSeasonalIcon(season) {
-    const iconMap = { "Spring": "cross", "Summer": "beach", "Fall": "halloween", "Winter": "forest-outline" };
-
+    const iconMap = { "Spring": "cross", "Summer": "beach", "Autumn": "halloween", "Winter": "forest-outline" };
+    
     return iconMap[season];
 }
