@@ -38,7 +38,7 @@ const insults = require('../../assets/data/insults.json');
 
 SplashScreen.preventAutoHideAsync();
 
-export default function WillieShakeInsults({ appConfig, background, season, year }) {
+export default function WillieShakeInsults({ appConfig, background }) {
     const [insultData, setInsultData] = useState([]);
     const [appIsReady, setAppIsReady] = useState(false);
 
@@ -70,10 +70,10 @@ export default function WillieShakeInsults({ appConfig, background, season, year
           <View style={[{ paddingTop: 0 }, styles.appTopView]} onLayout={ onLayoutRootView }>
             <StatusBar style="auto"/>
             <ActivityIndicator animating={ !appIsReady } size='large' color='#3b63b3'/>
-            <InsultsHeader appConfig={ appConfig } season={ season } year={ year }/>
+            <InsultsHeader appConfig={ appConfig }/>
             <View style={ styles.insultPageView }>
               { insultData.length > 0 ? 
-                <InsultEmAll insults={ insultData } appConfig={ appConfig } season={ season }/>
+                <InsultEmAll insults={ insultData } appConfig={ appConfig }/>
                 :
                 null }
             </View>

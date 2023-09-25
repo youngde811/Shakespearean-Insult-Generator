@@ -41,13 +41,13 @@ import './Globals';
 
 import * as Utilities from '../utils/utilities';
 
-export default function InsultEmAll({ insults, appConfig, season }) {
+export default function InsultEmAll({ insults, appConfig }) {
     const [selectedInsult, setSelectedInsult] = useState(null);
     const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [listVerticalOffset, setListVerticalOffset] = useState(0);
     const [easterEgg, setEasterEgg] = useState(null);
 
-    const seasonalIcon = Utilities.getSeasonalIcon(season);
+    const seasonalIcon = Utilities.getSeasonalIcon(global.season);
     
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
