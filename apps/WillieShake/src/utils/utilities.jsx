@@ -43,12 +43,23 @@ export function findLongestInsult(insults) {
 // Just nice and simple for now; I'll do the southern hemisphere later, along with the precise days.
 
 export function thisSeason() {
-    const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
-    const southernSeasons = ['Summer', 'Autumn', 'Winter', 'Spring'];
-
+    var season = "";
     var today = new Date();
+    var dom = today.getMonth() * 100 + today.getDay();
 
-    return [northernSeasons[Math.floor((today.getMonth() / 12 * 4)) % 4], today.getFullYear()];
+    console.log('dom: ' + dom);
+    
+    if (dom <= 315) {
+        season = "Winter";
+    } else if (dom <= 615) {
+        season = "Spring";
+    } else if (dom <= 915) {
+        season = "Summer";
+    } else {
+        season = "Autumn";
+    }
+
+    return season;
 }
 
 // All of the icon names here map directly to the Material Community Icons set.
