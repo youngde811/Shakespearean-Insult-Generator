@@ -71,9 +71,9 @@ export function thisSeason() {
     var month = months[today.getMonth()];
     var stuple = seasons[month];
 
-    var transition = stuple in transitions ? transitions[stuple] : 99;
-    
-    return [stuple[today.getDay() <= transition ? 1 : 0], today.getFullYear()];
+    var transition = stuple in transitions ? transitions[stuple] : 0;
+
+    return [stuple[today.getDay() >= transition ? 1 : 0], today.getFullYear()];
 }
 
 // All of the icon names here map directly to the Material Community Icons set.
