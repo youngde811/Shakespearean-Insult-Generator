@@ -40,7 +40,7 @@ export function findLongestInsult(insults) {
 };
 
 // thisSeason() considers transition days within each month, but only works for the Northern
-// Hemisphere. At some point I'll do the Southern as well.
+// Hemisphere. At some point I'll do the Southern as well. Algorithm courtesy of: https://stackoverflow.com/users/6298712/ddejohn.
 
 export function thisSeason() {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
@@ -61,12 +61,11 @@ export function thisSeason() {
         "December": ["Autumn", "Winter"]
     };
 
-    var transitions = new Map();
-
-    transitions.set(["Winter", "Spring"], 21);
-    transitions.set(["Spring", "Summer"], 21);
-    transitions.set(["Summer", "Autumn"], 23);
-    transitions.set(["Autumn", "Winter"], 21);
+    var transitions = new Map([
+        [["Winter", "Spring"], 21],
+        [["Spring", "Summer"], 21],
+        [["Summer", "Autumn"], 23],
+        [["Autumn", "Winter"], 21]]);
 
     var today = new Date();
     var month = months[today.getMonth()];
