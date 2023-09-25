@@ -40,7 +40,7 @@ import FavoriteInsults from './src/mobile/FavoriteInsults';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 
 import * as Utilities from './src/utils/utilities';
-import Globals from './src/mobile/Globals.js';
+import './src/mobile/Globals.js';
 import styles from './src/styles/styles.js';
 
 const appConfig = require("./assets/appconfig.json");
@@ -58,7 +58,7 @@ function FavoritesMainPage() {
     const navigation = useNavigation();
     
     return (
-        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } season={ season } year={ year } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
+        <FavoriteInsults appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 

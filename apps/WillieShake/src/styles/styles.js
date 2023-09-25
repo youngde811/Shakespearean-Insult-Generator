@@ -234,7 +234,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         marginHorizontal: 4,
-        //justifyContent: 'flex-start',
         alignItems: 'stretch',
     },
     favoritesHeadingView: {
