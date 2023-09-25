@@ -233,9 +233,8 @@ const styles = StyleSheet.create({
     favoritesTopView: {
         flex: 1,
         flexDirection: 'column',
-        marginHorizontal: 10,
-        marginHorizontal: 10,
-        justifyContent: 'flex-start',
+        marginHorizontal: 4,
+        //justifyContent: 'flex-start',
         alignItems: 'stretch',
     },
     favoritesHeadingView: {

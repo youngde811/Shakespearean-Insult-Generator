@@ -40,7 +40,7 @@ export function findLongestInsult(insults) {
 };
 
 // I don't really care about solstices, equinoxes, hemispheres (no one outside the U.S. is using this app), etc.
-// Just nice and simple for now; I'll do the southern hemisphere later.
+// Just nice and simple for now; I'll do the southern hemisphere later, along with the precise days.
 
 export function thisSeason() {
     const northernSeasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
