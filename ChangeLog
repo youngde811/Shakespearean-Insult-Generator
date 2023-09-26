@@ -1,3 +1,8 @@
+2023-09-26  David E. Young  <youngde811@pobox.com>
+
+	* AppStore: Release 1.6.5.
+	* Cleanup: Removed unnecessary console logging code.
+
 2023-09-25  David E. Young  <youngde811@pobox.com>
 
 	* AppStore: Release 1.6.4.
