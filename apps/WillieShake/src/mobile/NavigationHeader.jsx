@@ -30,9 +30,6 @@ import styles from '../styles/styles.js';
 export default function NavigationHeader({ appConfig, navigation, route, options }) {
     const title = getHeaderTitle(options, "Unknown");
 
-    console.log("Route: " + route);
-    console.log("Options: " + JSON.stringify(options, null, 4));
-
     return (
         <SafeAreaProvider>
           <View style={ styles.headerTextView }>
