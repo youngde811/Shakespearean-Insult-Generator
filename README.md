@@ -90,7 +90,7 @@ Thank you to the following individuals for contributing excellent ideas for this
 
 ## Latest News ##
 
-- _09/26/2023_: Version 1.6.4 is on the AppStore.
+- _09/26/2023_: Version 1.6.5 is on the AppStore.
   - Removed unnecessary console logging code.
 
 - _09/25/2023_: Version 1.6.4 is available on the AppStore.
