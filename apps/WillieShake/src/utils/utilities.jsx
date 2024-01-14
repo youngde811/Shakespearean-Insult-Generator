@@ -72,14 +72,21 @@ export function thisSeason() {
     var stuple = seasons[month];
 
     var transition = stuple in transitions ? transitions[stuple] : 0;
+    var season;
 
-    return [stuple[today.getDay() >= transition ? 1 : 0], today.getFullYear()];
+    if (stuple.length == 1) {
+        season = stuple[0];
+    } else {
+        season = today.getDate() >= transition ? stuple[1] : stuple[0];
+    }
+    
+    return [season, today.getFullYear()];
 }
 
 // All of the icon names here map directly to the Material Community Icons set.
 
 export function getSeasonalIcon(season) {
-    const iconMap = { "Spring": "cross", "Summer": "beach", "Autumn": "halloween", "Winter": "forest-outline" };
+    const iconMap = { "Spring": "cross", "Summer": "beach", "Autumn": "halloween", "Winter": "forest" };
     
     return iconMap[season];
 }
