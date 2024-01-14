@@ -1,3 +1,8 @@
+2024-01-14  David E. Young  <youngde811@pobox.com>
+
+	* AppStore: Release 1.6.7.
+	* HotFix: Fixed bug in season calculation algorithm.
+
 2023-09-26  David E. Young  <youngde811@pobox.com>
 
 	* AppStore: Release 1.6.5.

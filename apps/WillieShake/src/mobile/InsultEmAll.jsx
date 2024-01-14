@@ -48,7 +48,7 @@ export default function InsultEmAll({ insults, appConfig }) {
     const [easterEgg, setEasterEgg] = useState(null);
 
     const seasonalIcon = Utilities.getSeasonalIcon(global.season);
-    
+
     const listThreshold = 300;
     const animation = useRef(new Animated.Value(0)).current;
 
