@@ -46,7 +46,7 @@ export function thisSeason() {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                   "November", "December"];
     
-    var seasons = {
+    const seasons = {
         "January": ["Winter"],
         "February": ["Winter"],
         "March": ["Winter", "Spring"],
@@ -61,7 +61,7 @@ export function thisSeason() {
         "December": ["Autumn", "Winter"]
     };
 
-    var transitions = new Map([
+    const transitions = new Map([
         [["Winter", "Spring"], 21],
         [["Spring", "Summer"], 21],
         [["Summer", "Autumn"], 23],
