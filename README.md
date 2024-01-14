@@ -90,6 +90,9 @@ Thank you to the following individuals for contributing excellent ideas for this
 
 ## Latest News ##
 
+- _01/14/2024_: Version 1.6.7 is on the AppStore.
+  - Fixed season calculation algorithm.
+
 - _09/26/2023_: Version 1.6.5 is on the AppStore.
   - Removed unnecessary console logging code.
 
