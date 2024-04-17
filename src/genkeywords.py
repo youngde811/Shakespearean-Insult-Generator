@@ -39,7 +39,7 @@ def create_wordlist(cachefile, minlen=3, maxlen=7):
 
     with open(word_dict) as strm:
         lines = (line.strip() for line in strm)
-        good_lines = (line for line in lines if re.match("^[a-z]{%s,%s}$" % (minlen, maxlen), line))
+        good_lines = (line for line in lines if re.match(f"^[a-z]{{ {minlen},{maxlen} }}$", line))
 
         for line in good_lines:
             tag = nltk.pos_tag([line])[0][1]
