@@ -22,9 +22,9 @@ def codewords(request):
     params = request.GET
     codewords = []
 
-    refresh = params.get('refresh', 'false')
+    refresh = bool(params.get('refresh', 'false'))
         
-    if (refresh == 'true'):
+    if (refresh):
         count = int(params.get('count', '500'))
         
         refresh_codewords(count)
