@@ -74,11 +74,3 @@ def gen_codewords(codeword_count=500):
     with open(codewords_file, 'w') as strm:
         for codeword in get_nsa_codewords(pickle_cache_file=default_codewords_pickle, total_codewords=codeword_count):
             strm.write("%s\n" % codeword)
-
-
-if __name__ == '__main__':
-    try:
-        main()
-        sys.exit(0)
-    except KeyboardInterrupt:
-        sys.exit(1)
