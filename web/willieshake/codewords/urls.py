@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     path("", views.whoami, name="whoami"),
+    path("codewords", views.codewords, name="codewords"),
 ]
