@@ -16,6 +16,7 @@ import nltk
 
 
 word_dict = '/usr/share/dict/words'
+default_codewords_pickle = 'nsa_codewords.pickle.gz'
 
 
 def load_wordlist(cachefile):
@@ -54,7 +55,7 @@ def create_wordlist(cachefile, minlen=3, maxlen=7):
     return nouns, adjectives
 
 
-def get_nsa_codewords(pickle_cache_file="nsa_codewords.pickle.gz", token_min_length=3, token_max_length=7, total_codewords=20):
+def get_nsa_codewords(pickle_cache_file, token_min_length=3, token_max_length=7, total_codewords=20):
     nouns = []
     adjectives = []
 
@@ -68,13 +69,13 @@ def get_nsa_codewords(pickle_cache_file="nsa_codewords.pickle.gz", token_min_len
             output = [random.choice(nouns), random.choice(nouns)]
         else:
             output = [random.choice(adjectives), random.choice(nouns)]
-            yield "%s" % "".join(output).upper()
+            yield f'{"".join(output).upper()}'
 
 
 def main():
     ap = argparse.ArgumentParser()
 
-    ap.add_argument('-f', '--file', metavar='PATH', dest='codewords', default='nsa_codewords.pickle.gz', type=argparse.FileType('r'),
+    ap.add_argument('-f', '--file', metavar='PATH', dest='codewords', default=default_codewords_pickle, type=argparse.FileType('r'),
                     help='A compressed codeword pickle file')
     ap.add_argument('-c', '--codewords', metavar='COUNT', dest='ncodewords', default=20, type=int, help='The number of code words to generate')
 
