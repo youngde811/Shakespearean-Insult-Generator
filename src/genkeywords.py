@@ -76,10 +76,11 @@ def main():
 
     ap.add_argument('-f', '--file', metavar='PATH', dest='codewords', default='nsa_codewords.pickle.gz', type=argparse.FileType('r'),
                     help='A compressed codeword pickle file')
+    ap.add_argument('-c', '--codewords', metavar='COUNT', dest='ncodewords', default=20, type=int, help='The number of code words to generate')
 
     args = ap.parse_args()
 
-    for codeword in get_nsa_codewords(pickle_cache_file=args.codewords.name):
+    for codeword in get_nsa_codewords(pickle_cache_file=args.codewords.name, total_codewords=args.ncodewords):
         sys.stdout.write("%s\n" % codeword)
 
 
