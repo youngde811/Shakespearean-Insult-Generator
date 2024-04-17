@@ -14,30 +14,53 @@ import sys
 import nltk
 
 
+word_dict = '/usr/share/dict/words'
+
+
+def load_wordlist(cachefile):
+    nouns = []
+    adjectives = []
+    words = []
+
+    with contextlib.closing(gzip.open(cachefile, "rb")) as strm:
+        words = pickle.load(strm)
+
+    nouns = words["nouns"]
+    adjectives = words["adjectives"]
+
+    return nouns, adjectives
+
+
+def create_wordlist(cachefile, minlen=3, maxlen=7):
+    nouns = []
+    adjectives = []
+
+    with open(word_dict) as strm:
+        lines = (line.strip() for line in strm)
+        good_lines = (line for line in lines if re.match("^[a-z]{%s,%s}$" % (minlen, maxlen), line))
+
+        for line in good_lines:
+            tag = nltk.pos_tag([line])[0][1]
+
+            if tag == "NN":
+                nouns.append(line)
+            elif tag == "JJ":
+                adjectives.append(line)
+
+    with contextlib.closing(gzip.open(cachefile, "wb")) as strm:
+        pickle.dump({"nouns": nouns, "adjectives": adjectives}, strm, -1)
+
+    return nouns, adjectives
+
+
 def get_nsa_codewords(pickle_cache_file="nsa_codewords.pickle.gz", token_min_length=3, token_max_length=7, total_codewords=20):
+    nouns = []
+    adjectives = []
+
     if os.path.isfile(pickle_cache_file):
-        with contextlib.closing(gzip.open(pickle_cache_file, "rb")) as f_in:
-            words = pickle.load(f_in)
-        nouns = words["nouns"]
-        adjectives = words["adjectives"]
+        nouns, adjectives = load_wordlist(pickle_cache_file)
     else:
-        nouns = []
-        adjectives = []
-
-        with open("/usr/share/dict/words") as f_in:
-            lines = (line.strip() for line in f_in)
-            good_lines = (line for line in lines if re.match("^[a-z]{%s,%s}$" % (token_min_length, token_max_length), line))
-
-            for line in good_lines:
-                tag = nltk.pos_tag([line])[0][1]
-
-                if tag == "NN":
-                    nouns.append(line)
-                elif tag == "JJ":
-                    adjectives.append(line)
-
-        with contextlib.closing(gzip.open(pickle_cache_file, "wb")) as f_out:
-            pickle.dump({"nouns": nouns, "adjectives": adjectives}, f_out, -1)
+        nouns, adjectives = create_wordlist(pickle_cache_file, token_min_length, token_max_length)
 
     for i in range(total_codewords):
         if random.random() > 0.5:
