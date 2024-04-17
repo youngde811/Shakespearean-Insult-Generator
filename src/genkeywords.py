@@ -3,6 +3,7 @@
 # This Python module may be used to generate NSA-style codewords, just to irritate those
 # guys. Inspiration and support comes from: https://coderwall.com/p/xov5na/generating-nsa-codewords.
 
+import argparse
 import contextlib
 import pickle
 import gzip
@@ -71,7 +72,14 @@ def get_nsa_codewords(pickle_cache_file="nsa_codewords.pickle.gz", token_min_len
 
 
 def main():
-    for codeword in get_nsa_codewords():
+    ap = argparse.ArgumentParser()
+
+    ap.add_argument('-f', '--file', metavar='PATH', dest='codewords', default='nsa_codewords.pickle.gz', type=argparse.FileType('r'),
+                    help='A compressed codeword pickle file')
+
+    args = ap.parse_args()
+
+    for codeword in get_nsa_codewords(pickle_cache_file=args.codewords.name):
         sys.stdout.write("%s\n" % codeword)
 
 
