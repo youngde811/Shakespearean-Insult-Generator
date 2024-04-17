@@ -11,7 +11,11 @@ def whoami(request):
 
 
 def codewords(request):
+    params = request.GET
     codewords = []
+
+    print(f'GET: codewords: {params}')
+    print(f"GET: codewords: params.count: {params.get('count', '')}")
 
     with open(codeword_data, 'r') as strm:
         codewords = strm.read().splitlines()
