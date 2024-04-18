@@ -15,8 +15,8 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# This Python module may be used to generate NSA-style codewords, just to irritate those
-# guys. Inspiration and support comes from: https://coderwall.com/p/xov5na/generating-nsa-codewords.
+# This Python module may be used to generate NSA-style codewords, just to irritate those guys. Inspiration and support
+# comes from: https://coderwall.com/p/xov5na/generating-nsa-codewords.
 
 import contextlib
 import pickle
