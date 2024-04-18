@@ -7,7 +7,6 @@ import gzip
 import os
 import random
 import re
-import sys
 
 import nltk
 
@@ -70,7 +69,7 @@ def get_nsa_codewords(pickle_cache_file, token_min_length=3, token_max_length=7,
             yield f'{"".join(output).upper()}'
 
 
-def gen_codewords(codeword_count=500):
+def gen_codewords(codeword_count=1000):
     with open(codewords_file, 'w') as strm:
         for codeword in get_nsa_codewords(pickle_cache_file=default_codewords_pickle, total_codewords=codeword_count):
             strm.write("%s\n" % codeword)
@@ -78,3 +77,8 @@ def gen_codewords(codeword_count=500):
 
 def refresh_codewords(count):
     gen_codewords(codeword_count=count)
+
+
+def refresh_pickle():
+    if os.path.isfile(default_codewords_pickle):
+        os.remove(default_codewords_pickle)
