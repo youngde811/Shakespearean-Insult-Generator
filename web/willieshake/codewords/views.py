@@ -3,16 +3,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-from codewords import gen_codewords
+from codewords import refresh_codewords
 
 codeword_data = './data/codewords'
 
-
-def refresh_codewords(count):
-    print("refresh_codewords()")
-
-    gen_codewords(codeword_count=count)
-    
 
 def whoami(request):
     return HttpResponse("This is the codewords application server for willieshake")
@@ -22,13 +16,11 @@ def codewords(request):
     params = request.GET
     codewords = []
 
-    refresh = bool(params.get('refresh', 'false'))
-        
-    if (refresh):
-        count = int(params.get('count', '500'))
-        
-        refresh_codewords(count)
-        
+    refresh_count = int(params.get('refresh', '0'))
+
+    if (refresh_count > 0):
+        refresh_codewords(refresh_count)
+
     with open(codeword_data, 'r') as strm:
         codewords = strm.read().splitlines()
 

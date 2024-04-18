@@ -39,7 +39,7 @@ def create_wordlist(cachefile, minlen=3, maxlen=7):
 
     with open(word_dict) as strm:
         lines = (line.strip() for line in strm)
-        good_lines = (line for line in lines if re.match(f"^[a-z]{{ {minlen},{maxlen} }}$", line))
+        good_lines = (line for line in lines if re.match("^[a-z]{%s,%s}$" % (minlen, maxlen), line))
 
         for line in good_lines:
             tag = nltk.pos_tag([line])[0][1]
@@ -73,15 +73,17 @@ def get_nsa_codewords(pickle_cache_file, token_min_length=3, token_max_length=7,
 
 
 def main():
+    global default_codewords_pickle
+
     ap = argparse.ArgumentParser()
 
-    ap.add_argument('-f', '--file', metavar='PATH', dest='codewords', default=default_codewords_pickle,
-                    help='A compressed codeword pickle file')
-    ap.add_argument('-c', '--codewords', metavar='COUNT', dest='ncodewords', default=20, type=int, help='The number of code words to generate')
+    ap.add_argument('-f', '--file', metavar='PATH', dest='pickle_file', default=default_codewords_pickle,
+                    help='use PATH as the compressed codeword pickle file')
+    ap.add_argument('-c', '--codewords', metavar='COUNT', dest='ncodewords', default=20, type=int, help='the number of code words to generate')
 
     args = ap.parse_args()
 
-    for codeword in get_nsa_codewords(pickle_cache_file=args.codewords, total_codewords=args.ncodewords):
+    for codeword in get_nsa_codewords(pickle_cache_file=args.pickle_file, total_codewords=args.ncodewords):
         sys.stdout.write("%s\n" % codeword)
 
 

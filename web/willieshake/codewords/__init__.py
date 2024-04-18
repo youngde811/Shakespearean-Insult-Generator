@@ -37,7 +37,7 @@ def create_wordlist(cachefile, minlen=3, maxlen=7):
 
     with open(word_dict) as strm:
         lines = (line.strip() for line in strm)
-        good_lines = (line for line in lines if re.match(f"^[a-z]{{ {minlen},{maxlen} }}$", line))
+        good_lines = (line for line in lines if re.match("^[a-z]{%s,%s}$" % (minlen, maxlen), line))
 
         for line in good_lines:
             tag = nltk.pos_tag([line])[0][1]
@@ -74,3 +74,7 @@ def gen_codewords(codeword_count=500):
     with open(codewords_file, 'w') as strm:
         for codeword in get_nsa_codewords(pickle_cache_file=default_codewords_pickle, total_codewords=codeword_count):
             strm.write("%s\n" % codeword)
+
+
+def refresh_codewords(count):
+    gen_codewords(codeword_count=count)
