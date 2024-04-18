@@ -1,6 +1,5 @@
 # This is the entrypoint to our Django willieshake application server.
 
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
 from codewords import refresh_codewords
@@ -27,3 +26,13 @@ def codewords(request):
     response = JsonResponse({'codewords': codewords})
 
     return response
+
+
+def generate_pickle(request):
+    print(f'generate_pickle: {request}')
+
+    return HttpResponse("Generating a new pickle file")
+
+
+def list_codewords(request):
+    return codewords(request)
