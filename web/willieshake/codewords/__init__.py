@@ -79,6 +79,10 @@ def refresh_codewords(count):
     gen_codewords(codeword_count=count)
 
 
-def refresh_pickle():
+def refresh_pickle(minlen, maxlen):
     if os.path.isfile(default_codewords_pickle):
         os.remove(default_codewords_pickle)
+
+    create_wordlist(default_codewords_pickle, minlen=minlen, maxlen=maxlen)
+
+    return None

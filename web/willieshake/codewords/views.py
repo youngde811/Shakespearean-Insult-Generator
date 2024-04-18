@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse, JsonResponse
 
-from codewords import refresh_codewords
+from codewords import refresh_codewords, refresh_pickle
 
 codeword_data = './data/codewords'
 
@@ -29,9 +29,14 @@ def codewords(request):
 
 
 def generate_pickle(request):
-    print(f'generate_pickle: {request}')
+    params = request.GET
 
-    return HttpResponse("Generating a new pickle file")
+    minlen = int(params.get('minlen', '7'))
+    maxlen = int(params.get('maxlen', '20'))
+
+    refresh_pickle(minlen, maxlen)
+
+    return HttpResponse("Generated new pickle file")
 
 
 def list_codewords(request):
