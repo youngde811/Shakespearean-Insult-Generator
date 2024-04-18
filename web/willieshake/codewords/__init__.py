@@ -27,7 +27,6 @@ import re
 
 import nltk
 
-
 word_dict = '/usr/share/dict/words'
 default_codewords_pickle = 'data/nsa_codewords.pickle.gz'
 codewords_file = 'data/codewords'
