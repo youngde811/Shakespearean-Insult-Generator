@@ -37,6 +37,7 @@ import RNRestart from 'react-native-restart';
 
 import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
+import FJB from './src/mobile/FJB';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
 
 import * as Utilities from './src/utils/utilities';
@@ -78,6 +79,14 @@ function AboutMainPage() {
     );
 }
 
+function FJBMainPage() {
+    const navigation = useNavigation();
+
+    return (
+        <FJB appConfig={ appConfig } background={ backgroundImage }/>
+    );
+}
+
 const Drawer = createDrawerNavigator();
 
 const screens = [
@@ -98,6 +107,12 @@ const screens = [
         title: "Lord Buckley",
         iconName: "man",
         component: BuckleyMainPage
+    },
+    {
+        key: "AnnoyNSAMainPage",
+        title: "Annoy the NSA",
+        iconName, "man",
+        component: FJBMainPage,
     },
     {
         key: "AboutMainPage",
