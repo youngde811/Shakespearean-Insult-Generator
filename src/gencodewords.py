@@ -1,5 +1,22 @@
 #!/usr/bin/env python
 
+# MIT License
+
+# Copyright (c) 2023 David Young
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+# documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+# Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 # This Python module may be used to generate NSA-style codewords, just to irritate those
 # guys. Inspiration and support comes from: https://coderwall.com/p/xov5na/generating-nsa-codewords.
 
@@ -72,6 +89,11 @@ def get_nsa_codewords(pickle_cache_file, token_min_length=3, token_max_length=7,
             yield f'{"".join(output).upper()}'
 
 
+def clear_pickle_file(fname):
+    if os.path.isfile(fname):
+        os.remove(fname)
+
+
 def main():
     global default_codewords_pickle
 
@@ -80,8 +102,12 @@ def main():
     ap.add_argument('-f', '--file', metavar='PATH', dest='pickle_file', default=default_codewords_pickle,
                     help='use PATH as the compressed codeword pickle file')
     ap.add_argument('-c', '--codewords', metavar='COUNT', dest='ncodewords', default=20, type=int, help='the number of code words to generate')
+    ap.add_argument('-r', '--remove', dest='remove_pickle', action='store_true', default=False, help='generate a new pickle cache file')
 
     args = ap.parse_args()
+
+    if args.remove_pickle:
+        clear_pickle_file(args.pickle_file)
 
     for codeword in get_nsa_codewords(pickle_cache_file=args.pickle_file, total_codewords=args.ncodewords):
         sys.stdout.write("%s\n" % codeword)
