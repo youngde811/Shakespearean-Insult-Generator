@@ -55,9 +55,7 @@ export function fetchNSACodewords(appConfig, setLoading, errorHandler) {
         }
     };
 
-    useEffect(() => {
-        fetchCodewords();
-    }, []);
+    fetchCodewords();
 
     return codewords;
 }
