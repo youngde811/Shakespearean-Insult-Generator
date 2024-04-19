@@ -19,7 +19,7 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as Clipboard from 'expo-clipboard';
 
@@ -40,9 +40,24 @@ export function findLongestInsult(insults) {
 };
 
 export function fetchNSACodewords(appConfig) {
-    const fetchCodewords = async () => {
+    const [codewords, setCodewords] = useState(null);
 
+    const fetchCodewords = async () => {
+        try {
+            const resp = await fetch(appConfig.nsaCodewordsURL);
+            const data = await resp.json();
+
+            setCodewords(data);
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+    useEffect(() => {
+        fetchCodewords();
+    }, []);
+
+    return codewords;
 }
 
 // thisSeason() considers transition days within each month, but only works for the Northern
