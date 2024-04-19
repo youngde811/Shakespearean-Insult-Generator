@@ -39,8 +39,8 @@ export function findLongestInsult(insults) {
     return item.insult.length;
 };
 
-export function fetchNSACodewords(appConfig) {
-    const [codewords, setCodewords] = useState(null);
+export function fetchNSACodewords(appConfig, setLoading, errorHandler) {
+    const [codewords, setCodewords] = useState([]);
 
     const fetchCodewords = async () => {
         try {
@@ -49,7 +49,9 @@ export function fetchNSACodewords(appConfig) {
 
             setCodewords(data);
         } catch (error) {
-            console.error(error);
+            errorHandler(error);
+        } finally {
+            setLoading(false);
         }
     };
 
