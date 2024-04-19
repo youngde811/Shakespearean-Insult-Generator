@@ -21,5 +21,5 @@
 
 global.keyPrefix = "@willie:";
 global.smstag = "sms://&body=";
-global.season = "Summar";
+global.season = "Summer";
 global.year = 2023;

@@ -1,8 +1,7 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This component is used to render the "favorite insults" page. There's some code replication here
-// from the InsultEmAll component, and I might refactor later. For now, this component retrieves favorite
-// insults using AsyncStorage.
+// This component is used to render a page that fetchs and renders "codewords" intended specicially to
+// annoy the useless NSA.
 
 // MIT License
 
