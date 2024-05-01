@@ -354,6 +354,19 @@ const styles = StyleSheet.create({
     codeWordsListView: {
         height: '90%',
     },
+    fetchErrorView: {
+        flex: 1,
+        alignmentDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    fetchErrorText: {
+        alignItems: 'center',
+        fontWeight: 'bold',
+        color: 'maroon',
+        fontSize: 20,
+        paddingBottom: 10,
+    },
 });
 
 export default styles;

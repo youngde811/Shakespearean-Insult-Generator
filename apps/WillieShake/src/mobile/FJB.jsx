@@ -30,7 +30,7 @@ import { FlashList } from "@shopify/flash-list";
 
 import styles from '../styles/styles.js';
 
-import FetchError from './FetchError';
+import FetchAPIError from './FetchAPIError';
 import PressableOpacity from './PressableOpacity';
 
 function LoadingIndicator() {
@@ -85,7 +85,7 @@ export default function FJB({ appConfig, background }) {
                   { isLoading ?
                     LoadingIndicator()
                     : fetchError ?
-                    <FetchError error={ fetchError }/>
+                    <FetchAPIError error={ fetchError }/>
                     : renderFavorites()
                   }
                 </View>
