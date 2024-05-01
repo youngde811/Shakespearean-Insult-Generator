@@ -63,12 +63,6 @@ export default function FJB({ appConfig, background }) {
         fetchCodewords();
     }, []);
 
-    const favoritesSeparator = () => {
-        return (
-            <Divider width={1} color={"cornsilk"}/>
-        );
-    };
-
     const renderFavorites = () => {
         return (
             <FlashList
@@ -85,7 +79,7 @@ export default function FJB({ appConfig, background }) {
           <SafeAreaView style={ styles.fjbTopView }>
             <StatusBar style="auto"/>
             <View style={ styles.codeWordsView }>
-              <Surface elevation={ 4 } style={ styles.favoritesSurface }>
+              <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.favoritesListView }>
                   { isLoading ? LoadingIndicator() : renderFavorites() }
                 </View>

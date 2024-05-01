@@ -333,6 +333,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
+    codeWordsSurface: {
+        alignItems: 'stretch',
+        height: '95%',
+        borderRadius: 10,
+        marginLeft: 4,
+        marginRight: 4,
+    },
+    codeWordsView: {
+        flex: 1,
+        height: '90%',
+        width: '90%',
+    },
 });
 
 export default styles;
