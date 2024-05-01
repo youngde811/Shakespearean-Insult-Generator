@@ -29,8 +29,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useNavigation, NavigationContainer } from '@react-navigation/native';
 
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { Entypo, Feather } from '@expo/vector-icons';
+import { Entypo, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { setJSExceptionHandler } from 'react-native-exception-handler';
 import RNRestart from 'react-native-restart';
@@ -109,10 +108,10 @@ const screens = [
         component: BuckleyMainPage
     },
     {
-        key: "AnnoyNSAMainPage",
+        key: "FJBMainPage",
         title: "Annoy the NSA",
-        iconName, "man",
-        component: FJBMainPage,
+        iconName: "mask",
+        component: FJBMainPage
     },
     {
         key: "AboutMainPage",

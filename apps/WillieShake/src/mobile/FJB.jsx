@@ -40,6 +40,8 @@ export default function FJB({ appConfig, background }) {
     
     const fetchCodewords = async () => {
         setIsLoading(true);
+
+        console.log(`NSA URL: ${appConfig.nsaCodewordsURL}`);
         
         try {
             const resp = await fetch(appConfig.nsaCodewordsURL);

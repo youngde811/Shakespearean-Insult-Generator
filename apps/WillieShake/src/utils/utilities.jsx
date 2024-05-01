@@ -39,27 +39,6 @@ export function findLongestInsult(insults) {
     return item.insult.length;
 };
 
-export function fetchNSACodewords(appConfig, setLoading, errorHandler) {
-    const [codewords, setCodewords] = useState([]);
-
-    const fetchCodewords = async () => {
-        try {
-            const resp = await fetch(appConfig.nsaCodewordsURL);
-            const data = await resp.json();
-
-            setCodewords(data);
-        } catch (error) {
-            errorHandler(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    fetchCodewords();
-
-    return codewords;
-}
-
 // thisSeason() considers transition days within each month, but only works for the Northern
 // Hemisphere. At some point I'll do the Southern as well. Algorithm courtesy of: https://stackoverflow.com/users/6298712/ddejohn.
 
