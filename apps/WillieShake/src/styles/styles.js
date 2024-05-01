@@ -333,6 +333,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
+    fjbTopView: {
+        flex: 1,
+        flexDirection: 'column',
+        marginHorizontal: 4,
+        alignItems: 'stretch',
+    },
     codeWordsSurface: {
         alignItems: 'stretch',
         height: '95%',
@@ -344,6 +350,9 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '90%',
         width: '90%',
+    },
+    codeWordsListView: {
+        height: '90%',
     },
 });
 

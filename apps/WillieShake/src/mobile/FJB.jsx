@@ -80,7 +80,7 @@ export default function FJB({ appConfig, background }) {
             <StatusBar style="auto"/>
             <View style={ styles.codeWordsView }>
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
-                <View style={ styles.favoritesListView }>
+                <View style={ styles.codeWordsListView }>
                   { isLoading ? LoadingIndicator() : renderFavorites() }
                 </View>
               </Surface>
