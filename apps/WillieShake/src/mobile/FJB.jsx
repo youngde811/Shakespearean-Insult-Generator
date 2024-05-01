@@ -44,7 +44,7 @@ function convertCodeWords(codewords) {
     return json;
 }
 
-export default function FJB({ appConfig, background }) {
+export default function FJB({ appConfig, background, setDismiss }) {
     const [codewords, setCodewords] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [fetchError, setFetchError] = useState(null);
@@ -104,7 +104,7 @@ export default function FJB({ appConfig, background }) {
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
                   { isLoading && (
-                      <ActivityIndicator color='#009b88' size='medium'/>
+                      <ActivityIndicator color='#009b88' size='small'/>
                   )}
                   { fetchError && (
                       <FetchAPIError error={ fetchError }/>
@@ -127,6 +127,12 @@ export default function FJB({ appConfig, background }) {
                   )}
                 </View>
               </Surface>
+            </View>
+            <View style={ styles.codeWordsFooter }>
+              <PressableOpacity style={ styles.codeWordsButtons }
+                                title={ 'Dismiss' } onPress={ setDismiss }>
+                <Text style={ styles.codeWordsButtonText }>Dismiss</Text>
+              </PressableOpacity>
             </View>
           </SafeAreaView>
         </ImageBackground>

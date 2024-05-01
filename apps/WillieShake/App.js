@@ -82,7 +82,7 @@ function FJBMainPage() {
     const navigation = useNavigation();
 
     return (
-        <FJB appConfig={ appConfig } background={ backgroundImage }/>
+        <FJB appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
     );
 }
 
