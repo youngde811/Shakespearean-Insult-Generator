@@ -349,13 +349,14 @@ const styles = StyleSheet.create({
     codeWordsView: {
         flex: 1,
         height: '90%',
-        width: '90%',
+        width: '100%',
     },
     codeWordsListView: {
+        width: '100%',
         height: '90%',
     },
     codeWordText: {
-        fontSize: 15,
+        fontSize: 10,
         padding: 2,
         margin: 4,
         color: 'black',

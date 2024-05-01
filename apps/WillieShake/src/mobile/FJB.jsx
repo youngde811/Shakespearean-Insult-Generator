@@ -46,7 +46,7 @@ function convertCodeWords(codewords) {
 
 export default function FJB({ appConfig, background }) {
     const [codewords, setCodewords] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [fetchError, setFetchError] = useState(null);
     const [listVerticalOffset, setListVerticalOffset] = useState(0);
 
@@ -90,8 +90,10 @@ export default function FJB({ appConfig, background }) {
             }
         };
 
-        fetchCodewords();
-        console.log(JSON.stringify(codewords, null, 4));
+        if (!codewords) {
+            fetchCodewords();
+            console.log(JSON.stringify(codewords, null, 4));
+        }
     });
 
     return (
@@ -102,13 +104,13 @@ export default function FJB({ appConfig, background }) {
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
                   { isLoading && (
-                      <ActivityIndicator color='#009b88' size='large'/>
+                      <ActivityIndicator color='#009b88' size='medium'/>
                   )}
                   { fetchError && (
                       <FetchAPIError error={ fetchError }/>
                   )}
                   { codewords && (
-                      <FlatList
+                      <FlashList
                         ref = { listRef }
                         onScroll = { setVerticalOffset }
                         horizontal={ false }
@@ -116,6 +118,7 @@ export default function FJB({ appConfig, background }) {
                         keyExtractor={ extractKey }
                         showsVerticalScrollIndicator={ true }
                         renderItem={ renderCodeWord }
+                        estimatedItemSize={ 1000 }
                         numColumns={ 3 }
                       />
                   )}
