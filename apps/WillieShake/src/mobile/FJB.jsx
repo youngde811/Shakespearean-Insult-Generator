@@ -33,12 +33,6 @@ import styles from '../styles/styles.js';
 import FetchAPIError from './FetchAPIError';
 import PressableOpacity from './PressableOpacity';
 
-function LoadingIndicator() {
-    return (
-        <ActivityIndicator color='#009b88' size='large'/>
-    );
-};
-
 export default function FJB({ appConfig, background }) {
     const [codewords, setCodewords] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -64,17 +58,6 @@ export default function FJB({ appConfig, background }) {
         fetchCodewords();
     }, []);
 
-    const renderFavorites = () => {
-        return (
-            <FlashList
-              horizontal={ false }
-              data={ codewords }
-              numColumns={ 3 }
-              estimatedItemSize = { 500 }
-            />
-        );
-    };
-
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView style={ styles.fjbTopView }>
@@ -83,10 +66,20 @@ export default function FJB({ appConfig, background }) {
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
                   { isLoading ?
-                    LoadingIndicator()
+                    (
+                        <ActivityIndicator color='#009b88' size='large'/>
+                    )
                     : fetchError ?
                     <FetchAPIError error={ fetchError }/>
-                    : renderFavorites()
+                    :
+                    (
+                        <FlashList
+                          horizontal={ false }
+                          data={ codewords }
+                          numColumns={ 3 }
+                          estimatedItemSize = { 500 }
+                        />
+                    )
                   }
                 </View>
               </Surface>
