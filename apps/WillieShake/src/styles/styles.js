@@ -382,11 +382,9 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     codeWordText: {
-        fontSize: 10,
+        fontSize: 11,
         padding: 2,
         margin: 4,
-        color: 'maroon',
-        fontWeight: 'bold',
     },
     fetchErrorView: {
         flex: 1,

@@ -23,7 +23,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, FlatList, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Button, ImageBackground, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
@@ -38,10 +38,22 @@ function convertCodeWords(codewords) {
     var json = [];
     
     for (let i = 0; i < codewords.length; i++) {
-        json.push({"id": i, "value": codewords[i]});
+        if ((i % 100) == 0) {
+            json.push({"id": i, "value": "FJB"});
+        } else {
+            json.push({"id": i, "value": codewords[i]});
+        }
     }
 
     return json;
+}
+
+function selectCodewordColor() {
+    const colors = ["black", "maroon", "darkblue", "darkslateblue"];
+
+    let index = Math.floor(Math.random() * colors.length);
+
+    return colors[index];
 }
 
 export default function FJB({ appConfig, background, setDismiss }) {
@@ -57,8 +69,10 @@ export default function FJB({ appConfig, background, setDismiss }) {
     };
 
     const renderCodeWord = ({ item }) => {
+        let color = selectCodewordColor();
+
         return (
-            <Text style={ styles.codeWordText }>
+            <Text style={[{ color: color }, styles.codeWordText]}>
               { item.value }
             </Text>
         );
