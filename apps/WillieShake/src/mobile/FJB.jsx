@@ -23,98 +23,44 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Button, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { Divider } from "@rneui/themed";
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
 
-import * as Linking from 'expo-linking';
-
 import styles from '../styles/styles.js';
 import PressableOpacity from './PressableOpacity';
-import NoFavorites from './NoFavorites';
-import InsultsHeader from './InsultsHeader';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as Utilities from '../utils/utilities';
 
-export default function FavoriteInsults({ appConfig, background, setDismiss }) {
-    const [selectedInsult, setSelectedInsult] = useState(null);
-    const [allFavorites, setAllFavorites] = useState(null);
+export default function FJB({ appConfig, background }) {
+    const [codewords, setCodewords] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [fetchError, setFetchError] = useState(null);
+    
+    const fetchCodewords = async () => {
+        try {
+            const resp = await fetch(appConfig.nsaCodewordsURL);
+            const data = await resp.json();
 
-    const retrieveFavoritesUsingKeys = async(keys) => {
-        let favorites = [];
-        let len = keys.length;
-
-        for (var i = 0; i < len; i++) {
-            let key = keys[i];
-            let insult = await AsyncStorage.getItem(key);
-
-            favorites.push(JSON.parse(insult));
+            setCodewords(data);
+        } catch (error) {
+            setFetchError(error);
+        } finally {
+            setIsLoading(false);
         }
-
-        return favorites;
     };
 
-    const fetchFavorites = async () => {
-        let keys = [];
-        let favorites = [];
-        
-        keys = await AsyncStorage.getAllKeys();
-        favorites = await retrieveFavoritesUsingKeys(keys);
-
-        setAllFavorites(favorites.length > 0 ? favorites : []);
-    };
-
-    const insultSelect = (item) => {
-        if (item.insult === selectedInsult?.insult) {
-            setSelectedInsult(null);
-        } else {
-            setSelectedInsult(item);
-            Utilities.writeClipboard(item.insult);
-        };
-    };
-
-    const renderInsult = ({item}) => {
-        return (
-            <View style={ styles.insultItemContainer }>
-              <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>
-                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }>
-                  { item.insult }
-                </Text>
-              </PressableOpacity>
-            </View>
-        );
-    };
+    useEffect(() => {
+        fetchCodewords();
+    }, []);
 
     const favoritesSeparator = () => {
         return (
             <Divider width={1} color={"cornsilk"}/>
         );
     };
-
-    const sendInsult = () => {
-        if (selectedInsult) {
-            Linking.openURL(global.smstag + selectedInsult.insult);
-        }
-    };
-
-    const forgetFavorite = async () => {
-        if (selectedInsult) {
-            let key = global.keyPrefix + selectedInsult.id;
-
-            await AsyncStorage.removeItem(key);
-
-            setSelectedInsult(null);
-            fetchFavorites();
-        }
-    };
-
-    useEffect (() => {
-        fetchFavorites();
-    }, []);
 
     const renderFavorites = () => {
         if (allFavorites == null) {
