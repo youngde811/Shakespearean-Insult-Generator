@@ -354,6 +354,12 @@ const styles = StyleSheet.create({
     codeWordsListView: {
         height: '90%',
     },
+    codeWordText: {
+        fontSize: 15,
+        padding: 2,
+        margin: 4,
+        color: 'black',
+    },
     fetchErrorView: {
         flex: 1,
         alignmentDirection: 'column',

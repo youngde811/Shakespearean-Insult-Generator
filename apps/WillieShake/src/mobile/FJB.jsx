@@ -20,10 +20,10 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, ImageBackground, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, ImageBackground, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
@@ -32,33 +32,67 @@ import styles from '../styles/styles.js';
 
 import FetchAPIError from './FetchAPIError';
 import PressableOpacity from './PressableOpacity';
+import FloatingPressable from './FloatingPressable';
+
+function convertCodeWords(codewords) {
+    var json = [];
+    
+    for (let i = 0; i < codewords.length; i++) {
+        json.push({"id": i, "value": codewords[i]});
+    }
+
+    return json;
+}
 
 export default function FJB({ appConfig, background }) {
-    const [codewords, setCodewords] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [codewords, setCodewords] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [fetchError, setFetchError] = useState(null);
+    const [listVerticalOffset, setListVerticalOffset] = useState(0);
+
+    const listThreshold = 300;
     
-    const fetchCodewords = async () => {
-        setIsLoading(true);
-
-        console.log(`NSA URL: ${appConfig.nsaCodewordsURL}`);
-        
-        try {
-            const resp = await fetch(appConfig.nsaCodewordsURL);
-            const data = await resp.json();
-
-            setCodewords(data.codewords);
-            console.log(JSON.stringify(codewords, null, 4));
-        } catch (error) {
-            setFetchError(error);
-        } finally {
-            setIsLoading(false);
-        }
+    const extractKey = (item) => {
+        return item.id;
     };
 
+    const renderCodeWord = ({ item }) => {
+        return (
+            <Text style={ styles.codeWordText }>
+                  { item.value }
+            </Text>
+        );
+    };
+
+    const listRef = useRef(null);
+
+    const scrollToTop = () => {
+        listRef.current.scrollToOffset({ offset: 0, animated: true });
+    };
+
+    const setVerticalOffset = (event) => {
+        setListVerticalOffset(event.nativeEvent.contentOffset.y);
+    };
+    
     useEffect(() => {
+        const fetchCodewords = async () => {
+            setIsLoading(true);
+
+            try {
+                const resp = await fetch(appConfig.nsaCodewordsURL);
+                const data = await resp.json();
+
+                setCodewords(convertCodeWords(data.codewords));
+            } catch (error) {
+                setFetchError(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
         fetchCodewords();
-    }, []);
+        console.log(JSON.stringify(codewords, null, 4));
+    });
 
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
@@ -67,22 +101,27 @@ export default function FJB({ appConfig, background }) {
             <View style={ styles.codeWordsView }>
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
-                  { isLoading ?
-                    (
-                        <ActivityIndicator color='#009b88' size='large'/>
-                    )
-                    : fetchError ?
-                    <FetchAPIError error={ fetchError }/>
-                    :
-                    (
-                        <FlashList
-                          horizontal={ false }
-                          data={ codewords }
-                          numColumns={ 3 }
-                          estimatedItemSize = { 500 }
-                        />
-                    )
-                  }
+                  { isLoading && (
+                      <ActivityIndicator color='#009b88' size='large'/>
+                  )}
+                  { fetchError && (
+                      <FetchAPIError error={ fetchError }/>
+                  )}
+                  { codewords && (
+                      <FlatList
+                        ref = { listRef }
+                        onScroll = { setVerticalOffset }
+                        horizontal={ false }
+                        data={ codewords }
+                        keyExtractor={ extractKey }
+                        showsVerticalScrollIndicator={ true }
+                        renderItem={ renderCodeWord }
+                        numColumns={ 3 }
+                      />
+                  )}
+                  { listVerticalOffset > listThreshold && (
+                      <FloatingPressable onPress={ scrollToTop }/>
+                  )}
                 </View>
               </Surface>
             </View>
