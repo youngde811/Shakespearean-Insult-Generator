@@ -1,6 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This component is used to render a page that fetchs and renders "codewords" intended specicially to
+// This component is used to render a page that fetches and renders "codewords" intended specicially to
 // annoy the useless NSA.
 
 // MIT License
@@ -59,7 +59,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
     const renderCodeWord = ({ item }) => {
         return (
             <Text style={ styles.codeWordText }>
-                  { item.value }
+              { item.value }
             </Text>
         );
     };
@@ -92,7 +92,6 @@ export default function FJB({ appConfig, background, setDismiss }) {
 
         if (!codewords) {
             fetchCodewords();
-            console.log(JSON.stringify(codewords, null, 4));
         }
     });
 

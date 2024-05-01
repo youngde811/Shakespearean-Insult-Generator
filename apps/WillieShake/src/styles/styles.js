@@ -385,7 +385,8 @@ const styles = StyleSheet.create({
         fontSize: 10,
         padding: 2,
         margin: 4,
-        color: 'black',
+        color: 'maroon',
+        fontWeight: 'bold',
     },
     fetchErrorView: {
         flex: 1,
