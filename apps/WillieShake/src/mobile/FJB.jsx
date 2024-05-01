@@ -34,6 +34,12 @@ import PressableOpacity from './PressableOpacity';
 
 import * as Utilities from '../utils/utilities';
 
+function LoadingIndicator() {
+    return (
+        <ActivityIndicator color='#009b88' size='large'/>
+    );
+};
+
 export default function FJB({ appConfig, background }) {
     const [codewords, setCodewords] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +50,8 @@ export default function FJB({ appConfig, background }) {
             const resp = await fetch(appConfig.nsaCodewordsURL);
             const data = await resp.json();
 
-            setCodewords(data);
+            setCodewords(data.codewords);
+            console.log(JSON.stringify(codewords, null, 4));
         } catch (error) {
             setFetchError(error);
         } finally {
@@ -63,49 +70,26 @@ export default function FJB({ appConfig, background }) {
     };
 
     const renderFavorites = () => {
-        if (allFavorites == null) {
-            return null;
-        }
-
         return (
             <FlashList
-              ItemSeparatorComponent={ favoritesSeparator }
-              data={ allFavorites }
-              keyExtractor={ (item) => item.id }
-              extraData = { selectedInsult }
-              estimatedItemSize = { 100 }
-              renderItem={ renderInsult }/>
+              horizontal={ false }
+              data={ codewords }
+              numColumns={ 3 }
+              estimatedItemSize = { 500 }
+            />
         );
     };
 
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView style={ styles.favoritesTopView }>
+          <SafeAreaView style={ styles.fjbTopView }>
             <StatusBar style="auto"/>
-            <InsultsHeader appConfig={ appConfig }/>
-            { allFavorites?.length == 0 ?
-              <NoFavorites/>
-              :
+            <View style={ styles.codeWordsView }>
               <Surface elevation={ 4 } style={ styles.favoritesSurface }>
                 <View style={ styles.favoritesListView }>
-                  { renderFavorites() }
+                  { isLoading ? LoadingIndicator() : renderFavorites() }
                 </View>
               </Surface>
-            }
-            <View style={ styles.favoritesFooter }>
-              <PressableOpacity style={ selectedInsult != null ? styles.favoritesButtons : styles.disabledFavoritesButtons }
-                                title={ 'Insult' } onPress={ sendInsult } disabled={ selectedInsult == null }>
-                <Text style={ styles.favoritesButtonText }>Insult</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ selectedInsult ? styles.favoritesButtons : styles.disabledFavoritesButtons }
-                                title={ 'Forget' } onPress={ () => forgetFavorite() } disabled={ selectedInsult == null }>
-                <Text style={ styles.favoritesButtonText }>Forget</Text>
-              </PressableOpacity>
-              <View style={ styles.spacer }/>
-              <PressableOpacity style={ styles.favoritesButtons } title={ 'Dismiss' } onPress={ () => setDismiss() }>
-                <Text style={ styles.favoritesButtonText }>Dismiss</Text>
-              </PressableOpacity>
             </View>
           </SafeAreaView>
         </ImageBackground>
