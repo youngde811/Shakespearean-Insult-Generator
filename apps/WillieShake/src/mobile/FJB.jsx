@@ -23,16 +23,15 @@
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
-import { Divider } from "@rneui/themed";
+import { ActivityIndicator, Button, ImageBackground, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
 
 import styles from '../styles/styles.js';
-import PressableOpacity from './PressableOpacity';
 
-import * as Utilities from '../utils/utilities';
+import FetchError from './FetchError';
+import PressableOpacity from './PressableOpacity';
 
 function LoadingIndicator() {
     return (
@@ -46,6 +45,8 @@ export default function FJB({ appConfig, background }) {
     const [fetchError, setFetchError] = useState(null);
     
     const fetchCodewords = async () => {
+        setIsLoading(true);
+        
         try {
             const resp = await fetch(appConfig.nsaCodewordsURL);
             const data = await resp.json();
@@ -81,7 +82,12 @@ export default function FJB({ appConfig, background }) {
             <View style={ styles.codeWordsView }>
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
-                  { isLoading ? LoadingIndicator() : renderFavorites() }
+                  { isLoading ?
+                    LoadingIndicator()
+                    : fetchError ?
+                    <FetchError error={ fetchError }/>
+                    : renderFavorites()
+                  }
                 </View>
               </Surface>
             </View>
