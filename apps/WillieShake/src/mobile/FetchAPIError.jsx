@@ -1,6 +1,6 @@
 // -*- mode: rjsx; eval: (auto-fill-mode 1); -*-
 
-// This file contains global configuration for the entire app.
+// This component is used to render a View and Text whenever there are no favorites saved.
 
 // MIT License
 
@@ -19,7 +19,19 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-global.keyPrefix = "@willie:";
-global.smstag = "sms://&body=";
-global.season = "Summer";
-global.year = 2023;
+import { Text, View } from 'react-native';
+
+import styles from '../styles/styles.js';
+
+export default function FetchAPIError({ error }) {
+    return (
+        <View style={ styles.fetchErrorView }>
+          <Text style={ styles.fetchErrorText }>
+            We could not retrieve the cool NSA error codes!
+          </Text>
+          <Text style={ styles.fetchErrorText }>
+            { error.message }
+          </Text>
+        </View>
+    );
+};

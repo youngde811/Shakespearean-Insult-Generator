@@ -333,6 +333,72 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
+    fjbTopView: {
+        flex: 1,
+        flexDirection: 'column',
+        marginHorizontal: 4,
+        alignItems: 'stretch',
+    },
+    codeWordsSurface: {
+        alignItems: 'stretch',
+        height: '90%',
+        borderRadius: 10,
+        marginLeft: 4,
+        marginRight: 4,
+    },
+    codeWordsView: {
+        flex: 1,
+        height: '100%',
+        width: '100%',
+    },
+    codeWordsFooter: {
+        bottom: 0,
+        left: 0,
+        right: 0,
+        marginBottom: '10%',
+        alignItems: 'stretch',
+        position: 'absolute',
+    },
+    codeWordsButtons: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'cadetblue',
+        borderColor: '#fff',
+        opacity: 0.8,
+    },
+    codeWordsButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    codeWordsListView: {
+        width: '100%',
+        height: '100%',
+    },
+    codeWordText: {
+        fontSize: 11,
+        padding: 2,
+        margin: 4,
+    },
+    fetchErrorView: {
+        flex: 1,
+        alignmentDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    fetchErrorText: {
+        alignItems: 'center',
+        fontWeight: 'bold',
+        color: 'maroon',
+        fontSize: 20,
+        paddingBottom: 10,
+    },
 });
 
 export default styles;
