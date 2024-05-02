@@ -36,20 +36,25 @@ import FloatingPressable from './FloatingPressable';
 
 function convertCodeWords(codewords) {
     var json = [];
-    
-    for (let i = 0; i < codewords.length; i++) {
-        if ((i % 100) == 0) {
-            json.push({"id": i, "value": "FJB"});
-        } else {
-            json.push({"id": i, "value": codewords[i]});
+    var i = 0;
+
+    codewords.forEach((item, index, array) => {
+        if (index > 0 && (index % 100) == 0) {
+            json.push({"id": i++, "value": "FJB"});
         }
-    }
+
+        if (index > 0 && (index % 50) == 0) {
+            json.push({"id": i++, "value": "BRANDON"});
+        }
+
+        json.push({"id": i++, "value": item});
+    });
 
     return json;
 }
 
 function selectCodewordColor() {
-    const colors = ["black", "maroon", "darkblue", "darkslateblue"];
+    const colors = ["black", "maroon", "darkblue", "darkslateblue", "cadetblue", "coral", "darkgreen", "indigo", "lightslategrey"];
 
     let index = Math.floor(Math.random() * colors.length);
 
