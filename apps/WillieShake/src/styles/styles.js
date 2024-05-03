@@ -353,6 +353,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 4,
         marginBottom: 20,
+        opacity: 0.5,
     },
     codeWordsSurface: {
         alignItems: 'stretch',
