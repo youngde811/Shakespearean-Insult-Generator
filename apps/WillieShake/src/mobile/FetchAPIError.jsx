@@ -30,7 +30,7 @@ export default function FetchAPIError({ error }) {
             We could not retrieve the cool NSA error codes!
           </Text>
           <Text style={ styles.fetchErrorText }>
-            { error.message }
+            Why: { error.message }
           </Text>
         </View>
     );

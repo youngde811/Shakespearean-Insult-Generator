@@ -61,6 +61,10 @@ function selectCodewordColor() {
     return colors[index];
 }
 
+function failedRequest(resp) {
+    return (resp.status < 200 || resp.status > 299);
+}
+
 export default function FJB({ appConfig, background, setDismiss }) {
     const [codewords, setCodewords] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -99,6 +103,11 @@ export default function FJB({ appConfig, background, setDismiss }) {
 
             try {
                 const resp = await fetch(appConfig.nsaCodewordsURL);
+
+                if (failedRequest(resp)) {
+                    throw Error(resp.status);
+                }
+                
                 const data = await resp.json();
 
                 setCodewords(convertCodeWords(data.codewords));

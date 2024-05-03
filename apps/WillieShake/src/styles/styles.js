@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
         color: 'maroon',
-        fontSize: 20,
+        fontSize: 12,
         paddingBottom: 10,
     },
 });
