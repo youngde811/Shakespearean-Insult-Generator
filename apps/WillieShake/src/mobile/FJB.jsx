@@ -125,35 +125,40 @@ export default function FJB({ appConfig, background, setDismiss }) {
 
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView style={ styles.fjbTopView }>
+          <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.fjbTopView }>
             <StatusBar style="auto"/>
-            <View style={ styles.codeWordsView }>
-              <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
-                <View style={ styles.codeWordsListView }>
-                  { isLoading && (
-                      <ActivityIndicator color='#009b88' size='small'/>
-                  )}
-                  { fetchError && (
-                      <FetchAPIError error={ fetchError }/>
-                  )}
-                  { codewords && (
-                      <FlashList
-                        ref = { listRef }
-                        onScroll = { setVerticalOffset }
-                        horizontal={ false }
-                        data={ codewords }
-                        keyExtractor={ extractKey }
-                        showsVerticalScrollIndicator={ true }
-                        renderItem={ renderCodeWord }
-                        estimatedItemSize={ 1000 }
-                        numColumns={ 3 }
-                      />
-                  )}
-                  { listVerticalOffset > listThreshold && (
-                      <FloatingPressable onPress={ scrollToTop }/>
-                  )}
-                </View>
-              </Surface>
+            <View style={styles.codeWordsHeaderView }>
+              <Text style={ styles.codeWordsHeaderText }>
+                A Finger to our Domestic Surveillance Friends
+              </Text>
+              <View style={ styles.codeWordsView }>
+                <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
+                  <View style={ styles.codeWordsListView }>
+                    { isLoading && (
+                        <ActivityIndicator color='#009b88' size='small'/>
+                    )}
+                    { fetchError && (
+                        <FetchAPIError error={ fetchError }/>
+                    )}
+                    { codewords && (
+                        <FlashList
+                          ref = { listRef }
+                          onScroll = { setVerticalOffset }
+                          horizontal={ false }
+                          data={ codewords }
+                          keyExtractor={ extractKey }
+                          showsVerticalScrollIndicator={ true }
+                          renderItem={ renderCodeWord }
+                          estimatedItemSize={ 1000 }
+                          numColumns={ 3 }
+                        />
+                    )}
+                    { listVerticalOffset > listThreshold && (
+                        <FloatingPressable onPress={ scrollToTop }/>
+                    )}
+                  </View>
+                </Surface>
+              </View>
             </View>
             <View style={ styles.codeWordsFooter }>
               <PressableOpacity style={ styles.codeWordsButtons }

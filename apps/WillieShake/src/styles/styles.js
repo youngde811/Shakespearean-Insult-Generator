@@ -338,6 +338,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginHorizontal: 4,
         alignItems: 'stretch',
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+    codeWordsHeaderView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    codeWordsHeaderText: {
+        color: 'teal',
+        fontWeight: 'bold',
+        fontSize: 14,
+        padding: 4,
+        marginBottom: 20,
     },
     codeWordsSurface: {
         alignItems: 'stretch',
@@ -348,7 +363,7 @@ const styles = StyleSheet.create({
     },
     codeWordsView: {
         flex: 1,
-        height: '100%',
+        height: '90%',
         width: '100%',
     },
     codeWordsFooter: {
