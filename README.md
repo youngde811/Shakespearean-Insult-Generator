@@ -60,7 +60,7 @@ select one of the insults, and use your phone's default messaging app to insult 
 ### Annoying Codewords ###
 
 As of relese _1.8.0_, _Shakespeare Slander_ has a new drawer page that will retrieve hundreds of "code words"
-intendended to annoy our Three Letter Agencies if they're snooping illegally (they always are). The app talks with a
+intended to annoy our Three Letter Agencies if they're snooping illegally (they always are). The app talks with a
 Python Django server I wrote that runs somewhere in the ether, and populates the new drawer page with nifty code words
 sure to attract attention.
 
