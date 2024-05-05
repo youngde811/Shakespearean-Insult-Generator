@@ -27,6 +27,7 @@ import { ActivityIndicator, Button, ImageBackground, Text, View } from 'react-na
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import styles from '../styles/styles.js';
 
@@ -81,7 +82,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
         let color = selectCodewordColor();
 
         return (
-            <Text style={[{ color: color }, styles.codeWordText]}>
+            <Text style={[{ color: color }, styles.codeWordText]} adjustFontSizeToFit={ true }>
               { item.value }
             </Text>
         );
@@ -127,38 +128,41 @@ export default function FJB({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.fjbTopView }>
             <StatusBar style="auto"/>
-            <View style={styles.codeWordsHeaderView }>
-              <Text style={ styles.codeWordsHeaderText }>
-                A Finger to our Domestic Surveillance Friends
-              </Text>
-              <View style={ styles.codeWordsView }>
-                <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
-                  <View style={ styles.codeWordsListView }>
-                    { isLoading && (
-                        <ActivityIndicator color='#009b88' size='small'/>
-                    )}
-                    { fetchError && (
-                        <FetchAPIError error={ fetchError }/>
-                    )}
-                    { codewords && (
-                        <FlashList
-                          ref = { listRef }
-                          onScroll = { setVerticalOffset }
-                          horizontal={ false }
-                          data={ codewords }
-                          keyExtractor={ extractKey }
-                          showsVerticalScrollIndicator={ true }
-                          renderItem={ renderCodeWord }
-                          estimatedItemSize={ 1000 }
-                          numColumns={ 3 }
-                        />
-                    )}
-                    { listVerticalOffset > listThreshold && (
-                        <FloatingPressable onPress={ scrollToTop }/>
-                    )}
-                  </View>
-                </Surface>
+            <View style={ styles.codeWordsHeaderView }>
+              <View style={ styles.codeWordsBanner }>
+                <Text style={ styles.codeWordsHeaderText } adjustsFontSizeToFit={ true }>
+                  To our Domestic Surveillance Friends:
+                </Text>
+                <FontAwesome5 name='hand-middle-finger' color='darkslategray' size={ 16 }/>
               </View>
+            </View>
+            <View style={ styles.codeWordsView }>
+              <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
+                <View style={ styles.codeWordsListView }>
+                  { isLoading && (
+                      <ActivityIndicator color='#009b88' size='small'/>
+                  )}
+                  { fetchError && (
+                      <FetchAPIError error={ fetchError }/>
+                  )}
+                  { codewords && (
+                      <FlashList
+                        ref = { listRef }
+                        onScroll = { setVerticalOffset }
+                        horizontal={ false }
+                        data={ codewords }
+                        keyExtractor={ extractKey }
+                        showsVerticalScrollIndicator={ true }
+                        renderItem={ renderCodeWord }
+                        estimatedItemSize={ 1000 }
+                        numColumns={ 3 }
+                      />
+                  )}
+                  { listVerticalOffset > listThreshold && (
+                      <FloatingPressable onPress={ scrollToTop }/>
+                  )}
+                </View>
+              </Surface>
             </View>
             <View style={ styles.codeWordsFooter }>
               <PressableOpacity style={ styles.codeWordsButtons }

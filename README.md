@@ -4,7 +4,7 @@ This project generates "Shakespearean" insults to either the terminal or via the
 stumbled across the original implementation (I think); it was written in C. I took that code and wrote a screen saver
 for my X Window System environment on SunOS/Solaris, using _Xlib_. The documentation for the original work gave credit
 to a performer named "Lord Buckley"[^1], who had an act he called "Willie The Shake". The code author had apparently
-seen this fellow a number of times; thus the name of this project.
+seen this fellow a number of times; thus the alias for this project.
 
 I found myself needing a distraction after a particularly challenging project at work. Having discovered a newer
 implementation of the code on _GitHub_ - Kurt Blair's "Shakespearean Insult Generator" - I forked his repository;
@@ -62,7 +62,8 @@ select one of the insults, and use your phone's default messaging app to insult 
 As of relese _1.8.0_, _Shakespeare Slander_ has a new drawer page that will retrieve hundreds of "code words"
 intended to annoy our Three Letter Agencies if they're snooping illegally (they always are). The app talks with a
 Python Django server I wrote that runs somewhere in the ether, and populates the new drawer page with nifty code words
-sure to attract attention.
+sure to attract attention. The Django server currently exposes just a handful of endpoints; more might be added if
+necessary.
 
 I plan to add the ability to generate new sets of these codewords from the app itself. Coming soon.
 

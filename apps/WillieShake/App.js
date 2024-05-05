@@ -46,7 +46,7 @@ import styles from './src/styles/styles.js';
 const appConfig = require("./assets/appconfig.json");
 const backgroundImage = require("./assets/images/willie.png");
 
-const initialRoute = "Available Insults";
+const initialRoute = "Shakespeare Slander";
 
 function InsultsMainPage() {
     return (
