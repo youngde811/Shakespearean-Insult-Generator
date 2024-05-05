@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     insultText: {
-        fontSize: 12,
+        fontSize: 11,
         padding: 2,
         margin: 4,
         color: 'black',
     },
     insultSelectedText: {
-        fontSize: 12,
+        fontSize: 11,
         padding: 2,
         margin: 4,
         color: 'maroon',
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
         color: 'maroon',
-        fontSize: 20,
+        fontSize: 14,
         paddingBottom: 10,
     },
     floatingPressable: {
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
         color: 'maroon',
-        fontSize: 12,
+        fontSize: 11,
         paddingBottom: 10,
     },
 });

@@ -26,10 +26,10 @@ import styles from '../styles/styles.js';
 export default function FetchAPIError({ error }) {
     return (
         <View style={ styles.fetchErrorView }>
-          <Text style={ styles.fetchErrorText }>
+          <Text style={ styles.fetchErrorText } adjustsFontSizeToFit={ true }>
             We could not retrieve the cool NSA error codes!
           </Text>
-          <Text style={ styles.fetchErrorText }>
+          <Text style={ styles.fetchErrorText } adjustsFontSizeToFit={ true }>
             Why: { error.message }
           </Text>
         </View>

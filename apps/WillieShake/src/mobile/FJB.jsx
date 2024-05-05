@@ -40,12 +40,14 @@ function convertCodeWords(codewords) {
     var i = 0;
 
     codewords.forEach((item, index, array) => {
-        if (index > 0 && (index % 100) == 0) {
-            json.push({"id": i++, "value": "FJB"});
-        }
+        if (index > 0) {
+            if ((index % 100) == 0) {
+                json.push({"id": i++, "value": "FJB"});
+            }
 
-        if (index > 0 && (index % 50) == 0) {
-            json.push({"id": i++, "value": "BRANDON"});
+            if ((index % 57) == 0) {
+                json.push({"id": i++, "value": "BRANDON"});
+            }
         }
 
         json.push({"id": i++, "value": item});
@@ -82,7 +84,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
         let color = selectCodewordColor();
 
         return (
-            <Text style={[{ color: color }, styles.codeWordText]} adjustFontSizeToFit={ true }>
+            <Text style={[{ color: color }, styles.codeWordText]} adjustFontSizeToFit={ true } minimumFontScale={ 0.5 }>
               { item.value }
             </Text>
         );
@@ -131,7 +133,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
             <View style={ styles.codeWordsHeaderView }>
               <View style={ styles.codeWordsBanner }>
                 <Text style={ styles.codeWordsHeaderText } adjustsFontSizeToFit={ true }>
-                  To our Domestic Surveillance Friends:
+                  To Our Domestic Surveillance Friends:
                 </Text>
                 <FontAwesome5 name='hand-middle-finger' color='darkslategray' size={ 16 }/>
               </View>
