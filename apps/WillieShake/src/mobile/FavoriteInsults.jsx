@@ -82,7 +82,8 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         return (
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>
-                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }
+                      adjustsFontSizeToFit={ true }>
                   { item.insult }
                 </Text>
               </PressableOpacity>

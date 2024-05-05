@@ -78,7 +78,8 @@ export default function InsultEmAll({ insults, appConfig }) {
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
+                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }
+                      adjustFontSizeToFit={ true } minimumFontScale={ 0.5 }>
                   { item.insult }
                 </Text>
               </PressableOpacity>

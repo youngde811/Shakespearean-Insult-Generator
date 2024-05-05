@@ -27,6 +27,7 @@ import { ActivityIndicator, Button, ImageBackground, Text, View } from 'react-na
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import styles from '../styles/styles.js';
 
@@ -39,12 +40,14 @@ function convertCodeWords(codewords) {
     var i = 0;
 
     codewords.forEach((item, index, array) => {
-        if (index > 0 && (index % 100) == 0) {
-            json.push({"id": i++, "value": "FJB"});
-        }
+        if (index > 0) {
+            if ((index % 100) == 0) {
+                json.push({"id": i++, "value": "FJB"});
+            }
 
-        if (index > 0 && (index % 50) == 0) {
-            json.push({"id": i++, "value": "BRANDON"});
+            if ((index % 57) == 0) {
+                json.push({"id": i++, "value": "BRANDON"});
+            }
         }
 
         json.push({"id": i++, "value": item});
@@ -81,7 +84,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
         let color = selectCodewordColor();
 
         return (
-            <Text style={[{ color: color }, styles.codeWordText]}>
+            <Text style={[{ color: color }, styles.codeWordText]} adjustFontSizeToFit={ true } minimumFontScale={ 0.5 }>
               { item.value }
             </Text>
         );
@@ -125,8 +128,16 @@ export default function FJB({ appConfig, background, setDismiss }) {
 
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView style={ styles.fjbTopView }>
+          <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.fjbTopView }>
             <StatusBar style="auto"/>
+            <View style={ styles.codeWordsHeaderView }>
+              <View style={ styles.codeWordsBanner }>
+                <Text style={ styles.codeWordsHeaderText } adjustsFontSizeToFit={ true }>
+                  To Our Domestic Surveillance Friends:
+                </Text>
+                <FontAwesome5 name='hand-middle-finger' color='darkslategray' size={ 16 }/>
+              </View>
+            </View>
             <View style={ styles.codeWordsView }>
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>

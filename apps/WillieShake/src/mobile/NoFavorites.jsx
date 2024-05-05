@@ -26,10 +26,10 @@ import styles from '../styles/styles.js';
 export default function NoFavorites() {
     return (
         <View style={ styles.noFavoritesView }>
-          <Text style={ styles.noFavoritesText }>
+          <Text style={ styles.noFavoritesText } adjustsFontSizeToFit={ true }>
             You have created no favorites.
           </Text>
-          <Text style={ styles.noFavoritesText }>
+          <Text style={ styles.noFavoritesText } adjustsFontSizeToFit={ true }>
             Find the secret to adding them!
           </Text>
         </View>
