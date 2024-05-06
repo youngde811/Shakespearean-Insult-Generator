@@ -30,6 +30,8 @@ import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
 
+import ScalableText from 'react-native-text';
+
 import * as Linking from 'expo-linking';
 
 import styles from '../styles/styles.js';
@@ -82,10 +84,9 @@ export default function FavoriteInsults({ appConfig, background, setDismiss }) {
         return (
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }>
-                <Text style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }
-                      adjustsFontSizeToFit={ true }>
+                <ScalableText style={ item === selectedInsult ? styles.insultSelectedText : styles.insultText }>
                   { item.insult }
-                </Text>
+                </ScalableText>
               </PressableOpacity>
             </View>
         );

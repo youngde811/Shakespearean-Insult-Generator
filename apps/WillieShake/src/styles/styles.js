@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     insultText: {
-        fontSize: 11,
+        fontSize: 14,
         padding: 2,
         margin: 4,
         color: 'black',
     },
     insultSelectedText: {
-        fontSize: 11,
+        fontSize: 14,
         padding: 2,
         margin: 4,
         color: 'maroon',
@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
     codeWordsHeaderText: {
         color: 'teal',
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 15,
         padding: 4,
         opacity: 0.5,
     },
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     codeWordText: {
-        fontSize: 10,
+        fontSize: 11,
         padding: 2,
         margin: 4,
     },
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
         color: 'maroon',
-        fontSize: 11,
+        fontSize: 12,
         paddingBottom: 10,
     },
 });

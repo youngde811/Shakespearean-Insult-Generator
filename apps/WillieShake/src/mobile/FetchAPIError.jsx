@@ -21,17 +21,19 @@
 
 import { Text, View } from 'react-native';
 
+import ScalableText from 'react-native-text';
+
 import styles from '../styles/styles.js';
 
 export default function FetchAPIError({ error }) {
     return (
         <View style={ styles.fetchErrorView }>
-          <Text style={ styles.fetchErrorText } adjustsFontSizeToFit={ true }>
-            We could not retrieve the cool NSA error codes!
-          </Text>
-          <Text style={ styles.fetchErrorText } adjustsFontSizeToFit={ true }>
-            Why: { error.message }
-          </Text>
+          <ScalableText style={ styles.fetchErrorText }>
+            Sadly, we could not retrieve the cool NSA error codes.
+          </ScalableText>
+          <ScalableText style={ styles.fetchErrorText }>
+            Why Not: { error.message }
+          </ScalableText>
         </View>
     );
 };
