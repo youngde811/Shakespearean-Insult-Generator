@@ -1,3 +1,9 @@
+2024-05-06  David E. Young  <sporty-iron883@protonmail.com>
+
+	* AppStore: Release 1.9.0.
+	* Feature: Use the cool ScalableText component for device
+	flexibility.
+
 2024-05-05  David E. Young  <sporty-iron883@protonmail.com>
 
 	* AppStore: Release 1.8.4.
