@@ -144,7 +144,7 @@ export default function FJB({ appConfig, background, setDismiss }) {
               <Surface elevation={ 4 } style={ styles.codeWordsSurface }>
                 <View style={ styles.codeWordsListView }>
                   { isLoading && (
-                      <ActivityIndicator color='#009b88' size='small'/>
+                      <ActivityIndicator style={{ marginTop: 10 }} stylecolor='#009b88' size='small'/>
                   )}
                   { fetchError && (
                       <FetchAPIError error={ fetchError }/>
