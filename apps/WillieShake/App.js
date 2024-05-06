@@ -123,14 +123,10 @@ const screens = [
 
 export default function App() {
     const [season, year] = Utilities.thisSeason();
-    const [settings, setSettings] = useState(() =>
-        Settings.get("Child Friendly")
-    );
+    const [settings, setSettings] = useState(null);
 
     global.season = season;
     global.year = year;
-
-    console.log(`App(): settings: ${settings}`);
 
     const masterErrorHandler = (e, isFatal) => {
         if (isFatal) {
@@ -149,6 +145,12 @@ export default function App() {
     };
 
     setJSExceptionHandler(masterErrorHandler);
+
+    useEffect(() => {
+        setSettings(Settings.get('Child Friendly'));
+
+        console.log(`App(): settings: ${settings}`);
+    }, []);
 
     return (
           <SafeAreaProvider>

@@ -2,7 +2,7 @@
     "expo": {
         "name": "WillieShake",
         "slug": "WillieShake",
-        "version": "1.9.0",
+        "version": "1.9.1",
         "orientation": "portrait",
         "icon": "./assets/bootsplash_logo.png",
         "userInterfaceStyle": "light",
@@ -17,7 +17,7 @@
         "ios": {
             "supportsTablet": false,
             "bundleIdentifier": "com.bosshog811.WillieShake",
-            "buildNumber": "1.9.0",
+            "buildNumber": "1.9.1",
             "requireFullScreen": true,
         },
         "android": {
