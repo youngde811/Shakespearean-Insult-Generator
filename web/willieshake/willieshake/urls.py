@@ -37,5 +37,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path("codewords/", include("codewords.urls")),
+    path("codewords/", include('rest_framework.urls')),
     path("admin/", admin.site.urls),
 ]

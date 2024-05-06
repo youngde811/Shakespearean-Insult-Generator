@@ -17,7 +17,11 @@
 
 # This is the entrypoint to our Django willieshake application server.
 
-from django.http import HttpResponse, JsonResponse
+import ast
+
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
 
 from codewords import refresh_codewords, refresh_pickle
 
@@ -45,12 +49,20 @@ def codewords(request):
     return response
 
 
+@csrf_exempt
 def generate_pickle(request):
-    params = request.GET
+    if request.method == 'GET':
+        return HttpResponseBadRequest("pickle creation requires a POST")
 
-    minlen = int(params.get('minlen', '7'))
-    maxlen = int(params.get('maxlen', '20'))
+    body = request.body.decode('utf-8')
+    data = ast.literal_eval(body)
+    
+    minlen = int(data['minlen'])
+    maxlen = int(data['maxlen']);
 
+    print(f"generate_pickle(): minlen: {minlen}")
+    print(f"generate_pickle(): maxlen: {maxlen}")
+    
     refresh_pickle(minlen, maxlen)
 
     return HttpResponse("Generated new pickle file")

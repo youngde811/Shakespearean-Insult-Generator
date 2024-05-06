@@ -44,6 +44,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # useful when hosting on pythonanywhere.com
 
+CSRF_COOKE_SECURE = False
 
 # Application definition
 
@@ -54,7 +55,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
