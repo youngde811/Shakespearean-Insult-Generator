@@ -36,6 +36,7 @@ import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 import TouchableIcon from './TouchableIcon';
 import ModalEmbeddedWebView from './ModalEmbeddedWebView';
+import ScalableText from 'react-native-text';
 
 import './Globals';
 
@@ -78,10 +79,9 @@ export default function InsultEmAll({ insults, appConfig }) {
             <View style={ styles.insultItemContainer }>
               <PressableOpacity style={ null } onPress={ () => insultSelect(item) }
                                 onLongPress={ () => storeFavorite(item) } delayLongPress={ 500 }>
-                <Text style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }
-                      adjustFontSizeToFit={ true } minimumFontScale={ 0.5 }>
+                <ScalableText style={ item.insult == selectedInsult ? styles.insultSelectedText : styles.insultText }>
                   { item.insult }
-                </Text>
+                </ScalableText>
               </PressableOpacity>
               <TouchableIcon visible={ item.url.length > 0 } iconName={ seasonalIcon } onPress={ () => showEasterEgg(item) }/>
             </View>

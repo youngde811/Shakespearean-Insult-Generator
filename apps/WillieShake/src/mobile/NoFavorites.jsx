@@ -21,17 +21,19 @@
 
 import { Text, View } from 'react-native';
 
+import ScalableText from 'react-native-text';
+
 import styles from '../styles/styles.js';
 
 export default function NoFavorites() {
     return (
         <View style={ styles.noFavoritesView }>
-          <Text style={ styles.noFavoritesText } adjustsFontSizeToFit={ true }>
-            You have created no favorites.
-          </Text>
-          <Text style={ styles.noFavoritesText } adjustsFontSizeToFit={ true }>
+          <ScalableText style={ styles.noFavoritesText }>
+            You have created no favorites yet.
+          </ScalableText>
+          <ScalableText style={ styles.noFavoritesText }>
             Find the secret to adding them!
-          </Text>
+          </ScalableText>
         </View>
     );
 };

@@ -29,6 +29,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
 import { FontAwesome5 } from '@expo/vector-icons';
 
+import ScalableText from 'react-native-text';
+
 import styles from '../styles/styles.js';
 
 import FetchAPIError from './FetchAPIError';
@@ -84,9 +86,9 @@ export default function FJB({ appConfig, background, setDismiss }) {
         let color = selectCodewordColor();
 
         return (
-            <Text style={[{ color: color }, styles.codeWordText]} adjustFontSizeToFit={ true } minimumFontScale={ 0.5 }>
+            <ScalableText style={[{ color: color }, styles.codeWordText]}>
               { item.value }
-            </Text>
+            </ScalableText>
         );
     };
 
@@ -132,9 +134,9 @@ export default function FJB({ appConfig, background, setDismiss }) {
             <StatusBar style="auto"/>
             <View style={ styles.codeWordsHeaderView }>
               <View style={ styles.codeWordsBanner }>
-                <Text style={ styles.codeWordsHeaderText } adjustsFontSizeToFit={ true }>
+                <ScalableText style={ styles.codeWordsHeaderText }>
                   To Our Domestic Surveillance Friends:
-                </Text>
+                </ScalableText>
                 <FontAwesome5 name='hand-middle-finger' color='darkslategray' size={ 16 }/>
               </View>
             </View>
