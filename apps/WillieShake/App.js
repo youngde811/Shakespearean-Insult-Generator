@@ -23,7 +23,7 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { Alert, Text, TouchableOpacity, View} from 'react-native';
+import { Alert, Settings, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -123,9 +123,14 @@ const screens = [
 
 export default function App() {
     const [season, year] = Utilities.thisSeason();
+    const [settings, setSettings] = useState(() =>
+        Settings.get("Child Friendly")
+    );
 
     global.season = season;
     global.year = year;
+
+    console.log(`App(): settings: ${settings}`);
 
     const masterErrorHandler = (e, isFatal) => {
         if (isFatal) {
