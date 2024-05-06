@@ -20,7 +20,6 @@
 import ast
 
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
-from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 
 from codewords import refresh_codewords, refresh_pickle
