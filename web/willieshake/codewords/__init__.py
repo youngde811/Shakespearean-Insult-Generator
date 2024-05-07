@@ -104,7 +104,7 @@ def refresh_pickle(minlen, maxlen):
     return None
 
 
-def regenerate_codewords(nwords=1000):
+def generate_new_codewords(nwords):
     gen_codewords(codeword_count=nwords)
 
     return None

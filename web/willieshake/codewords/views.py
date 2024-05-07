@@ -22,7 +22,7 @@ import ast
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from codewords import refresh_codewords, refresh_pickle
+from codewords import refresh_codewords, refresh_pickle, generate_new_codewords
 
 codeword_data = './data/codewords'
 
@@ -59,10 +59,10 @@ def generate_pickle(request):
 
     refresh_pickle(minlen, maxlen)
 
-    resp = JsonResponse({'minlen': minlen, 'maxlen': maxlen, 'message': 'Generated new pickle file'})
+    return JsonResponse({'minlen': minlen, 'maxlen': maxlen, 'message': 'Generated new pickle file'})
 
 
-@csrc_exempt
+@csrf_exempt
 def regenerate_codewords(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("{'message': 'codeword regeneration requires a POST'}", content_type='application/json')
@@ -72,7 +72,7 @@ def regenerate_codewords(request):
     
     nwords = int(data['nwords'])
 
-    regenerate_codewords(nwords=nwords)
+    generate_new_codewords(nwords)
 
     return JsonResponse({'nwords': nwords, 'message': 'Codewords regenerated'})
 
