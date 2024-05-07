@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+# -*- mode: shell-script; sh-shell: bash -*-
+
+# This script allows me to re-create the Shakespeare Slander app's NSA codewords
+# database.
+
+readonly progname=$(basename $0)
+
+dburi='https://bosshog811.pythonanywhere.com'
+
+minlen=7
+maxlen=20
+nwords=1500
+
+recreate_pickle=false
+recreate_codewords=false
+
+usage() {
+    cat <<EOF
+Usage: $progname [OPTIONS]
+
+This script allows me to re-create the Shakespeare Slander app's NSA codewords
+database files.
+
+Options:
+  -c          Recreate the codewords file.
+  -m INTEGER  The minimum codeword length. Default is $minlen.
+  -n INTEGER  The number of codewords to generate. Default is $nwords.
+  -p          Recreate the pickle file.
+  -u URL      Use URL for the codeword service. Default is $dburi.
+  -x INTEGER  The maximum codeword length. Default is $maxlen.
+EOF
+
+    exit 1
+}
+
+sanity_checks() {
+    [[ $minlen =~ ^[0-9]+$ ]] || { echo "$progname: the codeword minimum length must be an integer"; exit 1; }
+    [[ $maxlen =~ ^[0-9]+$ ]] || { echo "$progname: the codeword maximum length must be an integer"; exit 1; }
+    [[ $nwords =~ ^[0-9]+$ ]] || { echo "$progname: the number of codewords must be an integer"; exit 1; }
+}
+
+recreate_pickle_file() {
+    local data="{'minlen': $minlen, 'maxlen': $maxlen}"
+    local headers='Content-Type: application/json'
+    local endpoint="$dburi/codewords/pickle"
+
+    curl --silent -H $headers -X POST --data "$data" $endpoint || { echo "$progname: failed to create pickle file"; exit 1; }
+}
+
+recreate_codewords_file() {
+    local data="{'nwords': $nwords}"
+    local headers='Content-Type: application/json'
+    local endpoint="$dburi/codewords/regenerate"
+
+    curl --silent -H $headers -X POST --data "$data" $endpoint || { echo "$progname: failed to create pickle file"; exit 1; }
+}
+
+regenerate_database() {
+    [[ $recreate_pickle == true ]] && recreate_pickle_file
+    [[ $recreate_codewords == true ]] && recreate_codewords_file
+
+    return 0
+}
+
+# --- main() ---
+
+while getopts "cm:n:pu:x:h" opt ; do
+    case $opt in
+        c) recreate_codewords=true ;;
+        m) minlen=$OPTARG ;;
+        n) nwords=$OPTARG ;;
+        p) recreate_pickle=true ;;
+        u) dburi=$OPTARG ;;
+        x) maxlen=$OPTARG ;;
+        h) usage ;;
+        *) usage ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+sanity_checks
+regenerate_database
+
+exit 0
+
