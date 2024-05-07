@@ -49,7 +49,7 @@ def codewords(request):
 @csrf_exempt
 def generate_pickle(request):
     if request.method == 'GET':
-        return HttpResponseBadRequest("pickle creation requires a POST")
+        return HttpResponseBadRequest("{'reason': 'pickle creation requires a POST'}", content_type='application/json')
 
     body = request.body.decode('utf-8')
     data = ast.literal_eval(body)
@@ -59,13 +59,13 @@ def generate_pickle(request):
 
     refresh_pickle(minlen, maxlen)
 
-    return JsonResponse({'minlen': minlen, 'maxlen': maxlen, 'message': 'Generated new pickle file'})
+    resp = JsonResponse({'minlen': minlen, 'maxlen': maxlen, 'message': 'Generated new pickle file'})
 
 
 @csrc_exempt
 def regenerate_codewords(request):
     if request.method == 'GET':
-        return HttpResponseBadRequest("codeword regeneration requires a POST")
+        return HttpResponseBadRequest("{'message': 'codeword regeneration requires a POST'}", content_type='application/json')
 
     body = request.body.decode('utf-8')
     data = ast.literal_eval(body)
