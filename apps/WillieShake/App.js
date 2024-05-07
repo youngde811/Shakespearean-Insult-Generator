@@ -23,7 +23,7 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { Alert, TouchableOpacity, View} from 'react-native';
+import { Alert, Settings, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -38,6 +38,7 @@ import InsultPage from './src/mobile/InsultPage';
 import FavoriteInsults from './src/mobile/FavoriteInsults';
 import FJB from './src/mobile/FJB';
 import EmbeddedWebView from './src/mobile/EmbeddedWebView';
+import SettingsPage from './src/mobile/SettingsPage';
 
 import * as Utilities from './src/utils/utilities';
 import './src/mobile/Globals.js';
@@ -86,40 +87,74 @@ function FJBMainPage() {
     );
 }
 
+function SettingsMainPage() {
+    const navigation = useNavigation();
+    
+    return (
+        <SettingsPage appConfig={ appConfig } background={ backgroundImage } setDismiss={ () => navigation.jumpTo(initialRoute) }/>
+    );
+}
+
+/*
+function IconSource({ drawer }) {
+    if (drawer.title == "Settings") {
+        return (
+            <MaterialCommunityIcons name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
+        );
+    } else {
+        return (
+            <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
+        );
+    }
+}
+*/
+
 const Drawer = createDrawerNavigator();
 
 const screens = [
     {
         key: "AvailableInsults",
         title: initialRoute,
-        iconName: "list",
+        iconName: "format-list-text",
         component: InsultsMainPage,
     },
     {
         key: "FavoritesMainPage",
         title: "Favorite Insults",
-        iconName: "heart-outlined",
+        iconName: "heart-multiple-outline",
         component: FavoritesMainPage
     },
     {
         key: "BuckleyMainPage",
         title: "Lord Buckley",
-        iconName: "man",
+        iconName: "human-male",
         component: BuckleyMainPage
     },
     {
         key: "FJBMainPage",
         title: "Annoy the NSA",
-        iconName: "mask",
+        iconName: "domino-mask",
         component: FJBMainPage
+    },
+    {
+        key: "SettingsPage",
+        title: "Settings",
+        iconName: "application-settings-outline",
+        component: SettingsMainPage,
     },
     {
         key: "AboutMainPage",
         title: "About the App",
-        iconName: "info",
+        iconName: "information-variant",
         component: AboutMainPage
     },
 ];
+
+const defaultAppSettings = [
+    { 'childFriendly': false },
+    { 'appTitle': 'Shakespeare Slander' },
+];
+
 
 export default function App() {
     const [season, year] = Utilities.thisSeason();
@@ -127,6 +162,18 @@ export default function App() {
 
     global.season = season;
     global.year = year;
+
+    const IconSource = ({ title, iconName, focused, color }) => {
+        if (title == "Settings") {
+            return (
+                <MaterialCommunityIcons name={ iconName } size={ 24 } color={ focused ? { color } : "black" }/>
+            );
+        } else {
+            return (
+                <Entypo name={ iconName } size={ 24 } color={ focused ? { color } : "black" }/>
+            );
+        }
+    };
 
     const masterErrorHandler = (e, isFatal) => {
         if (isFatal) {
@@ -146,6 +193,12 @@ export default function App() {
 
     setJSExceptionHandler(masterErrorHandler);
 
+    useEffect(() => {
+        defaultAppSettings.forEach((s) => {
+            Settings.set(s);
+        });
+    });
+
     return (
           <SafeAreaProvider>
             <NavigationContainer>
@@ -162,18 +215,19 @@ export default function App() {
                     }
                 }}
               >
-                { screens.map(drawer => 
+                { screens.map(drawer =>
                     <Drawer.Screen
                       key={ drawer.key }
                       name={ drawer.title }
                       component={ drawer.component }
+                      IconSource={ drawer.iconSource }
                       options={{
-                          drawerIcon: ({ focused, color, size }) => (
-                              <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
-                          ),
-                          headerStyle: {
-                              backgroundColor: 'aliceblue',
-                          },
+                        drawerIcon: ({ focused, color, size }) => (
+                            <MaterialCommunityIcons name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
+                        ),
+                        headerStyle: {
+                        backgroundColor: 'aliceblue',
+                        },
                       }}
                     />
                 )}
