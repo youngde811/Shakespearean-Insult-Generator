@@ -30,6 +30,7 @@ Options:
   -p          Recreate the pickle file.
   -u URL      Use URL for the codeword service. Default is $dburi.
   -x INTEGER  The maximum codeword length. Default is $maxlen.
+  -h          Show this message and exit.
 EOF
 
     exit 1
