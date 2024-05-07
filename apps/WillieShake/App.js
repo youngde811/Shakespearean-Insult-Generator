@@ -95,20 +95,6 @@ function SettingsMainPage() {
     );
 }
 
-/*
-function IconSource({ drawer }) {
-    if (drawer.title == "Settings") {
-        return (
-            <MaterialCommunityIcons name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
-        );
-    } else {
-        return (
-            <Entypo name={ drawer.iconName } size={ 24 } color={ focused ? { color } : "black" }/>
-        );
-    }
-}
-*/
-
 const Drawer = createDrawerNavigator();
 
 const screens = [
