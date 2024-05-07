@@ -23,7 +23,7 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect, useState } from 'react';
 
-import { Alert, Settings, TouchableOpacity, View} from 'react-native';
+import { Alert, TouchableOpacity, View} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -145,12 +145,6 @@ export default function App() {
     };
 
     setJSExceptionHandler(masterErrorHandler);
-
-    useEffect(() => {
-        setSettings(Settings.get('Child Friendly'));
-
-        console.log(`App(): settings: ${settings}`);
-    }, []);
 
     return (
           <SafeAreaProvider>
