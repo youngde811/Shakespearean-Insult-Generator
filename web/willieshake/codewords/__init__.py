@@ -102,3 +102,9 @@ def refresh_pickle(minlen, maxlen):
     create_wordlist(default_codewords_pickle, minlen=minlen, maxlen=maxlen)
 
     return None
+
+
+def regenerate_codewords(nwords=1000):
+    gen_codewords(codeword_count=nwords)
+
+    return None

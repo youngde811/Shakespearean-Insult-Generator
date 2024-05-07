@@ -24,5 +24,6 @@ from . import views
 urlpatterns = [
     path("list", views.list_codewords),
     path("pickle", views.generate_pickle),
+    path("regenerate", views.regenerate_codewords),
     path("", views.whoami, name="whoami"),
 ]

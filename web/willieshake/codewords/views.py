@@ -43,9 +43,7 @@ def codewords(request):
     with open(codeword_data, 'r') as strm:
         codewords = strm.read().splitlines()
 
-    response = JsonResponse({'codewords': codewords})
-
-    return response
+    return JsonResponse({'codewords': codewords})
 
 
 @csrf_exempt
@@ -57,14 +55,26 @@ def generate_pickle(request):
     data = ast.literal_eval(body)
     
     minlen = int(data['minlen'])
-    maxlen = int(data['maxlen']);
+    maxlen = int(data['maxlen'])
 
-    print(f"generate_pickle(): minlen: {minlen}")
-    print(f"generate_pickle(): maxlen: {maxlen}")
-    
     refresh_pickle(minlen, maxlen)
 
-    return HttpResponse("Generated new pickle file")
+    return JsonResponse({'minlen': minlen, 'maxlen': maxlen, 'message': 'Generated new pickle file'})
+
+
+@csrc_exempt
+def regenerate_codewords(request):
+    if request.method == 'GET':
+        return HttpResponseBadRequest("codeword regeneration requires a POST")
+
+    body = request.body.decode('utf-8')
+    data = ast.literal_eval(body)
+    
+    nwords = int(data['nwords'])
+
+    regenerate_codewords(nwords=nwords)
+
+    return JsonResponse({'nwords': nwords, 'message': 'Codewords regenerated'})
 
 
 def list_codewords(request):
