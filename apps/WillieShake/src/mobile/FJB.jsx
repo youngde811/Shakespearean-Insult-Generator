@@ -23,7 +23,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Button, ImageBackground, Settings, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
