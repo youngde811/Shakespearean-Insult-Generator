@@ -422,10 +422,23 @@ const styles = StyleSheet.create({
         fontSize: 12,
         paddingBottom: 10,
     },
-    settingsHeaderView: {
+    settingsTopView: {
         flex: 1,
         flexDirection: 'column',
+        justifyContent: 'flex-start',
+        marginHorizontal: 4,
+        alignItems: 'flex-start',
+        marginTop: 10,
+    },
+    settingsItemView: {
+        flex: 3,
+        flexDirection: 'column',
         alignItems: 'center',
+    },
+    settingsItem: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
     settingsFooter: {
         bottom: 0,

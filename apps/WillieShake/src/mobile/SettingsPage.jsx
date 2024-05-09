@@ -23,9 +23,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Button, ImageBackground, Settings, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Dropdown } from 'react-native-element-dropdown';
+
+import ScalableText from 'react-native-text';
 
 import styles from '../styles/styles.js';
 
@@ -33,17 +36,27 @@ import PressableOpacity from './PressableOpacity';
 import FloatingPressable from './FloatingPressable';
 
 export default function SettingsPage({ appConfig, background, setDismiss }) {
+    const locations = [];
+
+    Settings.get('codewordLocations').forEach((uri) => locations.push({label: 'URL', value: uri});
+
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
-          <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.fjbTopView }>
+          <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.settingsTopView }>
             <StatusBar style='auto'/>
-            <View style={ styles.settingsHeaderView }>
+            <View style={ styles.settingsItemView }>
+              <View>
+                <ScalableText style={ styles.settingsLabel }>
+                  Codeword Locations:
+                </ScalableText>
+                
+              </View>
+            </View>
               <View style={ styles.settingsFooter }>
                 <PressableOpacity style={ styles.settingsButtons } title={ 'Dismiss' } onPress={ setDismiss }>
                   <Text style={ styles.settingsButtonText }>Dismiss</Text>
                 </PressableOpacity>
               </View>
-            </View>
           </SafeAreaView>
         </ImageBackground>
     );

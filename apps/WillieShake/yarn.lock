@@ -6847,6 +6847,13 @@ react-native-drawer@^2.5.1:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
+react-native-element-dropdown@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-element-dropdown/-/react-native-element-dropdown-2.12.0.tgz#6d1f47384fe3924a435d482449d430b53bc4cd4c"
+  integrity sha512-Zi9a4vGPztXVdvogg5c2a7xLZDB30YqsXH5EqbeHw6WAnoj5dkj4o/HjfZtxu2DHuT/ipBXDBo5gLG0gDMm5Nw==
+  dependencies:
+    lodash "^4.17.21"
+
 react-native-exception-handler@^2.10.10:
   version "2.10.10"
   resolved "https://registry.yarnpkg.com/react-native-exception-handler/-/react-native-exception-handler-2.10.10.tgz#b6bfe2b7e6ea4a4deb1f518f48ce2ee1d4843497"
