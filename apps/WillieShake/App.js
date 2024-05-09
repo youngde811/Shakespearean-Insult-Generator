@@ -136,12 +136,6 @@ const screens = [
     },
 ];
 
-const defaultAppSettings = [
-    { 'childFriendly': false },
-    { 'appTitle': 'Shakespeare Slander' },
-];
-
-
 export default function App() {
     const [season, year] = Utilities.thisSeason();
     const [settings, setSettings] = useState(null);
@@ -180,7 +174,7 @@ export default function App() {
     setJSExceptionHandler(masterErrorHandler);
 
     useEffect(() => {
-        defaultAppSettings.forEach((s) => {
+        appConfig.defaultAppSettings.forEach((s) => {
             Settings.set(s);
         });
     });

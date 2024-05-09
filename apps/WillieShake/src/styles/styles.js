@@ -129,9 +129,9 @@ const styles = StyleSheet.create({
     },
     insultFooter: {
         bottom: 0,
-        left: 0,
-        right: 0,
-        marginBottom: '10%',
+        left: '4%',
+        right: '4%',
+        marginBottom: '5%',
         alignItems: 'stretch',
         position: 'absolute',
     },
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginBottom: '8%',
+        marginBottom: '5%',
         bottom: 0,
         position: 'absolute',
     },
@@ -345,7 +345,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        marginBottom: 40,
     },
     codeWordsBanner: {
         flex: 1,
@@ -379,7 +378,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        marginBottom: '10%',
+        marginBottom: '5%',
         alignItems: 'stretch',
         position: 'absolute',
     },
@@ -423,6 +422,38 @@ const styles = StyleSheet.create({
         fontSize: 12,
         paddingBottom: 10,
     },
+    settingsHeaderView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    settingsFooter: {
+        bottom: 0,
+        left: 0,
+        right: 0,
+        marginBottom: '3%',
+        alignItems: 'stretch',
+        position: 'absolute',
+    },
+    settingsButtons: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3,
+        padding: 4,
+        marginLeft: '4%',
+        marginRight: '4%',
+        backgroundColor: 'cadetblue',
+        borderColor: '#fff',
+        opacity: 0.8,
+    },
+    settingsButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+
 });
 
 export default styles;

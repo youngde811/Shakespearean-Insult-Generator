@@ -37,10 +37,10 @@ export default function SettingsPage({ appConfig, background, setDismiss }) {
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.fjbTopView }>
             <StatusBar style='auto'/>
-            <View style={ styles.codeWordsHeaderView }>
-              <View style={ styles.codeWordsFooter }>
-                <PressableOpacity style={ styles.codeWordsButtons } title={ 'Dismiss' } onPress={ setDismiss }>
-                  <Text style={ styles.codeWordsButtonText }>Dismiss</Text>
+            <View style={ styles.settingsHeaderView }>
+              <View style={ styles.settingsFooter }>
+                <PressableOpacity style={ styles.settingsButtons } title={ 'Dismiss' } onPress={ setDismiss }>
+                  <Text style={ styles.settingsButtonText }>Dismiss</Text>
                 </PressableOpacity>
               </View>
             </View>

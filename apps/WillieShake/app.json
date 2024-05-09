@@ -1,39 +1,42 @@
 {
-    "expo": {
-        "name": "WillieShake",
-        "slug": "WillieShake",
-        "version": "1.9.3",
-        "orientation": "portrait",
-        "icon": "./assets/bootsplash_logo.png",
-        "userInterfaceStyle": "light",
-        "splash": {
-            "image": "./assets/bootsplash_logo@4x.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#000000"
-        },
-        "description": "The Shakespeare Slander app",
-        "assetBundlePatterns": [
-            "**/*"
-        ],
-        "ios": {
-            "supportsTablet": false,
-            "bundleIdentifier": "com.bosshog811.WillieShake",
-            "buildNumber": "1.9.3",
-            "requireFullScreen": true,
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/adaptive-icon.png",
-                "backgroundColor": "#000000",
-            }
-        },
-        "web": {
-            "favicon": "./assets/favicon.png"
-        },
-        "extra": {
-            "eas": {
-                "projectId": "bb6e93aa-61cd-42a7-b78d-8296554c20fc"
-            }
-        }
-    }
+  "expo": {
+    "name": "WillieShake",
+    "slug": "WillieShake",
+    "version": "1.9.3",
+    "orientation": "portrait",
+    "icon": "./assets/bootsplash_logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/bootsplash_logo@4x.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "description": "The Shakespeare Slander app",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.bosshog811.WillieShake",
+      "buildNumber": "1.9.3",
+      "requireFullScreen": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bb6e93aa-61cd-42a7-b78d-8296554c20fc"
+      }
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
 }
