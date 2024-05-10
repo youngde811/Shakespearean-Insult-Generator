@@ -20,10 +20,10 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Button, ImageBackground, Settings, Text, View } from 'react-native';
+import { ImageBackground, Settings, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SelectList } from 'react-native-dropdown-select-list';
@@ -38,25 +38,24 @@ import FloatingPressable from './FloatingPressable';
 export default function SettingsPage({ appConfig, background, setDismiss }) {
     const locations = [];
     const [selectedURL, setSelectedURL] = useState(null);
-    
-    Settings.get('codewordLocations').forEach((item) => locations.push({key: item.name, value: item.url}));
 
-    console.log(`Settings(): Locations: ${JSON.stringify(locations, null, 4)}`);
-    
+    useEffect(() => {
+        Settings.get('codewordLocations').forEach((item) => locations.push({key: item.name, value: item.url}));
+    });
+
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.settingsTopView }>
             <StatusBar style='auto'/>
             <View style={ styles.settingsItemView }>
-              <View>
-                <ScalableText style={ styles.settingsLabel }>
+              <View style={ styles.settingsItems }>
+                <ScalableText style={ styles.settingsLabelText }>
                   Codeword Locations:
                 </ScalableText>
                 <SelectList
-                  style={ styles.locationsDropdown }
+                  style={ styles.settingsLocationsDropdown }
                   data={ locations }
                   setSelected={ (val) => setSelectedURL(val) }
-                  placeholder={ locations[0].name }
                   save={ "value" }
                   search={ false }
                 />

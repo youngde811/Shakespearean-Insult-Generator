@@ -435,10 +435,23 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    settingsItem: {
+    settingsLocationsDropdown: {
+
+    },
+    settingsItems: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-evenly',
+        alignItems: 'flex-start',
+        width: '100%',
+        marginLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    settingsLabelText: {
+        fontSize: 14,
+        color: 'black',
+        fontWeight: 'bold',
     },
     settingsFooter: {
         bottom: 0,
