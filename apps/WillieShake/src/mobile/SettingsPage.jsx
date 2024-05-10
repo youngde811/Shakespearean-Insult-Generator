@@ -56,7 +56,9 @@ export default function SettingsPage({ appConfig, background, setDismiss }) {
                   style={ styles.locationsDropdown }
                   data={ locations }
                   setSelected={ (val) => setSelectedURL(val) }
+                  placeholder={ locations[0].name }
                   save={ "value" }
+                  search={ false }
                 />
               </View>
             </View>
