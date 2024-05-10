@@ -26,7 +26,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, Button, ImageBackground, Settings, Text, View } from 'react-native';
 import { Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Dropdown } from 'react-native-element-dropdown';
+import { SelectList } from 'react-native-dropdown-select-list';
 
 import ScalableText from 'react-native-text';
 
@@ -37,9 +37,12 @@ import FloatingPressable from './FloatingPressable';
 
 export default function SettingsPage({ appConfig, background, setDismiss }) {
     const locations = [];
+    const [selectedURL, setSelectedURL] = useState(null);
+    
+    Settings.get('codewordLocations').forEach((item) => locations.push({key: item.name, value: item.url}));
 
-    Settings.get('codewordLocations').forEach((uri) => locations.push({label: 'URL', value: uri});
-
+    console.log(`Settings(): Locations: ${JSON.stringify(locations, null, 4)}`);
+    
     return (
         <ImageBackground source={ background } resizeMode='cover' style={ styles.backgroundImage }>
           <SafeAreaView edges={['bottom', 'left', 'right']} style={ styles.settingsTopView }>
@@ -49,7 +52,12 @@ export default function SettingsPage({ appConfig, background, setDismiss }) {
                 <ScalableText style={ styles.settingsLabel }>
                   Codeword Locations:
                 </ScalableText>
-                
+                <SelectList
+                  style={ styles.locationsDropdown }
+                  data={ locations }
+                  setSelected={ (val) => setSelectedURL(val) }
+                  save={ "value" }
+                />
               </View>
             </View>
               <View style={ styles.settingsFooter }>

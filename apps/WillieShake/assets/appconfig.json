@@ -7,13 +7,14 @@
     "wikiPage": "https://en.wikipedia.org/wiki/Lord_Buckley",
     "changeLog": "https://github.com/youngde811/willie-the-shake/blob/master/README.md",
     "nsaCodewordsURL": "http://bosshog811.pythonanywhere.com/codewords/list",
-    "codewordLocations": [
-        "https://bosshog811.pythonanywhere.com/codewords",
-        "http://bosshog811.pythonanywhere.com/codewords",
-    ],
     "defaultAppSettings": [
         { "childFriendly": false },
         { "appTitle": "Shakespeare Slander" },
         { "defaultCodeWordLocation": "https://bosshog811.pythonanywhere.com/codewords" },
+        { "codewordLocations": [
+            { "name": "PythonAnywhere (SSL)", "url": "https://bosshog811.pythonanywhere.com/codewords" },
+            { "name": "PythonAnywhere", "url": "http://bosshog811.pythonanywhere.com/codewords" },
+        ]
+        }
     ],
 }
