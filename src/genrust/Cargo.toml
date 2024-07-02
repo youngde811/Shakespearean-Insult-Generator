@@ -1,0 +1,9 @@
+[package]
+name = "genrust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+tikv-jemallocator = { version = "0.5", features = ["profiling"] }
+clap = { version = "4.0", features = ["derive"] }

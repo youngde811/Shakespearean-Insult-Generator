@@ -21,7 +21,6 @@
 # Shakespearian Insult Generator.
 
 import argparse
-import itertools
 import json
 import random
 import re
