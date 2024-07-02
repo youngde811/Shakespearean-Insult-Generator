@@ -10,9 +10,10 @@ static GLOBAL: Jemalloc = Jemalloc;
 
 /// A Shakespearian insult generator
 #[derive(Parser, Debug)]
+#[clap(version)]
 struct Args {
     /// the number of insults to generate
-    #[clap(short, long, default_value_t = 0)]
+    #[clap(short = 'c', long, default_value_t = 0)]
     count: usize,
 
     /// the location of the phrases source file
@@ -23,7 +24,9 @@ struct Args {
     #[clap(short, long, default_value = "")]
     genfile: String,
 
-    /// the format for the generated insults
+    /// the format for the generated insults (text or json)
+    ///
+    /// if not provided, the default is "json"
     #[clap(short, long, default_value = "json")]
     format: String,
 
