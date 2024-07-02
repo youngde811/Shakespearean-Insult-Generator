@@ -2,6 +2,7 @@
 // This program is a Rust implementation of our existing insult model generator - generate.py.
 
 use clap::Parser;
+use std::fs::read_to_string;
 
 use tikv_jemallocator::Jemalloc;
 
@@ -35,14 +36,23 @@ struct Args {
     urls: String
 }
 
+fn read_lines(path: &str) -> Vec<String> {
+    read_to_string(path)
+        .unwrap()
+        .lines()
+        .map(String::from)
+        .collect()
+}
+
 fn insult_me(ninsults: i32, nphrases: i32) {
     dbg!(ninsults);
     dbg!(nphrases);
 }
 
-fn load_phrases(phrases: String, urls: String) -> i32 {
-    dbg!(phrases);
-    dbg!(urls);
+fn load_phrases(phrases: String, _urls: String) -> i32 {
+    let data = read_lines(&phrases);
+    
+    dbg!(data);
     
     return 42;
 }
