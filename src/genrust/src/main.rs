@@ -1,11 +1,6 @@
 
-use std::io;
-use std::io::Write;
-
 // This program is a Rust implementation of our existing insult model generator - generate.py.
 
-use std::cmp::Ordering;
-use rand::Rng;
 use clap::Parser;
 
 use tikv_jemallocator::Jemalloc;
@@ -13,36 +8,26 @@ use tikv_jemallocator::Jemalloc;
 #[global_allocator]
 static GLOBAL: Jemalloc = Jemalloc;
 
+#[derive(Parser, Debug)]
+struct Args {
+    #[clap(short, long, default_value_t = 0)]
+    count: usize,
+
+    #[clap(short, long, default_value = "data/phrases")]
+    phrases: String,
+
+    #[clap(short, long, default_value = "")]
+    genfile: String,
+
+    #[clap(short, long, default_value = "json")]
+    format: String,
+
+    #[clap(short, long, default_value = "data/urls.json")]
+    urls: String
+}
+
 fn main() {
-    let secret = rand::thread_rng().gen_range(1..=100);
+    let args = Args::parse();
 
-    println!("Secret: {secret}");
-
-    loop {
-        print!("Guess: ");
-
-        io::stdout().flush().unwrap();
-        
-        let mut guess = String::new();
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(val) => val,
-            Err(_) => continue,
-        };
-
-        println!("Guess is: {guess}");
-
-        match guess.cmp(&secret) {
-            Ordering::Less => println!("Too small"),
-            Ordering::Greater => println!("Too large"),
-            Ordering::Equal => {
-                println!("Matched");
-                break;
-            }
-        }
-    }
+    dbg!(args);
 }
