@@ -14,7 +14,7 @@ static GLOBAL: Jemalloc = Jemalloc;
 struct Args {
     /// the number of insults to generate
     #[clap(short = 'c', long, default_value_t = 0)]
-    count: usize,
+    count: i32,
 
     /// the location of the phrases source file
     #[clap(short, long, default_value = "data/phrases")]
@@ -35,8 +35,27 @@ struct Args {
     urls: String
 }
 
+fn insult_me(ninsults: i32, nphrases: i32) {
+    dbg!(ninsults);
+    dbg!(nphrases);
+}
+
+fn load_phrases(phrases: String, urls: String) -> i32 {
+    dbg!(phrases);
+    dbg!(urls);
+    
+    return 42;
+}
+
 fn main() {
     let args = Args::parse();
 
-    dbg!(args);
+    let nphrases = load_phrases(args.phrases, args.urls);
+    let ninsults: i32 = if args.count > 0 {
+        i32::from(args.count)
+    } else {
+        i32::from(1)
+    };
+
+    insult_me(ninsults, nphrases);
 }
