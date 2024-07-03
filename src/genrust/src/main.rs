@@ -3,7 +3,11 @@
 
 use clap::Parser;
 
-use std::fs::read_to_string;
+use std::io::prelude::*;
+use std::fs::{File, read_to_string};
+use std::io::BufReader;
+use std::error::Error;
+use regex::Regex;
 
 use tikv_jemallocator::Jemalloc;
 
@@ -37,12 +41,10 @@ struct Args {
     urls: String
 }
 
-fn readlines(path: &str) -> Vec<String> {
-    read_to_string(path)
-        .unwrap()
-        .lines()
-        .map(String::from)
-        .collect()
+fn readlines(path: &str) -> Vec<&str> {
+    let lines: Vec<&str> = read_to_string(path).unwrap().lines().map(|s| s.split("\t")).collect();
+
+    return lines
 }
 
 fn insult_me(ninsults: i32, nphrases: i32) {
@@ -52,10 +54,8 @@ fn insult_me(ninsults: i32, nphrases: i32) {
 
 fn load_phrases(phrases: String, _urls: String) -> i32 {
     let data = readlines(&phrases);
-    
-    dbg!(data);
-    
-    return 42;
+
+    42
 }
 
 fn main() {
