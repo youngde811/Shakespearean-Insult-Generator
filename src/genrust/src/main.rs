@@ -2,7 +2,10 @@
 // This program is a Rust implementation of our existing insult model generator - generate.py.
 
 use clap::Parser;
-use std::fs::read_to_string;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+use regex::Regex;
 
 use tikv_jemallocator::Jemalloc;
 
@@ -36,18 +39,53 @@ struct Args {
     urls: String
 }
 
-fn readlines(path: &str) -> u32 {
-    let data = read_to_string(path).unwrap();
-    let lines = data.lines();
+fn readlines(path: &str) -> i32 {
+    let fp = File::open(path).unwrap();
+    let mut reader = BufReader::new(fp);
 
-    for line in lines {
-        let tuple = line.split("\t");
-        let dataset = tuple.collect::<Vec<&str>>();
+    let re = Regex::new("[\t]+").unwrap();
+    let mut line = String::new();
 
-        dbg!(&dataset);
+    loop {
+        let nbytes = reader.read_line(&mut line).unwrap();
+
+        if nbytes == 0 {
+            break;
+        }
+
+        let fields: Vec<&str> = re.split(&line).collect();
+
+        let a = fields[0];
+        let b = fields[1];
+        let c = fields[2];
+        
+        println!("Fields:");
+        println!("  {a} {b} {c}");
+
+        let parts: Vec<_> = line.split("\t").collect();
+
+        let a = parts[0];
+        let b = parts[1];
+        let c = parts[2];
+
+        println!("Parts:");
+        println!("  {a} {b} {c}");
+
+        line.clear();
     }
 
-    return 42
+    /*
+    for line in contents {
+        let tuple = line.split("\t").clone();
+        let dataset = tuple.collect::<Vec<&str>>();
+
+        rval.push(dataset.clone());
+        
+        dbg!(&dataset);
+    }
+    */
+
+    42
 }
 
 fn insult_me(ninsults: i32, nphrases: i32) {
@@ -57,6 +95,8 @@ fn insult_me(ninsults: i32, nphrases: i32) {
 
 fn load_phrases(phrases: String, _urls: String) -> i32 {
     let data = readlines(&phrases);
+
+    dbg!(data);
 
     42
 }
