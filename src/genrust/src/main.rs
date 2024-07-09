@@ -39,10 +39,11 @@ struct Args {
     urls: String
 }
 
-fn readlines(path: &str) -> i32 {
+fn readlines(path: &str) -> Vec<Vec<String>> {
     let fp = File::open(path).unwrap();
     let mut reader = BufReader::new(fp);
 
+    let mut results: Vec<Vec<String>> = Vec::new();
     let re = Regex::new("[\t]+").unwrap();
     let mut line = String::new();
 
@@ -53,39 +54,20 @@ fn readlines(path: &str) -> i32 {
             break;
         }
 
-        let fields: Vec<&str> = re.split(&line).collect();
+        let fields: Vec<String> = re.split(&line).map(|s| s.to_string()).collect();
 
-        let a = fields[0];
-        let b = fields[1];
-        let c = fields[2];
+        let a = fields[0].trim();
+        let b = fields[1].trim();
+        let c = fields[2].trim();
         
-        println!("Fields:");
-        println!("  {a} {b} {c}");
+        println!("{a} {b} {c}");
 
-        let parts: Vec<_> = line.split("\t").collect();
-
-        let a = parts[0];
-        let b = parts[1];
-        let c = parts[2];
-
-        println!("Parts:");
-        println!("  {a} {b} {c}");
-
+        results.push(fields);
+        
         line.clear();
     }
 
-    /*
-    for line in contents {
-        let tuple = line.split("\t").clone();
-        let dataset = tuple.collect::<Vec<&str>>();
-
-        rval.push(dataset.clone());
-        
-        dbg!(&dataset);
-    }
-    */
-
-    42
+    results
 }
 
 fn insult_me(ninsults: i32, nphrases: i32) {
