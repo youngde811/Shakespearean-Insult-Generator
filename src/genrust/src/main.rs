@@ -69,17 +69,19 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
 fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
     let mut i = 0;
 
-    while i < ninsults {
-        if let serde_json::Value::Array(tuples) = &phrases["phrases"] {
-            for entry in tuples {
-                let c1 = &entry[0].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
-                let c2 = &entry[1].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
-                let c3 = &entry[2].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
+    if let serde_json::Value::Array(tuples) = &phrases["phrases"] {
+        for entry in tuples {
+            let c1 = &entry[0].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
+            let c2 = &entry[1].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
+            let c3 = &entry[2].to_string().trim_matches(|c| c == '\"' || c == '\'').to_string();
 
-                println!("Thou {} {} {}!", c1, c2, c3);
-            }
+            println!("Thou {} {} {}!", c1, c2, c3);
 
             i += 1;
+
+            if i == ninsults {
+                return;
+            }
         }
     }
 }
