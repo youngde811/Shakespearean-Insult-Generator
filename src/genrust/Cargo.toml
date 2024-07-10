@@ -8,3 +8,4 @@ rand = "0.8.5"
 tikv-jemallocator = { version = "0.5", features = ["profiling"] }
 clap = { version = "4.0", features = ["derive"] }
 regex = "1"
+json = "*"

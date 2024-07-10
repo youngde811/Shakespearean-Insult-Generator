@@ -7,6 +7,9 @@ use std::io::{BufRead, BufReader};
 
 use regex::Regex;
 
+#[macro_use]
+extern crate json;
+
 use tikv_jemallocator::Jemalloc;
 
 #[global_allocator]
@@ -33,10 +36,6 @@ struct Args {
     /// if not provided, the default is "json"
     #[clap(short, long, default_value = "json")]
     format: String,
-
-    /// the location of the URLs source file
-    #[clap(short, long, default_value = "data/urls.json")]
-    urls: String
 }
 
 fn readlines(path: &str) -> Vec<Vec<String>> {
@@ -49,7 +48,7 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
     let mut line = String::new();
 
     loop {
-        let nbytes = reader.read_line(&mut line).unwrap();
+        let nbytes = reader.read_line(&mut line).expect(&format!("failed to read from file: {}", path));
 
         if nbytes == 0 {
             break;
@@ -68,28 +67,31 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
     results
 }
 
-fn insult_me(ninsults: i32, nphrases: i32) {
+fn insult_me(ninsults: i32) {
     dbg!(ninsults);
-    dbg!(nphrases);
 }
 
-fn load_phrases(phrases: String, _urls: String) -> i32 {
+fn load_phrases(phrases: String) -> json::JsonValue {
     let data = readlines(&phrases);
+    let phrases = object!{
+        "phrases": data
+    };
 
-    dbg!(data);
-
-    42
+    phrases
 }
 
 fn main() {
     let args = Args::parse();
 
-    let nphrases = load_phrases(args.phrases, args.urls);
+    let phrases = load_phrases(args.phrases);
+    
+    println!("{:#}", phrases);
+
     let ninsults: i32 = if args.count > 0 {
         i32::from(args.count)
     } else {
         i32::from(1)
     };
 
-    insult_me(ninsults, nphrases);
+    insult_me(ninsults);
 }
