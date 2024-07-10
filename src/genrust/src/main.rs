@@ -67,8 +67,13 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
     results
 }
 
-fn insult_me(ninsults: i32) {
-    dbg!(ninsults);
+fn insult_me(phrases: &json::JsonValue, ninsults: i32) {
+    for _i in 0..ninsults {
+        for keywords in phrases.members() {
+            println!("Thou {} {} {}!", keywords[0], keywords[1], keywords[2]);
+        }
+    }
+
 }
 
 fn load_phrases(phrases: String) -> json::JsonValue {
@@ -93,5 +98,5 @@ fn main() {
         i32::from(1)
     };
 
-    insult_me(ninsults);
+    insult_me(&phrases, ninsults);
 }
