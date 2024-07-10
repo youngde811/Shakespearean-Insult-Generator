@@ -45,6 +45,7 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
 
     let mut results: Vec<Vec<String>> = Vec::new();
     let re = Regex::new("[\t]+").unwrap();
+
     let mut line = String::new();
 
     loop {
@@ -54,13 +55,10 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
             break;
         }
 
-        let fields: Vec<String> = re.split(&line).map(|s| s.to_string()).collect();
-
-        let a = fields[0].trim();
-        let b = fields[1].trim();
-        let c = fields[2].trim();
-        
-        println!("{a} {b} {c}");
+        let fields: Vec<String> = re.split(&line)
+            .map(|s| s.trim())
+            .map(|s| s.to_string())
+            .collect();
 
         results.push(fields);
         
