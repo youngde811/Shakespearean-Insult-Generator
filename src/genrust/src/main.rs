@@ -4,6 +4,9 @@
 use clap::Parser;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::process;
+
+use rand::prelude::*;
 
 use regex::Regex;
 
@@ -38,7 +41,14 @@ struct Args {
 }
 
 fn readlines(path: &str) -> Vec<Vec<String>> {
-    let fp = File::open(path).unwrap();
+    let fp = match File::open(path) {
+        Err(e) => {
+            println!("failed to open file: {path}: {e}");
+            process::exit(-1);
+        },
+        Ok(fp) => fp
+    };
+
     let mut reader = BufReader::new(fp);
 
     let mut results: Vec<Vec<String>> = Vec::new();
@@ -72,9 +82,16 @@ fn canonicalize(s: &String) -> String {
 
 fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
     let mut i = 0;
-
+    let mut rng = thread_rng();
+    
     if let serde_json::Value::Array(tuples) = &phrases["phrases"] {
-        for entry in tuples {
+        let len = tuples.len();
+
+        while i < ninsults {
+            let range = std::ops::Range {start: 0, end: len - 1};
+            let index = rng.gen_range(range);
+            let entry = &tuples[index];
+
             let c1 = canonicalize(&entry[0].to_string());
             let c2 = canonicalize(&entry[1].to_string());
             let c3 = canonicalize(&entry[2].to_string());
@@ -82,10 +99,6 @@ fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
             println!("Thou {} {} {}!", c1, c2, c3);
 
             i += 1;
-
-            if i == ninsults {
-                return;
-            }
         }
     }
 }
