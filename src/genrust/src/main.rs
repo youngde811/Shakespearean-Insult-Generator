@@ -3,7 +3,7 @@
 
 use clap::Parser;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, Write};
 use std::process;
 
 use rand::prelude::*;
@@ -17,19 +17,27 @@ use tikv_jemallocator::Jemalloc;
 #[global_allocator]
 static GLOBAL: Jemalloc = Jemalloc;
 
+type JsonDoc = serde_json::Value;
+
 /// A Shakespearian insult generator
 #[derive(Parser, Debug)]
 #[clap(version)]
 struct Args {
     /// the number of insults to generate
+    ///
+    /// if not provided, the default is 1
     #[clap(short = 'c', long, default_value_t = 1)]
     count: i32,
 
     /// the location of the phrases source file
+    ///
+    /// if not provided, the default is "data/phrases"
     #[clap(short, long, default_value = "data/phrases")]
     phrases: String,
 
-    /// the destination file, if any, for the generated insults
+    /// generate a complete set of insults, in JSON, and write them to GENFILE
+    ///
+    /// if not provided, there is no default
     #[clap(short, long, default_value = "")]
     genfile: String,
 
@@ -103,6 +111,27 @@ fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
     }
 }
 
+fn generate_insults(phrases: &JsonDoc, genfile: &str) {
+    let mut fp = match File::create(genfile) {
+        Err(e) => {
+            println!("failed to create file: {genfile}: {e}");
+            process::exit(-1);
+        },
+        Ok(fp) => fp
+    };
+
+    if let serde_json::Value::Array(tuples) = &phrases["phrases"] {
+        let payload = json!({
+            "phrases": &tuples
+        });
+        
+        let doc = serde_json::to_string_pretty(&payload).unwrap();
+        let buf = doc.as_bytes();
+
+        fp.write_all(buf).unwrap();
+    }
+}
+
 fn load_phrases(phrases: String) -> serde_json::Value {
     let data = readlines(&phrases);
     let phrases = json!({
@@ -123,5 +152,11 @@ fn main() {
         i32::from(1)
     };
 
-    insult_me(&phrases, ninsults);
+    if args.genfile.len() > 0 {
+        generate_insults(&phrases, &args.genfile);
+    } else {
+        insult_me(&phrases, ninsults);
+    }
+
+    process::exit(0);
 }
