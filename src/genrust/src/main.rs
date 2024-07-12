@@ -1,5 +1,12 @@
 
 // This program is a Rust implementation of our existing insult model generator - generate.py.
+// This was really just an exercise in writing a non-trivial Rust program; to understand the
+// language's overall syntax, and the dreaded Borrow Checker. Compare this code to the Python
+// version, and you'll see it's roughly the same length. So that's cool. IMHO, Rust's downfall
+// is its memory management approach/implementation: borrowing and the borrow checker. It's often
+// not obvious at all who owns what and why, and that really gets in the way. Overall, however,
+// I like Rust. It's generally clean I suppose. But. I would always choose ANSI C over Rust for
+// system software.
 
 use clap::Parser;
 use std::fs::File;

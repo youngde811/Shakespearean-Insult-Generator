@@ -31,7 +31,7 @@ ensure_binary() {
 genrust_usage() {
     ensure_binary
 
-    $genrust --help
+    $genrust -h
 
     exit $?
 }
