@@ -58,7 +58,7 @@ struct Args {
     genfile: String,
 }
 
-fn readlines(path: &str) -> TupleList {
+fn readtuples(path: &str) -> TupleList {
     let fp = match File::open(path) {
         Err(e) => {
             println!("failed to open file: {path}: {e}");
@@ -143,7 +143,7 @@ fn generate_insults(phrases: &JsonDoc, genfile: &str) {
 }
 
 fn load_phrases(phrases: String) -> serde_json::Value {
-    let data = readlines(&phrases);
+    let data = readtuples(&phrases);
 
     json!({
         "phrases": data
