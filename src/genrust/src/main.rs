@@ -110,11 +110,7 @@ fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
             let index = rng.gen_range(range);
             let entry = &tuples[index];
 
-            let c1 = canonicalize(&entry[0].to_string());
-            let c2 = canonicalize(&entry[1].to_string());
-            let c3 = canonicalize(&entry[2].to_string());
-
-            println!("Thou {} {} {}!", c1, c2, c3);
+            println!("Thou {} {} {}!", canonicalize(&entry[0].to_string()), canonicalize(&entry[1].to_string()), canonicalize(&entry[2].to_string()));
 
             i += 1;
         }
