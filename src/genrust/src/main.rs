@@ -94,14 +94,14 @@ fn readtuples(path: &str) -> TupleList {
     results
 }
 
-fn canonicalize(s: &String) -> String {
-    return s.trim_matches(|c| c == '\"' || c == '\'').to_string();
-}
-
 fn insult_me(phrases: &serde_json::Value, ninsults: i32) {
     let mut i = 0;
     let mut rng = thread_rng();
-    
+
+    fn canonicalize(s: &String) -> String {
+        return s.trim_matches(|c| c == '\"' || c == '\'').to_string();
+    }
+
     if let serde_json::Value::Array(tuples) = &phrases["phrases"] {
         let len = tuples.len();
 
