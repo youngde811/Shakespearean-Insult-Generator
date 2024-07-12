@@ -19,6 +19,7 @@ this script work.
 Options
   -h  Show this message and exit.
   -H  Show the insult generator's help message and exit.
+  -L  Show a long version of the insult generator's help message and exit.
 EOF
 
     exit 1
@@ -29,17 +30,23 @@ ensure_binary() {
 }
 
 genrust_usage() {
+    local flag='-h'
+    local opt="$1"
+
+    [[ $opt == long ]] && flag='--help'
+    
     ensure_binary
 
-    $genrust -h
+    $genrust $flag
 
     exit $?
 }
 
-while getopts "hH" opt ; do
+while getopts "hHL" opt ; do
     case $opt in
         h) usage ;;
-        H) genrust_usage ;;
+        H) genrust_usage short ;;
+        L) genrust_usage long ;;
         *) usage ;;
     esac
 done

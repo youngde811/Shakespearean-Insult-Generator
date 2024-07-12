@@ -26,15 +26,16 @@ static GLOBAL: Jemalloc = Jemalloc;
 
 type JsonDoc = serde_json::Value;
 
-/// A Shakespearian insult generator
 #[derive(Parser, Debug)]
-#[clap(version)]
+#[command(version, about, long_about = None)]
+#[command(about = "A Shakespearean insult generator")]
 struct Args {
     /// the number of insults to generate
     ///
     /// if not provided, the default is 1
     #[clap(short = 'c', long, default_value_t = 1)]
-    count: i32,
+    #[arg(value_parser = clap::value_parser!(u16).range(1..=500))]
+    count: u16,
 
     /// the location of the phrases source file
     ///
@@ -44,15 +45,9 @@ struct Args {
 
     /// generate a complete set of insults, in JSON, and write them to GENFILE
     ///
-    /// if not provided, there is no default
+    /// if not provided, insults go to stdout
     #[clap(short, long, default_value = "")]
     genfile: String,
-
-    /// the format for the generated insults (text or json)
-    ///
-    /// if not provided, the default is "json"
-    #[clap(short, long, default_value = "json")]
-    format: String,
 }
 
 fn readlines(path: &str) -> Vec<Vec<String>> {
@@ -141,11 +136,10 @@ fn generate_insults(phrases: &JsonDoc, genfile: &str) {
 
 fn load_phrases(phrases: String) -> serde_json::Value {
     let data = readlines(&phrases);
-    let phrases = json!({
-        "phrases": data
-    });
 
-    phrases
+    json!({
+        "phrases": data
+    })
 }
 
 fn main() {
