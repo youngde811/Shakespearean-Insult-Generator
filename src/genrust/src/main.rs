@@ -6,7 +6,7 @@
 // is its memory management approach/implementation: borrowing and the borrow checker. It's often
 // not obvious at all who owns what and why, and that really gets in the way. Overall, however,
 // I like Rust. It's generally clean I suppose. But. I would always choose ANSI C over Rust for
-// system software.
+// system software, along with Emacs, GNU gdb, and Make.
 
 use clap::Parser;
 use std::fs::File;
