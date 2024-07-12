@@ -146,12 +146,7 @@ fn main() {
     let args = Args::parse();
 
     let phrases = load_phrases(args.phrases);
-
-    let ninsults: i32 = if args.count > 0 {
-        i32::from(args.count)
-    } else {
-        i32::from(1)
-    };
+    let ninsults: i32 = i32::from(args.count);
 
     if args.genfile.len() > 0 {
         generate_insults(&phrases, &args.genfile);
