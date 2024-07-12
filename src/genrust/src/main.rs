@@ -32,6 +32,7 @@ use tikv_jemallocator::Jemalloc;
 static GLOBAL: Jemalloc = Jemalloc;
 
 type JsonDoc = serde_json::Value;
+type TupleList = Vec<Vec<String>>;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -57,7 +58,7 @@ struct Args {
     genfile: String,
 }
 
-fn readlines(path: &str) -> Vec<Vec<String>> {
+fn readlines(path: &str) -> TupleList {
     let fp = match File::open(path) {
         Err(e) => {
             println!("failed to open file: {path}: {e}");
@@ -68,7 +69,7 @@ fn readlines(path: &str) -> Vec<Vec<String>> {
 
     let mut reader = BufReader::new(fp);
 
-    let mut results: Vec<Vec<String>> = Vec::new();
+    let mut results: TupleList = Vec::new();
     let re = Regex::new("[\t]+").unwrap();
 
     let mut line = String::new();
