@@ -32,18 +32,18 @@ export function writeClipboard(text) {
 };
 
 export function findLongestInsult(insults) {
-    var item = insults.reduce((a, b) => {
-        return a.insult.length > b.insult.length ? a : b;
-    });
+  const item = insults.reduce((a, b) => {
+    return a.insult.length > b.insult.length ? a : b;
+  });
 
-    return item.insult.length;
+  return item.insult.length;
 };
 
 // thisSeason() considers transition days within each month, but only works for the Northern
 // Hemisphere. At some point I'll do the Southern as well. Algorithm courtesy of: https://stackoverflow.com/users/6298712/ddejohn.
 
 export function thisSeason() {
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                   "November", "December"];
     
     const seasons = {
@@ -52,7 +52,7 @@ export function thisSeason() {
         "March": ["Winter", "Spring"],
         "April": ["Spring"],
         "May": ["Spring"],
-        "June": ("Spring", "Summer"),
+        "June": ["Spring", "Summer"],  // Fixed parentheses to brackets
         "July": ["Summer"],
         "August": ["Summer"],
         "September": ["Summer", "Autumn"],
@@ -65,19 +65,22 @@ export function thisSeason() {
         [["Winter", "Spring"], 21],
         [["Spring", "Summer"], 21],
         [["Summer", "Autumn"], 23],
-        [["Autumn", "Winter"], 21]]);
+        [["Autumn", "Winter"], 21]
+    ]);
 
-    var today = new Date();
-    var month = months[today.getMonth()];
-    var stuple = seasons[month];
+    const today = new Date();
+    const month = months[today.getMonth()];
+    const stuple = seasons[month];
 
-    var transition = stuple in transitions ? transitions[stuple] : 0;
-    var season;
-
-    if (stuple.length == 1) {
+    let season;
+  
+    if (stuple.length === 1) {
         season = stuple[0];
     } else {
-        season = today.getDate() >= transition ? stuple[1] : stuple[0];
+        // Find transition date if it exists
+        const transitionDate = transitions.get(stuple) || 0;
+      
+        season = today.getDate() >= transitionDate ? stuple[1] : stuple[0];
     }
     
     return [season, today.getFullYear()];
