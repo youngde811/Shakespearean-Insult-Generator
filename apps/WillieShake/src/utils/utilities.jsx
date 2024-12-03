@@ -73,10 +73,6 @@ export function thisSeason() {
     try {
         const today = new Date();
 
-        if (isNaN(today.getTime())) {
-            throw new Error("Invalid date");
-        }
-
         const month = months[today.getMonth()];
         const stuple = seasons[month];
 
@@ -99,6 +95,7 @@ export function thisSeason() {
         return [season, today.getFullYear()];
     } catch (error) {
         console.error("Error determining season:", error);
+        
         return ["Unknown", new Date().getFullYear()];
     }
 }
