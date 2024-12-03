@@ -43,61 +43,48 @@ export function findLongestInsult(insults) {
 // Hemisphere. At some point I'll do the Southern as well. Algorithm courtesy of: https://stackoverflow.com/users/6298712/ddejohn.
 
 export function thisSeason() {
-    const months = ["January", "February", "March", "April", "May", "June", 
-                   "July", "August", "September", "October", "November", "December"];
-    
-    const seasons = {
-        "January": ["Winter"],
-        "February": ["Winter"],
-        "March": ["Winter", "Spring"],
-        "April": ["Spring"],
-        "May": ["Spring"],
-        "June": ["Spring", "Summer"],
-        "July": ["Summer"],
-        "August": ["Summer"],
-        "September": ["Summer", "Autumn"],
-        "October": ["Autumn"],
-        "November": ["Autumn"],
-        "December": ["Autumn", "Winter"]
-    };
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
 
-    // Use string keys instead of arrays for reliable lookup
+  const seasons = {
+    "January": ["Winter"],
+    "February": ["Winter"],
+    "March": ["Winter", "Spring"],
+    "April": ["Spring"],
+    "May": ["Spring"],
+    "June": ["Spring", "Summer"],
+    "July": ["Summer"],
+    "August": ["Summer"],
+    "September": ["Summer", "Autumn"],
+    "October": ["Autumn"],
+    "November": ["Autumn"],
+    "December": ["Autumn", "Winter"]
+  };
 
-    const transitions = new Map([
-        ["Winter,Spring", 21],    // March 21
-        ["Spring,Summer", 21],    // June 21
-        ["Summer,Autumn", 23],    // September 23
-        ["Autumn,Winter", 21]     // December 21
-    ]);
+  const transitions = new Map([
+    ["Winter,Spring", 21],    // March 21
+    ["Spring,Summer", 21],    // June 21
+    ["Summer,Autumn", 23],    // September 23
+    ["Autumn,Winter", 21]     // December 21
+  ]);
 
-    try {
-        const today = new Date();
+  const today = new Date();
 
-        const month = months[today.getMonth()];
-        const stuple = seasons[month];
+  const month = months[today.getMonth()];
+  const stuple = seasons[month];
 
-        if (!stuple) {
-            throw new Error("Invalid month");
-        }
+  let season;
 
-        let season;
-
-        if (stuple.length === 1) {
-            season = stuple[0];
-        } else {
-            // Create string key for transition lookup
-            const transitionKey = stuple.join(',');
-            const transitionDate = transitions.get(transitionKey) || 0;
-
-            season = today.getDate() >= transitionDate ? stuple[1] : stuple[0];
-        }
+  if (stuple.length === 1) {
+    season = stuple[0];
+  } else {
+    const transitionKey = stuple.join(','); // create key for transition lookup
+    const transitionDate = transitions.get(transitionKey) || 0;
+  
+    season = today.getDate() >= transitionDate ? stuple[1] : stuple[0];
+  }
         
-        return [season, today.getFullYear()];
-    } catch (error) {
-        console.error("Error determining season:", error);
-        
-        return ["Unknown", new Date().getFullYear()];
-    }
+  return [season, today.getFullYear()];
 }
 
 // All of the icon names here map directly to the Material Community Icons set.
