@@ -62,7 +62,7 @@ export function thisSeason() {
     };
 
     // Use string keys instead of arrays for reliable lookup
-    
+
     const transitions = new Map([
         ["Winter,Spring", 21],    // March 21
         ["Spring,Summer", 21],    // June 21
